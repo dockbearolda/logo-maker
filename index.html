@@ -424,22 +424,24 @@
   .o-studio-retiree { border-style:dashed; }
   .o-studio-retiree i { opacity:.28; }
   .o-studio-retiree::after { content:''; position:absolute; inset:7px; border-radius:6px; background:linear-gradient(to top right, transparent calc(50% - 1px), #b91c1c calc(50% - 1px), #b91c1c calc(50% + 1px), transparent calc(50% + 1px)); }
-  .o-studio-pastilles { display:grid; grid-template-columns:repeat(auto-fill, minmax(30px, 1fr)); gap:6px; }
+  .o-studio-pastilles { display:grid; grid-template-columns:repeat(auto-fill, minmax(28px, 1fr)); gap:4px; }
   .o-studio-pastilles button { display:grid; place-items:center; height:30px; padding:0; border:1px solid transparent; border-radius:9px; background:transparent; cursor:pointer; }
   .o-studio-pastilles button:hover { background:var(--zone); }
   .o-studio-pastilles button[aria-checked="true"] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
   .o-studio-pastilles i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.2); }
-  /* LA BULLE D'UNE TEINTE : les couleurs DTF, une autre, l'origine, ou la
+  /* LA BULLE D'UNE TEINTE : le nuancier OLDA, une autre, l'origine, ou la
      retirer du logo. */
   .o-studio-pop { position:absolute; z-index:20; width:240px; box-sizing:border-box; display:flex; flex-direction:column; gap:10px; padding:12px; border-radius:14px; background:#fff; border:1px solid var(--filet-carte); box-shadow:0 24px 50px -14px rgba(15,23,42,.38); }
   .o-studio-pop-tete { display:flex; align-items:center; gap:8px; }
   .o-studio-pop-tete i { width:22px; height:22px; border-radius:7px; box-shadow:inset 0 0 0 1px rgba(15,23,42,.15); }
   .o-studio-pop-tete b { flex:1; font-size:var(--t-corps); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; }
+  .o-studio-pop-tete small { display:block; font-size:var(--t-petit); font-weight:normal; color:var(--encre-2); }
   .o-studio-pop-x { width:28px; height:28px; display:grid; place-items:center; padding:0; border:0; border-radius:8px; background:transparent; color:var(--encre-2); cursor:pointer; }
   .o-studio-pop-x:hover { background:var(--zone); color:var(--encre-1); }
-  .o-studio-pop-grille { display:grid; grid-template-columns:repeat(8, 1fr); gap:4px; }
+  .o-studio-pop-grille { display:grid; grid-template-columns:repeat(9, 1fr); gap:2px; }
   .o-studio-pop-grille button { height:26px; display:grid; place-items:center; padding:0; border:0; border-radius:7px; background:transparent; cursor:pointer; }
   .o-studio-pop-grille button:hover { background:var(--zone); }
+  .o-studio-pop-grille button[aria-current="true"] { box-shadow:inset 0 0 0 2px var(--accent); }
   .o-studio-pop-grille i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.2); }
   .o-studio-pop-pied { display:flex; gap:6px; }
   .o-studio-pop-pied .o-studio-bouton { min-height:34px; padding:0 10px; font-size:var(--t-petit); }
@@ -448,6 +450,13 @@
   .o-studio-pop-autre input { position:absolute; inset:0; width:100%; height:100%; margin:0; padding:0; border:0; opacity:0; cursor:pointer; }
   .o-studio-pop-retirer { color:#b91c1c; }
   .o-studio-pop-large { width:100%; }
+  /* L'INFOBULLE D'UNE PASTILLE : son nom, ses encres CMJN. */
+  .o-studio-infobulle { position:fixed; z-index:60; display:flex; flex-direction:column; gap:3px; padding:8px 11px; border-radius:10px; background:var(--encre-1); color:#fff; font-size:var(--t-petit); white-space:nowrap; font-variant-numeric:tabular-nums; pointer-events:none; box-shadow:0 12px 30px -10px rgba(15,23,42,.5); }
+  .o-studio-infobulle > b { font-size:var(--t-corps); font-weight:var(--g-forte); }
+  .o-studio-infobulle em { font-style:normal; color:rgba(255,255,255,.7); }
+  .o-studio-infobulle-encres { display:flex; gap:10px; color:rgba(255,255,255,.6); }
+  .o-studio-infobulle-encres b { color:#fff; font-weight:var(--g-forte); }
+  .o-studio-infobulle small { font-size:11px; color:rgba(255,255,255,.5); }
 
   /* LE PDF, toujours en bas du panneau, et « Plus » à côté. */
   .o-studio-pied { position:relative; display:flex; flex-direction:column; gap:10px; padding:12px 16px 14px; border-top:1px solid var(--filet-carte); border-radius:0 0 18px 18px; background:var(--carte); }
