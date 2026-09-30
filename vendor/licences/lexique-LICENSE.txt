@@ -1,0 +1,8 @@
+vendor/lexique/mots.txt — tiré de FrequencyWords (Hermit Dave),
+https://github.com/hermitdave/FrequencyWords, listes 2018 fr et en
+(d'après les sous-titres d'OpenSubtitles.org).
+
+Contenu sous licence Creative Commons Attribution-ShareAlike 4.0
+International (CC BY-SA 4.0) : https://creativecommons.org/licenses/by-sa/4.0/
+La liste tirée (les mots seuls, en minuscules, fusionnés par rang) est
+partagée sous la même licence. Refaite par outils/lexique.mjs.

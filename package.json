@@ -1,0 +1,7 @@
+{
+  "name": "logo-maker-olda",
+  "private": true,
+  "description": "Le Logo maker d'OLDA, seul — en ligne sur https://dockbearolda.github.io/logo-maker/",
+  "type": "module",
+  "scripts": { "test": "node --test" }
+}

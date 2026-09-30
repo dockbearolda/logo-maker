@@ -1,0 +1,39 @@
+TABLETTE: non
+
+# Logo maker · OLDA
+
+Le Logo maker du comptoir OLDA Print Studio, sorti seul le 29 septembre 2026
+(voir README.md). Pages statiques servies par GitHub Pages depuis `main`
+(dépôt `dockbearolda/logo-maker` → https://dockbearolda.github.io/logo-maker/).
+Pas de build, pas de serveur, pas de paquet : on modifie les fichiers, on
+vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
+
+## Ce qui est tranché (ne pas défaire)
+
+- **PC + Chrome seulement**, souris et clavier. Pas de mise en page mobile
+  ni tablette à prévoir. Vérifier à la largeur du volet de Charlie (lire
+  `innerWidth`, souvent 1 024–1 270 px ; sous 1 100 le panneau passe sous le
+  plan) et au bureau (1 440 / 1 920).
+- **« Détouré » d'abord et d'office** : le fond autour part, les pixels du
+  fichier restent, rien ne se trace. Aucun nouveau réglage ne doit forcer la
+  vectorisation ni vider les creux dans Détouré.
+- **L'Amélioration IA reste vérifiable contre le fichier d'origine** (garde-fou
+  `fidele`, aucune couleur inventée `borner`) : jamais d'IA qui réinvente des
+  lettres sans ce contrôle.
+- **« Autour » vide les lettres posées dehors** (leurs creux, même pâles)
+  sans toucher la marge blanche d'un sticker ni les grandes îles.
+- **Un anneau dessiné irrégulier garde son dessin** (« c'est le logo qui est
+  fait comme ça ») : au compas seulement s'il est vraiment un cercle abîmé.
+- **Les écritures (scripts) sont proposées, jamais imposées** ; une police
+  n'est posée d'office que « reconnue ».
+- **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
+  clients avant et après (petits textes, puces, anneaux, en gros plan et sur
+  fond noir), pas sur un seul.
+
+## Avec le comptoir
+
+Le même studio vit dans `OLDA-Print-Studio` (lib/ identique au départ). Une
+amélioration faite ici n'y remonte pas toute seule, ni l'inverse :
+`outils/logo-maker-statique.mjs` du comptoir ramène ici sa version et
+remplace `index.html`, `favicon.svg`, `lib/`, `vendor/`. Avant de le relancer,
+regarder ce qui a changé ici (git) pour ne rien perdre.

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logo maker · OLDA</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- Sortie du comptoir OLDA Print Studio par outils/logo-maker-statique.mjs :
+     relancer ce script remplace index.html, lib/ et vendor/ par ceux du
+     comptoir (git montre l'écart). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<style>
+  :root {
+    /* ------------------------------------------------------------ LA TEINTE
+       CELLE D'OLDA PRINT STUDIO (11 septembre 2026). Le patron a validé la maquette
+       `olda_system_prototype_v2.html` : sa structure ET son design deviennent
+       ceux du comptoir. Ces jetons portent désormais ses valeurs — le fond
+       gris clair, les cartes blanches à filet, l'encre bleu nuit, l'action
+       bleu ciel —, et tout écran qui les lit prend son allure d'un coup. Les
+       composants propres à la maquette (barre latérale, cartes chiffrées,
+       tableaux, pastilles, colonnes, fenêtres) sont en bas, sous « o- ». */
+
+    /* --------------------------------------------------------- SURFACES */
+    --fond: #e9edf2;
+    --carte: #f9fafb;
+    --zone: #f1f4f7;
+    --survol: #e9edf2;
+    --survol-fort: #dde3ea;
+    --filet-ligne: #e2e8f0;
+
+    /* ------------------------------------------------------------ TEXTE */
+    --encre-1: #0f172a;
+    --encre-2: #64748b;
+    /* LE GRIS CLAIR NE SE LIT PAS (23 septembre 2026) : 2,6:1 sur blanc,
+       loin des 4,5:1 d'un texte qu'on doit lire. Tout ce qui se lit — un
+       titre de colonne, un tableau vide, une aide, un placeholder, une valeur
+       de Réglages — est en --encre-2. --encre-3 ne sert plus qu'à ce qui est
+       éteint ou décoratif : un bouton inactif, un chevron, un filet. */
+    --encre-3: #94a3b8;
+    --encre-indice: #64748b;
+
+    /* ----------------------------------------------------------- TRAITS */
+    --filet-carte: #e2e8f0;
+    --filet-fort: #cbd5e1;
+
+    /* ------------------------------------------------------------ ACCENT
+       Le bleu ciel (#0284c7) de ses boutons pleins, de ses onglets et de ses
+       filtres choisis ; un bleu plus soutenu sous la souris. */
+    --accent: #0284c7;
+    --accent-survol: #0369a1;
+    --sur-accent: #fff;
+
+    /* ============================================ LA HIÉRARCHIE DES ACTIONS
+       Les niveaux restent, sous l'allure de la maquette : bouton plein bleu
+       ciel, bouton à filet, texte nu, rouge pour ce qui ne se répare pas. La
+       maquette ne met aucune ombre à ses boutons. */
+    --action: #0284c7;
+    --action-survol: #0369a1;
+    --sur-action: #fff;
+    --ombre-action: 0 0 #0000;
+    --ombre-action-majeure: 0 0 #0000;
+    --filet-bouton: #e2e8f0;
+    --ombre-contour: 0 0 #0000;
+    --succes: #0f9d68;
+    --succes-encre: #0b7a50;
+    /* L'AMBRE DE LA MAISON — celle des pastilles « chez le client » et des
+       points qui manquent à un devis. Elle attire l'œil sans crier : ce
+       n'est pas une erreur, c'est quelque chose à finir. */
+    --attention-encre: #a85b00;
+    /* L'ambre a besoin d'un FOND et d'un FILET dès qu'une question se pose
+       dans une carte et non plus dans une phrase (22 septembre 2026, la
+       prise de commande façon caisse) : « Dos · à choisir » est une carte
+       ouverte, pas un point au bout d'une ligne. */
+    --attention-fond: #fff7ed;
+    --attention-filet: #fdba74;
+    --danger: #dc2626;
+    --danger-filet: rgba(220,38,38,.35);
+    --danger-voile: rgba(220,38,38,.08);
+    --eteint: #f1f5f9;
+    --eteint-encre: #64748b;
+
+    /* ============================================ LE TICKET DE LA CAISSE
+       LA COLONNE DU PANIER DE LA PRISE DE COMMANDE (22 septembre 2026) : ce
+       qu'on va encaisser tient dans une carte claire, comme les autres —
+       le fond d'une carte, ses deux filets gris, et quatre encres du bleu
+       nuit au gris discret. Rien d'écrit en clair dans les styles. L'ambre
+       et le vert y ont leur propre jeton, un ton plus soutenu que ceux du
+       reste de l'app. */
+    --ticket-fond: var(--carte);
+    --ticket-filet: #e2e8f0;
+    --ticket-filet-fort: #cbd5e1;
+    --ticket-encre: #0f172a;
+    --ticket-pale: #334155;
+    --ticket-sourdine: #64748b;
+    --ticket-discret: #94a3b8;
+    --ticket-attention: #b45309;
+    --ticket-succes: #0b7a50;
+    /* Le bouton qui encaisse : bleu ciel plein, le même que l'action du
+       reste de l'app. */
+    --ticket-action: #0284c7;
+    --ticket-sur-action: #fff;
+
+    /* ================================== LA FENÊTRE D'UNE COMMANDE
+       ELLE S'OUVRE SUR CE QUI ATTEND (maquette du 16 septembre 2026) : un
+       bandeau d'ardoise qui dit le geste en une phrase, un rail d'argent à
+       droite. L'ARDOISE PLUTÔT QUE LE BLEU DES BOUTONS : elle couvre une
+       bande entière et non un bouton de 42 px — le bleu vif, à cette
+       surface, fait un bloc. C'est le seul endroit de l'app qui la porte.
+       Une machine nommée (DTF, Trotec, Roland UV) porte l'étiquette chaude ;
+       « Autres » reste gris — ce n'est pas une machine, c'est le reste. */
+    --panneau: #4a5c6e;
+    --panneau-survol: #3d4d5d;
+    --sur-panneau: #fff;
+    --panneau-sourdine: rgba(255,255,255,.68);
+    --panneau-voile: rgba(255,255,255,.16);
+    --panneau-voile-fort: rgba(255,255,255,.28);
+    --panneau-page: #efefec;
+    --panneau-rail: #eceae5;
+    --panneau-filet: #dedbd4;
+    --machine-fond: #ece3cd;
+    --machine-encre: #7a5b16;
+
+    /* --------------------------------------------------------- LES ÉTATS
+       LES PASTILLES DE LA MAQUETTE : gris pour ce qui attend, bleu pour ce
+       qui est chez le client (« Devis envoyé »), vert pour ce qui est fait,
+       rouge pour ce qui ne se fera pas. L'orange et le violet ne servent
+       qu'aux pastilles de projet (expiré, en production, contrôle) — voir
+       `.o-b-*` plus bas. Point, mot et fond clair, comme la maquette. */
+    --etat-pret-encre: #0b7a50;
+    --etat-pret-point: #0b7a50;
+    --etat-retard-encre: #b91c1c;
+    --etat-retard-point: #b91c1c;
+    --etat-retard-fond: #fdeaea;
+
+    /* ------------------------------------------------------- ÉLÉVATIONS
+       La maquette pose ses cartes à plat, sur un filet : pas d'ombre. Seul ce
+       qui flotte — un menu, une fenêtre — en porte une. */
+    --ombre-1: 0 0 #0000;
+    --ombre-2: 0 0 #0000;
+    --ombre-flottant: 0 12px 32px rgba(15,23,42,.14);
+    --voile: rgba(15,23,42,.45);
+
+    /* ------------------------------------------------------- LE FOCUS */
+    --anneau: 0 0 0 3px rgba(17,24,39,.18);
+    --anneau-sur-plein: 0 0 0 2px var(--carte), 0 0 0 5px rgba(17,24,39,.35);
+
+    /* --------------------------------------------- LES TAILLES DE TEXTE
+       TROIS TAILLES, PAS UNE DE PLUS (18 septembre 2026, demande du patron :
+       « 2/3 tailles, et compose avec du gras / moins gras »). Il y en avait
+       onze à l'écran — 11, 12, 13, 14, 16, 18, 20, 22, 24, 28, 40 — et
+       chacune paraissait juste seule ; ensemble, elles faisaient du bruit.
+       La hiérarchie passe désormais par la GRAISSE et l'ENCRE, pas par la
+       taille : 12 pour ce qui se repère en passant (en-tête de colonne,
+       pastille, ligne grise sous un nom), 14 pour tout ce qui se lit, se
+       tape et se clique, 20 pour un titre et un chiffre qu'on annonce.
+       Les papiers A4 gardent leur échelle d'imprimerie (--p-*). */
+    --t-petit: 12px;
+    --t-corps: 14px;
+    --t-titre: 20px;
+
+    /* TROIS GRAISSES : 400 le texte, 500 ce qu'on repère (un intitulé, un
+       bouton), 600 ce qui compte (un nom, un titre, un montant). Plus de
+       700, 800 ni 900 à l'écran. */
+    --g-texte: 400;
+    --g-note: 500;
+    --g-forte: 600;
+
+    --lettre-caps: .06em;
+    --lettre-chiffre: -.01em;
+    --lettre-titre: 0;
+
+    --l-titre: 1.2;
+    --l-texte: 1.4;
+
+    /* ====================================================== LES HAUTEURS
+       Celles des boutons de la maquette : 42 px le bouton, 34 px le petit. */
+    --commande-h: 42px;
+    --commande-majeure: 46px;
+    --commande-appoint: 34px;
+    --rond: 36px;
+    /* LA BOÎTE DE LA PRISE DE COMMANDE (23 septembre 2026, Charlie : « tout
+       visuellement à la même hauteur ») : champ, case de la grille, pastille,
+       menu, bouton — tout ce qui se touche au comptoir fait 44 px, la cible
+       du doigt. La caisse en portait onze, de 30 à 54 px. */
+    --commande-doigt: 44px;
+
+    --etiquette-h: 26px;
+
+    --arrondi: 10px;
+    --arrondi-carte: 14px;
+    --arrondi-fenetre: 16px;      /* le rayon d'une fenêtre (o-modal-card, o-papier) */
+    --pilule: 999px;
+
+    /* ------------------------------------------------- QUATRE PAS D'ÉCART
+       Sept écarts, c'est un panneau dont le titre, le corps et le pied
+       commencent chacun à un endroit différent. */
+    --e1: 6px; --e2: 10px; --e3: 16px; --e4: 24px;
+
+    /* ------------------------------------------------- LA BANDE D'ÉTAT
+       Fixe, pleine largeur, en bas de la fenêtre — HORS DU FLUX du contenu.
+       Le gabarit (voir la hauteur de la section racine) réserve exactement
+       sa hauteur : la bande ne recouvre donc jamais rien. Celle-ci est sa
+       hauteur d'UNE ligne, dérivée du texte qu'elle porte ; un échec peut la
+       passer sur deux, et lib/etat.js pose alors sa vraie hauteur dans
+       `--h-bande-place`, que la section racine lit en premier. */
+    --h-bande-etat: calc(var(--t-petit) * var(--l-texte) + var(--e1) * 2);
+
+    /* ---------------------------------------------------- LE MOUVEMENT
+       AUCUNE ATTENTE VOULUE, JAMAIS (Charlie, 11 septembre 2026) : un clic
+       montre son résultat tout de suite. Un tiroir qui glisse, un voile qui se
+       fonce, un menu qui surgit se lisent comme un chargement. La durée reste
+       nommée pour qu'aucun style ne la réécrive à la main — et elle vaut
+       zéro. */
+    --dur-1: 0s;                  /* un retour : fond, trait, focus */
+    --sortie: cubic-bezier(.2,0,0,1);
+
+    /* DEUX POLICES : Instrument Sans pour tout ce qui se lit (la police des
+       tableaux de la maquette « Tableaux OLDA », étendue à toute l'app le
+       18 septembre 2026 — l'écran mêlait Instrument Sans dans les tableaux
+       et la police du système partout ailleurs, Inter n'étant jamais
+       chargée), la chasse fixe pour les numéros de papier. */
+    --police: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+    /* ============================================================ LE PAPIER
+       L'AUTRE MÉDIUM. Un A4 ne se mesure pas à l'échelle de l'écran : il
+       garde ses points d'imprimerie et ses encres chaudes. Échelle fermée,
+       elle aussi — sept tailles, trois encres, trois filets. */
+    --p-micro: 7.5pt;             /* les intitulés en capitales */
+    --p-pied: 8pt;                /* mentions légales et pied de page */
+    --p-texte: 9.5pt;             /* le corps du document */
+    --p-titre: 12pt;              /* raison sociale, numéro, nom du client */
+    --p-geant: 16pt;              /* le montant qu'on annonce */
+    --p-affiche: 24pt;            /* « Devis », « Facture » : fin, et grand */
+    --p-iban: 8.5pt;              /* l'IBAN et le BIC, en chasse fixe */
+    --p-leger: 300;               /* la seule graisse fine : le titre du papier */
+    --p-encre: #1c1c1a;
+    --p-encre-2: #6b6b66;
+    --p-encre-3: #8a8984;         /* le pied légal */
+    --p-filet: #e4e3df;
+    --p-filet-pale: #d6d5d0;
+    --p-filet-fort: #a8a7a1;
+    --p-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --p-police: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  /* ======================================================== LE LOGO MAKER
+     (lib/studio-detourage.js) Le logo au centre de son plan, son fond et
+     son zoom en bas ; à côté, ses couleurs et un bouton, le PDF — le reste
+     dans « Plus ». Pas un réglage : le graphiste décide (lib/graphiste.js,
+     27 septembre 2026). */
+  .o-view.o-studio-vue { flex:1; min-height:0; display:flex; flex-direction:column; }
+  .o-studio { flex:1; min-height:560px; display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:14px; }
+  .o-studio-ic { width:18px; height:18px; flex:none; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+  .o-studio [hidden] { display:none !important; }
+  .o-studio kbd { display:inline-block; min-width:18px; padding:1px 5px; border:1px solid var(--filet-fort); border-bottom-width:2px; border-radius:5px; background:#fff; font:inherit; font-size:var(--t-petit); line-height:16px; text-align:center; color:var(--encre-1); }
+
+  /* LE PLAN DE TRAVAIL */
+  .o-studio-scene { position:relative; min-width:0; min-height:0; overflow:hidden; border:1px solid var(--filet-carte); border-radius:18px; background:repeating-conic-gradient(#eef1f5 0% 25%, #fff 0% 50%) 0 0 / 22px 22px; touch-action:none; user-select:none; outline:none; }
+  .o-studio-toile { position:absolute; inset:0; width:100%; height:100%; display:block; cursor:grab; }
+  .o-studio-saisi .o-studio-toile { cursor:grabbing; }
+  /* LE FOND DU PLAN : damier, blanc, noir, ou la couleur du textile — un
+     bord clair oublié saute aux yeux sur le noir. */
+  .o-studio-scene[data-fond="blanc"] { background:#fff; }
+  .o-studio-scene[data-fond="noir"] { background:#0b0d10; }
+  .o-studio-scene[data-fond="couleur"] { background:var(--fond-textile, #c62828); }
+
+  /* VECTEUR OU IMAGE, en haut à gauche. */
+  .o-studio-modes { position:absolute; z-index:4; top:14px; left:14px; display:flex; gap:2px; padding:4px; border-radius:12px; background:rgba(255,255,255,.92); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(15,23,42,.08); box-shadow:0 8px 24px -12px rgba(15,23,42,.35); transition:opacity .18s; }
+  .o-studio-modes.o-studio-cache { opacity:0; pointer-events:none; }
+  .o-studio-modes button { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 12px; border:0; border-radius:8px; background:transparent; color:var(--encre-2); font:inherit; font-size:var(--t-petit); font-weight:var(--g-forte); cursor:pointer; transition:background .12s, color .12s; }
+  .o-studio-modes button:hover { color:var(--encre-1); background:var(--zone); }
+  .o-studio-modes button[aria-checked="true"] { background:var(--encre-1); color:#fff; }
+  .o-studio-modes .o-studio-ic { width:15px; height:15px; }
+
+  /* LE COMPARATEUR : l'avant à gauche, l'après à droite, une poignée à
+     glisser. */
+  .o-studio-split { position:absolute; z-index:3; top:0; bottom:0; width:28px; margin-left:-14px; cursor:ew-resize; touch-action:none; }
+  .o-studio-split::before { content:''; position:absolute; top:0; bottom:0; left:13px; width:2px; background:#fff; box-shadow:0 0 0 1px rgba(15,23,42,.14), 0 0 14px rgba(15,23,42,.22); }
+  .o-studio-split i { position:absolute; top:50%; left:14px; width:38px; height:38px; display:grid; place-items:center; transform:translate(-50%, -50%); border-radius:50%; background:#fff; color:var(--encre-1); box-shadow:0 6px 18px rgba(15,23,42,.28), 0 0 0 1px rgba(15,23,42,.08); transition:transform .12s; }
+  .o-studio-split.o-studio-saisi i { transform:translate(-50%, -50%) scale(1.08); }
+  .o-studio-split i .o-studio-ic { width:16px; height:16px; }
+  .o-studio-split span { position:absolute; top:66px; padding:4px 10px; border-radius:999px; background:rgba(15,23,42,.78); color:#fff; font-size:var(--t-petit); font-weight:var(--g-forte); white-space:nowrap; pointer-events:none; }
+  .o-studio-split [data-c="avant"] { right:26px; }
+  .o-studio-split [data-c="apres"] { left:26px; background:var(--accent); }
+
+  /* LA BARRE DU PLAN, en bas au centre : les fonds, « Comparer », le zoom. */
+  .o-studio-vuebar { position:absolute; z-index:4; left:50%; bottom:14px; transform:translateX(-50%); display:flex; align-items:center; gap:4px; padding:5px; border-radius:14px; background:rgba(255,255,255,.92); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(15,23,42,.08); box-shadow:0 10px 30px -12px rgba(15,23,42,.35); transition:opacity .18s; }
+  .o-studio-vuebar.o-studio-cache { opacity:0; pointer-events:none; }
+  .o-studio-fonds { display:flex; gap:2px; }
+  .o-studio-fonds > * { position:relative; display:grid; place-items:center; width:32px; height:32px; padding:0; border:0; border-radius:9px; background:transparent; cursor:pointer; }
+  .o-studio-fonds > *:hover { background:var(--zone); }
+  .o-studio-fonds > [aria-checked="true"] { background:var(--zone); box-shadow:inset 0 0 0 1.5px var(--accent); }
+  .o-studio-pastille { width:18px; height:18px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.2); }
+  .o-studio-pastille[data-p="damier"] { background:repeating-conic-gradient(#cbd5e1 0% 25%, #fff 0% 50%) 0 0 / 9px 9px; }
+  .o-studio-pastille[data-p="blanc"] { background:#fff; }
+  .o-studio-pastille[data-p="noir"] { background:#0b0d10; }
+  .o-studio-fonds input[type=color] { position:absolute; inset:0; width:100%; height:100%; margin:0; padding:0; border:0; opacity:0; cursor:pointer; }
+  .o-studio-sep { width:1px; height:20px; margin:0 4px; background:var(--filet-carte); }
+  .o-studio-outil { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 10px; border:0; border-radius:9px; background:transparent; color:var(--encre-1); font:inherit; font-size:var(--t-petit); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; white-space:nowrap; cursor:pointer; touch-action:none; }
+  .o-studio-outil .o-studio-ic { width:16px; height:16px; }
+  .o-studio-outil:hover { background:var(--zone); }
+  .o-studio-outil[aria-pressed="true"], .o-studio-outil[aria-pressed="true"]:hover { background:var(--encre-1); color:#fff; }
+  .o-studio-badge { position:absolute; z-index:4; top:66px; left:14px; padding:6px 12px; border-radius:999px; background:rgba(15,23,42,.82); color:#fff; font-size:var(--t-petit); font-weight:var(--g-forte); pointer-events:none; }
+
+  /* L'ACCUEIL, avant le premier logo. */
+  .o-studio-accueil { position:absolute; inset:0; z-index:5; display:grid; place-items:center; padding:24px; background:radial-gradient(ellipse at 50% 40%, rgba(255,255,255,.6), rgba(255,255,255,.94) 70%); }
+  .o-studio-accueil-carte { width:min(420px, 100%); box-sizing:border-box; display:flex; flex-direction:column; align-items:center; gap:18px; padding:44px 32px 30px; text-align:center; background:#fff; border:1.5px dashed var(--filet-fort); border-radius:24px; box-shadow:0 30px 70px -30px rgba(15,23,42,.35); }
+  .o-studio-accueil-rond { width:68px; height:68px; display:grid; place-items:center; border-radius:20px; background:linear-gradient(135deg, #0ea5e9, #6366f1); color:#fff; box-shadow:0 16px 34px -14px rgba(79,70,229,.7); }
+  .o-studio-accueil-rond .o-studio-ic { width:32px; height:32px; stroke-width:1.5; }
+  .o-studio-accueil h3 { margin:0; font-size:var(--t-titre); font-weight:var(--g-forte); color:var(--encre-1); }
+  .o-studio-accueil .o-studio-bouton { min-height:44px; padding:0 20px; }
+  .o-studio-puces-formats { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:6px; }
+  .o-studio-puces-formats span { padding:3px 8px; border-radius:6px; background:var(--zone); color:var(--encre-2); font-size:var(--t-petit); font-weight:var(--g-forte); }
+  .o-studio-puces-formats em { width:1px; height:16px; margin:0 4px; background:var(--filet-carte); }
+  .o-studio-touches { display:inline-flex; gap:4px; white-space:nowrap; }
+  .o-studio-depot { position:absolute; inset:10px; z-index:6; display:none; place-items:center; border:2px dashed var(--accent); border-radius:14px; background:rgba(2,132,199,.08); pointer-events:none; }
+  .o-studio-depot span { display:flex; align-items:center; gap:10px; padding:12px 18px; border-radius:12px; background:var(--accent); color:#fff; font-weight:var(--g-forte); box-shadow:0 12px 30px -10px rgba(2,132,199,.6); }
+  .o-studio-survol .o-studio-depot { display:grid; }
+  /* L'IA CHERCHE : un balayage lumineux passe sur la photo pâlie. */
+  .o-studio-cherche::after { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(100deg, transparent 35%, rgba(56,189,248,.24) 50%, transparent 65%) no-repeat; background-size:250% 100%; animation:o-studio-balaye 1.8s linear infinite; }
+  @keyframes o-studio-balaye { from { background-position:150% 0; } to { background-position:-50% 0; } }
+
+  /* CE QUI SE PASSE, ET CE QUI S'EST PASSÉ */
+  .o-studio-etat, .o-studio-toast { position:absolute; z-index:5; left:50%; transform:translate(-50%, 8px); padding:8px 14px; border-radius:999px; font-size:var(--t-petit); font-weight:var(--g-forte); opacity:0; pointer-events:none; transition:opacity .18s, transform .18s; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .o-studio-etat { bottom:70px; background:rgba(15,23,42,.84); color:#fff; box-shadow:0 8px 20px -10px rgba(15,23,42,.5); }
+  .o-studio-etat::before { content:''; display:inline-block; width:10px; height:10px; margin-right:8px; vertical-align:-1px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%; animation:o-studio-tourne .8s linear infinite; }
+  @keyframes o-studio-tourne { to { transform:rotate(360deg); } }
+  .o-studio-toast { bottom:112px; background:var(--encre-1); color:#fff; box-shadow:0 12px 30px -10px rgba(15,23,42,.5); }
+  .o-studio-toast[data-ton="alerte"] { background:#b91c1c; }
+  .o-studio-montre { opacity:1; transform:translate(-50%, 0); }
+
+  /* LE PANNEAU : l'en-tête du fichier, ses couleurs, et le bouton du PDF,
+     toujours en bas. */
+  .o-studio-panneau { position:relative; min-height:0; display:flex; flex-direction:column; background:#fff; border:1px solid var(--filet-carte); border-radius:18px; }
+  .o-studio-entete { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-bottom:1px solid var(--filet-carte); }
+  .o-studio-fichier { min-width:0; display:flex; flex-direction:column; gap:2px; }
+  .o-studio-fichier b { font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .o-studio-fichier span { font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .o-studio-defile { flex:1; min-height:0; overflow:auto; }
+  .o-studio-bloc { display:flex; flex-direction:column; gap:12px; padding:14px 16px 16px; transition:opacity .15s; }
+  .o-studio-bloc[inert], .o-studio-pied[inert] { opacity:.4; }
+  .o-studio-bloc-tete { display:flex; align-items:baseline; justify-content:space-between; gap:10px; min-height:20px; }
+  .o-studio-bloc-tete b { font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); }
+  .o-studio-bloc-tete span { font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .o-studio-bloc + .o-studio-bloc { border-top:1px solid var(--filet-carte); }
+  .o-studio-spot { display:inline-block; padding:1px 6px; border-radius:6px; background:#fdf2f8; color:#be185d; font-size:var(--t-petit); font-weight:var(--g-forte); }
+  /* La couleur retirée, à droite du titre « Fond ». */
+  .o-studio-bloc-tete span:has(.o-studio-fond-teinte) { display:flex; gap:4px; }
+  .o-studio-fond-teinte { display:inline-block; width:14px; height:14px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.25); }
+
+  /* UNE LIGNE ET SON INTERRUPTEUR : l'amélioration IA, le blanc DTF. */
+  .o-studio-ligne { display:flex; align-items:center; gap:10px; min-height:32px; }
+  .o-studio-ligne-ic { width:30px; height:30px; flex:none; display:grid; place-items:center; border-radius:9px; background:linear-gradient(135deg, #e0f2fe, #ede9fe); color:#6d28d9; }
+  .o-studio-ligne-ic .o-studio-ic { width:16px; height:16px; }
+  .o-studio-ligne-mot { flex:1; min-width:0; display:flex; align-items:baseline; gap:8px; font-size:var(--t-corps); color:var(--encre-1); }
+  .o-studio-ligne-mot b { font-weight:var(--g-forte); white-space:nowrap; }
+  .o-studio-ligne-mot small { font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; white-space:nowrap; min-width:0; overflow:hidden; text-overflow:ellipsis; }
+  .o-studio-inter { position:relative; width:38px; height:22px; flex:none; padding:0; border:0; border-radius:999px; background:var(--filet-fort); cursor:pointer; transition:background .15s; }
+  .o-studio-inter i { position:absolute; top:3px; left:3px; width:16px; height:16px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(15,23,42,.3); transition:transform .15s; }
+  .o-studio-inter[aria-checked="true"] { background:var(--accent); }
+  .o-studio-inter[aria-checked="true"] i { transform:translateX(16px); }
+  .o-studio-inter:focus-visible { outline:none; box-shadow:0 0 0 3px rgba(2,132,199,.3); }
+
+  /* L'IA : sa barre — l'avancement du téléchargement et du nettoyage, puis
+     un va-et-vient tant qu'elle cherche le sujet. */
+  .o-studio-progression { height:4px; border-radius:4px; background:var(--filet-carte); overflow:hidden; }
+  .o-studio-progression i { display:block; width:0; height:100%; border-radius:4px; background:linear-gradient(90deg, #38bdf8, #6366f1); transition:width .3s; }
+  .o-studio-progression.o-studio-indefini i { width:35% !important; transition:none; animation:o-studio-va-et-vient 1.3s ease-in-out infinite; }
+  @keyframes o-studio-va-et-vient { from { transform:translateX(-100%); } to { transform:translateX(290%); } }
+
+  .o-studio-segment { display:grid; grid-auto-flow:column; grid-auto-columns:1fr; padding:3px; border-radius:11px; background:var(--zone); border:1px solid var(--filet-carte); }
+  .o-studio-segment button { display:inline-flex; align-items:center; justify-content:center; gap:6px; height:32px; white-space:nowrap; border:0; border-radius:8px; background:transparent; color:var(--encre-2); font:inherit; font-size:var(--t-corps); font-weight:var(--g-forte); cursor:pointer; transition:background .12s, color .12s, box-shadow .12s; }
+  .o-studio-segment button:hover { color:var(--encre-1); }
+  .o-studio-segment button[aria-checked="true"] { background:#fff; color:var(--encre-1); box-shadow:0 1px 3px rgba(15,23,42,.14), 0 0 0 1px rgba(15,23,42,.04); }
+  .o-studio-segment .o-studio-ic { width:15px; height:15px; color:var(--accent); }
+
+  /* LES CURSEURS : le seuil du fond, le lissage du tracé, les nuances des
+     couleurs — le graphiste les règle, la vendeuse les ajuste, le résultat
+     suit en direct. */
+  .o-studio-curseur { display:flex; flex-direction:column; gap:2px; }
+  .o-studio-curseur-tete { display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+  .o-studio-curseur label { font-size:var(--t-corps); color:var(--encre-1); }
+  .o-studio-curseur output { font-size:var(--t-petit); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; color:var(--encre-2); }
+  .o-studio input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:24px; margin:0; background:transparent; cursor:pointer; }
+  .o-studio input[type=range]::-webkit-slider-runnable-track { height:4px; border-radius:4px; background:linear-gradient(to right, var(--accent) var(--p, 0%), var(--filet-fort) var(--p, 0%)); }
+  .o-studio input[type=range]::-moz-range-track { height:4px; border-radius:4px; background:linear-gradient(to right, var(--accent) var(--p, 0%), var(--filet-fort) var(--p, 0%)); }
+  .o-studio input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:18px; height:18px; margin-top:-7px; border-radius:50%; background:#fff; border:1px solid rgba(15,23,42,.18); box-shadow:0 1px 4px rgba(15,23,42,.25); transition:transform .1s; }
+  .o-studio input[type=range]::-moz-range-thumb { width:18px; height:18px; border-radius:50%; background:#fff; border:1px solid rgba(15,23,42,.18); box-shadow:0 1px 4px rgba(15,23,42,.25); }
+  .o-studio input[type=range]:active::-webkit-slider-thumb { transform:scale(1.15); }
+  .o-studio input[type=range]:focus-visible { outline:none; }
+  .o-studio input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 4px rgba(2,132,199,.25), 0 1px 4px rgba(15,23,42,.25); }
+  .o-studio input[type=range]:focus-visible::-moz-range-thumb { box-shadow:0 0 0 4px rgba(2,132,199,.25); }
+
+  .o-studio-bouton { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:40px; padding:0 14px; border:1px solid var(--filet-carte); border-radius:11px; background:#fff; color:var(--encre-1); font:inherit; font-size:var(--t-corps); font-weight:var(--g-forte); cursor:pointer; transition:background .12s, border-color .12s, transform .08s, box-shadow .12s; }
+  .o-studio-bouton:hover:not(:disabled) { border-color:var(--filet-fort); background:var(--zone); }
+  .o-studio-bouton:active:not(:disabled) { transform:translateY(1px); }
+  .o-studio-bouton:disabled { opacity:.55; cursor:default; }
+  .o-studio-plein { background:var(--accent); border-color:var(--accent); color:#fff; box-shadow:0 10px 24px -10px rgba(2,132,199,.75); }
+  .o-studio-plein:hover:not(:disabled) { background:var(--accent-survol); border-color:var(--accent-survol); }
+  .o-studio-discret { min-height:34px; }
+
+  /* LA PALETTE : chaque teinte du logo, qu'un clic change ou retire. */
+  .o-studio-palette { display:flex; flex-wrap:wrap; gap:8px; }
+  .o-studio-textes { display:flex; flex-direction:column; gap:10px; }
+  .o-studio-texte { display:flex; flex-direction:column; gap:4px; min-width:0; }
+  /* Le texte lu d'une ligne : un champ, pointillé tant qu'on n'y touche pas — il se corrige s'il est mal lu. */
+  .o-studio-texte-mot { box-sizing:border-box; width:100%; height:30px; padding:0 10px; border:1px dashed var(--filet-carte); border-radius:8px; background:transparent; font:inherit; font-size:var(--t-petit); color:var(--encre-2); text-overflow:ellipsis; }
+  .o-studio-texte-mot:hover { border-color:var(--filet-fort); }
+  .o-studio-texte-mot:focus { outline:none; border-style:solid; border-color:var(--filet-fort); background:#fff; color:var(--encre-1); box-shadow:0 0 0 3px rgba(2,132,199,.25); }
+  .o-studio-texte select { width:100%; height:32px; padding:0 30px 0 10px; border:1px solid var(--filet-carte); border-radius:8px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center; color:var(--encre-1); font:inherit; font-size:var(--t-corps); -webkit-appearance:none; appearance:none; cursor:pointer; }
+  .o-studio-texte select:hover { border-color:var(--filet-fort); }
+  .o-studio-texte select:focus-visible { outline:none; box-shadow:0 0 0 3px rgba(2,132,199,.25); }
+  .o-studio-palette-vide { font-size:var(--t-petit); color:var(--encre-2); }
+  .o-studio-teinte { position:relative; width:36px; height:36px; display:grid; place-items:center; padding:0; border:1px solid var(--filet-carte); border-radius:11px; background:#fff; cursor:pointer; transition:border-color .12s, box-shadow .12s; }
+  .o-studio-teinte i { width:26px; height:26px; border-radius:8px; box-shadow:inset 0 0 0 1px rgba(15,23,42,.14); }
+  .o-studio-teinte em { position:absolute; right:-4px; bottom:-4px; width:13px; height:13px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 0 1px rgba(15,23,42,.2); }
+  .o-studio-teinte:hover:not(:disabled), .o-studio-teinte.o-studio-ouverte { border-color:var(--accent); box-shadow:0 0 0 3px rgba(2,132,199,.16); }
+  .o-studio-teinte:disabled { cursor:default; opacity:.7; }
+  .o-studio-retiree { border-style:dashed; }
+  .o-studio-retiree i { opacity:.28; }
+  .o-studio-retiree::after { content:''; position:absolute; inset:7px; border-radius:6px; background:linear-gradient(to top right, transparent calc(50% - 1px), #b91c1c calc(50% - 1px), #b91c1c calc(50% + 1px), transparent calc(50% + 1px)); }
+  .o-studio-pastilles { display:grid; grid-template-columns:repeat(auto-fill, minmax(30px, 1fr)); gap:6px; }
+  .o-studio-pastilles button { display:grid; place-items:center; height:30px; padding:0; border:1px solid transparent; border-radius:9px; background:transparent; cursor:pointer; }
+  .o-studio-pastilles button:hover { background:var(--zone); }
+  .o-studio-pastilles button[aria-checked="true"] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
+  .o-studio-pastilles i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.2); }
+  /* LA BULLE D'UNE TEINTE : les couleurs DTF, une autre, l'origine, ou la
+     retirer du logo. */
+  .o-studio-pop { position:absolute; z-index:20; width:240px; box-sizing:border-box; display:flex; flex-direction:column; gap:10px; padding:12px; border-radius:14px; background:#fff; border:1px solid var(--filet-carte); box-shadow:0 24px 50px -14px rgba(15,23,42,.38); }
+  .o-studio-pop-tete { display:flex; align-items:center; gap:8px; }
+  .o-studio-pop-tete i { width:22px; height:22px; border-radius:7px; box-shadow:inset 0 0 0 1px rgba(15,23,42,.15); }
+  .o-studio-pop-tete b { flex:1; font-size:var(--t-corps); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; }
+  .o-studio-pop-x { width:28px; height:28px; display:grid; place-items:center; padding:0; border:0; border-radius:8px; background:transparent; color:var(--encre-2); cursor:pointer; }
+  .o-studio-pop-x:hover { background:var(--zone); color:var(--encre-1); }
+  .o-studio-pop-grille { display:grid; grid-template-columns:repeat(8, 1fr); gap:4px; }
+  .o-studio-pop-grille button { height:26px; display:grid; place-items:center; padding:0; border:0; border-radius:7px; background:transparent; cursor:pointer; }
+  .o-studio-pop-grille button:hover { background:var(--zone); }
+  .o-studio-pop-grille i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.2); }
+  .o-studio-pop-pied { display:flex; gap:6px; }
+  .o-studio-pop-pied .o-studio-bouton { min-height:34px; padding:0 10px; font-size:var(--t-petit); }
+  .o-studio-pop-autre { position:relative; flex:1; }
+  .o-studio-pop-autre i { width:16px; height:16px; border-radius:50%; }
+  .o-studio-pop-autre input { position:absolute; inset:0; width:100%; height:100%; margin:0; padding:0; border:0; opacity:0; cursor:pointer; }
+  .o-studio-pop-retirer { color:#b91c1c; }
+  .o-studio-pop-large { width:100%; }
+
+  /* LE PDF, toujours en bas du panneau, et « Plus » à côté. */
+  .o-studio-pied { position:relative; display:flex; flex-direction:column; gap:10px; padding:12px 16px 14px; border-top:1px solid var(--filet-carte); border-radius:0 0 18px 18px; background:var(--carte); }
+  .o-studio-pied-boutons { display:flex; gap:8px; }
+  .o-studio-telecharger { flex:1; min-width:0; min-height:48px; border-radius:12px; white-space:nowrap; }
+  /* Le mot ne passe jamais à la ligne : faute de place, il se coupe. */
+  .o-studio-telecharger [data-r="enregistrer-mot"] { min-width:0; overflow:hidden; text-overflow:ellipsis; }
+  .o-studio-telecharger .o-studio-ic-dl { display:flex; }
+  .o-studio-telecharger .o-studio-ic-ok, .o-studio-telecharger.o-studio-fait .o-studio-ic-dl { display:none; }
+  .o-studio-telecharger.o-studio-fait .o-studio-ic-ok { display:flex; }
+  .o-studio-telecharger.o-studio-fait, .o-studio-telecharger.o-studio-fait:hover:not(:disabled) { background:var(--succes); border-color:var(--succes); box-shadow:0 10px 24px -10px rgba(15,157,104,.7); }
+  .o-studio-plus { min-height:48px; padding:0 12px 0 14px; border-radius:12px; gap:4px; }
+  .o-studio-plus .o-studio-ic { width:16px; height:16px; color:var(--encre-2); transition:transform .15s; }
+  .o-studio-plus[aria-expanded="true"] { border-color:var(--filet-fort); background:var(--zone); }
+  .o-studio-plus[aria-expanded="true"] .o-studio-ic { transform:rotate(180deg); }
+  /* LE MENU « PLUS », ouvert au-dessus du pied : les autres formats. */
+  .o-studio-menu { position:absolute; z-index:20; right:16px; bottom:calc(100% - 6px); width:268px; box-sizing:border-box; display:flex; flex-direction:column; padding:6px; border-radius:14px; background:#fff; border:1px solid var(--filet-carte); box-shadow:0 24px 50px -14px rgba(15,23,42,.38); }
+  .o-studio-menu-titre { padding:6px 10px 4px; font-size:var(--t-petit); font-weight:var(--g-forte); color:var(--encre-2); }
+  .o-studio-article { display:flex; align-items:center; gap:8px; width:100%; min-height:34px; padding:0 10px; border:0; border-radius:9px; background:transparent; color:var(--encre-1); font:inherit; font-size:var(--t-corps); text-align:left; cursor:pointer; }
+  .o-studio-article:hover:not(:disabled) { background:var(--zone); }
+  .o-studio-article:disabled { opacity:.4; cursor:default; }
+  .o-studio-article-mot { font-weight:var(--g-forte); white-space:nowrap; }
+  .o-studio-article small { margin-left:auto; font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+  /* Écran étroit (une tablette en portrait) : le panneau passe sous le
+     plan, à sa hauteur entière — la page défile. */
+  @media (max-width: 1100px) {
+    .o-studio { grid-template-columns:minmax(0,1fr); min-height:0; flex:none; }
+    .o-studio-scene { min-height:62vh; }
+    .o-studio-defile { flex:none; overflow:visible; }
+  }
+
+  /* LA PAGE : le studio seul, à la hauteur de la fenêtre ; sous 1 100 px,
+     le panneau passe sous le plan et la page défile. */
+  html, body { height:100%; }
+  body { margin:0; background:var(--fond); font-family:var(--police); font-size:var(--t-corps); font-weight:var(--g-texte); line-height:var(--l-texte); color:var(--encre-1); -webkit-font-smoothing:antialiased; }
+  b, strong { font-weight:var(--g-forte); }
+  small { font-size:var(--t-petit); }
+  h2, h3 { font-size:var(--t-titre); font-weight:var(--g-forte); }
+  .page { box-sizing:border-box; height:100%; display:flex; flex-direction:column; padding:20px; }
+  @media (max-width: 1100px) { .page { height:auto; min-height:100%; } }
+</style>
+</head>
+<body>
+<main class="page"><div data-studio></div></main>
+<script type="module">
+  import './lib/icones.js'
+  import { monter } from './lib/studio-detourage.js'
+  monter(document.querySelector('[data-studio]'))
+</script>
+</body>
+</html>
