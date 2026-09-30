@@ -48,6 +48,15 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   lettre collée au dessin) et assez grande pour en juger — dans les trois
   versions. Le texte se lit sur l'image en pleine taille (`lib/texte.js`),
   une fois par image, jamais sur le tracé.
+- **Le sujet d'une vraie photo passe à BiRefNet**, jamais celui d'un logo
+  (il remplit les jours d'un dessin au trait) : une photo, c'est moins de
+  la moitié du pourtour à la couleur du fond (`PHOTO`, `lib/sujet.js`), et
+  seulement sur une carte graphique qui calcule en demi-précision — ISNet
+  partout ailleurs, et quand BiRefNet échoue.
+- **Le texte se lit avec PP-OCRv5** (`lib/lecture.js`) ; ses seuils (`LUE`,
+  `LUE_SURE`, `LUE_CERTAINE`, `lib/studio-detourage.js`) ont été mesurés
+  contre ceux de Tesseract sur 24 logos passés à toute la chaîne : chaque
+  police posée d'office l'est encore.
 - **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
   clients avant et après (petits textes, puces, anneaux, en gros plan et sur
   fond noir), pas sur un seul.
