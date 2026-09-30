@@ -49,9 +49,9 @@ touché.
 | `lib/graphiste.js` | les décisions d'office (IA, fond, version) |
 | `lib/detourage-travail.js` | le fil de calcul : détourage, IA, tracé, polices |
 | `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près ; le sujet d'une photo (ISNet) |
-| `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo) et son garde-fou |
+| `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo), son Ultra (le « general » passé jusqu'à huit fois, retourné et pivoté, sur un logo à plat) et ses garde-fous |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
 | `lib/texte.js`, `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte trouvé en pleine taille, lu (Tesseract), sa police retrouvée et reposée dans les trois versions |
 | `lib/pdf-vectoriel.js`, `lib/pdf-image.js`, `lib/export-logo.js`, `lib/png.js` | les exports |
-| `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses deux modèles, Tesseract, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
+| `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses trois modèles, Tesseract, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |

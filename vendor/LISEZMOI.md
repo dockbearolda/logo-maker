@@ -8,8 +8,10 @@ chargés par `lib/logo.js` **seulement quand un logo en a besoin** : un PNG
 déposé n'en tire aucun. L'IA du Détourage (le moteur ONNX et le modèle) ne
 se charge qu'à la première photo dont le fond n'est pas uni
 (`lib/detourage-travail.js`) : ni la page ni un logo sur fond blanc n'en
-tirent un octet. Le modèle du nettoyage (2,5 Mo), qu'au premier clic sur
-« Amélioration IA » (d'office pour un logo de moins de 900 px).
+tirent un octet. Les modèles de l'« Amélioration IA » — « anime » (2,5 Mo),
+« general » (4,9 Mo : la matière, et l'Ultra d'un logo à plat quand le
+poste a une carte graphique) —, qu'à la première amélioration (d'office
+pour un logo de moins de 1 300 px, une matière de moins de 1 800).
 
 | Fichier | Paquet | Version | Licence | Sert à |
 |---|---|---|---|---|
@@ -28,7 +30,7 @@ tirent un octet. Le modèle du nettoyage (2,5 Mo), qu'au premier clic sur
 | `polices/index.json` | construit par `outils/index-polices.mjs` depuis le catalogue de Fontsource (Google Fonts, OFL et Apache) | — | celle de chaque police (OFL-1.1 ou Apache-2.0) | reconnaître la police d'un texte sans la télécharger ; les fichiers eux-mêmes viennent à la demande par `serveur/polices.mjs` |
 | `lexique/mots.txt` | construit par `outils/lexique.mjs` depuis FrequencyWords (Hermit Dave, 2018 : fr, en) | — | CC BY-SA 4.0 | relire un texte manuscrit que l'OCR lit mal, mot par mot (`lib/ecriture.js`) |
 | `realesr-animevideov3.onnx` | Real-ESRGAN « anime video v3 » (SRVGGNetCompact, ×4), export ONNX de `skillsafe-ai/realesr-animevideov3` sur Hugging Face — ses 53 tenseurs sont identiques, octet pour octet, à ceux de `realesr-animevideov3.pth` (release v0.2.5.0 de xinntao/Real-ESRGAN, sha256 `b8a83768…`) | v0.2.5.0 | BSD-3-Clause | « Amélioration IA » du Logo maker : un logo flou redessiné net, ×4 (`lib/nettoyage.js`) |
-| `realesr-general-x4v3.onnx` | Real-ESRGAN « general x4v3 » (SRVGGNetCompact, ×4), appris sur des photos : export ONNX (opset 17, mêmes entrée `input` et sortie `output` que le modèle anime) du fondu à 0,5 de `realesr-general-x4v3.pth` (sha256 `8dc7edb9…`) et de `realesr-general-wdn-x4v3.pth` (sha256 `1641f8c4…`), release v0.2.5.0 de xinntao/Real-ESRGAN — le « denoise strength » de 0,5 que Real-ESRGAN prend d'office ; sha256 de l'ONNX `5be1d686…` | v0.2.5.0 | BSD-3-Clause | « Amélioration IA » d'un fichier qui a de la matière — broderie, cuir, eau, feu, paillettes, photo (`lib/detourage.js`, `aDeLaMatiere`) : ses fils et son grain gardés, ×4 |
+| `realesr-general-x4v3.onnx` | Real-ESRGAN « general x4v3 » (SRVGGNetCompact, ×4), appris sur des photos : export ONNX (opset 17, mêmes entrée `input` et sortie `output` que le modèle anime) du fondu à 0,5 de `realesr-general-x4v3.pth` (sha256 `8dc7edb9…`) et de `realesr-general-wdn-x4v3.pth` (sha256 `1641f8c4…`), release v0.2.5.0 de xinntao/Real-ESRGAN — le « denoise strength » de 0,5 que Real-ESRGAN prend d'office ; sha256 de l'ONNX `5be1d686…` | v0.2.5.0 | BSD-3-Clause | « Amélioration IA » d'un fichier qui a de la matière — broderie, cuir, eau, feu, paillettes, photo (`lib/detourage.js`, `aDeLaMatiere`) : ses fils et son grain gardés, ×4 ; et l'Ultra d'un logo à plat, passé jusqu'à huit fois retourné et pivoté, ses dessins moyennés (`lib/nettoyage.js`) |
 
 Tesseract et ses langues ne se chargent qu'au premier logo qui a du texte,
 les polices qu'une à une, quand la recherche en veut une (`/polices/…`,
