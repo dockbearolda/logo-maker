@@ -44,6 +44,11 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   mesurer sur des logos réduits ×4 et passés en JPEG avant d'en changer.
 - **« Autour » vide les lettres posées dehors** (leurs creux, même pâles)
   sans toucher la marge blanche d'un sticker ni les grandes îles.
+- **Une image collée sur une toile transparente** (le PNG de Canva : un
+  rectangle à angles vifs, fond blanc, au milieu d'une toile vide) : son
+  fond se lit sur son bord à elle (`cadreDuFond`, `lib/detourage.js`).
+  Seulement un fond clair : un badge sombre déjà détouré reste un dessin,
+  un autocollant aux coins arrondis garde sa marge blanche.
 - **Un anneau dessiné irrégulier garde son dessin** (« c'est le logo qui est
   fait comme ça ») : au compas seulement s'il est vraiment un cercle abîmé.
 - **Les écritures (scripts) sont proposées, jamais imposées** ; une police
