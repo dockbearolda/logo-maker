@@ -101,6 +101,14 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   qu'Illustrator fait en Europe (`lib/cmjn.js`, table refaite par
   `outils/table-cmjn.mjs`). Le noir pur sort en noir riche, le blanc sans
   encre ; le Spot_1 reste un ton direct. Le SVG et le PNG restent en RVB.
+- **Le nuancier OLDA ne se convertit pas** (30 septembre 2026, « le
+  choix de ces couleurs full CMJN, voici mon nuancier officiel ») : ses 17
+  couleurs (`lib/nuancier.js`, refait depuis le .ase d'Illustrator par
+  `outils/nuancier.mjs`) sont les pastilles de « Une couleur » et de la
+  bulle d'une teinte ; une forme peinte de l'une d'elles sort en PDF et en
+  EPS dans ses encres officielles, telles quelles (`cmjn`, `lib/cmjn.js`)
+  — son Noir en N100 seul, pas en noir riche. À l'écran, leur rendu
+  FOGRA39 ; au survol d'une pastille, son nom et ses quatre encres.
 - **« Gras autour » : chaque ligne dont la police est choisie s'épaissit à
   la main** (0 à 100 ; à fond, 6 % de la hauteur de ses lettres tout
   autour), dans les trois versions et tous les exports. Les lettres
