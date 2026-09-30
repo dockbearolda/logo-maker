@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "logo-maker",
-      "runtimeExecutable": "sh",
-      "runtimeArgs": ["-c", "exec python3 -m http.server ${PORT:-8130}"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["serveur.mjs"],
       "port": 8130,
       "autoPort": true
     }

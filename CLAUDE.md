@@ -3,10 +3,12 @@ TABLETTE: non
 # Logo maker · OLDA
 
 Le Logo maker du comptoir OLDA Print Studio, sorti seul le 29 septembre 2026
-(voir README.md). Pages statiques servies par GitHub Pages depuis `main`
-(dépôt `dockbearolda/logo-maker` → https://dockbearolda.github.io/logo-maker/).
-Pas de build, pas de serveur, pas de paquet : on modifie les fichiers, on
-vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
+(voir README.md). Pages statiques, en ligne sur Railway depuis `main`
+(projet et service `logo-maker` → https://logomaker-olda.up.railway.app/,
+la tuile du portail https://dockbearolda.github.io/) et toujours sur GitHub
+Pages (https://dockbearolda.github.io/logo-maker/). Pas de build, pas de
+paquet : `serveur.mjs` ne fait que servir les fichiers. On modifie les
+fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
 
 ## Ce qui est tranché (ne pas défaire)
 

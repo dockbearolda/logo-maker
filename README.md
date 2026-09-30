@@ -4,11 +4,12 @@ Le Logo maker de l'Atelier OLDA, seul : un logo ou une photo se dépose, le
 fond part, et le logo ressort détouré, vectoriel ou en image nette, prêt
 pour la presse (PDF avec blanc DTF, SVG, PNG 300 dpi, EPS).
 
-En ligne : **<https://dockbearolda.github.io/logo-maker/>** (tuile « Logo
-maker » du portail <https://dockbearolda.github.io/>).
+En ligne : **<https://logomaker-olda.up.railway.app/>** (tuile « Logo
+maker » du portail <https://dockbearolda.github.io/>) — et toujours sur
+<https://dockbearolda.github.io/logo-maker/>, la même page.
 
 Tout calcule dans le navigateur, sur le poste : rien ne part sur un
-serveur. Seules les polices libres essayées sur le texte d'un logo viennent
+serveur (celui de Railway, `serveur.mjs`, ne fait que servir les pages). Seules les polices libres essayées sur le texte d'un logo viennent
 de Fontsource (le CDN jsDelivr), une à une.
 
 ## En local
@@ -16,11 +17,12 @@ de Fontsource (le CDN jsDelivr), une à une.
 Aucun paquet à installer. Depuis ce dossier :
 
 ```bash
-python3 -m http.server 8130
+npm start
 ```
 
-puis <http://localhost:8130/>. Dans Claude Code, l'aperçu `logo-maker`
-(`.claude/launch.json`) fait la même chose. Les tests :
+puis <http://localhost:8130/> — le serveur de Railway, tel quel. Dans
+Claude Code, l'aperçu `logo-maker` (`.claude/launch.json`) fait la même
+chose. Les tests :
 
 ```bash
 node --test
@@ -28,7 +30,8 @@ node --test
 
 ## Mettre en ligne
 
-Pousser sur `main` : GitHub Pages republie tout seul, en une minute environ.
+Pousser sur `main` : Railway (projet `logo-maker`, service `logo-maker`)
+redéploie tout seul, en une à deux minutes — GitHub Pages aussi.
 
 ## D'où il vient
 
@@ -45,6 +48,7 @@ touché.
 | Où | Quoi |
 |---|---|
 | `index.html` | la page : jetons et style du comptoir, le studio en pleine page |
+| `serveur.mjs` | le serveur de Railway, sans paquet : les pages telles quelles, compressées, rien de caché |
 | `lib/studio-detourage.js` | l'écran : le plan, le panneau, les exports, les raccourcis |
 | `lib/graphiste.js` | les décisions d'office (IA, fond, version) |
 | `lib/detourage-travail.js` | le fil de calcul : détourage, IA, tracé, polices |
