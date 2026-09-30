@@ -5,7 +5,10 @@ fond part (un fichier flou est d'abord rendu net), et le logo ressort
 détouré, vectoriel ou en image nette, prêt pour la presse (PDF en CMJN
 avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN). Le texte d'un logo peut
 reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
-autour »).
+autour »). Avant de partir, tout se vérifie dans le bloc « Contrôle » :
+la largeur imprimée se choisit, et le tracé s'y mesure contre le fichier
+(fidélité, trait le plus fin, texte le plus petit, netteté, couleurs au
+nuancier), en millimètres.
 
 En ligne : **<https://logomaker-olda.up.railway.app/>** (tuile « Logo
 maker » du portail <https://dockbearolda.github.io/>) — et toujours sur
@@ -60,6 +63,7 @@ touché.
 | `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo), son Ultra (le « general » passé jusqu'à huit fois, retourné et pivoté, sur un logo à plat) et ses garde-fous |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
+| `lib/controle.js` | le contrôle presse : le tracé mesuré contre l'image détourée (fidélité, îles perdues ou ajoutées), l'épaisseur de l'encre (le trait le plus fin), la couleur du nuancier la plus proche — lu dans le panneau, en millimètres, à la largeur imprimée choisie |
 | `lib/texte.js`, `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte trouvé en pleine taille, lu (PP-OCRv5), sa police retrouvée et reposée dans les trois versions |
 | `lib/pdf-vectoriel.js`, `lib/pdf-image.js`, `lib/export-logo.js`, `lib/png.js` | les exports |
 | `lib/cmjn.js`, `lib/cmjn-fogra39.js` | le CMJN des PDF et de l'EPS : la conversion d'Illustrator en Europe (Coated FOGRA39, relatif colorimétrique, point noir compensé), en table calculée d'avance — `node outils/table-cmjn.mjs` la refait avec littleCMS |

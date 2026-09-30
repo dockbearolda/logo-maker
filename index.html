@@ -458,6 +458,36 @@
   .o-studio-infobulle-encres b { color:#fff; font-weight:var(--g-forte); }
   .o-studio-infobulle small { font-size:11px; color:rgba(255,255,255,.5); }
 
+  /* LE CONTRÔLE PRESSE (lib/studio-detourage.js, `majControle`) : la
+     largeur imprimée, puis une ligne par vérification — un point de
+     couleur, le mot, la mesure, et son détail dessous. Le titre du bloc
+     dit le pire. */
+  .o-studio-largeur { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .o-studio-largeur label { display:flex; align-items:center; gap:8px; font-size:var(--t-corps); color:var(--encre-1); }
+  .o-studio-largeur label .o-studio-ic { width:16px; height:16px; color:var(--encre-2); }
+  .o-studio-largeur-champ { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 10px 0 0; border:1px solid var(--filet-carte); border-radius:8px; background:#fff; font-size:var(--t-petit); color:var(--encre-2); }
+  .o-studio-largeur-champ:hover { border-color:var(--filet-fort); }
+  .o-studio-largeur-champ:focus-within { border-color:var(--filet-fort); box-shadow:0 0 0 3px rgba(2,132,199,.25); }
+  .o-studio-largeur-champ input { width:64px; height:100%; margin:0; padding:0 0 0 10px; border:0; background:transparent; font:inherit; font-size:var(--t-corps); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; color:var(--encre-1); text-align:right; -moz-appearance:textfield; appearance:textfield; }
+  .o-studio-largeur-champ input::-webkit-outer-spin-button, .o-studio-largeur-champ input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+  .o-studio-largeur-champ input:focus { outline:none; }
+  .o-studio-largeur-champ input::placeholder { color:var(--encre-2); font-weight:normal; }
+  .o-studio-verifs { display:flex; flex-direction:column; gap:8px; }
+  .o-studio-verif { display:grid; grid-template-columns:10px minmax(0,1fr) auto; column-gap:8px; row-gap:1px; align-items:baseline; font-size:var(--t-corps); color:var(--encre-1); }
+  .o-studio-verif i { width:8px; height:8px; border-radius:50%; background:var(--filet-fort); align-self:center; }
+  .o-studio-verif[data-ton="ok"] i { background:var(--succes, #15803d); box-shadow:0 0 0 3px rgba(21,128,61,.14); }
+  .o-studio-verif[data-ton="attention"] i { background:#d97706; box-shadow:0 0 0 3px rgba(217,119,6,.16); }
+  .o-studio-verif[data-ton="alerte"] i { background:#b91c1c; box-shadow:0 0 0 3px rgba(185,28,28,.16); }
+  .o-studio-verif-mot { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .o-studio-verif b { font-weight:var(--g-forte); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .o-studio-verif small { grid-column:2 / 4; font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; }
+  .o-studio-verif[data-ton="alerte"] small { color:#b91c1c; }
+  .o-studio-verif-bouton { display:inline-block; margin-left:4px; padding:1px 8px; border:1px solid var(--filet-carte); border-radius:999px; background:#fff; color:var(--accent); font:inherit; font-size:var(--t-petit); font-weight:var(--g-forte); cursor:pointer; vertical-align:baseline; }
+  .o-studio-verif-bouton:hover { border-color:var(--accent); background:var(--zone); }
+  [data-r="res-controle"][data-ton="ok"] { color:var(--succes, #15803d); font-weight:var(--g-forte); }
+  [data-r="res-controle"][data-ton="attention"] { color:#d97706; font-weight:var(--g-forte); }
+  [data-r="res-controle"][data-ton="alerte"] { color:#b91c1c; font-weight:var(--g-forte); }
+
   /* LE PDF, toujours en bas du panneau, et « Plus » à côté. */
   .o-studio-pied { position:relative; display:flex; flex-direction:column; gap:10px; padding:12px 16px 14px; border-top:1px solid var(--filet-carte); border-radius:0 0 18px 18px; background:var(--carte); }
   .o-studio-pied-boutons { display:flex; gap:8px; }
