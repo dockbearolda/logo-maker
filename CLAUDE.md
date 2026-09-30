@@ -92,6 +92,14 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   gardent les courbes de la police (`epaissir`, `lib/polices.js`) et se
   remplissent au nombre d'enroulements : deux lettres épaissies qui se
   touchent se fondent. Rien n'est épaissi d'office.
+- **Un voile se trace plein, de la couleur qu'il a sur la page blanche**
+  (30 septembre 2026, l'ombre à 40 % de « Sea View Villas », un PNG de
+  Canva) : en Vecteur et en Image seulement ; Détouré garde le fichier. Un
+  voile se lit sur le fichier reçu, jamais sur un masque d'IA : une
+  opacité égale, entre 6 et 88 %, sur une vraie surface (`voiles`,
+  `lib/detourage.js`).
+- **Rien ne sort sans l'IA en cours** : un export demandé pendant
+  l'Amélioration IA l'attend, et part sur l'image nette.
 - **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
   clients avant et après (petits textes, puces, anneaux, en gros plan et sur
   fond noir), pas sur un seul.
