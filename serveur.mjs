@@ -33,7 +33,6 @@ export const TYPES = {
   '.md': 'text/plain; charset=utf-8',
   '.wasm': 'application/wasm',
   '.onnx': 'application/octet-stream',
-  '.gz': 'application/gzip',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.ico': 'image/x-icon',
