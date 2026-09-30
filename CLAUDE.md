@@ -60,7 +60,20 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   (il remplit les jours d'un dessin au trait) : une photo, c'est moins de
   la moitié du pourtour à la couleur du fond (`PHOTO`, `lib/sujet.js`), et
   seulement sur une carte graphique qui calcule en demi-précision — ISNet
-  partout ailleurs, et quand BiRefNet échoue.
+  partout ailleurs, et quand BiRefNet échoue. Ce qui a de la matière
+  (`aDeLaMatiere`) passe aussi à BiRefNet quand on demande le sujet ; ses
+  creux restent vides (pas de `recoudre`, fait pour ISNet sur les logos).
+- **Une illustration peinte collée sur sa carte** (« Strong Together », 30
+  septembre 2026 : de la matière, `imageCollee`) part d'office au sujet,
+  par BiRefNet seulement (`birefnet`, `lib/graphiste.js`) — sans lui, à la
+  couleur. Le modèle ne voit que la carte (`rogner`/`replacer`,
+  `lib/sujet.js`) et le blanc de la carte part toujours avec : le sujet
+  n'y garde jamais plus que la couleur.
+- **Un creux ombré est un creux** (la boucle d'un ruban, 30 septembre
+  2026) : le fond vu à travers avec son ombre grise douce part avec elle
+  dans « Partout » (`creux`, `lib/detourage.js`) — seulement une vraie
+  ombre (un demi-`s` de large en moyenne) sur un fond clair, bordée d'une
+  vraie couleur. Le reflet blanc de la bouteille du logo 6e3 AME reste.
 - **Le texte se lit avec PP-OCRv5** (`lib/lecture.js`) ; ses seuils (`LUE`,
   `LUE_SURE`, `LUE_CERTAINE`, `lib/studio-detourage.js`) ont été mesurés
   contre ceux de Tesseract sur 24 logos passés à toute la chaîne : chaque

@@ -54,7 +54,7 @@ touché.
 | `lib/studio-detourage.js` | l'écran : le plan, le panneau, les exports, les raccourcis |
 | `lib/graphiste.js` | les décisions d'office (IA, fond, version) |
 | `lib/detourage-travail.js` | le fil de calcul : détourage, IA, tracé, polices |
-| `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près ; le sujet d'une photo (BiRefNet sur une carte graphique, sinon ISNet — ISNet pour un logo) |
+| `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près, les creux (même ombrés, la boucle d'un ruban) ; le sujet d'une photo ou d'une illustration collée sur sa carte (BiRefNet sur une carte graphique, sinon ISNet — ISNet pour un logo) |
 | `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo), son Ultra (le « general » passé jusqu'à huit fois, retourné et pivoté, sur un logo à plat) et ses garde-fous |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
