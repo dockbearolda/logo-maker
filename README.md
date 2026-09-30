@@ -49,7 +49,7 @@ touché.
 | `lib/graphiste.js` | les décisions d'office (IA, fond, version) |
 | `lib/detourage-travail.js` | le fil de calcul : détourage, IA, tracé, polices |
 | `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près ; le sujet d'une photo (ISNet) |
-| `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4) et son garde-fou |
+| `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo) et son garde-fou |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
 | `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte lu (Tesseract) et la police retrouvée |
