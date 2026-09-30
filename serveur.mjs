@@ -8,7 +8,7 @@
      en le recevant), un .mjs en JavaScript.
    - Compressé une fois, gardé en mémoire : le moteur ONNX (27 Mo) part en
      7, les scripts et l'index des polices aussi. Pas les modèles .onnx (déjà
-     denses), ni les .gz de Tesseract (il les ouvre lui-même).
+     denses).
    - Revalidé à chaque visite (ETag) : une mise en ligne se voit tout de
      suite, et ce qui n'a pas changé ne repart pas (304).
    - Rien de caché ne sort : ni .git, ni .claude, rien qui commence par un

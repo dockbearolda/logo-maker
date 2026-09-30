@@ -43,8 +43,8 @@ test('le serveur : types, compression, revalidation, 404', async t => {
   assert.ok(wasm.corps.length < 0.5 * 26781914, 'compressé : ' + wasm.corps.length)
   assert.deepEqual(gunzipSync(wasm.corps), await readFile(RACINE + 'vendor/ort-wasm-simd-threaded.asyncify.wasm'))
 
-  /* Tesseract ouvre ses .gz lui-même, et un modèle part tel quel. */
-  for (const f of ['/vendor/tesseract/fra.traineddata.gz', '/vendor/realesr-animevideov3.onnx']) {
+  /* Un modèle part tel quel. */
+  for (const f of ['/vendor/realesr-animevideov3.onnx', '/vendor/ppocrv5-latin-rec.onnx']) {
     const r = await brut(f, { 'accept-encoding': 'gzip' })
     assert.equal(r.entetes['content-encoding'], undefined, f)
     assert.equal(Number(r.entetes['content-length']), r.corps.length)
