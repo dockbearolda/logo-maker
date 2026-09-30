@@ -52,6 +52,6 @@ touché.
 | `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo) et son garde-fou |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
-| `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte lu (Tesseract) et la police retrouvée |
+| `lib/texte.js`, `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte trouvé en pleine taille, lu (Tesseract), sa police retrouvée et reposée dans les trois versions |
 | `lib/pdf-vectoriel.js`, `lib/pdf-image.js`, `lib/export-logo.js`, `lib/png.js` | les exports |
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses deux modèles, Tesseract, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
