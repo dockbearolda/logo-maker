@@ -20,6 +20,12 @@ vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
 - **L'Amélioration IA reste vérifiable contre le fichier d'origine** (garde-fou
   `fidele`, aucune couleur inventée `borner`) : jamais d'IA qui réinvente des
   lettres sans ce contrôle.
+- **La matière passe à l'IA des photos, jamais à celle des logos** : une
+  broderie, du cuir, de l'eau, du feu, des paillettes, une photo
+  (`aDeLaMatiere`, `lib/detourage.js`) s'agrandit ×4 avec Real-ESRGAN
+  « general », d'office jusqu'à 1 800 px et même dans Détouré (ses pixels
+  agrandis, jamais tracés). Dans le doute, c'est à plat : les logos pourris
+  gardent le modèle « anime » qui les nettoie.
 - **« Autour » vide les lettres posées dehors** (leurs creux, même pâles)
   sans toucher la marge blanche d'un sticker ni les grandes îles.
 - **Un anneau dessiné irrégulier garde son dessin** (« c'est le logo qui est
