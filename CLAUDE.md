@@ -22,6 +22,9 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   septembre 2026, « les polices sont censées s'ajouter seules, en Détouré et
   Image aussi ») : les lignes dont la police est choisie y sont repeintes
   dans leur police (`lib/texte.js`, `poserZone`), le reste ne bouge pas.
+  L'Amélioration IA y passe d'office comme ailleurs (l'Ultra d'un logo à
+  plat, l'IA des photos pour la matière) : ses pixels agrandis, jamais
+  tracés ; « Amélioration IA » décochée ramène le fichier reçu.
 - **L'Amélioration IA reste vérifiable contre le fichier d'origine** (garde-fou
   `fidele`, aucune couleur inventée `borner`) : jamais d'IA qui réinvente des
   lettres sans ce contrôle.
