@@ -125,7 +125,31 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   l'Amélioration IA l'attend, et part sur l'image nette.
 - **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
   clients avant et après (petits textes, puces, anneaux, en gros plan et sur
-  fond noir), pas sur un seul.
+  fond noir), pas sur un seul. Le contrôle presse (`lib/controle.js`) le
+  mesure : `node outils/banc-controle.mjs <logo.png>` trace un PNG en Node, donne
+  l'accord, les îles perdues ou ajoutées et dessine la carte des
+  désaccords. Essayé et écarté ainsi le 30 septembre 2026 : le lissage de
+  Taubin (sans rétrécissement) à la place du laplacien de `lisser` — même
+  fidélité (99,08 % → 99,08 % sur 6e3), 19 à 37 % de nœuds en plus.
+- **Le contrôle presse dit la vérité, il ne l'arrange pas** (30 septembre
+  2026, « qu'on puisse se reposer complètement dessus ») : le tracé final
+  est mesuré dans le fil du vecteur contre l'image détourée qu'il a suivie
+  (`controler`, jamais sur l'aperçu du curseur), et le bloc « Contrôle »
+  du panneau le lit en millimètres à la **largeur imprimée** choisie
+  (`E.largeurCm` ; vide : celle du fichier à 300 dpi, comme avant) — la
+  même largeur que prennent le PDF, le SVG, le PNG et l'EPS. Les seuils
+  (`TRAIT_MIN` 0,3 mm, `TRAIT_SUR` 0,5, `TEXTE_MIN` 2,5, `TEXTE_SUR` 4,
+  `DPI_MIN` 90, `DPI_SUR` 150, `lib/studio-detourage.js`) sont ceux de la
+  presse DTF. Un filet blanc perdu par le tracé (les stries de la baleine
+  du 6e3) s'y voit : c'est le tracé à améliorer, pas la mesure à taire.
+  « Au nuancier » ne recolore que les teintes à moins de ΔE 5 d'une
+  couleur du nuancier, d'un clic, et chaque pastille garde son
+  « d'origine ».
+- **Une droite presque à 45° l'est tout à fait** (30 septembre 2026), à
+  2° près et si ses points tiennent encore, comme l'horizontale et la
+  verticale (`redresser`, `lib/geometrie.js`) ; pas d'autre angle.
+- **« Comparer » montre le fichier reçu en pleine taille au zoom**
+  (`E.sourcePleine`), pas l'aperçu de 1 400 px agrandi.
 
 ## Avec le comptoir
 
