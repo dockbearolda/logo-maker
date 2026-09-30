@@ -42,6 +42,21 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   sans carte graphique, rien. Un modèle plus gros n'est pas forcément
   meilleur : « x4plus anime 6B » détourait les lettres d'un trait noir —
   mesurer sur des logos réduits ×4 et passés en JPEG avant d'en changer.
+- **« Rendre net » (30 septembre 2026, « la feature de PicWish ») : le flou
+  se retire avant l'IA, jamais en l'inventant.** Le flou se mesure sur les
+  bords (`flouDe`, `lib/nettete.js`) ; au-delà de `FLOU_NET` (1,2 px sur
+  l'aperçu, `lib/graphiste.js`) il part d'office, à toutes les tailles, dans
+  les trois versions. Une déconvolution (Richardson–Lucy accélérée, sa
+  variation totale contre l'écho des bords, ses couleurs bornées à celles
+  du fichier) — tenue par le fichier par construction —, puis l'IA habituelle,
+  gardée contre l'image défloutée (`garder`, `lib/detourage-travail.js`).
+  Pas de modèle « qui défloute » : Real-ESRGAN réduit jusqu'à son flou
+  réinventait les petites lettres (6e3) et le garde-fou re-flouté ne le
+  voyait pas ; NAFNet (OpenCV, 92 Mo) rend n'importe quoi sur la carte
+  graphique du navigateur et met 12 s par tuile sur le processeur.
+  Changer `TV`, `SOUS` ou `FLOU_NET` : juger à l'œil sur le t-shirt « I'M
+  HIS FAVORITE EX » (un contour de néon autour des lettres = trop), AUTOMAX
+  et 6e3 floutés, pas au PSNR seul.
 - **« Autour » vide les lettres posées dehors** (leurs creux, même pâles)
   sans toucher la marge blanche d'un sticker ni les grandes îles.
 - **Une image collée sur une toile transparente** (le PNG de Canva : un
