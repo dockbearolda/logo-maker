@@ -16,7 +16,10 @@ vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   plan) et au bureau (1 440 / 1 920).
 - **« Détouré » d'abord et d'office** : le fond autour part, les pixels du
   fichier restent, rien ne se trace. Aucun nouveau réglage ne doit forcer la
-  vectorisation ni vider les creux dans Détouré.
+  vectorisation ni vider les creux dans Détouré. Seule exception (30
+  septembre 2026, « les polices sont censées s'ajouter seules, en Détouré et
+  Image aussi ») : les lignes dont la police est choisie y sont repeintes
+  dans leur police (`lib/texte.js`, `poserZone`), le reste ne bouge pas.
 - **L'Amélioration IA reste vérifiable contre le fichier d'origine** (garde-fou
   `fidele`, aucune couleur inventée `borner`) : jamais d'IA qui réinvente des
   lettres sans ce contrôle.
@@ -25,7 +28,10 @@ vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
 - **Un anneau dessiné irrégulier garde son dessin** (« c'est le logo qui est
   fait comme ça ») : au compas seulement s'il est vraiment un cercle abîmé.
 - **Les écritures (scripts) sont proposées, jamais imposées** ; une police
-  n'est posée d'office que « reconnue ».
+  n'est posée d'office que « reconnue », sur une ligne entière (pas une
+  lettre collée au dessin) et assez grande pour en juger — dans les trois
+  versions. Le texte se lit sur l'image en pleine taille (`lib/texte.js`),
+  une fois par image, jamais sur le tracé.
 - **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
   clients avant et après (petits textes, puces, anneaux, en gros plan et sur
   fond noir), pas sur un seul.
