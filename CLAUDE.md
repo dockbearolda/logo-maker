@@ -28,7 +28,15 @@ vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   (`aDeLaMatiere`, `lib/detourage.js`) s'agrandit ×4 avec Real-ESRGAN
   « general », d'office jusqu'à 1 800 px et même dans Détouré (ses pixels
   agrandis, jamais tracés). Dans le doute, c'est à plat : les logos pourris
-  gardent le modèle « anime » qui les nettoie.
+  sont nettoyés — par « anime », ou par l'Ultra ci-dessous —, jamais
+  agrandis d'une seule passe par l'IA des photos.
+- **L'Ultra d'un logo à plat** : le « general » passé jusqu'à huit fois
+  (retourné, pivoté), les dessins moyennés, ses teintes recalées sur le
+  fichier (`recaler`) puis `fidele` et `borner`. D'office si le poste la
+  fait en moins de 40 s (`ULTRA_AUTO`), sinon proposée avec son temps ;
+  sans carte graphique, rien. Un modèle plus gros n'est pas forcément
+  meilleur : « x4plus anime 6B » détourait les lettres d'un trait noir —
+  mesurer sur des logos réduits ×4 et passés en JPEG avant d'en changer.
 - **« Autour » vide les lettres posées dehors** (leurs creux, même pâles)
   sans toucher la marge blanche d'un sticker ni les grandes îles.
 - **Un anneau dessiné irrégulier garde son dessin** (« c'est le logo qui est
