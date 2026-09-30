@@ -48,7 +48,10 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   rectangle à angles vifs, fond blanc, au milieu d'une toile vide) : son
   fond se lit sur son bord à elle (`cadreDuFond`, `lib/detourage.js`).
   Seulement un fond clair : un badge sombre déjà détouré reste un dessin,
-  un autocollant aux coins arrondis garde sa marge blanche.
+  un autocollant aux coins arrondis garde sa marge blanche. Le même
+  jugement à toutes les tailles : son retrait compte en pixels d'aperçu
+  (`APERCU_MAX`) — sinon l'image pleine agrandie par l'IA, ses coins
+  adoucis, gardait la carte au zoom et à l'export (30 septembre 2026).
 - **Un anneau dessiné irrégulier garde son dessin** (« c'est le logo qui est
   fait comme ça ») : au compas seulement s'il est vraiment un cercle abîmé.
 - **Les écritures (scripts) sont proposées, jamais imposées** ; une police
