@@ -60,6 +60,17 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   `LUE_SURE`, `LUE_CERTAINE`, `lib/studio-detourage.js`) ont été mesurés
   contre ceux de Tesseract sur 24 logos passés à toute la chaîne : chaque
   police posée d'office l'est encore.
+- **Tout ce qui sort en PDF (et l'EPS) est en CMJN** (30 septembre 2026) :
+  Coated FOGRA39, relatif colorimétrique, point noir compensé — ce
+  qu'Illustrator fait en Europe (`lib/cmjn.js`, table refaite par
+  `outils/table-cmjn.mjs`). Le noir pur sort en noir riche, le blanc sans
+  encre ; le Spot_1 reste un ton direct. Le SVG et le PNG restent en RVB.
+- **« Gras autour » : chaque ligne dont la police est choisie s'épaissit à
+  la main** (0 à 100 ; à fond, 6 % de la hauteur de ses lettres tout
+  autour), dans les trois versions et tous les exports. Les lettres
+  gardent les courbes de la police (`epaissir`, `lib/polices.js`) et se
+  remplissent au nombre d'enroulements : deux lettres épaissies qui se
+  touchent se fondent. Rien n'est épaissi d'office.
 - **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
   clients avant et après (petits textes, puces, anneaux, en gros plan et sur
   fond noir), pas sur un seul.

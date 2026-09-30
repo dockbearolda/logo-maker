@@ -2,7 +2,9 @@
 
 Le Logo maker de l'Atelier OLDA, seul : un logo ou une photo se dépose, le
 fond part, et le logo ressort détouré, vectoriel ou en image nette, prêt
-pour la presse (PDF avec blanc DTF, SVG, PNG 300 dpi, EPS).
+pour la presse (PDF en CMJN avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN).
+Le texte d'un logo peut reprendre sa police, et chaque ligne s'épaissir à
+la main (« Gras autour »).
 
 En ligne : **<https://logomaker-olda.up.railway.app/>** (tuile « Logo
 maker » du portail <https://dockbearolda.github.io/>) — et toujours sur
@@ -58,5 +60,6 @@ touché.
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
 | `lib/texte.js`, `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte trouvé en pleine taille, lu (PP-OCRv5), sa police retrouvée et reposée dans les trois versions |
 | `lib/pdf-vectoriel.js`, `lib/pdf-image.js`, `lib/export-logo.js`, `lib/png.js` | les exports |
+| `lib/cmjn.js`, `lib/cmjn-fogra39.js` | le CMJN des PDF et de l'EPS : la conversion d'Illustrator en Europe (Coated FOGRA39, relatif colorimétrique, point noir compensé), en table calculée d'avance — `node outils/table-cmjn.mjs` la refait avec littleCMS |
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses cinq modèles, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
 | `outils/birefnet-webgpu.py` | BiRefNet préparé pour la carte graphique du navigateur, et coupé en deux |
