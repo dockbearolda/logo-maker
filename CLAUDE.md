@@ -101,6 +101,17 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   dans la page depuis Fontsource), le dessin d'origine, le gras autour.
   Un bout de dessin lu de travers (confiance sous 50, une écriture à moins
   de 60 %) ne fait pas de ligne.
+- **Le choix de la police se juge au banc** (30 septembre 2026, « les
+  polices doivent réellement correspondre de façon très précise ») :
+  `node --max-old-space-size=8000 outils/banc-polices.mjs 30 1` écrit des
+  mots dans 30 familles tirées au sort, les rend en pixels et les
+  reconnaît — la famille en tête (ou une jumelle : le même dessin latin,
+  Noto Sans Balinese = Noto Sans), dans les cinq, la graisse juste. Les
+  réglages de `choisirPolices` (200 familles au tri de l'index, une
+  graisse, lettres à 48 px, la graisse affinée en pleine taille) y font
+  99 % / 100 % / 61 sur 69, contre 89 % / 93 % / 45 avant ; sur les lignes
+  du 6e3, chaque police « reconnue » l'est encore (note ≥ 0,9, pire ≥
+  0,75). Changer un réglage : le banc avant et après, même tirage.
 - **Une image collée sur une toile transparente** (le PNG de Canva : un
   rectangle à angles vifs, fond blanc, au milieu d'une toile vide) : son
   fond se lit sur son bord à elle (`cadreDuFond`, `lib/detourage.js`).
