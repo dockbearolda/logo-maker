@@ -5,6 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Logo maker · OLDA</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- Tous les modules de la page, demandés d'un coup (2 octobre 2026) :
+     sans eux, chaque niveau d'import attendait le précédent — sept
+     allers-retours vers le serveur avant que le studio paraisse. La liste
+     suit les imports (serveur.test.mjs le vérifie). -->
+<link rel="modulepreload" href="lib/cmjn-fogra39.js">
+<link rel="modulepreload" href="lib/cmjn.js">
+<link rel="modulepreload" href="lib/coffre.js">
+<link rel="modulepreload" href="lib/contour.js">
+<link rel="modulepreload" href="lib/controle.js">
+<link rel="modulepreload" href="lib/courbes.js">
+<link rel="modulepreload" href="lib/detourage.js">
+<link rel="modulepreload" href="lib/ecriture.js">
+<link rel="modulepreload" href="lib/effacer.js">
+<link rel="modulepreload" href="lib/elements.js">
+<link rel="modulepreload" href="lib/equivalents.js">
+<link rel="modulepreload" href="lib/export-logo.js">
+<link rel="modulepreload" href="lib/geometrie.js">
+<link rel="modulepreload" href="lib/graphiste.js">
+<link rel="modulepreload" href="lib/historique.js">
+<link rel="modulepreload" href="lib/icones.js">
+<link rel="modulepreload" href="lib/image-nette.js">
+<link rel="modulepreload" href="lib/lab.js">
+<link rel="modulepreload" href="lib/logo.js">
+<link rel="modulepreload" href="lib/nettete.js">
+<link rel="modulepreload" href="lib/nettoyage.js">
+<link rel="modulepreload" href="lib/nuancier.js">
+<link rel="modulepreload" href="lib/pdf-image.js">
+<link rel="modulepreload" href="lib/pdf-vectoriel.js">
+<link rel="modulepreload" href="lib/png.js">
+<link rel="modulepreload" href="lib/polices-poste.js">
+<link rel="modulepreload" href="lib/polices.js">
+<link rel="modulepreload" href="lib/reserve-polices.js">
+<link rel="modulepreload" href="lib/studio-detourage.js">
+<link rel="modulepreload" href="lib/sujet.js">
+<link rel="modulepreload" href="lib/tailles-dtf.js">
+<link rel="modulepreload" href="lib/texte.js">
+<link rel="modulepreload" href="lib/vecteur-lisse.js">
+<link rel="modulepreload" href="lib/vectoriser.js">
 <!-- Sortie du comptoir OLDA Print Studio par outils/logo-maker-statique.mjs :
      relancer ce script remplace index.html, lib/ et vendor/ par ceux du
      comptoir (git montre l'écart). -->

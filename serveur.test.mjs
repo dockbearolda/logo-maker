@@ -87,3 +87,20 @@ test('l\'ETag suit le contenu, pas la date : une mise en ligne ne refait pas par
   await writeFile(f, 'd\'autres octets')
   assert.notEqual(await etag(), avant, 'autre contenu : autre ETag')
 })
+
+/* 2 octobre 2026 : index.html demande d'un coup tous les modules de la page
+   (`modulepreload`) — sinon sept niveaux d'imports, sept allers-retours. Un
+   module ajouté, retiré ou renommé doit l'être là aussi. */
+test('index.html précharge exactement les modules que la page importe', async () => {
+  const html = await readFile(join(RACINE, 'index.html'), 'utf8')
+  const pre = [...html.matchAll(/<link rel="modulepreload" href="([^"]+)">/g)].map(m => m[1]).sort()
+  const vus = new Set()
+  const voir = async f => {
+    if (vus.has(f)) return
+    vus.add(f)
+    const s = await readFile(join(RACINE, f), 'utf8')
+    for (const m of s.matchAll(/^import\s[^'"]*['"](\.[^'"]+)['"]/gm)) await voir(join(f, '..', m[1]))
+  }
+  for (const m of html.match(/<script type="module">[\s\S]*?<\/script>/)[0].matchAll(/import\s[^'"]*['"]\.\/([^'"]+)['"]/g)) await voir(m[1])
+  assert.deepEqual(pre, [...vus].sort())
+})
