@@ -232,13 +232,14 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   teinte).
 - **La taille DTF se choisit** (1er octobre 2026, « pouvoir choisir la
   taille du DTF ») : dans le pied du panneau, au-dessus du blanc DTF —
-  pas un bloc de contrôle. Un préréglage du tableau d'OLDA (les largeurs
-  par emplacement : cœur et poitrine 5,5–8 cm, dos 20–34, bébé 11–14,
-  tote bag 20,5 ou 25 ; `lib/tailles-dtf.js`), ou la largeur ou la
-  hauteur tapée, l'autre côté suit. Sans choix, 300 dpi des pixels
-  (« Taille du fichier »). Elle reste d'un fichier à l'autre (une
-  commande), n'est pas un geste de l'historique, et le nom des exports la
-  dit (« -28x32,2cm »). Le tracé sort à cette taille ; Détouré garde ses
+  pas un bloc de contrôle. TOUT EN MILLIMÈTRES (« toutes les tailles
+  doivent être en mm ») : un préréglage du tableau d'OLDA (les largeurs
+  par emplacement : cœur et poitrine 55–80 mm, dos 200–340, bébé
+  110–140, tote bag 205 ou 250 ; `lib/tailles-dtf.js`), ou la largeur ou
+  la hauteur tapée, l'autre côté suit (au millimètre). Sans choix, 300 dpi
+  des pixels (« Taille du fichier »). Elle reste d'un fichier à l'autre
+  (une commande), n'est pas un geste de l'historique, et le nom des
+  exports la dit (« -280x322mm »). Le tracé sort à cette taille ; Détouré garde ses
   pixels (le PNG dit la résolution qui l'y met). Une seule ligne
   ambre quand une image (Détouré, Image) y tombe sous 200 dpi. Ses
   cotes se lisent sur le plan (R).
