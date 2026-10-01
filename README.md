@@ -5,7 +5,7 @@ fond part (un fichier flou est d'abord rendu net ; un imprimé photographié
 sur un tissu ombré part en entier, plis compris), et le logo ressort
 détouré, vectoriel ou en image nette, prêt pour la presse (PDF en CMJN
 avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN), à la taille DTF choisie
-(un préréglage d'OLDA ou des centimètres tapés, ses cotes sur le plan).
+(un préréglage d'OLDA ou des millimètres tapés, ses cotes sur le plan).
 Le texte d'un logo — même écrit en rond, sur un ruban, ou cerclé d'une
 autre couleur — peut
 reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
