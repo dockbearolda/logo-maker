@@ -7,7 +7,8 @@ détouré, vectoriel ou en image nette, prêt pour la presse (PDF en CMJN
 avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN). Le texte d'un logo — même
 écrit en rond, sur un ruban, ou cerclé d'une autre couleur — peut
 reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
-autour »).
+autour »). Chaque geste se défait (Ctrl Z) ou se refait (Ctrl Maj Z),
+et l'historique du fichier ramène à n'importe lequel.
 
 En ligne : **<https://logomaker-olda.up.railway.app/>** (tuile « Logo
 maker » du portail <https://dockbearolda.github.io/>) — et toujours sur
@@ -55,6 +56,7 @@ touché.
 | `index.html` | la page : jetons et style du comptoir, le studio en pleine page |
 | `serveur.mjs` | le serveur de Railway, sans paquet : les pages telles quelles, compressées, rien de caché |
 | `lib/studio-detourage.js` | l'écran : le plan, le panneau, les exports, les raccourcis |
+| `lib/historique.js` | l'historique des gestes : des photos des réglages (jamais des pixels) qu'Annuler, Rétablir et le menu « Historique » reposent ; leurs libellés (« Rouge retiré », « Seuil 24 → 32 ») |
 | `lib/graphiste.js` | les décisions d'office (IA, fond, version) |
 | `lib/detourage-travail.js` | le fil de calcul : détourage, IA, tracé, polices |
 | `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près — un tissu ou un papier ombré éclairé à plat d'abord —, les creux (même ombrés, la boucle d'un ruban) ; le sujet d'une photo ou d'une illustration collée sur sa carte (BiRefNet sur une carte graphique, sinon ISNet — ISNet pour un logo) |

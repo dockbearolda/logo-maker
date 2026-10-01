@@ -176,6 +176,19 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   `lib/detourage.js`).
 - **Rien ne sort sans l'IA en cours** : un export demandé pendant
   l'Amélioration IA l'attend, et part sur l'image nette.
+- **Le calcul se lit étape par étape** (30 septembre 2026, « le calcul
+  lisible ») : plus de pastille qui tourne ; le panneau « Préparation », en
+  bas à gauche du plan (`dessinerPrep`, `lib/studio-detourage.js`), liste
+  seulement les étapes qui tournent pour ce fichier, leur état et leur
+  durée mesurée dans les fils (`etape`, `lib/detourage-travail.js`). Une
+  préparation s'ouvre avec un fichier, l'IA, « Rendre net », l'Ultra, le
+  fond ou la version — jamais avec un curseur. Il paraît au premier calcul
+  de plus de 400 ms et part dès que la dernière étape a fini, sans fondu ;
+  un échec y reste en rouge, à la place du toast. L'état d'une étape se lit
+  sur le studio (`etatEtape`) — un fil fermé ne laisse rien « en cours » —,
+  les fils n'apportent que les durées ; « encore ~14 s » ne se dit que
+  quand on le sait (le temps jaugé de l'Ultra, l'allure régulière de l'IA).
+  Le panneau suit le calcul, il ne le fait jamais attendre.
 - **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
   clients avant et après (petits textes, puces, anneaux, en gros plan et sur
   fond noir), pas sur un seul. Le contrôle presse (`lib/controle.js`) le
@@ -244,8 +257,33 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
 - **Une droite presque à 45° l'est tout à fait** (30 septembre 2026), à
   2° près et si ses points tiennent encore, comme l'horizontale et la
   verticale (`redresser`, `lib/geometrie.js`) ; pas d'autre angle.
+- **Le studio ne s'écrit qu'avec ses jetons** (30 septembre 2026) : ni
+  dégradé ni violet, aucune ombre aux boutons, `--ombre-flottant` pour ce
+  qui flotte (menus, bulles, barres du plan, badges), trois tailles
+  (`--t-*`), les rayons `--arrondi`, `--arrondi-carte`, `--arrondi-fenetre`,
+  `--pilule` ou 50 %, un seul anneau de focus (`--anneau`). Restent écrits :
+  les points ambre `#d97706`, le rose du Spot_1, le damier et les fonds du
+  plan.
 - **« Comparer » montre le fichier reçu en pleine taille au zoom**
   (`E.sourcePleine`), pas l'aperçu de 1 400 px agrandi.
+- **Une barre fine au-dessus du studio, et l'historique des gestes** (30
+  septembre 2026). La barre (`.o-studio-barre`, posée dans `index.html`,
+  remplie par `gabaritBarre`) porte la marque, le fichier et ses
+  dimensions (sortis du panneau), Annuler, Rétablir, Historique, Changer.
+  L'historique (`lib/historique.js`) est une pile de **photos des
+  réglages, jamais des pixels** : Annuler repose la photo d'avant et
+  relance le calcul comme si on avait touché le réglage (`remettre`) — l'IA
+  repart, les teintes et les polices d'une autre image s'y reportent par
+  leur couleur et leur place. Un curseur glissé = une entrée, au
+  relâchement ; 50 entrées au plus, l'ouverture (« Ouvert · décision du
+  graphiste ») reste ; vidé à l'ouverture d'un autre fichier. Le point
+  qu'on quitte reprend l'état vivant : ce que le graphiste décide après
+  coup (la version après l'IA, les polices lues) y entre. Ctrl Z, Ctrl
+  Maj Z, Ctrl Y — pas dans un champ texte. Annuler pendant l'Amélioration
+  IA l'arrête d'abord quand la photo en veut une autre (le geste annulé
+  l'avait lancée) ; un autre geste fait pendant l'IA s'annule sans la
+  relancer de zéro. Le fond de l'aperçu, le zoom, « Comparer » et les
+  exports ne sont pas des gestes.
 
 ## Avec le comptoir
 
