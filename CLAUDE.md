@@ -121,6 +121,33 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   99 % / 100 % / 61 sur 69, contre 89 % / 93 % / 45 avant ; sur les lignes
   du 6e3, chaque police « reconnue » l'est encore (note ≥ 0,9, pire ≥
   0,75). Changer un réglage : le banc avant et après, même tirage.
+  1er octobre 2026 : le banc comptait en « jumelle » une vraie police
+  mieux notée que la première (donc manquée) — une jumelle est désormais à
+  0,005 près, ni au-dessus ni absente de la réserve ; mesure honnête des
+  mêmes réglages : 89 % (graine 1). La chasse d'une graisse de Google
+  s'ajoute à chaque lettre au tri de l'index (le trait gras élargit un
+  « l » autant qu'un « m »), au lieu de la multiplier : 89 → 96 %
+  (graine 1), 89 → 90 % (graine 7) ; le 6e3, DIB, La Piscine inchangés,
+  « SEA VIEW » de Sea View Villas reconnue en Bebas Neue.
+- **Les polices du poste et les polices déposées se reconnaissent comme
+  celles de Google** (1er octobre 2026, « le meilleur détecteur de
+  police au monde ») : Google n'a aucune police commerciale (Helvetica,
+  Futura, Avenir, Gill Sans, Century Gothic, Cooper…), le poste si. Chrome
+  les prête sur un clic (« Polices du poste », bloc Police ;
+  `queryLocalFonts`, la permission « Polices » du site, gardée), on peut en
+  déposer (TTF, OTF, WOFF, TTC ; « Ajouter », ou le fichier lâché sur le
+  plan). Chaque face est mesurée une fois comme l'index mesure Google
+  (`lib/polices-poste.js`) — ses propres cadres par graisse — et la mesure
+  se garde sur le poste (`lib/coffre.js`, IndexedDB ; `MESURE` la
+  refait). Les octets ne se lisent qu'à la demande du fil (ceux d'un Mac
+  pèsent 1,2 Go). opentype.js a été retouché pour les polices Apple que
+  Chrome reconstruit (`cmap` format 6, table Unicode d'abord :
+  vendor/LISEZMOI.md). Au banc (`POSTE=1 TIRAGE=poste`), 40 familles du
+  Mac : 0 % → 99 % en tête, graisse juste 111 sur 112 ; Google inchangé
+  avec le poste ajouté. La bulle cherche aussi une police par son nom
+  (Google, poste, déposées) et dit la jumelle commerciale d'une police
+  libre (« ≈ Futura », `lib/equivalents.js` : seulement des paires
+  connues) ; chercher « Gotham » trouve Montserrat.
 - **Une image collée sur une toile transparente** (le PNG de Canva : un
   rectangle à angles vifs, fond blanc, au milieu d'une toile vide) : son
   fond se lit sur son bord à elle (`cadreDuFond`, `lib/detourage.js`).

@@ -11,7 +11,13 @@
    GRAISSES (graisses essayées par famille), HAUTEUR (pixels des lettres
    réduites), FINE=0 (sans la graisse affinée en pleine taille), CAP
    (hauteur de capitale du rendu, 56), FAMILLES=id:graisse,… (un tirage
-   choisi), DEBUG_POLICE=id (le rang de cette famille à chaque étape). */
+   choisi), DEBUG_POLICE=id (le rang de cette famille à chaque étape).
+   LES POLICES DU POSTE (1er octobre 2026, lib/polices-poste.js) : POSTE=1
+   ajoute à la réserve celles de ce Mac (/System/Library/Fonts, ses
+   collections défaites), comme Chrome les prête au Logo maker ;
+   TIRAGE=poste écrit les mots dans des familles du poste (Futura, Gill
+   Sans, Helvetica…) plutôt que de Google — sans POSTE=1, aucune ne peut
+   être reconnue : c'est la mesure d'avant. */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 const CACHE = new URL('../node_modules/.polices-cache/', import.meta.url)
 mkdirSync(CACHE, { recursive: true })
@@ -26,11 +32,48 @@ const HAUTEUR = process.env.HAUTEUR ? Number(process.env.HAUTEUR) : undefined
 
 const index = JSON.parse(readFileSync(new URL('../vendor/polices/index.json', import.meta.url), 'utf8'))
 const familles = famillesDe(index)
+/* Le tirage se fait dans Google seul : avec ou sans le poste, les mêmes
+   mots dans les mêmes polices. */
+const google = familles.slice()
 
 const { parse } = await import('../vendor/opentype.min.mjs')
+
+/* Les polices de ce Mac, défaites et mesurées comme dans le Logo maker. */
+const posteOctets = new Map()
+let poste = []
+if (process.env.POSTE === '1' || process.env.TIRAGE === 'poste') {
+  const { readdirSync } = await import('node:fs')
+  const { facesTtc, decrireFace, famillesPoste } = await import('../lib/polices-poste.js')
+  const { IGNOREES } = await import('../lib/reserve-polices.js')
+  const descr = []
+  for (const dossier of ['/System/Library/Fonts/', '/System/Library/Fonts/Supplemental/', '/Library/Fonts/']) {
+    let noms = []
+    try { noms = readdirSync(dossier) } catch {}
+    for (const nom of noms.filter(n => /\.(ttf|otf|ttc)$/i.test(n))) {
+      let faces = []
+      try { faces = facesTtc(readFileSync(dossier + nom)) } catch { continue }
+      faces.forEach((o, k) => {
+        if (o.byteLength > 12e6) return
+        let police
+        try { police = parse(o) } catch { return }
+        const n = police.names.windows || police.names.macintosh || police.names
+        const fam = (n.typographicFamily || n.preferredFamily || n.fontFamily || {}).en || ''
+        if (!fam || IGNOREES.test(fam)) return
+        const cle = dossier + nom + '#' + k
+        const d = decrireFace(police, { cle })
+        if (d) { descr.push(d); posteOctets.set(cle, o) }
+      })
+    }
+  }
+  poste = famillesPoste(descr, 'poste')
+  console.log('poste :', descr.length, 'faces,', poste.length, 'familles')
+}
+if (process.env.POSTE === '1') familles.push(...poste)
+
 const cache = new Map()
 function charger(f) {
-  const cle = f.id + '/' + f.graisse + f.style
+  const cle = f.local ? 'local:' + f.local : f.id + '/' + f.graisse + f.style
+  if (f.local && !cache.has(cle)) cache.set(cle, Promise.resolve(posteOctets.has(f.local) ? parse(posteOctets.get(f.local)) : null))
   if (!cache.has(cle)) {
     cache.set(cle, (async () => {
       const nom = 'https://cdn.jsdelivr.net/fontsource/fonts/' + f.id + '@latest/latin-' + f.graisse + '-' + f.style + '.woff'
@@ -53,8 +96,9 @@ function charger(f) {
 let g = GRAINE
 const alea = () => { g = (g * 1103515245 + 12345) & 0x7fffffff; return g / 0x7fffffff }
 
-/* Les familles à écrire : droites, pas manuscrites, prises au hasard. */
-const droites = familles.filter(f => f.style === 'normal' && f.cat !== 'handwriting')
+/* Les familles à écrire : droites, pas manuscrites, prises au hasard
+   (TIRAGE=poste : parmi celles du poste). */
+const droites = (process.env.TIRAGE === 'poste' ? poste : google).filter(f => f.style === 'normal' && f.cat !== 'handwriting')
 const tirees = []
 const vus = new Set()
 for (const id of (process.env.FAMILLES || '').split(',').filter(Boolean)) {
@@ -106,11 +150,14 @@ for (const { fam, fichier } of tirees) {
     total++
     let rang = props.findIndex(p => p.fichier.id === fam.id)
     /* La vraie police notée comme les propositions : à égalité avec la
-       première (à 0,005 près), c'est une jumelle — le même dessin. */
-    if (rang !== 0 && props.length) {
-      const f = Math.min(1, (HAUTEUR || 32) / mediane(glyphes.filter(g => !g.ponctuation).map(g => g.y1 - g.y0 + 1)))
+       première (à 0,005 près), c'est une jumelle — le même dessin. Pas
+       au-dessus (1er octobre 2026) : mieux notée que la première, la
+       vraie a été manquée ; ni absente de la réserve (TIRAGE=poste sans
+       POSTE=1) : rien ne pouvait la trouver. */
+    if (rang !== 0 && props.length && familles.includes(fam)) {
+      const f = Math.min(1, (HAUTEUR || 48) / mediane(glyphes.filter(g => !g.ponctuation).map(g => g.y1 - g.y0 + 1)))
       const vraie = noter(reduireGlyphes(glyphes, f), police).note
-      if (vraie >= props[0].note - 0.005) { rang = 0; jumelles++ }
+      if (Math.abs(vraie - props[0].note) <= 0.005) { rang = 0; jumelles++ }
     }
     if (rang === 0) { tete++; if (props[0].fichier.graisse === fichier.graisse) graisse++ }
     if (rang >= 0 && rang < 5) cinq++
