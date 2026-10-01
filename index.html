@@ -476,6 +476,13 @@
   /* LA BULLE D'UNE LIGNE, sur le plan : son texte (à corriger s'il est mal
      lu), ses polices chacune dans son dessin, le gras autour. */
   .o-studio-pop.o-studio-pop-police { position:absolute; z-index:6; width:320px; max-width:calc(100% - 24px); gap:8px; }
+  /* RETIRER (1er octobre 2026) : la bulle d'un élément cliqué sur le plan ;
+     dans celle d'une ligne, « Retirer cette ligne », en rouge. */
+  .o-studio-pop.o-studio-pop-element { z-index:6; width:auto; padding:6px; }
+  .o-studio-pop-element .o-studio-bouton { color:var(--danger); }
+  .o-studio-pop-element .o-studio-bouton .o-studio-ic { width:16px; height:16px; }
+  .o-studio-lien.o-studio-lien-retirer { align-self:flex-start; margin:0; color:var(--danger); }
+  .o-studio-lien.o-studio-lien-retirer:hover { color:var(--etat-retard-encre); }
   .o-studio-pop-police .o-studio-pop-tete .o-studio-texte-mot { flex:1; min-width:0; }
   .o-studio-pop-liste { display:flex; flex-direction:column; gap:2px; max-height:min(340px, 50vh); margin:0 -6px; padding:0 6px; overflow:auto; }
   .o-studio-pop-ligne { display:flex; flex-direction:column; align-items:flex-start; gap:1px; width:100%; min-height:44px; padding:6px 10px; border:0; border-radius:var(--arrondi); background:transparent; font:inherit; color:var(--encre-1); text-align:left; cursor:pointer; }

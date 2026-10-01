@@ -148,6 +148,28 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   (Google, poste, déposées) et dit la jumelle commerciale d'une police
   libre (« ≈ Futura », `lib/equivalents.js` : seulement des paires
   connues) ; chercher « Gotham » trouve Montserrat.
+- **Des outils d'Illustrator** (1er octobre 2026, « ajouter des features
+  tirées d'Illustrator ») :
+  - LE CONTOUR (Objet › Tracé › Décalage, `lib/contour.js`) : un liseré
+    autour du logo, en mm imprimés (la taille DTF compte le contour : la
+    largeur choisie est celle du film), d'une couleur du nuancier (ses
+    encres officielles en PDF et EPS). Le dessin du vecteur peint dans une
+    toile, l'encre élargie (distance exacte), tracée comme le reste, sous
+    tout le dessin ; un petit creux se comble, un grand garde son jour. En
+    Vecteur seulement (Détouré garde ses pixels).
+  - RETIRER (sélectionner, Suppr, `lib/effacer.js`) : un clic sur un
+    élément du logo propose « Retirer cet élément » (la forme d'un seul
+    tenant) ; la bulle d'une ligne de texte, « Retirer cette ligne » (ses
+    lettres, dans son cadre — son tour, en rond). Écrit dans les réglages
+    du fond (`effaces`, en fractions de l'image) : les trois versions, les
+    exports, l'image refaite par l'IA, l'historique (Ctrl Z le remet).
+- **Pas de police posée d'office sur des lettres à ombre portée** (1er
+  octobre 2026, « SEA VIEW » de Sea View Villas reconnue en Bebas Neue :
+  la police posée effaçait son ombre à 40 %, il en restait des miettes) :
+  `ombrePortee` (`lib/texte.js`) — les lettres décalées d'un même pas
+  recouvrent une autre teinte, et pas au pas contraire ; un cerne, un fond
+  uni, un dessin à côté n'en sont pas. La police reste proposée. Le 6e3,
+  DIB inchangés.
 - **Une image collée sur une toile transparente** (le PNG de Canva : un
   rectangle à angles vifs, fond blanc, au milieu d'une toile vide) : son
   fond se lit sur son bord à elle (`cadreDuFond`, `lib/detourage.js`).
