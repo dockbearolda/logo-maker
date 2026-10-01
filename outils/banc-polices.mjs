@@ -44,7 +44,7 @@ let poste = []
 if (process.env.POSTE === '1' || process.env.TIRAGE === 'poste') {
   const { readdirSync } = await import('node:fs')
   const { facesTtc, decrireFace, famillesPoste } = await import('../lib/polices-poste.js')
-  const { IGNOREES } = await import('../lib/reserve-polices.js')
+  const { ignoree } = await import('../lib/reserve-polices.js')
   const descr = []
   for (const dossier of ['/System/Library/Fonts/', '/System/Library/Fonts/Supplemental/', '/Library/Fonts/']) {
     let noms = []
@@ -58,7 +58,7 @@ if (process.env.POSTE === '1' || process.env.TIRAGE === 'poste') {
         try { police = parse(o) } catch { return }
         const n = police.names.windows || police.names.macintosh || police.names
         const fam = (n.typographicFamily || n.preferredFamily || n.fontFamily || {}).en || ''
-        if (!fam || IGNOREES.test(fam)) return
+        if (!fam || ignoree(fam)) return
         const cle = dossier + nom + '#' + k
         const d = decrireFace(police, { cle })
         if (d) { descr.push(d); posteOctets.set(cle, o) }
