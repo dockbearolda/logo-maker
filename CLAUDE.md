@@ -176,6 +176,19 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   `lib/detourage.js`).
 - **Rien ne sort sans l'IA en cours** : un export demandé pendant
   l'Amélioration IA l'attend, et part sur l'image nette.
+- **Le calcul se lit étape par étape** (30 septembre 2026, « le calcul
+  lisible ») : plus de pastille qui tourne ; le panneau « Préparation », en
+  bas à gauche du plan (`dessinerPrep`, `lib/studio-detourage.js`), liste
+  seulement les étapes qui tournent pour ce fichier, leur état et leur
+  durée mesurée dans les fils (`etape`, `lib/detourage-travail.js`). Une
+  préparation s'ouvre avec un fichier, l'IA, « Rendre net », l'Ultra, le
+  fond ou la version — jamais avec un curseur. Il paraît au premier calcul
+  de plus de 400 ms et part dès que le contrôle presse a fini, sans fondu ;
+  un échec y reste en rouge, à la place du toast. L'état d'une étape se lit
+  sur le studio (`etatEtape`) — un fil fermé ne laisse rien « en cours » —,
+  les fils n'apportent que les durées ; « encore ~14 s » ne se dit que
+  quand on le sait (le temps jaugé de l'Ultra, l'allure régulière de l'IA).
+  Le panneau suit le calcul, il ne le fait jamais attendre.
 - **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
   clients avant et après (petits textes, puces, anneaux, en gros plan et sur
   fond noir), pas sur un seul. Le contrôle presse (`lib/controle.js`) le
