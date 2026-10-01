@@ -203,6 +203,24 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   verticale (`redresser`, `lib/geometrie.js`) ; pas d'autre angle.
 - **« Comparer » montre le fichier reçu en pleine taille au zoom**
   (`E.sourcePleine`), pas l'aperçu de 1 400 px agrandi.
+- **Une barre fine au-dessus du studio, et l'historique des gestes** (30
+  septembre 2026). La barre (`.o-studio-barre`, posée dans `index.html`,
+  remplie par `gabaritBarre`) porte la marque, le fichier et ses
+  dimensions (sortis du panneau), Annuler, Rétablir, Historique, Changer.
+  L'historique (`lib/historique.js`) est une pile de **photos des
+  réglages, jamais des pixels** : Annuler repose la photo d'avant et
+  relance le calcul comme si on avait touché le réglage (`remettre`) — l'IA
+  repart, les teintes et les polices d'une autre image s'y reportent par
+  leur couleur et leur place. Un curseur glissé = une entrée, au
+  relâchement ; 50 entrées au plus, l'ouverture (« Ouvert · décision du
+  graphiste ») reste ; vidé à l'ouverture d'un autre fichier. Le point
+  qu'on quitte reprend l'état vivant : ce que le graphiste décide après
+  coup (la version après l'IA, les polices lues) y entre. Ctrl Z, Ctrl
+  Maj Z, Ctrl Y — pas dans un champ texte. Annuler pendant l'Amélioration
+  IA l'arrête d'abord quand la photo en veut une autre (le geste annulé
+  l'avait lancée) ; un autre geste fait pendant l'IA s'annule sans la
+  relancer de zéro. Le fond de l'aperçu, le zoom, « Comparer » et les
+  exports ne sont pas des gestes.
 
 ## Avec le comptoir
 
