@@ -2,7 +2,9 @@
    ça vaut la peine, rien de caché. */
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
+import { readFile, mkdtemp, writeFile, utimes, rm } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { gunzipSync } from 'node:zlib'
 import { fileURLToPath } from 'node:url'
 import { serveur, fichierDe } from './serveur.mjs'
@@ -55,6 +57,8 @@ test('le serveur : types, compression, revalidation, 404', async t => {
 
   const js = await brut('/lib/png.js')
   assert.match(js.entetes['content-type'], /^text\/javascript/)
+  /* Compressé ou non, un script le dit : un cache ne rend pas l'un pour l'autre. */
+  assert.equal(js.entetes.vary, 'Accept-Encoding')
   assert.equal((await brut('/lib/png.js', { 'if-none-match': js.entetes.etag })).statut, 304)
 
   assert.equal((await brut('/.git/config')).statut, 404)
@@ -62,4 +66,24 @@ test('le serveur : types, compression, revalidation, 404', async t => {
   const dossier = await brut('/lib')
   assert.equal(dossier.statut, 301)
   assert.equal(dossier.entetes.location, '/lib/')
+})
+
+test('l\'ETag suit le contenu, pas la date : une mise en ligne ne refait pas partir un modèle', async t => {
+  const dossier = await mkdtemp(join(tmpdir(), 'olda-serveur-'))
+  t.after(() => rm(dossier, { recursive: true, force: true }))
+  const f = join(dossier, 'modele.onnx')
+  await writeFile(f, 'les mêmes octets')
+  const s = serveur(dossier).listen(0)
+  t.after(() => s.close())
+  await new Promise(r => s.once('listening', r))
+  const etag = async () => {
+    const r = await fetch('http://localhost:' + s.address().port + '/modele.onnx')
+    await r.arrayBuffer()
+    return r.headers.get('etag')
+  }
+  const avant = await etag()
+  await utimes(f, new Date(2030, 0, 1), new Date(2030, 0, 1))
+  assert.equal(await etag(), avant, 'même contenu, autre date : même ETag')
+  await writeFile(f, 'd\'autres octets')
+  assert.notEqual(await etag(), avant, 'autre contenu : autre ETag')
 })
