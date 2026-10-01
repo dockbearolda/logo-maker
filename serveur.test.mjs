@@ -35,6 +35,9 @@ test('le serveur : types, compression, revalidation, 404', async t => {
   assert.equal(page.statut, 200)
   assert.match(page.entetes['content-type'], /^text\/html/)
   assert.equal(page.entetes['cache-control'], 'no-cache')
+  /* Isolée : le moteur ONNX calcule sur plusieurs cœurs. */
+  assert.equal(page.entetes['cross-origin-opener-policy'], 'same-origin')
+  assert.equal(page.entetes['cross-origin-embedder-policy'], 'credentialless')
   assert.equal(page.corps.toString(), await readFile(RACINE + 'index.html', 'utf8'))
 
   const wasm = await brut('/vendor/ort-wasm-simd-threaded.asyncify.wasm', { 'accept-encoding': 'gzip, br' })
