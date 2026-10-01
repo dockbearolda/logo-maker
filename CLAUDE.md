@@ -214,14 +214,27 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   sur les PNG de ~/Downloads) : « CERCLE DES CRÉATEURS » (1600w…webp) s'y
   lit en entier, « La gourde de Mélina » et les lignes du 6e3 restent
   droites.
+- **Sous une police posée, le fond est remis uni** (30 septembre 2026,
+  « avec une police il faut modifier le fond pour qu'il soit uni, sinon ça
+  devient illisible ») : à `UNI` (12 %) de la hauteur des lettres autour
+  d'elles, le mélange de l'ancienne lettre et du fond, et l'ombre du fond
+  (sa teinte, plus sombre), prennent la couleur du fond — la plus
+  fréquente juste au-delà — d'un aplat (`poserZone`, `lib/texte.js`) ;
+  dans le vecteur, les débris de calque restés dans cette marge
+  rejoignent la forme autour (`nettoyerAutour`, `lib/vecteur-lisse.js`)
+  et la version Image y peint la teinte de la couche. Ce qui déborde de
+  la marge (la région voisine, un contour) reste ; un fond en dégradé se
+  comble de proche en proche, comme avant.
 - **Un imprimé photographié sur un tissu (ou un papier) ombré se détoure à
   la couleur** (30 septembre 2026, « les fonds en couleurs doivent être
   propres ; l'app doit faire la différence entre une couleur unie et une
   texture ») : le fond est une teinte dont la clarté varie en douceur
   (`fondOmbre`, `lib/detourage.js`), l'image est éclairée à plat
   (`sansOmbre`), les plis contre le bord partent avec lui (`tissu`). Le
-  graphiste ne le décide (`ombre`) que si le dessin est cerné d'un trait
-  foncé (`cerne`, la moitié de son pourtour) et ne touche pas le bord —
+  graphiste ne le décide (`ombre`) que sur un fond clair, si le dessin est
+  cerné d'un trait foncé (`cerne`, la moitié de son pourtour) et ne touche
+  pas le bord ; l'éclairage à plat ne sert qu'à trouver le fond, le
+  dessin garde les couleurs du fichier —
   mesuré sur les 70 fichiers de ~/Downloads : seul le t-shirt change ;
   des gens devant un mur restent une photo. Alors : à la couleur,
   « Partout », version Image, et l'IA des logos jusqu'à 1 800 px — c'est
