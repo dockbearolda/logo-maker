@@ -59,6 +59,59 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   et 6e3 floutés, pas au PSNR seul.
 - **« Autour » vide les lettres posées dehors** (leurs creux, même pâles)
   sans toucher la marge blanche d'un sticker ni les grandes îles.
+- **« Partout » reconnaît les éléments** (30 septembre 2026, le 6e3 AME :
+  « il est primordial que tout intérieur de lettre, sans exception, soit
+  parfaitement vidé ; que le logiciel reconnaisse les éléments pour éviter
+  de retirer ce qui ne doit pas l'être ») : le dessin se lit en formes et
+  en lignes de texte (`lib/elements.js`, les `lignes` de lib/polices.js).
+  Le jour d'une lettre — un creux qui touche une lettre d'une ligne — part
+  sans exception, même de deux pixels, même sans bord net. Dans une
+  ILLUSTRATION (`estIllustration` : plus de 10 % des pixels loin de douze
+  teintes), un creux net qui n'est ni grand (`GRAND`, 1 % de l'image) ni
+  une bonne part de l'élément qui l'enferme (`PART`, 8 % de son cadre : le
+  jour d'un anneau, d'un monogramme) est le blanc peint d'un élément —
+  l'aigrette, le ventre de la baleine, la bouteille, l'écume — et reste.
+  Un logo à plat se creuse comme avant. Essayé et écarté : relier un
+  creux au fond à travers un filet d'un ou deux pixels (il traversait les
+  contours noirs anticrénelés de l'illustration et rongeait l'écume) ;
+  l'épaisseur du corps autour du creux ou la couleur dominante au-delà
+  (un même critère tue l'aigrette ou garde les poches entre les
+  racines). Juger sur `_essais/banc-elements.mjs` (avant/après, magenta =
+  gardé en plus, cyan = retiré en plus).
+- **Le graphiste choisit la version** (30 septembre 2026, « que l'app
+  devine le meilleur réglage : une photo, une image ou parfaitement
+  vectoriel ») : à l'ouverture de chaque fichier, une photo (vrai décor,
+  sujet par l'IA) s'ouvre en Détouré, une image (de la matière, une
+  illustration collée ou aux couleurs sans nombre) en Image, un logo à
+  plat en Vecteur (`decider`, `genre` et `version`) ; le tracé peut encore
+  passer d'Image à Vecteur selon le modelé qu'il mesure. Un clic de la
+  vendeuse sur une version l'emporte pour ce fichier ; rien n'est plus
+  retenu d'une visite à l'autre (ce qui remplace le « Détouré d'abord et
+  d'office » du 29 septembre pour le choix de la version — Détouré reste
+  la version des photos, et garde ses pixels intacts).
+- **La police se choisit sur le plan, pas dans une barre latérale qui
+  s'allonge** (30 septembre 2026, onze lignes lues sur le 6e3 : « on clique
+  sur la police et on choisit directement, pour éviter une barre latérale
+  trop grande »). Le panneau « Police » n'a qu'une ligne par texte lu
+  (point vert : reconnue et posée ; bleu : choisie ; gris : le dessin).
+  Chaque texte du logo se signale sous la souris ; un clic — là ou sur sa
+  ligne du panneau — ouvre sa bulle sur le texte même (`ouvrirPopPolice`,
+  `lib/studio-detourage.js`) : le texte à corriger, les polices proposées
+  chacune rendue dans son propre dessin (`apercuPolice`, la police chargée
+  dans la page depuis Fontsource), le dessin d'origine, le gras autour.
+  Un bout de dessin lu de travers (confiance sous 50, une écriture à moins
+  de 60 %) ne fait pas de ligne.
+- **Le choix de la police se juge au banc** (30 septembre 2026, « les
+  polices doivent réellement correspondre de façon très précise ») :
+  `node --max-old-space-size=8000 outils/banc-polices.mjs 30 1` écrit des
+  mots dans 30 familles tirées au sort, les rend en pixels et les
+  reconnaît — la famille en tête (ou une jumelle : le même dessin latin,
+  Noto Sans Balinese = Noto Sans), dans les cinq, la graisse juste. Les
+  réglages de `choisirPolices` (200 familles au tri de l'index, une
+  graisse, lettres à 48 px, la graisse affinée en pleine taille) y font
+  99 % / 100 % / 61 sur 69, contre 89 % / 93 % / 45 avant ; sur les lignes
+  du 6e3, chaque police « reconnue » l'est encore (note ≥ 0,9, pire ≥
+  0,75). Changer un réglage : le banc avant et après, même tirage.
 - **Une image collée sur une toile transparente** (le PNG de Canva : un
   rectangle à angles vifs, fond blanc, au milieu d'une toile vide) : son
   fond se lit sur son bord à elle (`cadreDuFond`, `lib/detourage.js`).

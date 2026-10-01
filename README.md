@@ -59,6 +59,7 @@ touché.
 | `lib/graphiste.js` | les décisions d'office (IA, fond, version) |
 | `lib/detourage-travail.js` | le fil de calcul : détourage, IA, tracé, polices |
 | `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près, les creux (même ombrés, la boucle d'un ruban) ; le sujet d'une photo ou d'une illustration collée sur sa carte (BiRefNet sur une carte graphique, sinon ISNet — ISNet pour un logo) |
+| `lib/elements.js` | les éléments du dessin : ses formes, ses lignes de texte — le jour d'une lettre se vide sans exception, le blanc peint d'une illustration (le plumage, un reflet) reste |
 | `lib/nettete.js` | « Rendre net » : le flou d'un fichier mesuré sur ses bords, puis retiré (Richardson–Lucy, sans rien inventer) avant l'IA — d'office quand le fichier est flou |
 | `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo), son Ultra (le « general » passé jusqu'à huit fois, retourné et pivoté, sur un logo à plat) et ses garde-fous |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
@@ -70,3 +71,4 @@ touché.
 | `lib/nuancier.js` | le nuancier OLDA : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-olda-2026-v2.ase`) |
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses cinq modèles, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
 | `outils/birefnet-webgpu.py` | BiRefNet préparé pour la carte graphique du navigateur, et coupé en deux |
+| `outils/banc-controle.mjs`, `outils/banc-elements.mjs`, `outils/banc-polices.mjs` | les bancs : le tracé mesuré contre le fichier, les creux « Partout » avant/après la règle des éléments, les polices reconnues sur des mots écrits dans des familles connues |
