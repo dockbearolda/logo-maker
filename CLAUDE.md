@@ -128,7 +128,17 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   s'ajoute à chaque lettre au tri de l'index (le trait gras élargit un
   « l » autant qu'un « m »), au lieu de la multiplier : 89 → 96 %
   (graine 1), 89 → 90 % (graine 7) ; le 6e3, DIB, La Piscine inchangés,
-  « SEA VIEW » de Sea View Villas reconnue en Bebas Neue.
+  « SEA VIEW » de Sea View Villas reconnue en Bebas Neue. Ce tri plus
+  juste laisse passer 120 familles au lieu de 200 sans rien perdre (138
+  lignes justes sur 149 aux deux graines, 99 % au poste) : 40 % de
+  polices en moins à télécharger la première fois.
+- **Les polices de Google se gardent sur le poste** (Cache Storage,
+  `octetsGoogle`, lib/detourage-travail.js) : un premier logo en essaie
+  des centaines (750 fichiers, 17 Mo pour quatre lignes) ; le cache du
+  navigateur les revalide chaque jour et les oublie quand la place
+  manque. Le fil du texte se prépare à l'ouverture de la page
+  (`prechauffer` : la lecture, l'index des polices) — le premier logo
+  ne les attend plus.
 - **Les polices du poste et les polices déposées se reconnaissent comme
   celles de Google** (1er octobre 2026, « le meilleur détecteur de
   police au monde ») : Google n'a aucune police commerciale (Helvetica,
