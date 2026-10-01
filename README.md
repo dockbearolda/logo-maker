@@ -1,14 +1,13 @@
 # Logo maker · OLDA
 
 Le Logo maker de l'Atelier OLDA, seul : un logo ou une photo se dépose, le
-fond part (un fichier flou est d'abord rendu net), et le logo ressort
+fond part (un fichier flou est d'abord rendu net ; un imprimé photographié
+sur un tissu ombré part en entier, plis compris), et le logo ressort
 détouré, vectoriel ou en image nette, prêt pour la presse (PDF en CMJN
-avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN). Le texte d'un logo peut
+avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN). Le texte d'un logo — même
+écrit en rond, sur un ruban, ou cerclé d'une autre couleur — peut
 reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
-autour »). Avant de partir, tout se vérifie dans le bloc « Contrôle » :
-la largeur imprimée se choisit, et le tracé s'y mesure contre le fichier
-(fidélité, trait le plus fin, texte le plus petit, netteté, couleurs au
-nuancier), en millimètres.
+autour »).
 
 En ligne : **<https://logomaker-olda.up.railway.app/>** (tuile « Logo
 maker » du portail <https://dockbearolda.github.io/>) — et toujours sur
@@ -58,17 +57,18 @@ touché.
 | `lib/studio-detourage.js` | l'écran : le plan, le panneau, les exports, les raccourcis |
 | `lib/graphiste.js` | les décisions d'office (IA, fond, version) |
 | `lib/detourage-travail.js` | le fil de calcul : détourage, IA, tracé, polices |
-| `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près, les creux (même ombrés, la boucle d'un ruban) ; le sujet d'une photo ou d'une illustration collée sur sa carte (BiRefNet sur une carte graphique, sinon ISNet — ISNet pour un logo) |
+| `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près — un tissu ou un papier ombré éclairé à plat d'abord —, les creux (même ombrés, la boucle d'un ruban) ; le sujet d'une photo ou d'une illustration collée sur sa carte (BiRefNet sur une carte graphique, sinon ISNet — ISNet pour un logo) |
 | `lib/elements.js` | les éléments du dessin : ses formes, ses lignes de texte — le jour d'une lettre se vide sans exception, le blanc peint d'une illustration (le plumage, un reflet) reste |
 | `lib/nettete.js` | « Rendre net » : le flou d'un fichier mesuré sur ses bords, puis retiré (Richardson–Lucy, sans rien inventer) avant l'IA — d'office quand le fichier est flou |
 | `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo), son Ultra (le « general » passé jusqu'à huit fois, retourné et pivoté, sur un logo à plat) et ses garde-fous |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
-| `lib/controle.js` | le contrôle presse : le tracé mesuré contre l'image détourée (fidélité, îles perdues ou ajoutées), l'épaisseur de l'encre (le trait le plus fin), la couleur du nuancier la plus proche — lu dans le panneau, en millimètres, à la largeur imprimée choisie |
-| `lib/texte.js`, `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte trouvé en pleine taille, lu (PP-OCRv5), sa police retrouvée et reposée dans les trois versions |
+| `lib/controle.js` | la mesure du banc (`outils/banc-controle.mjs`) : le tracé contre l'image détourée (fidélité, îles perdues ou ajoutées), l'épaisseur de l'encre, la couleur du nuancier la plus proche |
+| `lib/texte.js`, `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte trouvé en pleine taille, lu (PP-OCRv5), sa police retrouvée et reposée dans les trois versions — une lettre cerclée avec son cerne |
+| `lib/courbes.js` | le texte en rond, sur un ruban, penché : ses lettres enchaînées, la courbe qui passe par elles, chacune remise à plat (tournée ou cisaillée) puis reposée sur la courbe |
 | `lib/pdf-vectoriel.js`, `lib/pdf-image.js`, `lib/export-logo.js`, `lib/png.js` | les exports |
 | `lib/cmjn.js`, `lib/cmjn-fogra39.js` | le CMJN des PDF et de l'EPS : la conversion d'Illustrator en Europe (Coated FOGRA39, relatif colorimétrique, point noir compensé), en table calculée d'avance — `node outils/table-cmjn.mjs` la refait avec littleCMS |
 | `lib/nuancier.js` | le nuancier OLDA : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-olda-2026-v2.ase`) |
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses cinq modèles, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
 | `outils/birefnet-webgpu.py` | BiRefNet préparé pour la carte graphique du navigateur, et coupé en deux |
-| `outils/banc-controle.mjs`, `outils/banc-elements.mjs`, `outils/banc-polices.mjs` | les bancs : le tracé mesuré contre le fichier, les creux « Partout » avant/après la règle des éléments, les polices reconnues sur des mots écrits dans des familles connues |
+| `outils/banc-controle.mjs`, `outils/banc-elements.mjs`, `outils/banc-polices.mjs`, `outils/banc-lignes.mjs` | les bancs : le tracé mesuré contre le fichier, les creux « Partout » avant/après la règle des éléments, les polices reconnues sur des mots écrits dans des familles connues, les lignes de texte (droites et courbes) avant/après un changement |
