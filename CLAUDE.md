@@ -201,6 +201,13 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
 - **Une droite presque à 45° l'est tout à fait** (30 septembre 2026), à
   2° près et si ses points tiennent encore, comme l'horizontale et la
   verticale (`redresser`, `lib/geometrie.js`) ; pas d'autre angle.
+- **Le studio ne s'écrit qu'avec ses jetons** (30 septembre 2026) : ni
+  dégradé ni violet, aucune ombre aux boutons, `--ombre-flottant` pour ce
+  qui flotte (menus, bulles, barres du plan, badges), trois tailles
+  (`--t-*`), les rayons `--arrondi`, `--arrondi-carte`, `--arrondi-fenetre`,
+  `--pilule` ou 50 %, un seul anneau de focus (`--anneau`). Restent écrits :
+  les points ambre `#d97706`, le rose du Spot_1, le damier et les fonds du
+  plan.
 - **« Comparer » montre le fichier reçu en pleine taille au zoom**
   (`E.sourcePleine`), pas l'aperçu de 1 400 px agrandi.
 
