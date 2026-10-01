@@ -61,8 +61,8 @@ touché.
 | `lib/detourage-travail.js` | le fil de calcul : détourage, IA, tracé, polices |
 | `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près — un tissu ou un papier ombré éclairé à plat d'abord —, les creux (même ombrés, la boucle d'un ruban) ; le sujet d'une photo ou d'une illustration collée sur sa carte (BiRefNet sur une carte graphique, sinon ISNet — ISNet pour un logo) |
 | `lib/elements.js` | les éléments du dessin : ses formes, ses lignes de texte — le jour d'une lettre se vide sans exception, le blanc peint d'une illustration (le plumage, un reflet) reste |
-| `lib/nettete.js` | « Rendre net » : le flou d'un fichier mesuré sur ses bords, puis retiré (Richardson–Lucy, sans rien inventer) avant l'IA — d'office quand le fichier est flou |
-| `lib/nettoyage.js` | l'Amélioration IA (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo), son Ultra (le « general » passé jusqu'à huit fois, retourné et pivoté, sur un logo à plat) et ses garde-fous |
+| `lib/nettete.js` | « Améliorer la netteté » : le flou d'un fichier mesuré sur ses bords, puis retiré (Richardson–Lucy, sans rien inventer) avant l'IA — d'office quand le fichier est flou |
+| `lib/nettoyage.js` | « Améliorer l'image » (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo), son Ultra (le « general » passé jusqu'à huit fois, retourné et pivoté, sur un logo à plat comme sur une matière) et ses garde-fous |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
 | `lib/controle.js` | la mesure du banc (`outils/banc-controle.mjs`) : le tracé contre l'image détourée (fidélité, îles perdues ou ajoutées), l'épaisseur de l'encre, la couleur du nuancier la plus proche |
