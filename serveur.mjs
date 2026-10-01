@@ -12,7 +12,14 @@
    - Revalidé à chaque visite (ETag) : une mise en ligne se voit tout de
      suite, et ce qui n'a pas changé ne repart pas (304).
    - Rien de caché ne sort : ni .git, ni .claude, rien qui commence par un
-     point. */
+     point.
+   - La page est isolée de toute autre origine (1er octobre 2026, « encore
+     plus puissante ») : sans cet isolement, le navigateur refuse la mémoire
+     partagée, et le moteur ONNX ne calcule que sur un cœur du processeur —
+     la lecture du texte, l'IA sans carte graphique. Isolée, sur quatre.
+     « credentialless » : les polices de Google et de Fontsource (jsDelivr)
+     viennent toujours, sans cookies — Chrome, Edge et Firefox le
+     comprennent ; Safari l'ignore et reste sur un cœur. */
 import { createServer } from 'node:http'
 import { createReadStream } from 'node:fs'
 import { readFile, stat } from 'node:fs/promises'
@@ -68,6 +75,8 @@ function compresse(f, etag) {
 export function serveur(racine = RACINE) {
   return createServer(async (req, rep) => {
     rep.setHeader('X-Content-Type-Options', 'nosniff')
+    rep.setHeader('Cross-Origin-Opener-Policy', 'same-origin')
+    rep.setHeader('Cross-Origin-Embedder-Policy', 'credentialless')
     if (req.method !== 'GET' && req.method !== 'HEAD') {
       rep.writeHead(405, { Allow: 'GET, HEAD' })
       return rep.end()

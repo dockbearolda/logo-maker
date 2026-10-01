@@ -54,7 +54,7 @@ touché.
 | Où | Quoi |
 |---|---|
 | `index.html` | la page : jetons et style du comptoir, le studio en pleine page |
-| `serveur.mjs` | le serveur de Railway, sans paquet : les pages telles quelles, compressées, rien de caché |
+| `serveur.mjs` | le serveur de Railway, sans paquet : les pages telles quelles, compressées, rien de caché, isolées (COOP/COEP : l'IA et la lecture calculent sur quatre cœurs) |
 | `lib/studio-detourage.js` | l'écran : le plan, le panneau, les exports, les raccourcis |
 | `lib/historique.js` | l'historique des gestes : des photos des réglages (jamais des pixels) qu'Annuler, Rétablir et le menu « Historique » reposent ; leurs libellés (« Rouge retiré », « Seuil 24 → 32 ») |
 | `lib/graphiste.js` | les décisions d'office (IA, fond, version) |
@@ -73,4 +73,6 @@ touché.
 | `lib/nuancier.js` | le nuancier OLDA : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-olda-2026-v2.ase`) |
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses cinq modèles, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
 | `outils/birefnet-webgpu.py` | BiRefNet préparé pour la carte graphique du navigateur, et coupé en deux |
+| `outils/realesr-fp16.py` | les deux Real-ESRGAN en demi-précision, pour une carte graphique qui la calcule (l'Ultra 1,4 fois plus vite) |
+| `outils/banc-ultra.mjs` | le banc de l'Ultra, dans le navigateur : float32 contre float16, tuiles de 192 contre 384, sur des logos réduits ×4 et passés en JPEG |
 | `outils/banc-controle.mjs`, `outils/banc-elements.mjs`, `outils/banc-polices.mjs`, `outils/banc-lignes.mjs` | les bancs : le tracé mesuré contre le fichier, les creux « Partout » avant/après la règle des éléments, les polices reconnues sur des mots écrits dans des familles connues, les lignes de texte (droites et courbes) avant/après un changement |

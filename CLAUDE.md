@@ -198,6 +198,25 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   les fils n'apportent que les durées ; « encore ~14 s » ne se dit que
   quand on le sait (le temps jaugé de l'Ultra, l'allure régulière de l'IA).
   Le panneau suit le calcul, il ne le fait jamais attendre.
+- **La vitesse** (1er octobre 2026, « encore plus puissante » : le 6e3
+  ouvert de bout en bout 72 → 44 s, LOGO DIB 27 → 14 s, Logo SSV 8 → 3 s).
+  La page est isolée (`serveur.mjs`, COOP `same-origin`, COEP
+  `credentialless`) : ONNX calcule sur 4 cœurs — la lecture ×2 à ×3, l'IA
+  sans carte graphique ×3,6 ; ne pas retirer ces en-têtes (GitHub Pages
+  ne peut pas les poser : un cœur là-bas). Au-delà de 4 cœurs, presque
+  rien. Sur la carte graphique, Real-ESRGAN est limité par le calcul
+  (~1,5 s par mégapixel en float32, Apple M) : regrouper les passages en
+  lots n'y gagne rien ; ce qui gagne, c'est moins de pixels — tuiles de
+  384 (`TUILE`), une tuile toute d'une couleur calculée une fois
+  (`cleUnie`, la carte rend toujours le même dessin d'une même entrée) —
+  et la demi-précision (`-fp16.onnx`, `outils/realesr-fp16.py`) sur une
+  carte `shader-f16`, ses « NaN » repassant en float32. Jugé sur six
+  logos réduits ×4 et passés en JPEG (`outils/banc-ultra.mjs`, dans le
+  navigateur) : ±0,02 dB. Une optimisation du calcul en JS doit rendre les
+  mêmes octets : SVG, image, détourage, lignes, comparés avant/après sur
+  les logos de `~/Downloads` (empreintes sha1), pas « à l'œil ». Mesurer
+  la vitesse dans un Chromium visible (Playwright), jamais dans le volet
+  caché : ses fils y vont ~8 fois moins vite.
 - **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
   clients avant et après (petits textes, puces, anneaux, en gros plan et sur
   fond noir), pas sur un seul. Le contrôle presse (`lib/controle.js`) le

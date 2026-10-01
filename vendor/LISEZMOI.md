@@ -31,9 +31,11 @@ pour un logo de moins de 1 300 px, une matière de moins de 1 800).
 | `lexique/mots.txt` | construit par `outils/lexique.mjs` depuis FrequencyWords (Hermit Dave, 2018 : fr, en) | — | CC BY-SA 4.0 | relire un texte manuscrit que l'OCR lit mal, mot par mot (`lib/ecriture.js`) |
 | `realesr-animevideov3.onnx` | Real-ESRGAN « anime video v3 » (SRVGGNetCompact, ×4), export ONNX de `skillsafe-ai/realesr-animevideov3` sur Hugging Face — ses 53 tenseurs sont identiques, octet pour octet, à ceux de `realesr-animevideov3.pth` (release v0.2.5.0 de xinntao/Real-ESRGAN, sha256 `b8a83768…`) | v0.2.5.0 | BSD-3-Clause | « Améliorer l'image » du Logo maker : un logo flou redessiné net, ×4 (`lib/nettoyage.js`) |
 | `realesr-general-x4v3.onnx` | Real-ESRGAN « general x4v3 » (SRVGGNetCompact, ×4), appris sur des photos : export ONNX (opset 17, mêmes entrée `input` et sortie `output` que le modèle anime) du fondu à 0,5 de `realesr-general-x4v3.pth` (sha256 `8dc7edb9…`) et de `realesr-general-wdn-x4v3.pth` (sha256 `1641f8c4…`), release v0.2.5.0 de xinntao/Real-ESRGAN — le « denoise strength » de 0,5 que Real-ESRGAN prend d'office ; sha256 de l'ONNX `5be1d686…` | v0.2.5.0 | BSD-3-Clause | « Améliorer l'image » d'un fichier qui a de la matière — broderie, cuir, eau, feu, paillettes, photo (`lib/detourage.js`, `aDeLaMatiere`) : ses fils et son grain gardés, ×4 ; et l'Ultra d'un logo à plat ou d'une matière, passé jusqu'à huit fois retourné et pivoté, ses dessins moyennés (`lib/nettoyage.js`) |
+| `realesr-animevideov3-fp16.onnx`, `realesr-general-x4v3-fp16.onnx` | les deux Real-ESRGAN ci-dessus en demi-précision : poids et couches en float16, entrée, sortie et `Resize` en float32 — faits par `outils/realesr-fp16.py` (onnxconverter-common, `keep_io_types`) ; sha256 `15223d8e…` (anime) et `6f1ee550…` (general) | v0.2.5.0 | BSD-3-Clause | les mêmes, sur une carte graphique qui calcule en demi-précision (`shader-f16`) : l'Ultra 1,4 fois plus vite, son dessin à ±0,02 dB de celui en float32 (1er octobre 2026) — le processeur garde les float32 |
 
 Le modèle de la lecture et son dictionnaire ne se chargent qu'au premier
-logo qui a du texte (dans le fil du texte, sur le processeur), les polices
+logo qui a du texte (dans le fil du texte, sur le processeur — quatre cœurs
+quand la page est isolée : `serveur.mjs`), les polices
 qu'une à une, quand la recherche en veut une. Pour refaire l'index des polices (une
 nouvelle famille chez Google Fonts) : `node outils/index-polices.mjs` —
 il télécharge chaque police une fois dans un dossier temporaire.
