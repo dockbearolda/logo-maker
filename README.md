@@ -17,8 +17,12 @@ maker » du portail <https://dockbearolda.github.io/>) — et toujours sur
 <https://dockbearolda.github.io/logo-maker/>, la même page.
 
 Tout calcule dans le navigateur, sur le poste : rien ne part sur un
-serveur (celui de Railway, `serveur.mjs`, ne fait que servir les pages). Seules les polices libres essayées sur le texte d'un logo viennent
-de Fontsource (le CDN jsDelivr), une à une.
+serveur (celui de Railway, `serveur.mjs`, ne fait que servir les pages).
+Seules les polices libres essayées sur le texte d'un logo viennent de
+Fontsource (le CDN jsDelivr), une à une. La police se cherche aussi
+parmi celles installées sur le poste (Chrome les prête sur un clic :
+« Polices du poste ») et celles qu'on dépose ; elles ne quittent pas le
+poste.
 
 ## En local
 
@@ -68,6 +72,7 @@ touché.
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
 | `lib/controle.js` | la mesure du banc (`outils/banc-controle.mjs`) : le tracé contre l'image détourée (fidélité, îles perdues ou ajoutées), l'épaisseur de l'encre, la couleur du nuancier la plus proche |
+| `lib/polices-poste.js`, `lib/reserve-polices.js`, `lib/coffre.js`, `lib/equivalents.js` | les polices du poste (prêtées par Chrome) et celles déposées, mesurées comme celles de Google et gardées sur le poste ; la recherche d'une police par son nom, et la jumelle commerciale d'une police libre (« ≈ Futura ») |
 | `lib/texte.js`, `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte trouvé en pleine taille, lu (PP-OCRv5), sa police retrouvée et reposée dans les trois versions — une lettre cerclée avec son cerne |
 | `lib/courbes.js` | le texte en rond, sur un ruban, penché : ses lettres enchaînées, la courbe qui passe par elles, chacune remise à plat (tournée ou cisaillée) puis reposée sur la courbe |
 | `lib/pdf-vectoriel.js`, `lib/pdf-image.js`, `lib/export-logo.js`, `lib/png.js` | les exports |

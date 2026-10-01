@@ -466,7 +466,9 @@
   .o-studio-ligne-texte i[data-etat="choisie"] { background:var(--accent); }
   .o-studio-ligne-texte i[data-etat="recherche"] { background:#d97706; }
   .o-studio-ligne-texte-mot { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .o-studio-ligne-texte small { max-width:45%; font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  /* La police d'une ligne, lisible (1er octobre 2026 : un pourcentage de
+     sa colonne « auto » la réduisait à « D… »). */
+  .o-studio-ligne-texte small { max-width:150px; font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   /* Le texte lu d'une ligne : un champ, pointillé tant qu'on n'y touche pas — il se corrige s'il est mal lu. */
   .o-studio-texte-mot { box-sizing:border-box; width:100%; height:30px; padding:0 10px; border:1px dashed var(--filet-carte); border-radius:var(--arrondi); background:transparent; font:inherit; font-size:var(--t-petit); color:var(--encre-2); text-overflow:ellipsis; }
   .o-studio-texte-mot:hover { border-color:var(--filet-fort); }
@@ -484,6 +486,28 @@
   .o-studio-pop-ligne small { font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; }
   .o-studio-pop-ligne small b { color:var(--succes-encre); font-weight:var(--g-forte); }
   .o-studio-pop-vide { padding:8px 10px; font-size:var(--t-petit); color:var(--encre-2); }
+  /* LA RÉSERVE (1er octobre 2026) : où la police se cherche — Google, le
+     poste, les polices déposées —, et de quoi l'agrandir. */
+  .o-studio-reserve { display:flex; align-items:center; flex-wrap:wrap; gap:4px 10px; margin-top:6px; padding-top:8px; border-top:1px solid var(--filet-carte); font-size:var(--t-petit); color:var(--encre-2); }
+  .o-studio-reserve-dit { flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-variant-numeric:tabular-nums; }
+  .o-studio-lien { display:inline-flex; align-items:center; gap:4px; min-height:28px; margin:0 -6px; padding:0 6px; border:0; border-radius:var(--arrondi); background:transparent; font:inherit; font-size:var(--t-petit); font-weight:var(--g-forte); color:var(--accent); white-space:nowrap; cursor:pointer; }
+  .o-studio-lien:hover:not(:disabled) { background:var(--zone); color:var(--accent-survol); }
+  .o-studio-lien:disabled { color:var(--encre-2); cursor:default; }
+  .o-studio-lien:focus-visible { outline:none; box-shadow:var(--anneau); }
+  .o-studio-lien .o-studio-ic { width:14px; height:14px; }
+  .o-studio-lien[hidden] { display:none; }
+  .o-studio-reserve .o-studio-lien { margin:0; }
+  /* La recherche d'une police par son nom, dans la bulle ; d'où vient une
+     police (le poste, déposée) et sa jumelle commerciale (« ≈ Futura »). */
+  .o-studio-cherche { display:flex; flex-direction:column; gap:4px; padding-top:8px; border-top:1px solid var(--filet-carte); }
+  .o-studio-cherche .o-studio-lien { align-self:flex-start; margin:0; }
+  .o-studio-cherche-mot { border-style:solid; }
+  .o-studio-cherche .o-studio-pop-liste { max-height:min(220px, 34vh); }
+  .o-studio-cherche .o-studio-pop-liste:empty { display:none; }
+  .o-studio-pop-ligne small { white-space:normal; }
+  .o-studio-source, .o-studio-equivalent { font-style:normal; white-space:nowrap; }
+  .o-studio-source { padding:0 6px; border-radius:var(--pilule); background:var(--zone); color:var(--encre-1); font-weight:var(--g-note); }
+  .o-studio-pop-ligne[aria-checked="true"] .o-studio-source { background:#fff; }
   /* Le gras autour des lettres d'une ligne : sous sa police, éteint sans police choisie. */
   .o-studio-gras { margin-top:2px; }
   .o-studio-gras label { font-size:var(--t-petit); color:var(--encre-2); }
