@@ -226,10 +226,22 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   Taubin (sans rétrécissement) à la place du laplacien de `lisser` — même
   fidélité (99,08 % → 99,08 % sur 6e3), 19 à 37 % de nœuds en plus.
 - **Pas de bloc « Contrôle » dans le panneau** (30 septembre 2026, « le
-  contrôle à droite ne sert à rien ») : ni largeur imprimée, ni verdict ;
-  les exports sortent à 300 dpi. `lib/controle.js` reste la mesure du
-  banc (`outils/banc-controle.mjs`, juger un changement du tracé) et de la
-  teinte du nuancier la plus proche (la bulle d'une teinte).
+  contrôle à droite ne sert à rien ») : pas de verdict. `lib/controle.js`
+  reste la mesure du banc (`outils/banc-controle.mjs`, juger un changement
+  du tracé) et de la teinte du nuancier la plus proche (la bulle d'une
+  teinte).
+- **La taille DTF se choisit** (1er octobre 2026, « pouvoir choisir la
+  taille du DTF ») : dans le pied du panneau, au-dessus du blanc DTF —
+  pas un bloc de contrôle. Un préréglage du tableau d'OLDA (les largeurs
+  par emplacement : cœur et poitrine 5,5–8 cm, dos 20–34, bébé 11–14,
+  tote bag 20,5 ou 25 ; `lib/tailles-dtf.js`), ou la largeur ou la
+  hauteur tapée, l'autre côté suit. Sans choix, 300 dpi des pixels
+  (« Taille du fichier »). Elle reste d'un fichier à l'autre (une
+  commande), n'est pas un geste de l'historique, et le nom des exports la
+  dit (« -28x32,2cm »). Le tracé sort à cette taille ; Détouré garde ses
+  pixels (le PNG dit la résolution qui l'y met). Une seule ligne
+  ambre quand une image (Détouré, Image) y tombe sous 200 dpi. Ses
+  cotes se lisent sur le plan (R).
 - **Les textes en rond se sélectionnent** (30 septembre 2026, le t-shirt
   « SAINT MARTIN » : « s'il y a des mots écrits en rond, ou comme THE
   FRIENDLY ISLAND, ils doivent pouvoir être sélectionnés ; toutes les

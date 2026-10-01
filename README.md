@@ -4,8 +4,10 @@ Le Logo maker de l'Atelier OLDA, seul : un logo ou une photo se dépose, le
 fond part (un fichier flou est d'abord rendu net ; un imprimé photographié
 sur un tissu ombré part en entier, plis compris), et le logo ressort
 détouré, vectoriel ou en image nette, prêt pour la presse (PDF en CMJN
-avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN). Le texte d'un logo — même
-écrit en rond, sur un ruban, ou cerclé d'une autre couleur — peut
+avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN), à la taille DTF choisie
+(un préréglage d'OLDA ou des centimètres tapés, ses cotes sur le plan).
+Le texte d'un logo — même écrit en rond, sur un ruban, ou cerclé d'une
+autre couleur — peut
 reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
 autour »). Chaque geste se défait (Ctrl Z) ou se refait (Ctrl Maj Z),
 et l'historique du fichier ramène à n'importe lequel.
@@ -69,6 +71,7 @@ touché.
 | `lib/texte.js`, `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte trouvé en pleine taille, lu (PP-OCRv5), sa police retrouvée et reposée dans les trois versions — une lettre cerclée avec son cerne |
 | `lib/courbes.js` | le texte en rond, sur un ruban, penché : ses lettres enchaînées, la courbe qui passe par elles, chacune remise à plat (tournée ou cisaillée) puis reposée sur la courbe |
 | `lib/pdf-vectoriel.js`, `lib/pdf-image.js`, `lib/export-logo.js`, `lib/png.js` | les exports |
+| `lib/tailles-dtf.js` | la taille DTF : les largeurs du tableau d'OLDA, la taille imprimée d'un dessin, sa résolution |
 | `lib/cmjn.js`, `lib/cmjn-fogra39.js` | le CMJN des PDF et de l'EPS : la conversion d'Illustrator en Europe (Coated FOGRA39, relatif colorimétrique, point noir compensé), en table calculée d'avance — `node outils/table-cmjn.mjs` la refait avec littleCMS |
 | `lib/nuancier.js` | le nuancier OLDA : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-olda-2026-v2.ase`) |
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses cinq modèles, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |

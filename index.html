@@ -299,6 +299,7 @@
   .o-studio-sep { width:1px; height:20px; margin:0 4px; background:var(--filet-carte); }
   .o-studio-outil { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 10px; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-1); font:inherit; font-size:var(--t-petit); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; white-space:nowrap; cursor:pointer; touch-action:none; }
   .o-studio-outil .o-studio-ic { width:16px; height:16px; }
+  .o-studio-outil.o-studio-carre { width:32px; padding:0; justify-content:center; }
   .o-studio-outil:hover { background:var(--zone); }
   .o-studio-outil[aria-pressed="true"], .o-studio-outil[aria-pressed="true"]:hover { background:var(--encre-1); color:#fff; }
   .o-studio-badge { position:absolute; z-index:4; top:66px; left:14px; padding:6px 12px; border-radius:var(--pilule); background:rgba(15,23,42,.82); color:#fff; font-size:var(--t-petit); font-weight:var(--g-forte); pointer-events:none; }
@@ -533,6 +534,29 @@
   /* LE PDF, toujours en bas du panneau, et « Plus » à côté. */
   .o-studio-pied { position:relative; display:flex; flex-direction:column; gap:10px; padding:12px 16px 14px; border-top:1px solid var(--filet-carte); border-radius:0 0 var(--arrondi-carte) var(--arrondi-carte); background:var(--carte); }
   .o-studio-pied-boutons { display:flex; gap:8px; }
+  /* LA TAILLE DTF : le préréglage d'OLDA, la largeur et la hauteur
+     imprimées (grises : la taille du fichier), la résolution trop juste. */
+  .o-studio-taille { display:flex; flex-direction:column; gap:8px; }
+  .o-studio-taille-tete { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .o-studio-taille-tete label { font-size:var(--t-corps); color:var(--encre-1); white-space:nowrap; }
+  .o-studio-taille-tete b { font-weight:var(--g-forte); }
+  .o-studio-choix { position:relative; min-width:0; display:flex; }
+  .o-studio-choix select { min-width:0; max-width:196px; height:32px; padding:0 28px 0 10px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:#fff; font:inherit; font-size:var(--t-petit); font-weight:var(--g-note); color:var(--encre-1); text-overflow:ellipsis; cursor:pointer; appearance:none; -webkit-appearance:none; }
+  .o-studio-choix select:hover { border-color:var(--filet-fort); }
+  .o-studio-choix select:focus-visible { outline:none; border-color:var(--filet-fort); box-shadow:var(--anneau); }
+  .o-studio-choix .o-studio-ic { position:absolute; right:8px; top:50%; width:14px; height:14px; margin-top:-7px; color:var(--encre-2); pointer-events:none; }
+  .o-studio-taille-champs { display:flex; align-items:center; gap:8px; }
+  .o-studio-taille-champ { flex:1; min-width:0; display:flex; align-items:center; gap:6px; height:36px; padding:0 10px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:#fff; font-size:var(--t-petit); color:var(--encre-2); cursor:text; }
+  .o-studio-taille-champ:hover { border-color:var(--filet-fort); }
+  .o-studio-taille-champ:focus-within { border-color:var(--filet-fort); box-shadow:var(--anneau); }
+  .o-studio-taille-champ > span { font-weight:var(--g-forte); }
+  .o-studio-taille-champ input { flex:1; min-width:0; width:100%; height:100%; margin:0; padding:0; border:0; background:transparent; font:inherit; font-size:var(--t-corps); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; color:var(--encre-1); text-align:right; }
+  .o-studio-taille-champ input:focus { outline:none; }
+  .o-studio-taille-champ input.o-studio-auto { font-weight:var(--g-texte); color:var(--encre-2); }
+  .o-studio-taille-fois { font-size:var(--t-petit); color:var(--encre-3); }
+  .o-studio-taille-note { display:flex; align-items:center; gap:6px; font-size:var(--t-petit); color:var(--encre-2); }
+  .o-studio-taille-note[hidden] { display:none; }
+  .o-studio-taille-note::before { content:''; flex:none; width:6px; height:6px; border-radius:50%; background:#d97706; }
   .o-studio-telecharger { flex:1; min-width:0; min-height:48px; border-radius:var(--arrondi); white-space:nowrap; }
   /* Le mot ne passe jamais à la ligne : faute de place, il se coupe. */
   .o-studio-telecharger [data-r="enregistrer-mot"] { min-width:0; overflow:hidden; text-overflow:ellipsis; }
