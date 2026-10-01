@@ -276,7 +276,7 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   les logos de `~/Downloads` (empreintes sha1), pas « à l'œil ». Mesurer
   la vitesse dans un Chromium visible (Playwright), jamais dans le volet
   caché : ses fils y vont ~8 fois moins vite.
-- **La vitesse, deuxième passe** (2 octobre 2026, « optimise au maximum
+- **La vitesse, deuxième passe** (1er octobre 2026, « optimise au maximum
   mon app ») : les mêmes octets partout, jugés au banc de rejeu (les vrais
   messages du studio à ses fils, rejoués avec l'ancien `lib/` et le
   nouveau, chaque réponse en SHA-1 : 12 logos, 0 écart).

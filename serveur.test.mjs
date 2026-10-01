@@ -88,7 +88,7 @@ test('l\'ETag suit le contenu, pas la date : une mise en ligne ne refait pas par
   assert.notEqual(await etag(), avant, 'autre contenu : autre ETag')
 })
 
-/* 2 octobre 2026 : index.html demande d'un coup tous les modules de la page
+/* 1er octobre 2026 : index.html demande d'un coup tous les modules de la page
    (`modulepreload`) — sinon sept niveaux d'imports, sept allers-retours. Un
    module ajouté, retiré ou renommé doit l'être là aussi. */
 test('index.html précharge exactement les modules que la page importe', async () => {
