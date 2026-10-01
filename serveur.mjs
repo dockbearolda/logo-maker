@@ -10,7 +10,10 @@
      7, les scripts et l'index des polices aussi. Pas les modèles .onnx (déjà
      denses).
    - Revalidé à chaque visite (ETag) : une mise en ligne se voit tout de
-     suite, et ce qui n'a pas changé ne repart pas (304).
+     suite, et ce qui n'a pas changé ne repart pas (304). L'ETag est
+     l'empreinte du contenu, pas sa date : Railway date chaque fichier du
+     dernier commit, et un modèle de 55 Mo repartait à chaque mise en
+     ligne.
    - Rien de caché ne sort : ni .git, ni .claude, rien qui commence par un
      point.
    - La page est isolée de toute autre origine (1er octobre 2026, « encore
@@ -22,6 +25,8 @@
      comprennent ; Safari l'ignore et reste sur un cœur. */
 import { createServer } from 'node:http'
 import { createReadStream } from 'node:fs'
+import { pipeline } from 'node:stream'
+import { createHash } from 'node:crypto'
 import { readFile, stat } from 'node:fs/promises'
 import { gzip } from 'node:zlib'
 import { promisify } from 'node:util'
@@ -62,14 +67,34 @@ export function fichierDe(racine, adresse) {
   return f.startsWith(resolve(racine) + sep) ? f : null
 }
 
-/* Les fichiers compressés, par chemin et version : une promesse, pour que
-   deux visiteurs ne compressent pas deux fois le même. */
+/* L'EMPREINTE D'UN FICHIER, calculée une fois par version (taille et
+   date) : une promesse, pour que deux visiteurs ne la calculent pas deux
+   fois. Faible (W/) : la version compressée porte la même. */
+const empreintes = new Map()
+function empreinte(f, s) {
+  const version = s.size + '-' + s.mtimeMs
+  const deja = empreintes.get(f)
+  if (deja && deja.version === version) return deja.etag
+  const etag = new Promise((ok, ko) => {
+    const h = createHash('sha1')
+    createReadStream(f).on('error', ko).on('data', m => h.update(m)).on('end', () => ok('W/"' + h.digest('base64url') + '"'))
+  })
+  empreintes.set(f, { version, etag })
+  etag.catch(() => empreintes.delete(f))
+  return etag
+}
+
+/* Les fichiers compressés, un par chemin (sa dernière version) : une
+   promesse, pour que deux visiteurs ne compressent pas deux fois le même. */
 const compresses = new Map()
 const gz = promisify(gzip)
 function compresse(f, etag) {
-  const cle = f + etag
-  if (!compresses.has(cle)) compresses.set(cle, readFile(f).then(o => gz(o)).catch(e => { compresses.delete(cle); throw e }))
-  return compresses.get(cle)
+  const deja = compresses.get(f)
+  if (deja && deja.etag === etag) return deja.octets
+  const octets = readFile(f).then(o => gz(o))
+  compresses.set(f, { etag, octets })
+  octets.catch(() => compresses.delete(f))
+  return octets
 }
 
 export function serveur(racine = RACINE) {
@@ -94,8 +119,14 @@ export function serveur(racine = RACINE) {
       return rep.end('Introuvable.')
     }
     const ext = extname(f).toLowerCase()
-    const etag = 'W/"' + s.size.toString(36) + '-' + Math.floor(s.mtimeMs).toString(36) + '"'
+    const etag = await empreinte(f, s).catch(() => null)
+    if (!etag) {
+      rep.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' })
+      return rep.end('Introuvable.')
+    }
     const entetes = { 'Content-Type': TYPES[ext] || 'application/octet-stream', 'Cache-Control': 'no-cache', ETag: etag }
+    /* Une réponse qui aurait pu partir compressée le dit, compressée ou non. */
+    if (COMPRESSES.has(ext)) entetes.Vary = 'Accept-Encoding'
     if (req.headers['if-none-match'] === etag) {
       rep.writeHead(304, entetes)
       return rep.end()
@@ -103,7 +134,7 @@ export function serveur(racine = RACINE) {
     if (COMPRESSES.has(ext) && /\bgzip\b/.test(req.headers['accept-encoding'] || '')) {
       try {
         const o = await compresse(f, etag)
-        rep.writeHead(200, Object.assign(entetes, { 'Content-Encoding': 'gzip', 'Content-Length': o.length, Vary: 'Accept-Encoding' }))
+        rep.writeHead(200, Object.assign(entetes, { 'Content-Encoding': 'gzip', 'Content-Length': o.length }))
         return rep.end(req.method === 'HEAD' ? undefined : o)
       } catch {
         /* Illisible pour la compression : il part tel quel. */
@@ -111,7 +142,9 @@ export function serveur(racine = RACINE) {
     }
     rep.writeHead(200, Object.assign(entetes, { 'Content-Length': s.size }))
     if (req.method === 'HEAD') return rep.end()
-    createReadStream(f).on('error', () => rep.destroy()).pipe(rep)
+    /* `pipeline` ferme le fichier quand le visiteur coupe (un modèle de
+       55 Mo à moitié reçu, la page rechargée) ; `pipe` le laissait ouvert. */
+    pipeline(createReadStream(f), rep, () => {})
   })
 }
 

@@ -384,6 +384,22 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   l'avait lancée) ; un autre geste fait pendant l'IA s'annule sans la
   relancer de zéro. Le fond de l'aperçu, le zoom, « Comparer » et les
   exports ne sont pas des gestes.
+- **L'audit du 1er octobre 2026** (« tous les bugs, problèmes,
+  ralentissements ») : ce qu'il a tranché.
+  - L'export part sur le tracé des réglages du moment (`vecteurFrais`),
+    jamais sur celui encore en vol ; un tracé devenu inutile se coupe net.
+  - Le serveur : l'ETag est l'empreinte du contenu, pas la date (Railway
+    date chaque fichier du dernier commit — les modèles repartaient à
+    chaque mise en ligne). Ne pas revenir à la date.
+  - Un SVG se rend à 2 400 px de grand côté, comme un PDF (`COTE_MAX`).
+  - Un mot seul recadré (lettres à plus de 45 % de la hauteur) se relit
+    avec ses formes hautes, seulement quand l'image n'a donné aucune
+    ligne : une photo qui a ses lignes ne change pas (banc des lignes,
+    70 fichiers, aucun ne change).
+  - Laissé à décider : la géométrie parfaite perdue quand une boucle
+    finit par une droite (`lib/geometrie.js`, `ji[0]`) — corrigée, elle
+    redresse les logos (AUTOMAX) mais coupe droit la pointe des plumes du
+    phénix (unnamed.png). Pas passée.
 
 ## Avec le comptoir
 
