@@ -276,6 +276,33 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   les logos de `~/Downloads` (empreintes sha1), pas « à l'œil ». Mesurer
   la vitesse dans un Chromium visible (Playwright), jamais dans le volet
   caché : ses fils y vont ~8 fois moins vite.
+- **La vitesse, deuxième passe** (2 octobre 2026, « optimise au maximum
+  mon app ») : les mêmes octets partout, jugés au banc de rejeu (les vrais
+  messages du studio à ses fils, rejoués avec l'ancien `lib/` et le
+  nouveau, chaque réponse en SHA-1 : 12 logos, 0 écart).
+  - La carte graphique ne calcule qu'un passage à la fois (deux
+    `session.run` ensemble sur une session bloquent ONNX) ; le suivant part
+    dès que le précédent a rendu, et le processeur range celui-ci pendant
+    que la carte calcule (`ceder`, `enOrientations`, `nettoyerParTuiles`).
+    Les « NaN » se cherchent par une boucle (`aDesNaN`), pas
+    `some(Number.isNaN)` — le cinquième de l'Ultra. La jauge de l'Ultra se
+    garde par session et taille de tuile. L'Ultra −19 à −24 % (le 6e3
+    22,6 → 18,3 s ; DIB 7,4 → 5,6 s), l'ouverture d'un logo −9 à −19 %.
+  - Le tracé final (polices posées) reprend le travail du premier quand
+    le détourage venu du studio est octet pour octet le sien, mêmes fonds
+    (`memeDetourage`) ; un fond lu à un niveau près (celui de l'aperçu,
+    DIB) change le tracé : tout se refait, comme avant.
+  - Des fils de réserve déjà chargés (`nouveauFil`) : en ligne, un fil
+    neuf mettait 0,5 s à revalider ses modules, à chaque fichier. La page
+    précharge ses 34 modules (`modulepreload`, la liste vérifiée par
+    serveur.test.mjs). À 150 ms de latence, l'ouverture d'un logo −10 à
+    −19 %.
+  - À note égale, une écriture proposée se départage par le rang du tri
+    (`choisirEcriture`), comme les polices : l'ordre d'arrivée des
+    fichiers en décidait.
+  - Mesurer dans un Chrome Playwright SANS fenêtre (`headless`, WebGPU
+    compris) : une fenêtre de test au premier plan reçoit la frappe de
+    Charlie.
 - **Changer un seuil du tracé ou du texte : juger sur de vrais logos**
   clients avant et après (petits textes, puces, anneaux, en gros plan et sur
   fond noir), pas sur un seul. Le contrôle presse (`lib/controle.js`) le
