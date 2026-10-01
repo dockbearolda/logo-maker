@@ -22,31 +22,40 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   septembre 2026, « les polices sont censées s'ajouter seules, en Détouré et
   Image aussi ») : les lignes dont la police est choisie y sont repeintes
   dans leur police (`lib/texte.js`, `poserZone`), le reste ne bouge pas.
-  L'Amélioration IA y passe d'office comme ailleurs (l'Ultra d'un logo à
+  « Améliorer l'image » y passe d'office comme ailleurs (l'Ultra d'un logo à
   plat, l'IA des photos pour la matière) : ses pixels agrandis, jamais
-  tracés ; « Amélioration IA » décochée ramène le fichier reçu.
-- **L'Amélioration IA reste vérifiable contre le fichier d'origine** (garde-fou
-  `fidele`, aucune couleur inventée `borner`) : jamais d'IA qui réinvente des
-  lettres sans ce contrôle.
+  tracés ; « Améliorer l'image » décochée ramène le fichier reçu.
+- **« Améliorer l'image » (ex-« Amélioration IA ») reste vérifiable contre
+  le fichier d'origine** (garde-fou `fidele`, aucune couleur inventée
+  `borner`) : jamais d'IA qui réinvente des lettres sans ce contrôle.
 - **La matière passe à l'IA des photos, jamais à celle des logos** : une
   broderie, du cuir, de l'eau, du feu, des paillettes, une photo
   (`aDeLaMatiere`, `lib/detourage.js`) s'agrandit ×4 avec Real-ESRGAN
   « general », d'office jusqu'à 1 800 px et même dans Détouré (ses pixels
-  agrandis, jamais tracés). Dans le doute, c'est à plat : les logos pourris
+  agrandis, jamais tracés) — en Ultra comme un logo à plat quand le poste
+  la tient (1er octobre 2026 : + 0,17 à + 0,53 dB sur sept matières et
+  photos réduites ×4 et passées en JPEG, jamais pire, ses fils et son
+  grain gardés à l'œil). Dans le doute, c'est à plat : les logos pourris
   sont nettoyés — par « anime », ou par l'Ultra ci-dessous —, jamais
   agrandis d'une seule passe par l'IA des photos.
-- **L'Ultra d'un logo à plat** : le « general » passé jusqu'à huit fois
-  (retourné, pivoté), les dessins moyennés, ses teintes recalées sur le
-  fichier (`recaler`) puis `fidele` et `borner`. D'office si le poste la
-  fait en moins de 40 s (`ULTRA_AUTO`), sinon proposée avec son temps ;
+- **L'Ultra d'un logo à plat** (et d'une matière) : le « general » passé
+  jusqu'à huit fois (retourné, pivoté), les dessins moyennés, ses teintes
+  recalées sur le fichier (`recaler`) puis `fidele` et `borner`. D'office
+  si le poste la fait en moins de 60 s (`ULTRA_AUTO`, 40 s jusqu'au 1er
+  octobre 2026), sinon proposée avec son temps ;
   sans carte graphique, rien. Un modèle plus gros n'est pas forcément
   meilleur : « x4plus anime 6B » détourait les lettres d'un trait noir —
   mesurer sur des logos réduits ×4 et passés en JPEG avant d'en changer.
-- **« Rendre net » (30 septembre 2026, « la feature de PicWish ») : le flou
-  se retire avant l'IA, jamais en l'inventant.** Le flou se mesure sur les
-  bords (`flouDe`, `lib/nettete.js`) ; au-delà de `FLOU_NET` (1,2 px sur
-  l'aperçu, `lib/graphiste.js`) il part d'office, à toutes les tailles, dans
-  les trois versions. Une déconvolution (Richardson–Lucy accélérée, sa
+- **« Améliorer la netteté » (ex-« Rendre net », 30 septembre 2026, « la
+  feature de PicWish ») : le flou se retire avant l'IA, jamais en
+  l'inventant.** Le flou se mesure sur les bords (`flouDe`,
+  `lib/nettete.js`) ; au-delà de `FLOU_NET` — 1 px de flou *vu*, aux
+  trois quarts des bords, sur l'aperçu (`lib/graphiste.js`) ; 1,2 px de
+  médiane jusqu'au 1er octobre 2026, qui laissait passer les logos fins
+  floutés — il part d'office, à toutes les tailles, dans les trois
+  versions. Il se retire à la médiane (× `SOUS`) : plus fort (les trois
+  quarts, 24 pas, une variation totale de 0,03 à 0,05), le t-shirt
+  reprend son néon. Une déconvolution (Richardson–Lucy accélérée, sa
   variation totale contre l'écho des bords, ses couleurs bornées à celles
   du fichier) — tenue par le fichier par construction —, puis l'IA habituelle,
   gardée contre l'image défloutée (`garder`, `lib/detourage-travail.js`).
@@ -175,13 +184,13 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   opacité égale, entre 6 et 88 %, sur une vraie surface (`voiles`,
   `lib/detourage.js`).
 - **Rien ne sort sans l'IA en cours** : un export demandé pendant
-  l'Amélioration IA l'attend, et part sur l'image nette.
+  « Améliorer l'image » l'attend, et part sur l'image nette.
 - **Le calcul se lit étape par étape** (30 septembre 2026, « le calcul
   lisible ») : plus de pastille qui tourne ; le panneau « Préparation », en
   bas à gauche du plan (`dessinerPrep`, `lib/studio-detourage.js`), liste
   seulement les étapes qui tournent pour ce fichier, leur état et leur
   durée mesurée dans les fils (`etape`, `lib/detourage-travail.js`). Une
-  préparation s'ouvre avec un fichier, l'IA, « Rendre net », l'Ultra, le
+  préparation s'ouvre avec un fichier, l'IA, « Améliorer la netteté », l'Ultra, le
   fond ou la version — jamais avec un curseur. Il paraît au premier calcul
   de plus de 400 ms et part dès que le contrôle presse a fini, sans fondu ;
   un échec y reste en rouge, à la place du toast. L'état d'une étape se lit
@@ -236,8 +245,8 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   graphiste ») reste ; vidé à l'ouverture d'un autre fichier. Le point
   qu'on quitte reprend l'état vivant : ce que le graphiste décide après
   coup (la version après l'IA, les polices lues) y entre. Ctrl Z, Ctrl
-  Maj Z, Ctrl Y — pas dans un champ texte. Annuler pendant l'Amélioration
-  IA l'arrête d'abord quand la photo en veut une autre (le geste annulé
+  Maj Z, Ctrl Y — pas dans un champ texte. Annuler pendant « Améliorer
+  l'image » l'arrête d'abord quand la photo en veut une autre (le geste annulé
   l'avait lancée) ; un autre geste fait pendant l'IA s'annule sans la
   relancer de zéro. Le fond de l'aperçu, le zoom, « Comparer » et les
   exports ne sont pas des gestes.
