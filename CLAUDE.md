@@ -192,7 +192,7 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   durée mesurée dans les fils (`etape`, `lib/detourage-travail.js`). Une
   préparation s'ouvre avec un fichier, l'IA, « Améliorer la netteté », l'Ultra, le
   fond ou la version — jamais avec un curseur. Il paraît au premier calcul
-  de plus de 400 ms et part dès que le contrôle presse a fini, sans fondu ;
+  de plus de 400 ms et part dès que la dernière étape a fini, sans fondu ;
   un échec y reste en rouge, à la place du toast. L'état d'une étape se lit
   sur le studio (`etatEtape`) — un fil fermé ne laisse rien « en cours » —,
   les fils n'apportent que les durées ; « encore ~14 s » ne se dit que
@@ -206,20 +206,63 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   désaccords. Essayé et écarté ainsi le 30 septembre 2026 : le lissage de
   Taubin (sans rétrécissement) à la place du laplacien de `lisser` — même
   fidélité (99,08 % → 99,08 % sur 6e3), 19 à 37 % de nœuds en plus.
-- **Le contrôle presse dit la vérité, il ne l'arrange pas** (30 septembre
-  2026, « qu'on puisse se reposer complètement dessus ») : le tracé final
-  est mesuré dans le fil du vecteur contre l'image détourée qu'il a suivie
-  (`controler`, jamais sur l'aperçu du curseur), et le bloc « Contrôle »
-  du panneau le lit en millimètres à la **largeur imprimée** choisie
-  (`E.largeurCm` ; vide : celle du fichier à 300 dpi, comme avant) — la
-  même largeur que prennent le PDF, le SVG, le PNG et l'EPS. Les seuils
-  (`TRAIT_MIN` 0,3 mm, `TRAIT_SUR` 0,5, `TEXTE_MIN` 2,5, `TEXTE_SUR` 4,
-  `DPI_MIN` 90, `DPI_SUR` 150, `lib/studio-detourage.js`) sont ceux de la
-  presse DTF. Un filet blanc perdu par le tracé (les stries de la baleine
-  du 6e3) s'y voit : c'est le tracé à améliorer, pas la mesure à taire.
-  « Au nuancier » ne recolore que les teintes à moins de ΔE 5 d'une
-  couleur du nuancier, d'un clic, et chaque pastille garde son
-  « d'origine ».
+- **Pas de bloc « Contrôle » dans le panneau** (30 septembre 2026, « le
+  contrôle à droite ne sert à rien ») : ni largeur imprimée, ni verdict ;
+  les exports sortent à 300 dpi. `lib/controle.js` reste la mesure du
+  banc (`outils/banc-controle.mjs`, juger un changement du tracé) et de la
+  teinte du nuancier la plus proche (la bulle d'une teinte).
+- **Les textes en rond se sélectionnent** (30 septembre 2026, le t-shirt
+  « SAINT MARTIN » : « s'il y a des mots écrits en rond, ou comme THE
+  FRIENDLY ISLAND, ils doivent pouvoir être sélectionnés ; toutes les
+  polices de cette image doivent être disponibles »). Les lettres
+  s'enchaînent de proche en proche (`chainer`, `lib/courbes.js` : même
+  taille au double près, même couleur, virage doux, les trous rebouchés),
+  une courbe passe par le milieu de leurs cadres (arc de cercle ou
+  polynôme), chaque lettre est remise à plat dans une toile à elle — sa
+  part tournée mesurée sur ses jambages (`alpha` : 1 l'arc de « SAINT
+  MARTIN », 0,5 le ruban, 0 un « drapeau ») —, et la lecture, la police
+  et la pose y marchent comme sur une ligne droite ; chaque lettre posée
+  revient sur la courbe par sa transformation. Une ligne courbe n'est
+  jamais posée d'office (proposée), 4 lettres au moins ; elle passe devant
+  la ligne droite qui a pris ses lettres penchées si elle a autant de
+  lettres ; une chaîne aux pieds alignés et aux jambages droits reste une
+  ligne droite (« Réserve Naturelle »). Une grande lettre à paraphe juste
+  avant la ligne (le A d'« ANTILLES ») est sa lettrine : lue avec elle,
+  gardée dessinée. Une lettre cerclée (turquoise cerclé de marine) se lit
+  dans sa silhouette pleine (`pleine`, `lib/texte.js`) et sa police se
+  pose avec son cerne (`cerneDe` : la lettre de la couleur du cerne, puis
+  amincie de son épaisseur de celle du cœur). Juger sur
+  `node outils/banc-lignes.mjs --avant=<ref> <png…>` (les lignes avant/après,
+  sur les PNG de ~/Downloads) : « CERCLE DES CRÉATEURS » (1600w…webp) s'y
+  lit en entier, « La gourde de Mélina » et les lignes du 6e3 restent
+  droites.
+- **Sous une police posée, le fond est remis uni** (30 septembre 2026,
+  « avec une police il faut modifier le fond pour qu'il soit uni, sinon ça
+  devient illisible ») : à `UNI` (12 %) de la hauteur des lettres autour
+  d'elles, le mélange de l'ancienne lettre et du fond, et l'ombre du fond
+  (sa teinte, plus sombre), prennent la couleur du fond — la plus
+  fréquente juste au-delà — d'un aplat (`poserZone`, `lib/texte.js`) ;
+  dans le vecteur, les débris de calque restés dans cette marge
+  rejoignent la forme autour (`nettoyerAutour`, `lib/vecteur-lisse.js`)
+  et la version Image y peint la teinte de la couche. Ce qui déborde de
+  la marge (la région voisine, un contour) reste ; un fond en dégradé se
+  comble de proche en proche, comme avant.
+- **Un imprimé photographié sur un tissu (ou un papier) ombré se détoure à
+  la couleur** (30 septembre 2026, « les fonds en couleurs doivent être
+  propres ; l'app doit faire la différence entre une couleur unie et une
+  texture ») : le fond est une teinte dont la clarté varie en douceur
+  (`fondOmbre`, `lib/detourage.js`), l'image est éclairée à plat
+  (`sansOmbre`), les plis contre le bord partent avec lui (`tissu`). Le
+  graphiste ne le décide (`ombre`) que sur un fond clair, si le dessin est
+  cerné d'un trait foncé (`cerne`, la moitié de son pourtour) et ne touche
+  pas le bord ; l'éclairage à plat ne sert qu'à trouver le fond, le
+  dessin garde les couleurs du fichier —
+  mesuré sur les 70 fichiers de ~/Downloads : seul le t-shirt change ;
+  des gens devant un mur restent une photo. Alors : à la couleur,
+  « Partout », version Image, et l'IA des logos jusqu'à 1 800 px — c'est
+  elle qui remet les aplats à plat (le grain du tissu, la trame) sans
+  toucher au trait. Une poche peinte de la couleur du fond, à plus de
+  ΔE 5 de lui (le ruban crème, plus jaune que le tissu), reste.
 - **Une droite presque à 45° l'est tout à fait** (30 septembre 2026), à
   2° près et si ses points tiennent encore, comme l'horizontale et la
   verticale (`redresser`, `lib/geometrie.js`) ; pas d'autre angle.
