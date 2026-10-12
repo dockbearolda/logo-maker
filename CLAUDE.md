@@ -604,6 +604,53 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   distingue sûrement une affiche d'une photo à détourer, et l'erreur se
   rattrape d'un clic dans les deux sens. Spec :
   docs/superpowers/specs/2026-10-12-fond-entier-et-arcs-design.md.
+- **Les arcs aux lettres reprises** (12 octobre 2026, « il y a encore des
+  logos où toute la police n'est pas reconnue » : « LE CERCLE DES
+  CRÉATRICES », 447 px, lu « LE CERCL » et « CRÉATR » à 50 %). Trois
+  causes, trois règles, jugées au banc des lignes sur les 71 fichiers de
+  ~/Downloads (outils/banc-lignes.mjs, avant/après, chaque règle éteinte
+  à son tour dans une copie de lib/) : 8 fichiers changent, des courbes
+  seulement (du bruit sur des photos ; jamais une ligne droite ni une
+  chaîne d'un vrai texte) ; le 6e3, DIB, SSV inchangés dans l'app.
+  - UNE LIGNE BANCALE REND SES PRISES (`rendre`, lib/texte.js) : les deux
+    branches de feuilles autour du cercle faisaient une « ligne » de deux
+    formes géantes (lib/polices.js, `lignes`), qui prenait le dernier E
+    pour son accent (2a) et « DES » pour sa ponctuation (2b). Une ligne
+    droite de deux formes au plus, non entière, dont les formes font trois
+    fois la hauteur typique d'une lettre — lue sur les lignes entières de
+    trois lettres lisibles au moins ; sans elles rien ne bouge — rend ce
+    qu'elle a pris, à la taille d'une lettre (0,6 de cette hauteur), avant
+    que les courbes ne se cherchent. Jugées toutes sur l'état de départ.
+  - DEUX LETTRES SOUDÉES, EN DERNIER RECOURS (`soudee`, lib/courbes.js) :
+    le « TR » agrandi par l'IA ne faisait qu'une forme, un pixel au-delà
+    du double (`TAILLES`). Au bout d'une chaîne de quatre lettres lisibles
+    (24 px de lecture), faute de lettre ordinaire qui la continue : une
+    forme de 1,6 à 2,6 lettres (`DOUBLE`), de leur couleur (ΔE ≤ 12), de
+    leur hauteur en travers du pas (0,6 à 1,3 : ni tiret ni feuille), son
+    pas mesuré à son bord. Elle termine la chaîne ; seul le recollage à
+    une autre chaîne la prolonge ; jamais pour reboucher un trou. La
+    lecture sépare ses caractères (`lettresLues`), hors note de police.
+  - UN BOUT D'UNE AUTRE COULEUR ET D'UNE AUTRE FORME PART (`BOUT_COULEUR`
+    8 en ΔE2000, `BOUT_MIN` 6) : les feuilles dorées au bout de l'arc,
+    sous les 25 de la chaîne. Sur une courbe de six lettres au moins
+    (un mot de quatre garde ses bouts : l'étiquette du 6e3), à plus de 8
+    de la couleur médiane — ou du double de l'écart entre voisines — ET
+    plus bas que les lettres (¾) ou bien plus large (1,5). Jamais au
+    milieu.
+  - Essayé et écarté, au banc : lire les courbes avant les lignes droites
+    sur toutes les lettres (43/71 changeaient, de vraies lignes perdues) ;
+    des « lettres secondaires » reprises dans la chaîne (28, puis 26 : une
+    courbe volait sa ponctuation à une vraie ligne, une courbe de dix
+    lettres du 6e3 se perdait) ; comparer les tailles chaîne à chaîne au
+    recollage, ou à la référence de la chaîne au lieu de la lettre du bout
+    (un W passait pour une paire, une forme de 2,6 lettres pour une
+    lettre) ; une paire dont le centre est à un pas et demi l'emportait sur
+    la vraie lettre suivante. Les deux `ecartLab` ne sont pas les mêmes :
+    ΔE2000 dans lib/lab.js (texte.js), euclidien dans courbes.js.
+  - Résultat : les deux arcs lus en entier (8 et 12 formes), la police
+    proposée à 78 % (Kameron) au lieu de 50 — proposée, pas reconnue :
+    des lettres de 30 px dans un JPEG de 447, agrandies par l'IA, ne
+    disent pas la police à coup sûr.
 
 ## Avec le comptoir
 
