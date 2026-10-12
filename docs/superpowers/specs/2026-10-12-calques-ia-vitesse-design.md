@@ -254,8 +254,27 @@ veut.
   deux, −0,3 à −0,7 sur deux) pour un huitième du calcul. SPAN
   (4xNomosUni_span_multijpg) : `run` en erreur sur WebGPU (ORT Web
   1.30) — écarté ; RealESRGAN_x4plus (RRDB, 67 Mo) : dix fois le calcul,
-  non mesuré en Ultra. Décision après le modèle final (20 000 itérations) :
-  voir CLAUDE.md.
+  non mesuré en Ultra.
+
+- LE MODÈLE FINAL (20 000 itérations, le meilleur sur les bords gardé à
+  18 000 ; validation Python : bords 19,15 → 22,86 dB), au banc du
+  navigateur (bords, dB) :
+
+  | Logo | general ×8 (avant) | OLDA ×1 | OLDA ×4 (après) | OLDA ×8 | OLDA fp16 ×8 | general + OLDA ×4 + ×4 |
+  |---|---|---|---|---|---|---|
+  | Logo SSV | 21,77 | 22,41 | 22,49 | 22,50 | 22,49 | 22,53 |
+  | LOGO DIB | 17,27 | 19,07 | 19,27 | 19,33 | 19,33 | 18,59 |
+  | CERCLE DES CRÉATEURS | 20,71 | 20,68 | 20,90 | 20,91 | 20,90 | 21,06 |
+  | 6e3 AME | 15,75 | 15,64 | 15,80 | 15,84 | 15,84 | 15,97 |
+  | CD44 | 20,70 | 21,05 | 21,28 | 21,35 | 21,35 | 21,44 |
+  | Strong Together (matière) | 18,80 | 18,14 | 18,40 | 18,44 | 18,44 | 18,87 |
+
+  Tranché (CLAUDE.md) : OLDA ×4 pour un logo à plat ou une illustration
+  (meilleur que l'Ultra d'avant sur chacun des cinq, la moitié du temps :
+  SSV 3,8 → 1,8 s, DIB 0,9 → 0,5 s, CERCLE 4,1 → 2,0 s), le passage simple
+  OLDA quand l'Ultra ne tient pas, fp16 (±0,01 dB, 25 % plus vite) ;
+  « anime » sur le processeur ; la matière garde le general ×8 ;
+  l'ensemble écarté (−0,7 dB sur DIB).
 
 ## 3. La vitesse, troisième passe
 

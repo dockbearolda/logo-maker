@@ -72,7 +72,7 @@ touché.
 | `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près — un tissu ou un papier ombré éclairé à plat d'abord —, les creux (même ombrés, la boucle d'un ruban) ; le sujet d'une photo ou d'une illustration collée sur sa carte (BiRefNet sur une carte graphique, sinon ISNet — ISNet pour un logo) |
 | `lib/elements.js` | les éléments du dessin : ses formes, ses lignes de texte — le jour d'une lettre se vide sans exception, le blanc peint d'une illustration (le plumage, un reflet) reste |
 | `lib/nettete.js` | « Améliorer la netteté » : le flou d'un fichier mesuré sur ses bords, puis retiré (Richardson–Lucy, sans rien inventer) avant l'IA — d'office quand le fichier est flou |
-| `lib/nettoyage.js` | « Améliorer l'image » (Real-ESRGAN ×4 : « anime » pour un logo à plat, « general » pour la matière — broderie, cuir, eau, photo), son Ultra (le « general » passé jusqu'à huit fois, retourné et pivoté, sur un logo à plat comme sur une matière) et ses garde-fous |
+| `lib/nettoyage.js` | « Améliorer l'image » (×4 : le modèle OLDA — le Compact de Real-ESRGAN réentraîné sur des logos — pour un logo à plat ou une illustration, « general » pour la matière — broderie, cuir, eau, photo, « anime » sur le processeur), son Ultra (le modèle passé quatre fois pour un logo, huit pour une matière, retourné et pivoté, les dessins moyennés) et ses garde-fous |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
 | `lib/controle.js` | la mesure du banc (`outils/banc-controle.mjs`) : le tracé contre l'image détourée (fidélité, îles perdues ou ajoutées), l'épaisseur de l'encre, la couleur du nuancier la plus proche |
@@ -88,5 +88,6 @@ touché.
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses cinq modèles, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
 | `outils/birefnet-webgpu.py` | BiRefNet préparé pour la carte graphique du navigateur, et coupé en deux |
 | `outils/realesr-fp16.py` | les deux Real-ESRGAN en demi-précision, pour une carte graphique qui la calcule (l'Ultra 1,4 fois plus vite) |
+| `outils/logos-synthetiques.py`, `outils/entrainer-olda.py`, `outils/convertir-onnx.py`, `outils/banc-modeles.mjs` | le modèle OLDA (`vendor/olda-logo-x4.onnx`) : des logos synthétiques, le Compact de Real-ESRGAN réentraîné dessus, son export ONNX, et le banc qui compare les modèles (un passage, l'Ultra) sur de vrais logos réduits ×4 et passés en JPEG |
 | `outils/banc-ultra.mjs` | le banc de l'Ultra, dans le navigateur : float32 contre float16, tuiles de 192 contre 384, sur des logos réduits ×4 et passés en JPEG |
 | `outils/banc-controle.mjs`, `outils/banc-elements.mjs`, `outils/banc-polices.mjs`, `outils/banc-lignes.mjs` | les bancs : le tracé mesuré contre le fichier, les creux « Partout » avant/après la règle des éléments, les polices reconnues sur des mots écrits dans des familles connues, les lignes de texte (droites et courbes) avant/après un changement |

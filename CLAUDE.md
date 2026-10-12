@@ -466,6 +466,42 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   gardent l'aplat uni sous les lettres. Un grand trou dans le sujet même
   (l'oreille du lapin) ressort flou : le modèle travaille à 512 px — la
   gomme est faite pour un objet, un texte, pas pour redessiner le sujet.
+- **Le modèle OLDA** (12 octobre 2026, « l'amélioration IA des logos de
+  basse qualité, ce qui se fait de mieux au monde ») : aucun modèle public
+  n'est appris sur des logos (aplats, lettres, filets, JPEG) — les
+  diffusions en une étape (OSEDiff…) réinventent les lettres et pèsent des
+  gigaoctets, SPAN (`4xNomosUni_span_multijpg`) plante à `run` sur WebGPU
+  (ORT Web 1.30), les ESRGAN communautaires visent les photos ou
+  l'animation. Le Compact « general » a donc été RÉENTRAÎNÉ sur 3 000
+  logos synthétiques dégradés comme les fichiers des clients
+  (`outils/logos-synthetiques.py`, `outils/entrainer-olda.py`,
+  `outils/convertir-onnx.py` ; `vendor/olda-logo-x4.onnx`, la même
+  architecture, la même vitesse). Au banc de six logos réduits ×4 et passés
+  en JPEG 75 (`outils/banc-modeles.mjs`), PSNR sur les bords, dB :
+
+  | Logo | general ×1 | general Ultra ×8 (avant) | OLDA ×1 | OLDA ×4 (après) | OLDA ×8 |
+  |---|---|---|---|---|---|
+  | Logo SSV | 21,05 | 21,77 | 22,41 | 22,49 | 22,50 |
+  | LOGO DIB | 16,57 | 17,27 | 19,07 | 19,27 | 19,33 |
+  | CERCLE DES CRÉATEURS | 19,25 | 20,71 | 20,68 | 20,90 | 20,91 |
+  | 6e3 AME (illustration) | 15,19 | 15,75 | 15,64 | 15,80 | 15,84 |
+  | CD44 (illustration) | 19,83 | 20,70 | 21,05 | 21,28 | 21,35 |
+  | Strong Together (matière) | 18,32 | 18,80 | 18,14 | 18,40 | 18,44 |
+
+  Tranché : un LOGO À PLAT ou une ILLUSTRATION passe au modèle OLDA —
+  l'Ultra en QUATRE orientations (meilleure que les huit du general sur
+  chaque logo, pour la moitié du temps ; huit n'apportent que 0,07 dB), et
+  le passage simple quand l'Ultra ne tient pas dans son temps (+0,6 à
+  +2,5 dB sur « anime ») — sur la carte graphique seulement (en fp16 :
+  même dessin à 0,01 dB, 25 % plus vite) ; le PROCESSEUR garde « anime »
+  (deux fois plus léger : 4,9 s contre 9,5 s par tuile de 416 en wasm) ;
+  la MATIÈRE garde le general ×8 (le modèle OLDA y perd 0,4 dB). Les
+  garde-fous (`recaler`, `fidele`, `borner`), « Améliorer la netteté »
+  et le reste de la chaîne ne changent pas. Un ensemble general + OLDA
+  (quatre orientations chacun) : 19,74 dB en moyenne contre 19,73, mais
+  −0,7 sur DIB — écarté. Pour réentraîner (une autre dégradation, plus de
+  polices) : les trois scripts d'outils/ dans un venv (torch, spandrel,
+  Pillow), ~1 h sur un M5, puis le banc avant de remplacer.
 - **La version Image ne se calcule que montrée ou exportée** (12 octobre
   2026, la vitesse) : un logo ouvert en Vecteur n'en a pas besoin
   (`m.image`, `besoinImage`) ; la demander après coup reprend le tracé
