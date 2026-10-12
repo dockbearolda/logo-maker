@@ -56,34 +56,50 @@ que lit le texte) :
   lettres, sous les 25 de la chaîne) passaient pour des lettres, et la
   lecture des polices (`lettresLues`) butait sur une forme sans caractère.
 
-Tranché :
+Tranché, au banc des lignes (outils/banc-lignes.mjs, les 71 fichiers de
+~/Downloads convertis en PNG, avant/après, règle par règle avec des
+copies de lib/ où l'on éteint une règle à la fois) :
 
 - LES LIGNES DROITES GARDENT LA MAIN. Essayé et écarté : lire les courbes
-  avant les lignes droites, sur toutes les lettres — au banc des 71
-  fichiers de ~/Downloads (outils/banc-lignes.mjs), 43 changeaient, de
-  vraies lignes perdues. Puis, avec les lettres reprises à toute ligne
-  droite : encore 28 (une courbe voisine volait sa ponctuation à une vraie
-  ligne).
-- UNE LETTRE REPRISE À UNE LIGNE BANCALE : ce qu'une ligne droite NON
-  ENTIÈRE a pris pour un accent ou une ponctuation peut seulement
-  prolonger une chaîne de trois lettres au moins, de sa taille et de sa
-  couleur, dans son pas (`secondaires`, lib/courbes.js — jamais la
-  commencer, jamais la reboucher) ; la courbe qui aboutit la lui rend
-  (`rendre`, lib/texte.js : l'accent détaché de sa lettre, la ponctuation
-  ôtée de la ligne).
-- DEUX LETTRES SOUDÉES RESTENT DANS LA CHAÎNE : au bout d'une chaîne de
-  trois lettres (sa direction est sûre), une forme jusqu'à 2,6 fois la
-  lettre (`DOUBLE`), de sa couleur, pas plus haute que 1,3 lettre en
-  travers du pas (`soudee`) ; deux chaînes se recollent même par une paire
-  soudée (les tailles se comparent chaîne à chaîne). La lecture sépare
-  les deux caractères (`lettresLues`, `colle`) ; ils ne comptent pas dans
-  la note de la police.
-- UN BOUT D'UNE AUTRE COULEUR ET D'UNE AUTRE FORME PART : à plus de
-  `BOUT_COULEUR` (8, ΔE2000) de la couleur médiane des lettres — ou du
-  double de leur écart de voisine à voisine, un dégradé — ET plus bas
-  qu'elles (¾ de leur hauteur) ou bien plus large (1,5 fois), les bouts
-  d'une courbe partent. Jamais au milieu, jamais une lettre faite comme
-  les autres.
+  avant les lignes droites, sur toutes les lettres (43 fichiers sur 71
+  changeaient, de vraies lignes perdues) ; puis des « lettres
+  secondaires » que les lignes droites avaient prises et qu'une chaîne de
+  trois lettres pouvait reprendre (28, puis 26 : une courbe voisine
+  volait sa ponctuation à une vraie ligne, une courbe de dix lettres du
+  6e3 se perdait).
+- UNE LIGNE BANCALE REND SES PRISES, avant les courbes (`rendre`,
+  lib/texte.js) : une ligne droite de deux formes au plus, qui n'est pas
+  entière, dont les formes font trois fois la hauteur typique d'une
+  lettre — lue sur les lignes entières de trois lettres lisibles au moins
+  (des mots, pas des taches ; sans elles, rien ne bouge) — n'est pas un
+  texte : ce qu'elle a pris pour un accent ou une ponctuation, à la taille
+  d'une lettre (0,6 de la hauteur typique), lui est rendu. Les deux
+  branches rendent « DES » et le E. Jugées toutes sur l'état de départ,
+  rendues ensuite.
+- DEUX LETTRES SOUDÉES, EN DERNIER RECOURS (`soudee`, lib/courbes.js) :
+  au bout d'une chaîne de quatre lettres bien lisibles (24 px de lecture),
+  faute de lettre ordinaire qui la continue, une forme de 1,6 à 2,6 fois
+  la lettre (`DOUBLE`), de sa couleur (ΔE ≤ 12), entre 0,6 et 1,3 lettre
+  en travers du pas (pas un tiret, pas une feuille) — son pas mesuré à
+  son bord, pas à son centre. Elle termine la chaîne de ce côté ; seul le
+  recollage à une autre chaîne la prolonge (l'exception au recollage ne
+  vaut que pour une forme réellement prise comme paire). Jamais pour
+  reboucher un trou (entre deux mots, un ornement coupait un titre). La
+  lecture sépare les deux caractères (`lettresLues`, `colle`) ; ils ne
+  comptent pas dans la note de la police.
+- UN BOUT D'UNE AUTRE COULEUR ET D'UNE AUTRE FORME PART, sur une courbe
+  de six lettres au moins (`BOUT_MIN` : un mot de quatre lettres garde
+  ses bouts) : à plus de `BOUT_COULEUR` (8, ΔE2000) de la couleur médiane
+  des lettres — ou du double de leur écart de voisine à voisine, un
+  dégradé — ET plus bas qu'elles (¾ de leur hauteur) ou bien plus large
+  (1,5 fois). Jamais au milieu, jamais une lettre faite comme les autres.
+- Pièges vus en route : comparer les tailles chaîne à chaîne au
+  recollage (au lieu de lettre à lettre) relâchait tous les recollages ;
+  comparer une candidate à la taille de référence de la chaîne (au lieu
+  de la lettre du bout) laissait passer des formes de 2,6 lettres comme
+  lettres ordinaires ; une paire soudée dont le centre est à un pas et
+  demi l'emportait sur la vraie lettre suivante ; la hauteur typique lue
+  sur des lignes de deux taches (6 à 15 px) rendait tout « bancal ».
 
 Résultat sur le logo : « LE CERCLE » (8 lettres) et « DES CRÉATRICES »
 (12 formes, le TR soudé) lus en entier, en courbe ; la police proposée à
