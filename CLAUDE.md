@@ -428,6 +428,92 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
     redresse les logos (AUTOMAX) mais coupe droit la pointe des plumes du
     phénix (unnamed.png). Pas passée.
 
+- **Les calques** (12 octobre 2026, « un système de calques : prendre
+  l'écriture et la modifier, supprimer un objet qui me plaît pas ») : un
+  calque est un élément que le graphiste a lu, jamais un calque dessiné —
+  une LIGNE DE TEXTE, ou une FORME d'un seul tenant de l'image détourée de
+  l'aperçu (`lib/calques.js`, `formesDe` : huit voisins, l'encre à un
+  huitième d'opacité comme `effacer` ; 0,05 % de l'image au moins, 40 au
+  plus ; les lettres d'une ligne ne se listent pas à part, `estLettre`).
+  Le bloc « Calques » du panneau (ex-« Police ») les liste, chacun avec
+  son œil (retiré = un retrait d'`effaces`, remis = ce retrait ôté) ; une
+  forme se signale sous la souris et s'ouvre d'un clic — sur le plan ou
+  dans le bloc — dans sa bulle : Retirer, sa couleur (les pastilles du
+  nuancier, `reglages.teintesElements`, appliquées au détourage par
+  `recolorer`, lib/effacer.js : les trois versions et les exports
+  suivent). La bulle d'une ligne a aussi sa couleur (`l.couleur`, posée
+  avec la police : `poserZone`, `teinteDe`). Tout est dans les réglages :
+  l'historique les photographie (« Élément : Kaki », « Couleur du texte :
+  Beige », « Élément retiré/remis »). Rien ne change sur un logo qu'on ne
+  touche pas (banc des mêmes octets : détourage, SVG, image, lignes
+  identiques sur 8 logos). Pas de calque déplacé ni redimensionné : un logo
+  client se reproduit, il ne se recompose pas.
+- **La gomme** (12 octobre 2026) : un lasso tracé sur le plan (G ; un
+  simple glissé tend un rectangle), puis Retirer (l'encre dedans part,
+  pixel par pixel : `effaces` avec `coupe`) ou Combler (le fond se
+  rebouche dessous). Le rebouchage transforme l'IMAGE DE TRAVAIL comme
+  « Améliorer l'image » : ses polygones (`E.comble.liste`, en fractions)
+  sont dans la photo de l'historique, Annuler les rejoue depuis l'image
+  d'avant (`E.comble.base`), et l'IA qui repart les rejoue en finissant.
+  Sur une photo ou une image, MI-GAN (vendor/migan-512.onnx, Picsart, MIT,
+  28 Mo ; `comblerIA`, lib/detourage-travail.js : un recadrage de 2,5 fois
+  le trou, 512 px au moins, seuls les pixels du trou repris ; ~0,4 s par
+  recadrage sur la carte graphique, déterministe) ; sur un logo à plat,
+  à la couleur (`lib/combler.js` : l'aplat de l'anneau à ΔE 5, sinon de
+  proche en proche puis détendu — un dégradé traverse sans marche). Sur
+  une PHOTO, les lettres remplacées par une police se reposent sur un
+  fond rebouché par MI-GAN (`poser`, `z.comble`) ; une image ou un logo
+  gardent l'aplat uni sous les lettres. Un grand trou dans le sujet même
+  (l'oreille du lapin) ressort flou : le modèle travaille à 512 px — la
+  gomme est faite pour un objet, un texte, pas pour redessiner le sujet.
+- **Le modèle OLDA** (12 octobre 2026, « l'amélioration IA des logos de
+  basse qualité, ce qui se fait de mieux au monde ») : aucun modèle public
+  n'est appris sur des logos (aplats, lettres, filets, JPEG) — les
+  diffusions en une étape (OSEDiff…) réinventent les lettres et pèsent des
+  gigaoctets, SPAN (`4xNomosUni_span_multijpg`) plante à `run` sur WebGPU
+  (ORT Web 1.30), les ESRGAN communautaires visent les photos ou
+  l'animation. Le Compact « general » a donc été RÉENTRAÎNÉ sur 3 000
+  logos synthétiques dégradés comme les fichiers des clients
+  (`outils/logos-synthetiques.py`, `outils/entrainer-olda.py`,
+  `outils/convertir-onnx.py` ; `vendor/olda-logo-x4.onnx`, la même
+  architecture, la même vitesse). Au banc de six logos réduits ×4 et passés
+  en JPEG 75 (`outils/banc-modeles.mjs`), PSNR sur les bords, dB :
+
+  | Logo | general ×1 | general Ultra ×8 (avant) | OLDA ×1 | OLDA ×4 (après) | OLDA ×8 |
+  |---|---|---|---|---|---|
+  | Logo SSV | 21,05 | 21,77 | 22,41 | 22,49 | 22,50 |
+  | LOGO DIB | 16,57 | 17,27 | 19,07 | 19,27 | 19,33 |
+  | CERCLE DES CRÉATEURS | 19,25 | 20,71 | 20,68 | 20,90 | 20,91 |
+  | 6e3 AME (illustration) | 15,19 | 15,75 | 15,64 | 15,80 | 15,84 |
+  | CD44 (illustration) | 19,83 | 20,70 | 21,05 | 21,28 | 21,35 |
+  | Strong Together (matière) | 18,32 | 18,80 | 18,14 | 18,40 | 18,44 |
+
+  Tranché : un LOGO À PLAT ou une ILLUSTRATION passe au modèle OLDA —
+  l'Ultra en QUATRE orientations (meilleure que les huit du general sur
+  chaque logo, pour la moitié du temps ; huit n'apportent que 0,07 dB), et
+  le passage simple quand l'Ultra ne tient pas dans son temps (+0,6 à
+  +2,5 dB sur « anime ») — sur la carte graphique seulement (en fp16 :
+  même dessin à 0,01 dB, 25 % plus vite) ; le PROCESSEUR garde « anime »
+  (deux fois plus léger : 4,9 s contre 9,5 s par tuile de 416 en wasm) ;
+  la MATIÈRE garde le general ×8 (le modèle OLDA y perd 0,4 dB). Les
+  garde-fous (`recaler`, `fidele`, `borner`), « Améliorer la netteté »
+  et le reste de la chaîne ne changent pas. Un ensemble general + OLDA
+  (quatre orientations chacun) : 19,74 dB en moyenne contre 19,73, mais
+  −0,7 sur DIB — écarté. Pour réentraîner (une autre dégradation, plus de
+  polices) : les trois scripts d'outils/ dans un venv (torch, spandrel,
+  Pillow), ~1 h sur un M5, puis le banc avant de remplacer.
+- **La version Image ne se calcule que montrée ou exportée** (12 octobre
+  2026, la vitesse) : un logo ouvert en Vecteur n'en a pas besoin
+  (`m.image`, `besoinImage`) ; la demander après coup reprend le tracé
+  final gardé dans son fil (`memo.multi`, mêmes réglages), seule l'image
+  par couches se fait (3 à 16 % du tracé : 0,2 à 1,2 s). Les mêmes
+  octets, plus tard. Mesuré dos à dos contre `main` (Chrome sans
+  fenêtre, même profil, polices en cache, le poste chargé par ailleurs) :
+  le 6e3 ouvert de bout en bout 55,5 → 43,4 s (l'IA 29,1 → 16,1 s : l'Ultra
+  ×4 du modèle OLDA), LOGO DIB 18,8 → 14,7 s (10,4 → 6,4), AUTOMAX 4,8 →
+  4,1 s ; les logos sans IA (SSV, CERCLE) inchangés à 3,6 s, leur tracé
+  −20 % (2,2 → 1,8 s, 1,7 → 1,3 s).
+
 ## Avec le comptoir
 
 Le même studio vit dans `OLDA-Print-Studio` (lib/ identique au départ). Une
