@@ -493,9 +493,8 @@
      choisit directement, pour éviter une barre latérale trop grande »). Le
      panneau ne garde qu'une ligne par texte lu — un point (vert : police
      reconnue et posée ; bleu : choisie à la main ; gris : le dessin), le
-     texte, sa police — qu'un clic ouvre sur le plan ; la bulle se pose sur
-     le texte du logo lui-même, et chaque police s'y montre dans son propre
-     dessin. */
+     texte, sa police — qu'un clic (sur le plan ou ici) ouvre dans
+     l'inspecteur, où chaque police se montre dans son propre dessin. */
   .o-studio-textes { display:flex; flex-direction:column; gap:2px; }
   .o-studio-police-aide { font-size:var(--t-petit); color:var(--encre-2); }
   .o-studio-ligne-texte { display:grid; grid-template-columns:8px minmax(0,1fr) auto; align-items:center; column-gap:8px; width:100%; min-height:30px; margin:0 -8px; padding:0 8px; box-sizing:content-box; border:0; border-radius:var(--arrondi); background:transparent; font:inherit; font-size:var(--t-corps); color:var(--encre-1); text-align:left; cursor:pointer; }
@@ -514,17 +513,42 @@
   .o-studio-texte-mot { box-sizing:border-box; width:100%; height:30px; padding:0 10px; border:1px dashed var(--filet-carte); border-radius:var(--arrondi); background:transparent; font:inherit; font-size:var(--t-petit); color:var(--encre-2); text-overflow:ellipsis; }
   .o-studio-texte-mot:hover { border-color:var(--filet-fort); }
   .o-studio-texte-mot:focus { outline:none; border-style:solid; border-color:var(--filet-fort); background:#fff; color:var(--encre-1); box-shadow:var(--anneau); }
-  /* LA BULLE D'UNE LIGNE, sur le plan : son texte (à corriger s'il est mal
-     lu), ses polices chacune dans son dessin, le gras autour. */
-  .o-studio-pop.o-studio-pop-police { position:absolute; z-index:6; width:320px; max-width:calc(100% - 24px); gap:8px; }
-  /* RETIRER (1er octobre 2026) : la bulle d'un élément cliqué sur le plan ;
-     dans celle d'une ligne, « Retirer cette ligne », en rouge. */
-  .o-studio-pop.o-studio-pop-element { z-index:6; width:auto; padding:6px; }
-  .o-studio-pop-element .o-studio-bouton { color:var(--danger); }
-  .o-studio-pop-element .o-studio-bouton .o-studio-ic { width:16px; height:16px; }
-  .o-studio-lien.o-studio-lien-retirer { align-self:flex-start; margin:0; color:var(--danger); }
-  .o-studio-lien.o-studio-lien-retirer:hover { color:var(--etat-retard-encre); }
-  .o-studio-pop-police .o-studio-pop-tete .o-studio-texte-mot { flex:1; min-width:0; }
+  /* L'INSPECTEUR (12 octobre 2026 : « la bulle de modification s'ouvre
+     directement sur l'objet que je souhaite modifier, c'est
+     insupportable ») : les propriétés de la sélection — une ligne de
+     texte, une forme, plusieurs — À LA PLACE des réglages du logo, dans le
+     panneau ; rien ne flotte sur le plan. En tête : retour, le titre (le
+     texte d'une ligne, à corriger s'il est mal lu), l'élément précédent et
+     le suivant ; puis ses blocs (Police, Gras autour, Couleur, Géométrie,
+     Retirer). Le pied du panneau (la taille DTF, le PDF) reste en bas. */
+  .o-studio-inspecteur { flex:1; min-height:0; display:flex; flex-direction:column; overflow:auto; outline:none; }
+  .o-studio-insp-tete { position:sticky; top:0; z-index:2; display:flex; align-items:center; gap:2px; padding:8px 8px 8px 6px; background:#fff; border-bottom:1px solid var(--filet-carte); }
+  .o-studio-insp-tete .o-studio-texte-mot { flex:1; min-width:0; height:34px; margin:0 4px; font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); }
+  .o-studio-insp-titre { flex:1; min-width:0; display:flex; align-items:center; gap:8px; height:34px; padding:0 6px; }
+  .o-studio-insp-titre i { width:18px; height:18px; flex:none; border-radius:var(--arrondi); box-shadow:inset 0 0 0 1px rgba(15,23,42,.15); }
+  .o-studio-insp-titre b { min-width:0; font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .o-studio-insp-titre small { min-width:0; font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .o-studio-insp-nav { width:34px; height:34px; flex:none; display:grid; place-items:center; padding:0; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-2); cursor:pointer; transition:background .12s, color .12s; }
+  .o-studio-insp-nav:hover:not(:disabled) { background:var(--zone); color:var(--encre-1); }
+  .o-studio-insp-nav:disabled { color:var(--encre-3); cursor:default; }
+  .o-studio-insp-nav:focus-visible { outline:none; box-shadow:var(--anneau); }
+  .o-studio-insp-nav .o-studio-ic { width:18px; height:18px; }
+  .o-studio-insp-retour { color:var(--encre-1); }
+  .o-studio-insp-bloc { display:flex; flex-direction:column; gap:10px; padding:12px 16px 14px; }
+  .o-studio-insp-bloc + .o-studio-insp-bloc { border-top:1px solid var(--filet-carte); }
+  .o-studio-insp-bloc .o-studio-pop-liste { max-height:none; margin:0 -8px; padding:0; overflow:visible; }
+  .o-studio-insp-bloc .o-studio-recherche { padding-top:10px; }
+  .o-studio-insp-bloc .o-studio-pop-couleur { padding-top:0; border-top:0; }
+  .o-studio-insp-bloc .o-studio-geo, .o-studio-insp-bloc .o-studio-gras { margin:0; }
+  .o-studio-insp-boutons { display:flex; justify-content:flex-start; gap:6px; }
+  .o-studio-insp-bloc .o-studio-pop-retirer, .o-studio-insp-bloc .o-studio-pop-retirer .o-studio-ic { color:var(--danger); }
+  .o-studio-insp-bloc .o-studio-pop-retirer .o-studio-ic { width:16px; height:16px; }
+  /* Le panneau glisse d'une vue à l'autre (200 ms), pas de saut. */
+  @keyframes o-studio-entre { from { opacity:0; transform:translateX(12px); } to { opacity:1; transform:none; } }
+  @keyframes o-studio-revient { from { opacity:0; transform:translateX(-12px); } to { opacity:1; transform:none; } }
+  .o-studio-inspecteur.o-studio-anime { animation:o-studio-entre .2s cubic-bezier(.2,.7,.2,1); }
+  .o-studio-defile.o-studio-anime { animation:o-studio-revient .2s cubic-bezier(.2,.7,.2,1); }
+  @media (prefers-reduced-motion: reduce) { .o-studio-inspecteur.o-studio-anime, .o-studio-defile.o-studio-anime { animation:none; } }
   .o-studio-pop-liste { display:flex; flex-direction:column; gap:2px; max-height:min(340px, 50vh); margin:0 -6px; padding:0 6px; overflow:auto; }
   .o-studio-pop-ligne { display:flex; flex-direction:column; align-items:flex-start; gap:1px; width:100%; min-height:44px; padding:6px 10px; border:0; border-radius:var(--arrondi); background:transparent; font:inherit; color:var(--encre-1); text-align:left; cursor:pointer; }
   .o-studio-pop-ligne:hover { background:var(--zone); }
@@ -545,7 +569,7 @@
   .o-studio-lien .o-studio-ic { width:14px; height:14px; }
   .o-studio-lien[hidden] { display:none; }
   .o-studio-reserve .o-studio-lien { margin:0; }
-  /* La recherche d'une police par son nom, dans la bulle ; d'où vient une
+  /* La recherche d'une police par son nom, dans l'inspecteur ; d'où vient une
      police (le poste, déposée) et sa jumelle commerciale (« ≈ Futura »). */
   .o-studio-recherche { display:flex; flex-direction:column; gap:4px; padding-top:8px; border-top:1px solid var(--filet-carte); }
   .o-studio-recherche .o-studio-lien { align-self:flex-start; margin:0; }
@@ -562,8 +586,8 @@
   .o-studio-gras input[type=range]:disabled { opacity:.45; cursor:default; }
   .o-studio-palette-vide { font-size:var(--t-petit); color:var(--encre-2); }
   /* LES CALQUES (12 octobre 2026) : chaque ligne du bloc — une ligne de
-     texte, une forme — et son œil ; retirée, elle s'éteint. La bulle d'une
-     forme sur le plan : sa couleur (les pastilles du nuancier), Retirer. */
+     texte, une forme — et son œil ; retirée, elle s'éteint. Un clic ouvre
+     l'inspecteur de l'élément (sa couleur, sa géométrie, Retirer). */
   .o-studio-calque { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:2px; }
   .o-studio-calque[data-cache] .o-studio-ligne-texte { opacity:.45; }
   .o-studio-calque .o-studio-ligne-texte:disabled { cursor:default; }
@@ -575,16 +599,14 @@
   .o-studio-forme i { width:10px; height:10px; margin-left:-1px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.25); }
   .o-studio-ligne-texte i[style] { box-shadow:inset 0 0 0 1px rgba(15,23,42,.25); }
   [data-r="formes"] + .o-studio-reserve { margin-top:8px; }
-  .o-studio-pop.o-studio-pop-element { width:240px; padding:12px; }
-  .o-studio-pop-element .o-studio-bouton { color:var(--encre-1); }
-  .o-studio-pop-element .o-studio-pop-retirer, .o-studio-pop-element .o-studio-pop-retirer .o-studio-ic { color:var(--danger); }
-  .o-studio-pop-element .o-studio-pop-pied .o-studio-bouton { display:inline-flex; align-items:center; gap:6px; }
   .o-studio-pop-couleur { display:flex; flex-direction:column; gap:4px; padding-top:8px; border-top:1px solid var(--filet-carte); }
   .o-studio-pop-couleur label { font-size:var(--t-petit); color:var(--encre-2); }
   .o-studio-pop-couleur output { font-size:var(--t-petit); font-weight:var(--g-forte); color:var(--encre-2); }
   .o-studio-origine { background:#fff; background-image:linear-gradient(135deg, transparent 45%, var(--danger) 45%, var(--danger) 55%, transparent 55%); }
-  /* LA GOMME : le lasso se trace au réticule ; sa bulle propose Combler ou Retirer. */
+  /* LA GOMME : le lasso se trace au réticule ; sa bulle (Combler, Retirer)
+     se pose hors de son cadre, jamais sur ce qu'on vient d'entourer. */
   .o-studio-scene[data-outil="gomme"] .o-studio-toile { cursor:crosshair; }
+  .o-studio-pop.o-studio-pop-lasso { z-index:6; }
   .o-studio-outil[aria-pressed="true"] { background:var(--zone); color:var(--accent); }
   [data-r="pop-lasso"] .o-studio-pop-pied .o-studio-bouton { flex:1; justify-content:center; }
   [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein { color:var(--sur-action); }
@@ -635,7 +657,6 @@
   .o-studio-geo-boutons { grid-column:2 / span 2; display:flex; gap:4px; justify-content:flex-end; }
   .o-studio-geo-boutons .o-studio-bouton { min-height:28px; height:28px; padding:0 8px; font-size:var(--t-petit); display:inline-flex; align-items:center; gap:4px; color:var(--encre-1); }
   .o-studio-geo-boutons .o-studio-ic { width:15px; height:15px; }
-  .o-studio-pop-police .o-studio-geo { margin:0; }
   .o-studio-deplace { display:inline-grid; place-items:center; width:14px; height:14px; margin-left:4px; vertical-align:-3px; color:var(--accent); }
   .o-studio-deplace .o-studio-ic { width:12px; height:12px; }
   .o-studio-pop-autre { position:relative; flex:1; }
@@ -704,7 +725,8 @@
     .o-studio-barre { position:sticky; top:0; }
     .o-studio { grid-template-columns:minmax(0,1fr); min-height:0; flex:none; }
     .o-studio-scene { min-height:62vh; }
-    .o-studio-defile { flex:none; overflow:visible; }
+    .o-studio-defile, .o-studio-inspecteur { flex:none; overflow:visible; }
+    .o-studio-insp-tete { position:static; }
   }
 
   /* LA PAGE : le studio seul, à la hauteur de la fenêtre ; sous 1 100 px,
