@@ -507,7 +507,12 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   (`m.image`, `besoinImage`) ; la demander après coup reprend le tracé
   final gardé dans son fil (`memo.multi`, mêmes réglages), seule l'image
   par couches se fait (3 à 16 % du tracé : 0,2 à 1,2 s). Les mêmes
-  octets, plus tard.
+  octets, plus tard. Mesuré dos à dos contre `main` (Chrome sans
+  fenêtre, même profil, polices en cache, le poste chargé par ailleurs) :
+  le 6e3 ouvert de bout en bout 55,5 → 43,4 s (l'IA 29,1 → 16,1 s : l'Ultra
+  ×4 du modèle OLDA), LOGO DIB 18,8 → 14,7 s (10,4 → 6,4), AUTOMAX 4,8 →
+  4,1 s ; les logos sans IA (SSV, CERCLE) inchangés à 3,6 s, leur tracé
+  −20 % (2,2 → 1,8 s, 1,7 → 1,3 s).
 
 ## Avec le comptoir
 

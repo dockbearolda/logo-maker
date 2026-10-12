@@ -321,6 +321,25 @@ moins de 8 % des 7,8 s. Le tracé en Node : l'image par couches fait 3 à
 3. L'ULTRA : déjà limitée par la carte graphique ; rien à gagner sans
    perdre des orientations.
 
+### Mesuré, avant/après dos à dos (polices en cache, même profil)
+
+| Logo | avant (main) | après | IA | tracé | texte |
+|---|---|---|---|---|---|
+| 6e3 AME | 55,5 s | 43,4 s | 29,1 → 16,1 s | 13,3 → 14,7 s | 12,1 → 11,6 s |
+| LOGO DIB | 18,8 s | 14,7 s | 10,4 → 6,4 s | 3,7 → 7,4 s | 4,3 → 4,4 s |
+| Logo SSV | 3,5 s | 3,6 s | — | 2,2 → 1,8 s | 3,3 → 3,3 s |
+| AUTOMAX | 4,8 s | 4,1 s | 1,2 → 0,9 s | 2,1 → 1,6 s | 3,5 → 3,0 s |
+| CERCLE DES CRÉATEURS | 3,6 s | 3,6 s | — | 1,7 → 1,3 s | 3,2 → 3,3 s |
+
+Le poste était chargé par ailleurs (l'application Claude à 40 % de
+processeur) : les valeurs absolues sont plus hautes que celles du 1er
+octobre, l'écart avant/après est le seul à lire. L'IA des logos est
+divisée par deux (l'Ultra ×4 du modèle OLDA), le tracé des logos sans
+IA baisse de 20 % (l'image par couches différée) ; le « Tracé » du DIB
+affiché plus long vient d'un tracé de plus (la version passe en Image
+après le premier tracé, puis les polices se posent) — son ouverture de
+bout en bout baisse de 22 %.
+
 ### Méthode
 
 Celle du 1er octobre (CLAUDE.md) : chaque optimisation du calcul rend les
