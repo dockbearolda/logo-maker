@@ -2,7 +2,9 @@
 
 Le Logo maker de l'Atelier OLDA, seul : un logo ou une photo se dépose, le
 fond part (un fichier flou est d'abord rendu net ; un imprimé photographié
-sur un tissu ombré part en entier, plis compris), et le logo ressort
+sur un tissu ombré part en entier, plis compris) — ou reste, d'un clic
+sur « Entier » : une pochette d'album, une affiche, gardées en
+rectangle et seulement améliorées —, et le logo ressort
 détouré, vectoriel ou en image nette, prêt pour la presse (PDF en CMJN
 avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN), à la taille DTF choisie
 (un préréglage d'OLDA ou des millimètres tapés, ses cotes sur le plan).

@@ -536,7 +536,6 @@
   .o-studio-insp-retour { color:var(--encre-1); }
   .o-studio-insp-bloc { display:flex; flex-direction:column; gap:10px; padding:12px 16px 14px; }
   .o-studio-insp-bloc + .o-studio-insp-bloc { border-top:1px solid var(--filet-carte); }
-  .o-studio-insp-bloc .o-studio-pop-liste { max-height:none; margin:0 -8px; padding:0; overflow:visible; }
   .o-studio-insp-bloc .o-studio-recherche { padding-top:10px; }
   .o-studio-insp-bloc .o-studio-pop-couleur { padding-top:0; border-top:0; }
   .o-studio-insp-bloc .o-studio-geo, .o-studio-insp-bloc .o-studio-gras { margin:0; }
@@ -576,6 +575,12 @@
   .o-studio-cherche-mot { border-style:solid; }
   .o-studio-recherche .o-studio-pop-liste { max-height:min(220px, 34vh); }
   .o-studio-recherche .o-studio-pop-liste:empty { display:none; }
+  /* Dans l'inspecteur, les listes de polices (les proposées, les
+     trouvées) ne défilent pas à part : c'est l'inspecteur qui défile. Sans
+     plafond ni rétrécissement — plafonnée à 220 px, la liste des polices
+     trouvées rognait le haut de chaque dessin (12 octobre 2026). */
+  .o-studio-inspecteur .o-studio-pop-liste { max-height:none; margin:0 -8px; padding:0; overflow:visible; }
+  .o-studio-inspecteur .o-studio-pop-ligne { flex:none; }
   .o-studio-pop-ligne small { white-space:normal; }
   .o-studio-source, .o-studio-equivalent { font-style:normal; white-space:nowrap; }
   .o-studio-source { padding:0 6px; border-radius:var(--pilule); background:var(--zone); color:var(--encre-1); font-weight:var(--g-note); }
