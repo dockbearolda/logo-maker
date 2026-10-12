@@ -8,7 +8,9 @@ avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN), à la taille DTF choisie
 (un préréglage d'OLDA ou des millimètres tapés, ses cotes sur le plan).
 Comme dans Illustrator, un contour se pose autour du logo (en mm, une
 couleur du nuancier), et un élément ou une ligne de texte se retire d'un
-clic. Le texte d'un logo — même écrit en rond, sur un ruban, ou cerclé
+clic. Le logo se lit en calques — ses lignes de texte, ses formes —, chacun
+montré ou retiré d'un œil, recoloré d'une pastille ; une gomme (un lasso)
+retire ce qu'on entoure ou rebouche le fond dessous (une photo : par l'IA). Le texte d'un logo — même écrit en rond, sur un ruban, ou cerclé
 d'une autre couleur — peut
 reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
 autour »). Chaque geste se défait (Ctrl Z) ou se refait (Ctrl Maj Z),
@@ -78,7 +80,8 @@ touché.
 | `lib/texte.js`, `lib/lecture.js`, `lib/polices.js`, `lib/ecriture.js` | le texte trouvé en pleine taille, lu (PP-OCRv5), sa police retrouvée et reposée dans les trois versions — une lettre cerclée avec son cerne |
 | `lib/courbes.js` | le texte en rond, sur un ruban, penché : ses lettres enchaînées, la courbe qui passe par elles, chacune remise à plat (tournée ou cisaillée) puis reposée sur la courbe |
 | `lib/pdf-vectoriel.js`, `lib/pdf-image.js`, `lib/export-logo.js`, `lib/png.js` | les exports |
-| `lib/contour.js`, `lib/effacer.js` | les outils d'Illustrator : le contour autour du logo (le décalage, en mm), un élément ou une ligne retirés d'un clic |
+| `lib/contour.js`, `lib/effacer.js` | les outils d'Illustrator : le contour autour du logo (le décalage, en mm), un élément ou une ligne retirés d'un clic, un élément recoloré, l'encre d'un lasso retirée |
+| `lib/calques.js`, `lib/combler.js` | les calques : les formes du dessin listées (avec les lignes de texte), un trou rebouché à la couleur (un logo) — une photo passe à MI-GAN (`vendor/migan-512.onnx`) |
 | `lib/tailles-dtf.js` | la taille DTF : les largeurs du tableau d'OLDA, la taille imprimée d'un dessin, sa résolution |
 | `lib/cmjn.js`, `lib/cmjn-fogra39.js` | le CMJN des PDF et de l'EPS : la conversion d'Illustrator en Europe (Coated FOGRA39, relatif colorimétrique, point noir compensé), en table calculée d'avance — `node outils/table-cmjn.mjs` la refait avec littleCMS |
 | `lib/nuancier.js` | le nuancier OLDA : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-olda-2026-v2.ase`) |

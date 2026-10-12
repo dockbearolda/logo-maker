@@ -10,6 +10,7 @@
      allers-retours vers le serveur avant que le studio paraisse. La liste
      suit les imports (serveur.test.mjs le vérifie). -->
 <link rel="modulepreload" href="lib/cmjn-fogra39.js">
+<link rel="modulepreload" href="lib/calques.js">
 <link rel="modulepreload" href="lib/cmjn.js">
 <link rel="modulepreload" href="lib/coffre.js">
 <link rel="modulepreload" href="lib/contour.js">
@@ -558,6 +559,34 @@
   .o-studio-gras label { font-size:var(--t-petit); color:var(--encre-2); }
   .o-studio-gras input[type=range]:disabled { opacity:.45; cursor:default; }
   .o-studio-palette-vide { font-size:var(--t-petit); color:var(--encre-2); }
+  /* LES CALQUES (12 octobre 2026) : chaque ligne du bloc — une ligne de
+     texte, une forme — et son œil ; retirée, elle s'éteint. La bulle d'une
+     forme sur le plan : sa couleur (les pastilles du nuancier), Retirer. */
+  .o-studio-calque { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:2px; }
+  .o-studio-calque[data-cache] .o-studio-ligne-texte { opacity:.45; }
+  .o-studio-calque .o-studio-ligne-texte:disabled { cursor:default; }
+  .o-studio-oeil { width:30px; height:30px; flex:none; display:grid; place-items:center; padding:0; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-2); cursor:pointer; }
+  .o-studio-oeil:hover { background:var(--zone); color:var(--encre-1); }
+  .o-studio-oeil:focus-visible { outline:none; box-shadow:var(--anneau); }
+  .o-studio-oeil .o-studio-ic { width:16px; height:16px; }
+  .o-studio-oeil[aria-pressed="false"] { color:var(--encre-3); }
+  .o-studio-forme i { width:10px; height:10px; margin-left:-1px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.25); }
+  .o-studio-ligne-texte i[style] { box-shadow:inset 0 0 0 1px rgba(15,23,42,.25); }
+  [data-r="formes"] + .o-studio-reserve { margin-top:8px; }
+  .o-studio-pop.o-studio-pop-element { width:240px; padding:12px; }
+  .o-studio-pop-element .o-studio-bouton { color:var(--encre-1); }
+  .o-studio-pop-element .o-studio-pop-retirer, .o-studio-pop-element .o-studio-pop-retirer .o-studio-ic { color:var(--danger); }
+  .o-studio-pop-element .o-studio-pop-pied .o-studio-bouton { display:inline-flex; align-items:center; gap:6px; }
+  .o-studio-pop-couleur { display:flex; flex-direction:column; gap:4px; padding-top:8px; border-top:1px solid var(--filet-carte); }
+  .o-studio-pop-couleur label { font-size:var(--t-petit); color:var(--encre-2); }
+  .o-studio-pop-couleur output { font-size:var(--t-petit); font-weight:var(--g-forte); color:var(--encre-2); }
+  .o-studio-origine { background:#fff; background-image:linear-gradient(135deg, transparent 45%, var(--danger) 45%, var(--danger) 55%, transparent 55%); }
+  /* LA GOMME : le lasso se trace au réticule ; sa bulle propose Combler ou Retirer. */
+  .o-studio-scene[data-outil="gomme"] .o-studio-toile { cursor:crosshair; }
+  .o-studio-outil[aria-pressed="true"] { background:var(--zone); color:var(--accent); }
+  [data-r="pop-lasso"] .o-studio-pop-pied .o-studio-bouton { flex:1; justify-content:center; }
+  [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein { color:var(--sur-action); }
+  [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein .o-studio-ic { color:var(--sur-action); }
   .o-studio-teinte { position:relative; width:36px; height:36px; display:grid; place-items:center; padding:0; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:#fff; cursor:pointer; transition:border-color .12s, box-shadow .12s; }
   .o-studio-teinte i { width:26px; height:26px; border-radius:var(--arrondi); box-shadow:inset 0 0 0 1px rgba(15,23,42,.14); }
   .o-studio-teinte em { position:absolute; right:-4px; bottom:-4px; width:13px; height:13px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 0 1px rgba(15,23,42,.2); }

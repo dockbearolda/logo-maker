@@ -428,6 +428,51 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
     redresse les logos (AUTOMAX) mais coupe droit la pointe des plumes du
     phénix (unnamed.png). Pas passée.
 
+- **Les calques** (12 octobre 2026, « un système de calques : prendre
+  l'écriture et la modifier, supprimer un objet qui me plaît pas ») : un
+  calque est un élément que le graphiste a lu, jamais un calque dessiné —
+  une LIGNE DE TEXTE, ou une FORME d'un seul tenant de l'image détourée de
+  l'aperçu (`lib/calques.js`, `formesDe` : huit voisins, l'encre à un
+  huitième d'opacité comme `effacer` ; 0,05 % de l'image au moins, 40 au
+  plus ; les lettres d'une ligne ne se listent pas à part, `estLettre`).
+  Le bloc « Calques » du panneau (ex-« Police ») les liste, chacun avec
+  son œil (retiré = un retrait d'`effaces`, remis = ce retrait ôté) ; une
+  forme se signale sous la souris et s'ouvre d'un clic — sur le plan ou
+  dans le bloc — dans sa bulle : Retirer, sa couleur (les pastilles du
+  nuancier, `reglages.teintesElements`, appliquées au détourage par
+  `recolorer`, lib/effacer.js : les trois versions et les exports
+  suivent). La bulle d'une ligne a aussi sa couleur (`l.couleur`, posée
+  avec la police : `poserZone`, `teinteDe`). Tout est dans les réglages :
+  l'historique les photographie (« Élément : Kaki », « Couleur du texte :
+  Beige », « Élément retiré/remis »). Rien ne change sur un logo qu'on ne
+  touche pas (banc des mêmes octets : détourage, SVG, image, lignes
+  identiques sur 8 logos). Pas de calque déplacé ni redimensionné : un logo
+  client se reproduit, il ne se recompose pas.
+- **La gomme** (12 octobre 2026) : un lasso tracé sur le plan (G ; un
+  simple glissé tend un rectangle), puis Retirer (l'encre dedans part,
+  pixel par pixel : `effaces` avec `coupe`) ou Combler (le fond se
+  rebouche dessous). Le rebouchage transforme l'IMAGE DE TRAVAIL comme
+  « Améliorer l'image » : ses polygones (`E.comble.liste`, en fractions)
+  sont dans la photo de l'historique, Annuler les rejoue depuis l'image
+  d'avant (`E.comble.base`), et l'IA qui repart les rejoue en finissant.
+  Sur une photo ou une image, MI-GAN (vendor/migan-512.onnx, Picsart, MIT,
+  28 Mo ; `comblerIA`, lib/detourage-travail.js : un recadrage de 2,5 fois
+  le trou, 512 px au moins, seuls les pixels du trou repris ; ~0,4 s par
+  recadrage sur la carte graphique, déterministe) ; sur un logo à plat,
+  à la couleur (`lib/combler.js` : l'aplat de l'anneau à ΔE 5, sinon de
+  proche en proche puis détendu — un dégradé traverse sans marche). Sur
+  une PHOTO, les lettres remplacées par une police se reposent sur un
+  fond rebouché par MI-GAN (`poser`, `z.comble`) ; une image ou un logo
+  gardent l'aplat uni sous les lettres. Un grand trou dans le sujet même
+  (l'oreille du lapin) ressort flou : le modèle travaille à 512 px — la
+  gomme est faite pour un objet, un texte, pas pour redessiner le sujet.
+- **La version Image ne se calcule que montrée ou exportée** (12 octobre
+  2026, la vitesse) : un logo ouvert en Vecteur n'en a pas besoin
+  (`m.image`, `besoinImage`) ; la demander après coup reprend le tracé
+  final gardé dans son fil (`memo.multi`, mêmes réglages), seule l'image
+  par couches se fait (3 à 16 % du tracé : 0,2 à 1,2 s). Les mêmes
+  octets, plus tard.
+
 ## Avec le comptoir
 
 Le même studio vit dans `OLDA-Print-Studio` (lib/ identique au départ). Une
