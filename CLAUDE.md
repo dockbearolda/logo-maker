@@ -446,8 +446,55 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   l'historique les photographie (« Élément : Kaki », « Couleur du texte :
   Beige », « Élément retiré/remis »). Rien ne change sur un logo qu'on ne
   touche pas (banc des mêmes octets : détourage, SVG, image, lignes
-  identiques sur 8 logos). Pas de calque déplacé ni redimensionné : un logo
-  client se reproduit, il ne se recompose pas.
+  identiques sur 8 logos).
+- **Les calques déplacés** (12 octobre 2026, « déplacer ou redimensionner
+  un calque, au niveau de Photoshop : démonter un logo comme je le
+  souhaite ») : un élément (une forme, une ligne de texte) se sélectionne
+  d'un clic (Maj : plusieurs), se DÉPLACE en le glissant (les guides
+  magenta l'aimantent aux bords et centres de l'image et des autres
+  éléments à 5 px, Ctrl les coupe), se REDIMENSIONNE par ses huit poignées
+  (un coin : en proportion ; Maj : librement ; Alt : autour du centre ; un
+  côté : ce côté seul), se TOURNE juste au-delà d'un coin (Maj : par 15°),
+  se RETOURNE et se REPLACE dans sa bulle, où sa géométrie se tape en mm
+  (X, Y, L, H, ∠) ; les flèches le poussent (Maj : dix pixels), Suppr le
+  retire, Échap désélectionne. Sa transformation est dans les réglages
+  (`transformations`, lib/transformer.js : pivot, d, angle, s, en LARGEURS
+  D'IMAGE — isotrope, le même nombre pour l'aperçu, l'image pleine et
+  l'image agrandie par l'IA ; p' = pivot + d + R(angle)·S(s)·(p − pivot),
+  le modèle de Photoshop, fermé sous tous les gestes, jamais de
+  cisaillement), relative à sa PLACE D'ORIGINE (son adresse est celle
+  d'`effaces`). Le fil l'applique au détourage après `effacer` et
+  `recolorer` (`transformer` : les sélections d'abord — `selection`,
+  lib/effacer.js, partagée —, chaque sprite coupé, son trou rebouché par
+  lib/combler.js si la moitié de l'anneau est opaque, sinon transparent,
+  puis chaque sprite reposé bicubique, le dernier dessus) ; une ligne dont
+  la POLICE est posée n'y passe pas : ses lettres de police passent par la
+  matrice dans la pose (`transformerPose`, `choixPolices` → `m`), ses
+  anciennes lettres s'effacent sur place. Le studio ne lit ses éléments
+  qu'à leur place d'origine (`E.calques`, les boîtes des lignes) et passe
+  par la matrice pour tout ce qui se voit ou se clique (`coinsElement`,
+  `elementSous`, `cadreLigneEcran`) ; pendant le geste, un aperçu bâti
+  une fois (`batirApercuPrise` : le fond sans la sélection, rebouché comme
+  le fera le fil, un sprite par élément) se dessine transformé à 60 fps
+  (0,1 ms par pointermove) et reste jusqu'à l'image calculée qui le
+  contient. LE PLAN EST L'IMAGE : un élément poussé au-delà de son bord
+  serait coupé — les entrées se bornent (`bornerEntrees`), le bord se
+  dessine pendant le geste. L'historique le dit (« Élément déplacé /
+  agrandi / réduit / tourné / retourné / replacé », « Ligne déplacée »,
+  « 2 éléments déplacés »), Ctrl Z le défait ; les mêmes octets sur un
+  logo qu'on ne touche pas (banc de rejeu, 8 logos, 0 écart). Jugé au
+  banc Playwright sans fenêtre (scratchpad `calques-deplaces.mjs`, 32
+  contrôles : DIB déplacé, coin ×1,5, 30°, retourné, replacé au même
+  octet, Ctrl Z, flèches, Suppr, « DIB » en Montserrat déplacé, le PNG
+  exporté ; le t-shirt, « I'M HIS » en police déplacé). Pas fait : le
+  rebouchage par MI-GAN sous un élément déplacé d'une PHOTO (à la
+  couleur : il faudrait une session du modèle dans chacun des trois fils
+  de détourage — la gomme reste là pour finir le fond à l'IA), la
+  duplication (Alt + glisser), le cisaillement, l'ordre des calques à la
+  main, un canevas qui s'agrandit au-delà de l'image. Une ligne SANS
+  police dont les lettres tiennent au dessin (un texte sur un badge, une
+  seule forme) ne se déplace pas seule : on le dit, une police la rend
+  mobile.
 - **La gomme** (12 octobre 2026) : un lasso tracé sur le plan (G ; un
   simple glissé tend un rectangle), puis Retirer (l'encre dedans part,
   pixel par pixel : `effaces` avec `coupe`) ou Combler (le fond se

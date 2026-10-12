@@ -330,3 +330,38 @@ Un clic sur une ligne du bloc sélectionne et ouvre la bulle (`cadrer`).
 - La duplication d'un élément (Alt + glisser), le cisaillement, l'ordre
   des calques à la main (un élément déplacé passe dessus), les calques
   dessinés (un texte neuf, une forme neuve).
+
+## 8. Ce qui a été mesuré (12 octobre 2026, à la fin)
+
+- `node --test` : 371 tests verts (14 pour `lib/transformer.js`, 1 pour
+  l'historique en plus).
+- Les mêmes octets sur un logo qu'on ne touche pas (banc de rejeu du
+  scratchpad, `lib/` de `main` contre l'arbre, en Node) : détourage,
+  SVG, image par couches, lignes identiques sur 8 logos (DIB, SSV, CERCLE
+  DES CRÉATEURS, AUTOMAX, 6e3, CD44, La Piscine, 6e3 AME), 0 écart —
+  l'extraction de `selection` ne change rien.
+- Au banc Playwright sans fenêtre (`calques-deplaces.mjs`, Chrome WebGPU,
+  1 440 × 900) : 32 contrôles sur 32. LOGO DIB : une forme glissée de
+  120 × 40 px (« Élément déplacé », le tracé change, l'aperçu du geste
+  part avec l'image calculée) ; un coin tiré (×1,500 en proportion,
+  « Élément agrandi ») ; tournée de 30,0° (« Élément tourné ») ; la bulle
+  (X, Y, L, H, ∠) ; retournée (sx = −1,5, « Élément retourné ») ; l'angle
+  tapé ; replacée (« Élément replacé », le SVG octet pour octet celui
+  d'avant) ; six Ctrl Z (le SVG d'origine) ; Échap ; Maj + flèche
+  (10 px) ; Suppr (« Élément retiré ») ; « DIB » en Montserrat déplacé
+  (« Ligne déplacée », la pose couvre les deux places, les lettres de
+  police à la nouvelle place et l'ancienne rebouchée — captures) ; en
+  dessin d'origine, son entrée passe au détourage ; le PNG du vecteur
+  exporté porte « DIB » déplacé ; 0,11 ms par `pointermove` pendant le
+  geste. Le t-shirt (photo, BiRefNet + Ultra matière) : « I'M HIS » en
+  Caprasimo déplacé de 80 px (« Ligne déplacée »).
+- Dans le volet de l'app : une pièce du pied de DIB glissée et remise par
+  Ctrl Z ; la bulle et ses poignées.
+
+Ce que ces essais ont corrigé en route : le `focus()` d'une ligne du bloc
+faisait défiler la page sous la souris entre le pointerdown et le
+pointerup (`preventScroll`) ; le plan est l'image — un élément poussé
+dehors était coupé (les entrées se bornent, le bord se dessine pendant le
+geste, un élément plus grand que l'image bute) ; deux lignes empilées se
+prenaient l'une pour l'autre à 0,6 hauteur (`memeLigne` : 0,45 hauteur
+et 0,25 largeur).

@@ -11,6 +11,7 @@
      suit les imports (serveur.test.mjs le vérifie). -->
 <link rel="modulepreload" href="lib/cmjn-fogra39.js">
 <link rel="modulepreload" href="lib/calques.js">
+<link rel="modulepreload" href="lib/combler.js">
 <link rel="modulepreload" href="lib/cmjn.js">
 <link rel="modulepreload" href="lib/coffre.js">
 <link rel="modulepreload" href="lib/contour.js">
@@ -42,6 +43,7 @@
 <link rel="modulepreload" href="lib/sujet.js">
 <link rel="modulepreload" href="lib/tailles-dtf.js">
 <link rel="modulepreload" href="lib/texte.js">
+<link rel="modulepreload" href="lib/transformer.js">
 <link rel="modulepreload" href="lib/vecteur-lisse.js">
 <link rel="modulepreload" href="lib/vectoriser.js">
 <!-- Sortie du comptoir OLDA Print Studio par outils/logo-maker-statique.mjs :
@@ -616,6 +618,26 @@
   .o-studio-pop-grille i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.2); }
   .o-studio-pop-pied { display:flex; gap:6px; }
   .o-studio-pop-pied .o-studio-bouton { min-height:34px; padding:0 10px; font-size:var(--t-petit); }
+  /* LA GÉOMÉTRIE D'UN ÉLÉMENT (les calques déplacés) : X, Y ; L, cadenas, H ; angle, retourner, replacer. */
+  .o-studio-geo { display:grid; grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr); gap:6px 6px; align-items:center; margin:8px 0; }
+  .o-studio-geo-champ { display:flex; align-items:center; gap:4px; min-width:0; font-size:var(--t-petit); color:var(--encre-2); }
+  .o-studio-geo-champ span { width:12px; flex:none; font-weight:var(--g-forte); color:var(--encre-2); }
+  .o-studio-geo-champ input { flex:1; min-width:0; width:100%; height:28px; padding:0 6px; border:1px dashed var(--filet-carte); border-radius:var(--arrondi); background:transparent; font:inherit; font-size:var(--t-petit); color:var(--encre-1); text-align:right; }
+  .o-studio-geo-champ input:hover { border-color:var(--filet-fort); }
+  .o-studio-geo-champ input:focus { outline:none; border-style:solid; border-color:var(--filet-fort); background:#fff; box-shadow:var(--anneau); }
+  .o-studio-geo-champ small { flex:none; color:var(--encre-3); }
+  .o-studio-geo-champ:nth-child(1) { grid-column:1; }
+  .o-studio-geo-champ:nth-child(2) { grid-column:3; }
+  .o-studio-geo-cadenas { width:28px; height:28px; display:grid; place-items:center; padding:0; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-3); cursor:pointer; }
+  .o-studio-geo-cadenas:hover { background:var(--zone); color:var(--encre-1); }
+  .o-studio-geo-cadenas[aria-pressed="true"] { color:var(--accent); }
+  .o-studio-geo-cadenas .o-studio-ic { width:15px; height:15px; }
+  .o-studio-geo-boutons { grid-column:2 / span 2; display:flex; gap:4px; justify-content:flex-end; }
+  .o-studio-geo-boutons .o-studio-bouton { min-height:28px; height:28px; padding:0 8px; font-size:var(--t-petit); display:inline-flex; align-items:center; gap:4px; color:var(--encre-1); }
+  .o-studio-geo-boutons .o-studio-ic { width:15px; height:15px; }
+  .o-studio-pop-police .o-studio-geo { margin:0; }
+  .o-studio-deplace { display:inline-grid; place-items:center; width:14px; height:14px; margin-left:4px; vertical-align:-3px; color:var(--accent); }
+  .o-studio-deplace .o-studio-ic { width:12px; height:12px; }
   .o-studio-pop-autre { position:relative; flex:1; }
   .o-studio-pop-autre i { width:16px; height:16px; border-radius:50%; }
   .o-studio-pop-autre input { position:absolute; inset:0; width:100%; height:100%; margin:0; padding:0; border:0; opacity:0; cursor:pointer; }
