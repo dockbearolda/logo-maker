@@ -9,7 +9,9 @@ avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN), à la taille DTF choisie
 Comme dans Illustrator, un contour se pose autour du logo (en mm, une
 couleur du nuancier), et un élément ou une ligne de texte se retire d'un
 clic. Le logo se lit en calques — ses lignes de texte, ses formes —, chacun
-montré ou retiré d'un œil, recoloré d'une pastille ; une gomme (un lasso)
+montré ou retiré d'un œil, recoloré d'une pastille, déplacé, redimensionné,
+tourné ou retourné à la souris comme dans Photoshop (poignées, guides
+d'alignement, géométrie en mm dans sa bulle) ; une gomme (un lasso)
 retire ce qu'on entoure ou rebouche le fond dessous (une photo : par l'IA). Le texte d'un logo — même écrit en rond, sur un ruban, ou cerclé
 d'une autre couleur — peut
 reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
@@ -82,6 +84,7 @@ touché.
 | `lib/pdf-vectoriel.js`, `lib/pdf-image.js`, `lib/export-logo.js`, `lib/png.js` | les exports |
 | `lib/contour.js`, `lib/effacer.js` | les outils d'Illustrator : le contour autour du logo (le décalage, en mm), un élément ou une ligne retirés d'un clic, un élément recoloré, l'encre d'un lasso retirée |
 | `lib/calques.js`, `lib/combler.js` | les calques : les formes du dessin listées (avec les lignes de texte), un trou rebouché à la couleur (un logo) — une photo passe à MI-GAN (`vendor/migan-512.onnx`) |
+| `lib/transformer.js` | les calques déplacés : la transformation d'un élément (pivot, déplacement, angle, échelle, en largeurs d'image), ses pixels coupés, son trou rebouché, le sprite reposé (bicubique) ; les lettres d'une police transformées |
 | `lib/tailles-dtf.js` | la taille DTF : les largeurs du tableau d'OLDA, la taille imprimée d'un dessin, sa résolution |
 | `lib/cmjn.js`, `lib/cmjn-fogra39.js` | le CMJN des PDF et de l'EPS : la conversion d'Illustrator en Europe (Coated FOGRA39, relatif colorimétrique, point noir compensé), en table calculée d'avance — `node outils/table-cmjn.mjs` la refait avec littleCMS |
 | `lib/nuancier.js` | le nuancier OLDA : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-olda-2026-v2.ase`) |
