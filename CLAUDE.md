@@ -587,6 +587,23 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   vues. La bulle du lasso se pose hors de son cadre (`placerHors`). Le
   calcul, les fils, les réglages, l'historique, les exports : pas un
   octet. Spec : docs/superpowers/specs/2026-10-12-inspecteur-design.md.
+- **Le fond gardé, « Entier »** (12 octobre 2026, « j'ai des images avec
+  fond parfois : une pochette d'album, une affiche de film — juste les
+  améliorer en gardant le rectangle ») : le quatrième choix du bloc Fond
+  (`methode: 'entier'`). Rien ne part — les pixels du fichier et son alpha
+  tels quels (`detourage`, lib/detourage-travail.js) ; l'IA, la netteté,
+  les calques, la gomme, les couleurs, les déplacements, l'historique
+  (« Fond : Entier ») et les exports (le rectangle entier, le blanc DTF
+  dessus) passent comme ailleurs. Un rectangle opaque est une seule forme
+  d'alpha : pas de « Retirer cet élément » dessus (la gomme), et une
+  forme de 90 % de l'image et plus ne se liste pas. Choisi, il ouvre en
+  Détouré tant que la version n'est pas choisie ; le seuil se cache ; le
+  bloc dit « Gardé ». D'office seulement quand le sujet trouvé par l'IA
+  est toute l'image (`ENTIER_AUTO`, 95 % des pixels : rien à retirer,
+  les bords restent) — une affiche se choisit d'un clic : rien ne
+  distingue sûrement une affiche d'une photo à détourer, et l'erreur se
+  rattrape d'un clic dans les deux sens. Spec :
+  docs/superpowers/specs/2026-10-12-fond-entier-et-arcs-design.md.
 
 ## Avec le comptoir
 
