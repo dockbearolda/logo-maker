@@ -98,13 +98,15 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   retenu d'une visite à l'autre (ce qui remplace le « Détouré d'abord et
   d'office » du 29 septembre pour le choix de la version — Détouré reste
   la version des photos, et garde ses pixels intacts).
-- **La police se choisit sur le plan, pas dans une barre latérale qui
-  s'allonge** (30 septembre 2026, onze lignes lues sur le 6e3 : « on clique
-  sur la police et on choisit directement, pour éviter une barre latérale
-  trop grande »). Le panneau « Police » n'a qu'une ligne par texte lu
-  (point vert : reconnue et posée ; bleu : choisie ; gris : le dessin).
-  Chaque texte du logo se signale sous la souris ; un clic — là ou sur sa
-  ligne du panneau — ouvre sa bulle sur le texte même (`ouvrirPopPolice`,
+- **La police se choisit depuis le plan, dans l'inspecteur — pas dans
+  une barre latérale qui s'allonge** (30 septembre 2026, onze lignes lues
+  sur le 6e3 : « on clique sur la police et on choisit directement, pour
+  éviter une barre latérale trop grande » ; 12 octobre 2026, la bulle
+  posée sur le texte même « c'est insupportable » : voir « L'inspecteur »
+  plus bas). Le bloc « Calques » n'a qu'une ligne par texte lu (point
+  vert : reconnue et posée ; bleu : choisie ; gris : le dessin). Chaque
+  texte du logo se signale sous la souris ; un clic — là ou sur sa ligne
+  du bloc — l'ouvre dans l'inspecteur (`ouvrirLigne`,
   `lib/studio-detourage.js`) : le texte à corriger, les polices proposées
   chacune rendue dans son propre dessin (`apercuPolice`, la police chargée
   dans la page depuis Fontsource), le dessin d'origine, le gras autour.
@@ -169,8 +171,8 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
     Vecteur seulement (Détouré garde ses pixels).
   - RETIRER (sélectionner, Suppr, `lib/effacer.js`) : un clic sur un
     élément du logo propose « Retirer cet élément » (la forme d'un seul
-    tenant) ; la bulle d'une ligne de texte, « Retirer cette ligne » (ses
-    lettres, dans son cadre — son tour, en rond). Écrit dans les réglages
+    tenant) ; l'inspecteur d'une ligne de texte, « Retirer cette ligne »
+    (ses lettres, dans son cadre — son tour, en rond). Écrit dans les réglages
     du fond (`effaces`, en fractions de l'image) : les trois versions, les
     exports, l'image refaite par l'IA, l'historique (Ctrl Z le remet).
 - **Pas de police posée d'office sur des lettres à ombre portée** (1er
@@ -438,11 +440,11 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   Le bloc « Calques » du panneau (ex-« Police ») les liste, chacun avec
   son œil (retiré = un retrait d'`effaces`, remis = ce retrait ôté) ; une
   forme se signale sous la souris et s'ouvre d'un clic — sur le plan ou
-  dans le bloc — dans sa bulle : Retirer, sa couleur (les pastilles du
-  nuancier, `reglages.teintesElements`, appliquées au détourage par
+  dans le bloc — dans l'inspecteur : Retirer, sa couleur (les pastilles
+  du nuancier, `reglages.teintesElements`, appliquées au détourage par
   `recolorer`, lib/effacer.js : les trois versions et les exports
-  suivent). La bulle d'une ligne a aussi sa couleur (`l.couleur`, posée
-  avec la police : `poserZone`, `teinteDe`). Tout est dans les réglages :
+  suivent). L'inspecteur d'une ligne a aussi sa couleur (`l.couleur`,
+  posée avec la police : `poserZone`, `teinteDe`). Tout est dans les réglages :
   l'historique les photographie (« Élément : Kaki », « Couleur du texte :
   Beige », « Élément retiré/remis »). Rien ne change sur un logo qu'on ne
   touche pas (banc des mêmes octets : détourage, SVG, image, lignes
@@ -455,9 +457,9 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   éléments à 5 px, Ctrl les coupe), se REDIMENSIONNE par ses huit poignées
   (un coin : en proportion ; Maj : librement ; Alt : autour du centre ; un
   côté : ce côté seul), se TOURNE juste au-delà d'un coin (Maj : par 15°),
-  se RETOURNE et se REPLACE dans sa bulle, où sa géométrie se tape en mm
-  (X, Y, L, H, ∠) ; les flèches le poussent (Maj : dix pixels), Suppr le
-  retire, Échap désélectionne. Sa transformation est dans les réglages
+  se RETOURNE et se REPLACE dans son inspecteur, où sa géométrie se tape
+  en mm (X, Y, L, H, ∠) ; les flèches le poussent (Maj : dix pixels),
+  Suppr le retire, Échap désélectionne. Sa transformation est dans les réglages
   (`transformations`, lib/transformer.js : pivot, d, angle, s, en LARGEURS
   D'IMAGE — isotrope, le même nombre pour l'aperçu, l'image pleine et
   l'image agrandie par l'IA ; p' = pivot + d + R(angle)·S(s)·(p − pivot),
@@ -560,6 +562,31 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   ×4 du modèle OLDA), LOGO DIB 18,8 → 14,7 s (10,4 → 6,4), AUTOMAX 4,8 →
   4,1 s ; les logos sans IA (SSV, CERCLE) inchangés à 3,6 s, leur tracé
   −20 % (2,2 → 1,8 s, 1,7 → 1,3 s).
+- **L'inspecteur** (12 octobre 2026, « la bulle de modification s'ouvre
+  directement sur l'objet que je souhaite modifier, c'est insupportable ;
+  du haut de gamme, tout doit être fluide ») : RIEN NE FLOTTE SUR LE LOGO.
+  Le plan montre la sélection (cadre, poignées, survol) ; le panneau de
+  droite montre ses propriétés — l'inspecteur (`majInspecteur`,
+  `lib/studio-detourage.js`), qui remplace les réglages du logo tant qu'un
+  élément est choisi (le panneau glisse, 200 ms) et s'efface quand on
+  désélectionne (Échap, « ← », un clic sur le vide du plan ; les réglages
+  reviennent où ils en étaient). Il SE DÉDUIT de la sélection
+  (`ligneInspectee`, `elementInspecte` ; plusieurs : le groupe ; l'encre
+  cliquée hors de toute forme listée : `E.point`) — plus d'état de bulle
+  à côté de `E.choix`. Une ligne : son texte en tête, Police (chaque
+  police dans son dessin, la recherche par nom, le poste), Gras autour,
+  Couleur, Géométrie, Retirer ; une forme : Couleur, Géométrie, Retirer ;
+  un groupe : retourner, replacer, retirer ; « ‹ › » passe à l'élément
+  voisin. Il RESTE pendant un déplacement, un changement de police, de
+  version, de fond ; seuls la gomme, Comparer et un autre fichier le
+  ferment ; une sélection qui n'existe plus (forme retirée, formes
+  recalculées sous un autre seuil) sort d'elle-même. Un élément choisi
+  depuis le bloc « Calques » vient à l'écran par un glissement de la vue
+  (`cadrerVue`, 220 ms ; un banc qui lit les coins juste après un clic
+  attend 300 ms). Le pied du panneau (taille DTF, PDF) reste dans les deux
+  vues. La bulle du lasso se pose hors de son cadre (`placerHors`). Le
+  calcul, les fils, les réglages, l'historique, les exports : pas un
+  octet. Spec : docs/superpowers/specs/2026-10-12-inspecteur-design.md.
 
 ## Avec le comptoir
 

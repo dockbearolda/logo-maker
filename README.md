@@ -11,7 +11,9 @@ couleur du nuancier), et un élément ou une ligne de texte se retire d'un
 clic. Le logo se lit en calques — ses lignes de texte, ses formes —, chacun
 montré ou retiré d'un œil, recoloré d'une pastille, déplacé, redimensionné,
 tourné ou retourné à la souris comme dans Photoshop (poignées, guides
-d'alignement, géométrie en mm dans sa bulle) ; une gomme (un lasso)
+d'alignement, géométrie en mm dans l'inspecteur — les propriétés de
+l'élément choisi, dans le panneau : rien ne flotte sur le logo) ; une
+gomme (un lasso)
 retire ce qu'on entoure ou rebouche le fond dessous (une photo : par l'IA). Le texte d'un logo — même écrit en rond, sur un ruban, ou cerclé
 d'une autre couleur — peut
 reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
