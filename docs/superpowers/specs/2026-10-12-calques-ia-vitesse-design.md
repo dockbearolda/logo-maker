@@ -226,6 +226,37 @@ du poste : ni gratuit ni local — contraire à « tout doit être gratuit » et
 « rien ne quitte le poste ». Pas fait ; proposé seulement si Charlie le
 veut.
 
+### Ce qui a été fait (12 octobre 2026, le soir)
+
+- Les calques, la gomme, MI-GAN : faits comme ci-dessus (lib/calques.js,
+  lib/combler.js, `recolorer` dans lib/effacer.js, `comblerIA` dans
+  lib/detourage-travail.js, vendor/migan-512.onnx). Vérifié dans le
+  volet : le DIB (13 formes listées, une recolorée en kaki, une retirée par
+  l'œil et remise par Ctrl Z, « DIB » en beige), le lapin (un rectangle de
+  gomme comblé par MI-GAN en 2,1 s, annulé par Ctrl Z), le t-shirt « I'M HIS
+  FAVORITE EX » (la police Coustard posée sur « FAVORITE EX », le tissu
+  rebouché sous les anciennes lettres). Mêmes octets sur 8 logos non
+  touchés (détourage, SVG, image, lignes).
+- Le banc des modèles (outils/banc-modeles.mjs), six logos réduits ×4 et
+  passés en JPEG 75, PSNR sur les bords en dB :
+
+  | Logo | general ×1 | general Ultra ×8 | anime ×1 | OLDA ×1 (6 000 it.) | OLDA Ultra ×8 |
+  |---|---|---|---|---|---|
+  | Logo SSV | 21,05 | 21,77 | 19,77 | 21,77 | 22,04 |
+  | LOGO DIB | 16,57 | 17,27 | 17,78 | 19,16 | 19,42 |
+  | CERCLE DES CRÉATEURS | 19,25 | 20,71 | 19,45 | 20,01 | 20,31 |
+  | 6e3 AME | 15,19 | 15,75 | 15,03 | 15,77 | 15,97 |
+  | CD44 (illustration) | 19,83 | 20,70 | 18,85 | 20,43 | 20,75 |
+  | Strong Together (matière) | 18,32 | 18,80 | 18,19 | 18,46 | 18,74 |
+
+  Le modèle OLDA en un passage bat « anime » et « general » en un passage
+  sur les six, et vaut l'Ultra ×8 du general (meilleur sur deux, égal sur
+  deux, −0,3 à −0,7 sur deux) pour un huitième du calcul. SPAN
+  (4xNomosUni_span_multijpg) : `run` en erreur sur WebGPU (ORT Web
+  1.30) — écarté ; RealESRGAN_x4plus (RRDB, 67 Mo) : dix fois le calcul,
+  non mesuré en Ultra. Décision après le modèle final (20 000 itérations) :
+  voir CLAUDE.md.
+
 ## 3. La vitesse, troisième passe
 
 ### La mesure de départ (12 octobre 2026, Chrome sans fenêtre, M5)
@@ -244,6 +275,13 @@ LA LECTURE DU TEXTE (OCR, puis la recherche des polices) est le poste
 dominant, de très loin — surtout la première fois (les polices de Google
 à télécharger). À chaud (polices en cache) : mesure en cours, même
 méthode.
+
+À chaud (polices en cache) : 6e3 33 s (Ultra 18,2, tracé 6,9, texte 6,9
+en parallèle), DIB 10,7 s, SSV 2,0 s, AUTOMAX 2,7 s, CERCLE 2,0 s. Le
+profil du texte à chaud (CDP, rejeu dans la page) : rien ne domine — le
+rendu des glyphes (`dilater`, `remplir`), l'OCR, opentype.js, chacun
+moins de 8 % des 7,8 s. Le tracé en Node : l'image par couches fait 3 à
+16 % du tracé (DIB 0,18 s sur 6,5 ; SSV 0,72 sur 3,7 ; 6e3 1,2 sur 19).
 
 ### Pistes, par ordre de rendement attendu
 
