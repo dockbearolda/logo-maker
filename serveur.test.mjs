@@ -61,6 +61,13 @@ test('le serveur : types, compression, revalidation, 404', async t => {
   assert.equal(js.entetes.vary, 'Accept-Encoding')
   assert.equal((await brut('/lib/png.js', { 'if-none-match': js.entetes.etag })).statut, 304)
 
+  /* Les exemples de l'accueil (15 octobre 2026), servis avec leur type. */
+  for (const [f, type] of [['carte-de-visite.jpg', 'image/jpeg'], ['fond-couleur.png', 'image/png'], ['illustration.png', 'image/png']]) {
+    const ex = await brut('/exemples/' + f)
+    assert.equal(ex.statut, 200, f)
+    assert.equal(ex.entetes['content-type'], type, f)
+  }
+
   assert.equal((await brut('/.git/config')).statut, 404)
   assert.equal((await brut('/rien.html')).statut, 404)
   const dossier = await brut('/lib')
