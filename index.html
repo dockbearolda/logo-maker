@@ -48,7 +48,7 @@
 <link rel="modulepreload" href="lib/transformer.js">
 <link rel="modulepreload" href="lib/vecteur-lisse.js">
 <link rel="modulepreload" href="lib/vectoriser.js">
-<!-- Sortie du comptoir OLDA Print Studio par outils/logo-maker-statique.mjs :
+<!-- Sortie du comptoir d'origine par outils/logo-maker-statique.mjs :
      relancer ce script remplace index.html, lib/ et vendor/ par ceux du
      comptoir (git montre l'écart). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,8 +57,8 @@
 <style>
   :root {
     /* ------------------------------------------------------------ LA TEINTE
-       CELLE D'OLDA PRINT STUDIO (11 septembre 2026). Le patron a validé la maquette
-       `olda_system_prototype_v2.html` : sa structure ET son design deviennent
+       CELLE DU COMPTOIR D'ORIGINE (11 septembre 2026). Le patron a validé la maquette
+       `system_prototype_v2.html` : sa structure ET son design deviennent
        ceux du comptoir. Ces jetons portent désormais ses valeurs — le fond
        gris clair, les cartes blanches à filet, l'encre bleu nuit, l'action
        bleu ciel —, et tout écran qui les lit prend son allure d'un coup. Les
@@ -151,7 +151,7 @@
        droite. L'ARDOISE PLUTÔT QUE LE BLEU DES BOUTONS : elle couvre une
        bande entière et non un bouton de 42 px — le bleu vif, à cette
        surface, fait un bloc. C'est le seul endroit de l'app qui la porte.
-       Une machine nommée (DTF, Trotec, Roland UV) porte l'étiquette chaude ;
+       Une machine nommée (transfert, Trotec, Roland UV) porte l'étiquette chaude ;
        « Autres » reste gris — ce n'est pas une machine, c'est le reste. */
     --panneau: #4a5c6e;
     --panneau-survol: #3d4d5d;
@@ -260,7 +260,7 @@
     --sortie: cubic-bezier(.2,0,0,1);
 
     /* DEUX POLICES : Instrument Sans pour tout ce qui se lit (la police des
-       tableaux de la maquette « Tableaux OLDA », étendue à toute l'app le
+       tableaux de la maquette « Tableaux », étendue à toute l'app le
        18 septembre 2026 — l'écran mêlait Instrument Sans dans les tableaux
        et la police du système partout ailleurs, Inter n'étant jamais
        chargée), la chasse fixe pour les numéros de papier. */
@@ -460,7 +460,7 @@
   .o-studio-bloc-tete span:has(.o-studio-fond-teinte) { display:flex; gap:4px; }
   .o-studio-fond-teinte { display:inline-block; width:14px; height:14px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.25); }
 
-  /* UNE LIGNE ET SON INTERRUPTEUR : « Améliorer l'image », le blanc DTF. */
+  /* UNE LIGNE ET SON INTERRUPTEUR : « Améliorer l'image », « Améliorer la netteté ». */
   .o-studio-ligne { display:flex; align-items:center; gap:10px; min-height:32px; }
   .o-studio-ligne-ic { width:30px; height:30px; flex:none; display:grid; place-items:center; border-radius:var(--arrondi); background:var(--zone); color:var(--encre-1); }
   .o-studio-ligne-ic .o-studio-ic { width:16px; height:16px; }
@@ -537,7 +537,7 @@
      panneau ; rien ne flotte sur le plan. En tête : retour, le titre (le
      texte d'une ligne, à corriger s'il est mal lu), l'élément précédent et
      le suivant ; puis ses blocs (Police, Gras autour, Couleur, Géométrie,
-     Retirer). Le pied du panneau (la taille DTF, le PDF) reste en bas. */
+     Retirer). Le pied du panneau (la taille d'impression, le PDF) reste en bas. */
   .o-studio-inspecteur { flex:1; min-height:0; display:flex; flex-direction:column; overflow:auto; outline:none; }
   .o-studio-insp-tete { position:sticky; top:0; z-index:2; display:flex; align-items:center; gap:2px; padding:8px 8px 8px 6px; background:#fff; border-bottom:1px solid var(--filet-carte); }
   .o-studio-insp-tete .o-studio-texte-mot { flex:1; min-width:0; height:34px; margin:0 4px; font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); }
@@ -646,7 +646,7 @@
   .o-studio-pastilles button:hover { background:var(--zone); }
   .o-studio-pastilles button[aria-checked="true"] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
   .o-studio-pastilles i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.2); }
-  /* LA BULLE D'UNE TEINTE : le nuancier OLDA, une autre, l'origine, ou la
+  /* LA BULLE D'UNE TEINTE : le nuancier, une autre, l'origine, ou la
      retirer du logo. */
   .o-studio-pop { position:absolute; z-index:20; width:240px; box-sizing:border-box; display:flex; flex-direction:column; gap:10px; padding:12px; border-radius:var(--arrondi-carte); background:#fff; border:1px solid var(--filet-carte); box-shadow:var(--ombre-flottant); }
   .o-studio-pop-tete { display:flex; align-items:center; gap:8px; }
@@ -697,7 +697,7 @@
   /* LE PDF, toujours en bas du panneau, et « Plus » à côté. */
   .o-studio-pied { position:relative; display:flex; flex-direction:column; gap:10px; padding:12px 16px 14px; border-top:1px solid var(--filet-carte); border-radius:0 0 var(--arrondi-carte) var(--arrondi-carte); background:var(--carte); }
   .o-studio-pied-boutons { display:flex; gap:8px; }
-  /* LA TAILLE DTF : le préréglage d'OLDA, la largeur et la hauteur
+  /* LA TAILLE D'IMPRESSION : la largeur et la hauteur
      imprimées (grises : la taille du fichier), la résolution trop juste. */
   .o-studio-taille { display:flex; flex-direction:column; gap:8px; }
   .o-studio-taille-tete { display:flex; align-items:center; justify-content:space-between; gap:10px; }
