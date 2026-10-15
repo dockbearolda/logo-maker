@@ -165,7 +165,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 
 `lib/coffre.js:10` : `const NOM = 'logo-maker'`.
 `lib/detourage-travail.js:662` : `const RESERVE_GOOGLE = 'polices-google-1'`.
-`lib/studio-detourage.js` : remplacer toutes les occurrences de `'olda.detourage.` par `'logomaker.` (sept lignes : `blanc`, `cotes`, `fond`) ; ligne ~4712 `'olda-apercu-'` → `'apercu-'`. Pas de migration (spec 5 bis) : trois préférences reprennent leur valeur d'office une fois.
+`lib/studio-detourage.js` : remplacer toutes les occurrences de `'olda.detourage.` par `'logomaker.` (sept lignes : `blanc`, `cotes`, `fond`) ; ligne ~4712 `'olda-apercu-'` → `'apercu-'` ; dans `monter` (ligne ~652), le crochet des bancs `hote.olda = { … }` devient `hote.studio = { … }` (le banc de Task 9 le lit sous ce nom). Pas de migration (spec 5 bis) : trois préférences reprennent leur valeur d'office une fois.
 
 - [ ] **Step 2 : Les modèles**
 
