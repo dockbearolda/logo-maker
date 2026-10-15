@@ -28,16 +28,18 @@ chacun son spec, son plan, sa PR, dans cet ordre :
 5. **Les lots** : dix fichiers déposés, une file, un zip.
 6. **La vitrine** : une page publique, exemples avant/après, « rien ne
    quitte votre poste ».
-7. **Le halo DTF** (sorti de la veille) : les pixels semi-transparents
-   d'un Détouré tramés ou nettoyés, la couleur du t-shirt retirée
-   (knockout) — la plainte n° 1 des ateliers DTF (DTPrep, MyHalftone).
-8. **Le BAT sur vêtement** (sorti de la veille) : le logo posé sur un
-   t-shirt, à sa taille, pour l'accord du client.
+7. **Le halo des bords** (sorti de la veille) : les pixels
+   semi-transparents d'un Détouré tramés ou nettoyés, la couleur du
+   support retirée (knockout) — la plainte n° 1 des ateliers (DTPrep,
+   MyHalftone), utile à tout imprimeur.
+8. **Le BAT sur support** (sorti de la veille) : le logo posé sur un
+   t-shirt, un panneau, un mug, à sa taille, pour l'accord du client.
 
 Ce qui ne change pas d'un chantier à l'autre : PC + Chrome/Edge, souris et
 clavier (les ateliers tournent sur PC, l'IA a besoin de WebGPU) ; tout
 calcule sur le poste ; pas de compte ni de facturation avant que la vente
-soit décidée.
+soit décidée ; **un logiciel pour tout imprimeur, pas pour le DTF en
+particulier** (Charlie, 15 octobre 2026 : voir 5 ter).
 
 ### Ce que la veille du 15 octobre 2026 a établi
 
@@ -70,8 +72,8 @@ même dans les lettres », « Image améliorée · agrandie ×4, flou corrigé �
 DES CRÉATEURS · Kameron proposée ». Chaque ligne **s'ouvre d'un clic** sur
 le réglage qui la change, **une seule ligne ouverte à la fois** ; une
 ligne « Retoucher » cache ce qui est de graphiste (les formes et leur
-œil, le contour, les polices du poste). Le pied ne change pas : taille
-DTF, blanc DTF, Télécharger le PDF, Plus.
+œil, le contour, les polices du poste). Le pied ne change pas de place :
+la taille d'impression, Télécharger le PDF, Plus.
 
 Ce qui tient : **rien ne flotte sur le logo** (12 octobre) — la fiche vit
 dans le panneau, le plan en perd même le sélecteur de version ;
@@ -156,7 +158,8 @@ cette étape), rien ; échoué, une croix rouge et l'erreur dans la ligne.
   plan** (comme la ligne du bloc « Calques » aujourd'hui) ; un survol d'une
   forme dans Retoucher, pareil.
 - Sous 1 100 px, le panneau passe sous le plan (règle existante) : la
-  fiche y reste une colonne, le pied collé en bas de la fiche.
+  fiche y reste une colonne, le pied (la taille d'impression, Télécharger)
+  collé en bas de la fiche.
 
 ## 4. Le calcul lisible, dans la fiche
 
@@ -260,6 +263,42 @@ Hors de portée ici, à décider avec la vente : l'adresse Railway
 (`logomaker-olda.up.railway.app`), l'organisation GitHub (`dockbearolda`)
 et la page du portail — un nom de domaine du produit (chantier 6).
 
+## 5 ter. Plus rien de DTF : un logiciel pour tout imprimeur
+
+Charlie, 15 octobre 2026 : « Il faut aussi supprimer complètement le fait
+de pouvoir ajouter une couche de blanc Spot_1 DTF, tout ça, ça dégage :
+c'est un vrai logiciel et pas spécialement pour DTF. » Le produit se vend
+à tout imprimeur — textile, enseigne, objet, papier. Ce qui est propre au
+DTF **part du code**, pas seulement de l'écran (le code mort se retire) :
+
+- **La couche de blanc Spot_1** : l'interrupteur « Blanc DTF » du pied,
+  `E.blanc` et sa clé du poste, le geste de l'historique (« Blanc DTF »,
+  « Blanc DTF coupé », le champ `blanc` des photos), la couche dans le PDF
+  vectoriel (`blancPdf`, `RESSOURCES_BLANC`, `SPOT_BLANC`, l'option
+  `blanc` de `svgVersPdf`), dans le PDF d'une image (`blanc`,
+  `blancMasque`, `masqueBlanc`, `ressources`, l'objet `/ImageMask`), dans
+  l'EPS (`couche`, `%%DocumentCustomColors`), et le rose du Spot_1
+  (`.o-studio-spot`). Leurs tests partent avec eux ; un test garde que ni
+  « Spot_1 » ni « DTF » ne restent dans ce que l'app dit.
+- **Les préréglages DTF** (les emplacements d'OLDA : cœur, dos, bébé,
+  tote bag) partent. La **taille d'impression** reste — c'est de tout
+  imprimeur : la largeur ou la hauteur tapée en mm, l'autre côté suit,
+  « Taille du fichier · 300 dpi » sans choix, la note ambre sous 200 dpi,
+  les cotes sur le plan (R), « -280x322mm » dans le nom des exports.
+  `lib/tailles-dtf.js` devient `lib/taille.js` (`tailleImprimee`, `dpiA`,
+  `mmDit`, `lireMm`, `MM_MIN`, `MM_MAX`) ; le bloc du pied s'appelle
+  « Taille d'impression » : les deux champs, et « Taille du fichier » pour
+  y revenir d'un clic quand une taille est tapée.
+- **Les mots** : « Couleur du textile » (le fond de l'aperçu) devient
+  « Couleur de fond » ; « à la taille DTF » devient « à la taille
+  d'impression » ; le titre de Télécharger ne parle plus de blanc DTF.
+- **Ce qui reste**, parce que c'est de tout imprimeur : le CMJN FOGRA39
+  des PDF et EPS, le nuancier (chantier 3 : celui de l'atelier), le
+  contour en mm, les 300 dpi, le PNG à la taille choisie.
+- **Vérifié par un test** (`lib/marque.test.mjs`) : zéro « Spot_1 » et
+  zéro « DTF » (mot entier, sans casse) dans `index.html`, `lib/*.js` hors
+  commentaires, `package.json`, `README.md`.
+
 ## 6. Les mots
 
 - Un titre, un sous-titre : **des mots de vendeuse**. Jamais « nœuds »,
@@ -344,6 +383,6 @@ logos de référence : la fiche n'est qu'une vue.
 ## 10. Hors de ce chantier
 
 L'anglais (2), la marque et le nuancier de l'atelier (3), le premier
-chargement des modèles (4), les lots (5), la vitrine (6), le halo DTF
-(7), le BAT (8). Une photo d'exemple. Un tutoriel. Tout changement du
+chargement des modèles (4), les lots (5), la vitrine (6), le halo des
+bords (7), le BAT (8). Une photo d'exemple. Un tutoriel. Tout changement du
 calcul ou d'un seuil.
