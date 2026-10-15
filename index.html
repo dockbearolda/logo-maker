@@ -367,13 +367,6 @@
   .o-studio-cherche::after { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(100deg, transparent 35%, rgba(2,132,199,.14) 50%, transparent 65%) no-repeat; background-size:250% 100%; animation:o-studio-balaye 1.8s linear infinite; }
   @keyframes o-studio-balaye { from { background-position:150% 0; } to { background-position:-50% 0; } }
 
-  /* LA PRÉPARATION (lib/studio-detourage.js, `dessinerPrep`) : en bas à
-     gauche du plan, au-dessus de sa barre, une ligne par étape qui tourne
-     pour ce fichier — faite (la coche verte, sa durée), en cours (en gras
-     sur la zone, son % et sa barre), à venir (un point gris), en échec (en
-     rouge, son message dessous). Ni fondu ni rotation : elle paraît et
-     part d'un coup (--dur-1). */
-  /* La barre de l'étape en cours : 4 px, l'accent uni. */
 
   /* CE QUI S'EST PASSÉ */
   .o-studio-toast { position:absolute; z-index:5; left:50%; bottom:112px; transform:translate(-50%, 8px); padding:8px 14px; border-radius:var(--pilule); background:var(--encre-1); color:#fff; box-shadow:var(--ombre-flottant); font-size:var(--t-petit); font-weight:var(--g-forte); opacity:0; pointer-events:none; transition:opacity .18s, transform .18s; white-space:nowrap; font-variant-numeric:tabular-nums; }
@@ -723,14 +716,14 @@
   .o-studio-taille-note { display:flex; align-items:center; gap:6px; font-size:var(--t-petit); color:var(--encre-2); }
   .o-studio-taille-note[hidden] { display:none; }
   .o-studio-taille-note::before { content:''; flex:none; width:6px; height:6px; border-radius:50%; background:#d97706; }
-  .o-studio-telecharger { flex:1; min-width:0; min-height:48px; border-radius:var(--arrondi); white-space:nowrap; }
+  .o-studio-telecharger { flex:1; min-width:0; min-height:48px; padding:0 12px; border-radius:var(--arrondi); white-space:nowrap; }
   /* Le mot ne passe jamais à la ligne : faute de place, il se coupe. */
   .o-studio-telecharger [data-r="enregistrer-mot"] { min-width:0; overflow:hidden; text-overflow:ellipsis; }
   .o-studio-telecharger .o-studio-ic-dl { display:flex; }
   .o-studio-telecharger .o-studio-ic-ok, .o-studio-telecharger.o-studio-fait .o-studio-ic-dl { display:none; }
   .o-studio-telecharger.o-studio-fait .o-studio-ic-ok { display:flex; }
   .o-studio-telecharger.o-studio-fait, .o-studio-telecharger.o-studio-fait:hover:not(:disabled) { background:var(--succes); border-color:var(--succes); }
-  .o-studio-plus { min-height:48px; padding:0 12px 0 14px; border-radius:var(--arrondi); gap:4px; }
+  .o-studio-plus { min-height:48px; padding:0 10px 0 12px; border-radius:var(--arrondi); gap:4px; }
   .o-studio-plus .o-studio-ic { width:16px; height:16px; color:var(--encre-2); transition:transform .15s; }
   .o-studio-plus[aria-expanded="true"] { border-color:var(--filet-fort); background:var(--zone); }
   .o-studio-plus[aria-expanded="true"] .o-studio-ic { transform:rotate(180deg); }

@@ -1,6 +1,6 @@
 TABLETTE: non
 
-# Logo maker · OLDA
+# Logo maker
 
 Le Logo maker du comptoir OLDA Print Studio, sorti seul le 29 septembre 2026
 (voir README.md). Pages statiques, en ligne sur Railway depuis `main`
@@ -430,6 +430,45 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
     redresse les logos (AUTOMAX) mais coupe droit la pointe des plumes du
     phénix (unnamed.png). Pas passée.
 
+- **La fiche** (15 octobre 2026, « ultra simple d'utilisation, la
+  meilleure au monde » ; vendue aux ateliers, B2B) : le panneau de droite
+  n'est plus une liste de réglages mais CE QUE L'APP A FAIT — une ligne
+  par décision du graphiste, en mots de vendeuse (`lib/fiche.js`, pur :
+  `MOTS`, `lignesDe`, `enTeteDe` ; `etatFiche` et `majFiche` dans le
+  studio), chaque ligne ouverte d'un clic sur son réglage (une seule à la
+  fois, `E.ficheOuverte`, pas un geste de l'historique), les lignes de
+  texte vers l'inspecteur, « Retoucher » pour ce qui est de graphiste. Le
+  sélecteur de version a quitté le plan (rien ne flotte sur le logo) ; le
+  panneau « Préparation » du 1er octobre est dans la fiche : chaque ligne
+  dit son état, son avancement, sa durée, son échec (en rouge, à la place
+  du toast) ; l'en-tête dit « Prêt · 3,4 s » ; une étape de moins de
+  400 ms garde les mots d'avant ; les durées de l'ouverture restent sous
+  les recalculs (`prepFichier`). Les corps des lignes sont les blocs
+  d'avant, mêmes `data-a`/`data-c`/`data-r`. L'accueil dit en trois
+  lignes ce qui va se passer et propose trois exemples (`exemples/`,
+  marques fictives, `outils/exemples.mjs` : la toile remplie de blanc,
+  sinon le flou du bord passait pour le fond). Les mots de la fiche sont
+  dans un seul objet pour le chantier anglais. Plus un seul « OLDA » dans
+  l'app : `MARQUE` (`lib/marque.js`, « Logo maker » jusqu'au nom choisi
+  pour la vente), modèles renommés `logo-x4`, clés du poste
+  `logomaker.*`, crochet des bancs `hote.studio` (`lib/marque.test.mjs`
+  compte zéro occurrence). PLUS RIEN DE DTF (« c'est un vrai logiciel et
+  pas spécialement pour DTF ») : la couche de blanc Spot_1 est partie du
+  code (PDF, EPS, historique, le pied), les préréglages aussi ; la taille
+  d'impression en mm reste (`lib/taille.js`, « Revenir au fichier » pour
+  300 dpi) ; le nuancier, le CMJN, le contour restent (de tout
+  imprimeur). Zéro « DTF », zéro « Spot_1 » dans ce que l'app dit (le
+  même test). LES MOTS DES MENUS (« les noms partout sont discutables et
+  ne font pas professionnel ») : la barre dit le fichier et ses dimensions
+  seulement ; « Ouvrir » (ex-« Changer »), « Avant / après »
+  (ex-« Comparer »), le fond « Garder » (ex-« Entier » ; l'historique dit
+  « Fond : Gardé »), « Formats » (ex-« Plus »), « Épaisseur des
+  lettres » (ex-« Gras autour », le réglage ne change pas), « Ajouter une
+  police », la palette sans ΔE (« ≈ Noir du nuancier »), les états de
+  l'IA en mots (« agrandie ×4 · 1,3 s », « flou de 1,8 px retiré »,
+  « déjà nette »), la bulle de la gomme « Gomme ». Mêmes `data-a`, mêmes
+  réglages, mêmes octets. Spec :
+  docs/superpowers/specs/2026-10-15-parcours-en-un-geste-design.md.
 - **Les calques** (12 octobre 2026, « un système de calques : prendre
   l'écriture et la modifier, supprimer un objet qui me plaît pas ») : un
   calque est un élément que le graphiste a lu, jamais un calque dessiné —

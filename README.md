@@ -7,7 +7,10 @@ sur « Entier » : une pochette d'album, une affiche, gardées en
 rectangle et seulement améliorées —, et le logo ressort
 détouré, vectoriel ou en image nette, prêt pour la presse (PDF en CMJN,
 SVG, PNG 300 dpi, EPS en CMJN), à la taille d'impression choisie (des
-millimètres tapés, ses cotes sur le plan).
+millimètres tapés, ses cotes sur le plan). Le panneau de droite dit ce que
+l'app a fait — fond retiré, image améliorée, vectorisé, les couleurs,
+chaque texte et sa police — et chaque ligne s'ouvre sur son réglage ;
+l'accueil propose trois exemples à cliquer.
 Comme dans Illustrator, un contour se pose autour du logo (en mm, une
 couleur du nuancier), et un élément ou une ligne de texte se retire d'un
 clic. Le logo se lit en calques — ses lignes de texte, ses formes —, chacun
@@ -90,6 +93,8 @@ touché.
 | `lib/calques.js`, `lib/combler.js` | les calques : les formes du dessin listées (avec les lignes de texte), un trou rebouché à la couleur (un logo) — une photo passe à MI-GAN (`vendor/migan-512.onnx`) |
 | `lib/transformer.js` | les calques déplacés : la transformation d'un élément (pivot, déplacement, angle, échelle, en largeurs d'image), ses pixels coupés, son trou rebouché, le sprite reposé (bicubique) ; les lettres d'une police transformées |
 | `lib/taille.js` | la taille d'impression : la taille imprimée d'un dessin, sa résolution |
+| `lib/fiche.js`, `lib/marque.js` | la fiche du panneau (les décisions en mots, le calcul lisible ligne par ligne) et le nom du produit |
+| `outils/exemples.mjs` | fabrique les trois exemples de l'accueil (`exemples/`) |
 | `lib/cmjn.js`, `lib/cmjn-fogra39.js` | le CMJN des PDF et de l'EPS : la conversion d'Illustrator en Europe (Coated FOGRA39, relatif colorimétrique, point noir compensé), en table calculée d'avance — `node outils/table-cmjn.mjs` la refait avec littleCMS |
 | `lib/nuancier.js` | le nuancier de l'atelier : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-2026-v2.ase`) |
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses cinq modèles, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
