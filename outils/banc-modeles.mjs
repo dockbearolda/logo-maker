@@ -1,11 +1,11 @@
-/* LE BANC DES MODÈLES (12 octobre 2026, le modèle OLDA) : plusieurs
+/* LE BANC DES MODÈLES (12 octobre 2026, le modèle maison) : plusieurs
    modèles ×4 (leur URL), chacun en un passage et en huit orientations
    (l'Ultra), sur les six logos du banc de l'Ultra (`_essais/ultra/`,
    réduits ×4, JPEG 75), PSNR partout et sur les bords, temps — et des
    ensembles (deux modèles, quatre orientations chacun). Dans la page du
    studio (Chrome sans fenêtre, WebGPU ; le banc écrit chaque ligne dans la
    console) :
-     await (await import('/outils/banc-modeles.mjs')).banc({ modeles: { general: '/vendor/realesr-general-x4v3.onnx', olda: '/_essais/modeles/olda.onnx' }, ensembles: { deux: ['general', 'olda'] } })
+     await (await import('/outils/banc-modeles.mjs')).banc({ modeles: { general: '/vendor/realesr-general-x4v3.onnx', maison: '/_essais/modeles/maison.onnx' }, ensembles: { deux: ['general', 'maison'] } })
    Juger un changement de modèle avant de le faire (CLAUDE.md) : un
    modèle entre s'il gagne sur les bords sans perdre sur un seul logo. */
 import { nettoyerParTuiles, enOrientations, ORIENTATIONS } from '/lib/nettoyage.js'

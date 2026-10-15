@@ -4,7 +4,7 @@ axes dynamiques, opset 17 — les mêmes noms que les modèles de vendor/ —,
 puis une copie en demi-précision (`-fp16.onnx`, entrée et sortie en
 float32 comme outils/realesr-fp16.py). Dans un venv : pip install torch
 onnx onnxconverter-common spandrel.
-  python outils/convertir-onnx.py olda-logo-x4.pth vendor/olda-logo-x4.onnx"""
+  python outils/convertir-onnx.py logo-x4.pth vendor/logo-x4.onnx"""
 import sys, torch, onnx
 from spandrel import ModelLoader
 from onnxconverter_common import float16

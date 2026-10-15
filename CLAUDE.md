@@ -523,8 +523,8 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   (ORT Web 1.30), les ESRGAN communautaires visent les photos ou
   l'animation. Le Compact « general » a donc été RÉENTRAÎNÉ sur 3 000
   logos synthétiques dégradés comme les fichiers des clients
-  (`outils/logos-synthetiques.py`, `outils/entrainer-olda.py`,
-  `outils/convertir-onnx.py` ; `vendor/olda-logo-x4.onnx`, la même
+  (`outils/logos-synthetiques.py`, `outils/entrainer-logo.py`,
+  `outils/convertir-onnx.py` ; `vendor/logo-x4.onnx`, la même
   architecture, la même vitesse). Au banc de six logos réduits ×4 et passés
   en JPEG 75 (`outils/banc-modeles.mjs`), PSNR sur les bords, dB :
 

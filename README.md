@@ -91,7 +91,7 @@ touché.
 | `lib/transformer.js` | les calques déplacés : la transformation d'un élément (pivot, déplacement, angle, échelle, en largeurs d'image), ses pixels coupés, son trou rebouché, le sprite reposé (bicubique) ; les lettres d'une police transformées |
 | `lib/tailles-dtf.js` | la taille DTF : les largeurs du tableau de l'atelier, la taille imprimée d'un dessin, sa résolution |
 | `lib/cmjn.js`, `lib/cmjn-fogra39.js` | le CMJN des PDF et de l'EPS : la conversion d'Illustrator en Europe (Coated FOGRA39, relatif colorimétrique, point noir compensé), en table calculée d'avance — `node outils/table-cmjn.mjs` la refait avec littleCMS |
-| `lib/nuancier.js` | le nuancier de l'atelier : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-olda-2026-v2.ase`) |
+| `lib/nuancier.js` | le nuancier de l'atelier : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-2026-v2.ase`) |
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses cinq modèles, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
 | `outils/birefnet-webgpu.py` | BiRefNet préparé pour la carte graphique du navigateur, et coupé en deux |
 | `outils/realesr-fp16.py` | les deux Real-ESRGAN en demi-précision, pour une carte graphique qui la calcule (l'Ultra 1,4 fois plus vite) |

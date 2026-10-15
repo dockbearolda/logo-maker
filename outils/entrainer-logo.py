@@ -1,4 +1,4 @@
-"""LE MODÈLE OLDA (12 octobre 2026) : le Compact de Real-ESRGAN (general
+"""LE MODÈLE MAISON (12 octobre 2026) : le Compact de Real-ESRGAN (general
 x4v3, 1,2 M de paramètres — la même architecture, la même vitesse)
 réentraîné sur des logos synthétiques (outils/logos-synthetiques.py)
 dégradés comme les fichiers des clients : un flou parfois, une première
@@ -9,7 +9,7 @@ que le banc mesure). Validation pendant l'entraînement sur les vrais logos
 du banc (VALID : les PNG de `_essais/ultra/`, réduits ×4 et passés en JPEG
 75 en Python — proche du banc du navigateur, pas identique), le meilleur
 sur les bords gardé. Sur un M5 (PyTorch MPS) : ~8 itérations/s.
-  VALID=_essais/ultra python outils/entrainer-olda.py <logos> realesr-general-x4v3.pth olda-logo-x4.pth 20000
+  VALID=_essais/ultra python outils/entrainer-logo.py <logos> realesr-general-x4v3.pth logo-x4.pth 20000
 Variables : BATCH (16), LR (2e-4), VALID. Puis outils/convertir-onnx.py."""
 import sys, os, glob, random, io, math, time
 import numpy as np

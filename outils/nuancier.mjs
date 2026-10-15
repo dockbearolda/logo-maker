@@ -1,4 +1,4 @@
-/* LE NUANCIER OLDA (lib/nuancier.js), refait depuis le fichier d'échange
+/* LE NUANCIER (lib/nuancier.js), refait depuis le fichier d'échange
    de couleurs d'Illustrator (.ase) : chaque couleur, son nom et ses encres
    telles quelles — et son rendu à l'écran, ces encres passées par
    littleCMS (`transicc`, Homebrew : `brew install little-cms2`) de Coated
@@ -7,7 +7,7 @@
 
      node outils/nuancier.mjs ["/chemin/vers/Nuancier.ase"] ["/chemin/vers/CoatedFOGRA39.icc"]
 
-   Le nuancier d'office : outils/nuancier-olda-2026-v2.ase. */
+   Le nuancier d'office : outils/nuancier-2026-v2.ase. */
 import { execFileSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -36,7 +36,7 @@ export function lireAse(octets) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const ASE = process.argv[2] || fileURLToPath(new URL('./nuancier-olda-2026-v2.ase', import.meta.url))
+  const ASE = process.argv[2] || fileURLToPath(new URL('./nuancier-2026-v2.ase', import.meta.url))
   const PROFIL = process.argv[3] || '/Library/Application Support/Adobe/Color/Profiles/Recommended/CoatedFOGRA39.icc'
   const couleurs = lireAse(readFileSync(ASE))
   const ecran = execFileSync('transicc', ['-n', '-t1', '-b', '-c0', '-i' + PROFIL, '-o*sRGB'], {
@@ -46,7 +46,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   if (ecran.length !== couleurs.length || ecran.some(v => v.length !== 3 || v.some(x => !Number.isFinite(x)))) throw new Error('transicc : réponse inattendue')
   const lignes = couleurs.map((c, i) => "  { nom: '" + c.nom.replace(/'/g, "\\'") + "', cmjn: [" + c.cmjn.join(', ') + '], rvb: [' + ecran[i].join(', ') + '] },')
   const nomFichier = ASE.split('/').pop()
-  writeFileSync(new URL('../lib/nuancier.js', import.meta.url), '/* LE NUANCIER OLDA (' + nomFichier + ') : chaque couleur, ses encres\n'
+  writeFileSync(new URL('../lib/nuancier.js', import.meta.url), '/* LE NUANCIER (' + nomFichier + ') : chaque couleur, ses encres\n'
     + '   officielles (C, M, J, N, de 0 à 100) et son rendu à l\'écran (sRVB,\n'
     + '   depuis Coated FOGRA39). Écrit par outils/nuancier.mjs : ne pas\n'
     + '   modifier à la main. */\n'
