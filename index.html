@@ -309,12 +309,6 @@
   .o-studio-scene[data-fond="couleur"] { background:var(--fond-couleur, #c62828); }
 
   /* VECTEUR OU IMAGE, en haut à gauche. */
-  .o-studio-modes { position:absolute; z-index:4; top:14px; left:14px; display:flex; gap:2px; padding:4px; border-radius:var(--arrondi); background:rgba(255,255,255,.92); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(15,23,42,.08); box-shadow:var(--ombre-flottant); transition:opacity .18s; }
-  .o-studio-modes.o-studio-cache { opacity:0; pointer-events:none; }
-  .o-studio-modes button { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 12px; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-2); font:inherit; font-size:var(--t-petit); font-weight:var(--g-forte); cursor:pointer; transition:background .12s, color .12s; }
-  .o-studio-modes button:hover { color:var(--encre-1); background:var(--zone); }
-  .o-studio-modes button[aria-checked="true"] { background:var(--encre-1); color:#fff; }
-  .o-studio-modes .o-studio-ic { width:15px; height:15px; }
 
   /* LE COMPARATEUR : l'avant à gauche, l'après à droite, une poignée à
      glisser. */
@@ -371,29 +365,7 @@
      sur la zone, son % et sa barre), à venir (un point gris), en échec (en
      rouge, son message dessous). Ni fondu ni rotation : elle paraît et
      part d'un coup (--dur-1). */
-  .o-studio-prep { position:absolute; z-index:5; left:14px; bottom:70px; width:300px; max-width:calc(100% - 28px); box-sizing:border-box; padding:4px 6px 6px; background:#fff; border:1px solid var(--filet-carte); border-radius:var(--arrondi-carte); box-shadow:var(--ombre-flottant); }
-  .o-studio-prep-tete { display:flex; align-items:center; gap:8px; min-height:30px; padding:0 8px; }
-  .o-studio-prep-tete b { flex:1; font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); }
-  .o-studio-prep-tete span { font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; white-space:nowrap; }
-  .o-studio-prep-tete .o-studio-pop-x { margin-right:-6px; }
-  .o-studio-prep ol { display:flex; flex-direction:column; gap:1px; margin:0; padding:0; list-style:none; }
-  .o-studio-prep li { position:relative; display:grid; grid-template-columns:16px minmax(0,1fr) auto; align-items:center; column-gap:8px; min-height:30px; padding:0 8px; box-sizing:border-box; border-radius:var(--arrondi); font-size:var(--t-corps); color:var(--encre-1); }
-  .o-studio-prep li > i { justify-self:center; width:8px; height:8px; border-radius:50%; background:var(--filet-fort); }
-  .o-studio-prep li > .o-studio-ic { width:16px; height:16px; stroke-width:2.25; }
-  .o-studio-prep-mot { display:flex; align-items:baseline; gap:6px; min-width:0; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
-  .o-studio-prep-mot small { min-width:0; overflow:hidden; text-overflow:ellipsis; font-size:var(--t-petit); font-weight:var(--g-texte); color:var(--encre-2); }
-  .o-studio-prep-val { font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; white-space:nowrap; }
-  .o-studio-prep li[data-etat="attente"] { color:var(--encre-2); }
-  .o-studio-prep li[data-etat="fait"] > .o-studio-ic { color:var(--succes); }
-  .o-studio-prep li[data-etat="cours"] { padding-bottom:6px; background:var(--zone); font-weight:var(--g-forte); }
-  .o-studio-prep li[data-etat="cours"] > i { background:var(--accent); }
-  .o-studio-prep li[data-etat="cours"] .o-studio-prep-val { font-weight:var(--g-forte); color:var(--encre-1); }
-  .o-studio-prep li[data-etat="echec"], .o-studio-prep li[data-etat="echec"] > .o-studio-ic { color:var(--danger); }
-  .o-studio-prep li p { grid-column:2 / 4; margin:0 0 6px; font-size:var(--t-petit); line-height:var(--l-texte); color:var(--danger); }
   /* La barre de l'étape en cours : 4 px, l'accent uni. */
-  .o-studio-prep-barre { position:absolute; left:32px; right:8px; bottom:3px; height:4px; border-radius:var(--pilule); background:var(--filet-carte); overflow:hidden; }
-  .o-studio-prep-barre i { display:block; height:100%; background:var(--accent); }
-  .o-studio-prep-dit { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 
   /* CE QUI S'EST PASSÉ */
   .o-studio-toast { position:absolute; z-index:5; left:50%; bottom:112px; transform:translate(-50%, 8px); padding:8px 14px; border-radius:var(--pilule); background:var(--encre-1); color:#fff; box-shadow:var(--ombre-flottant); font-size:var(--t-petit); font-weight:var(--g-forte); opacity:0; pointer-events:none; transition:opacity .18s, transform .18s; white-space:nowrap; font-variant-numeric:tabular-nums; }
@@ -440,6 +412,44 @@
   .o-studio-bloc-tete b { font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); }
   .o-studio-bloc-tete span { font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .o-studio-bloc + .o-studio-bloc { border-top:1px solid var(--filet-carte); }
+  /* LA FICHE (15 octobre 2026) : ce que l'app a fait, une ligne par
+     décision, une seule ouverte à la fois. Les jetons du studio seulement. */
+  .o-studio-fiche { display:flex; flex-direction:column; padding:6px 8px 10px; }
+  .o-studio-fiche-tete { display:flex; align-items:baseline; justify-content:space-between; gap:10px; min-height:36px; padding:4px 8px 2px; }
+  .o-studio-fiche-tete b { font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); }
+  .o-studio-fiche-tete span { font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .o-studio-fiche-ligne { position:relative; display:flex; flex-direction:column; border-radius:var(--arrondi); }
+  .o-studio-fiche-ligne + .o-studio-fiche-ligne, .o-studio-fiche-textes .o-studio-fiche-ligne { margin-top:1px; }
+  .o-studio-fiche-bouton { display:grid; grid-template-columns:18px minmax(0,1fr) auto 16px; align-items:center; column-gap:8px; width:100%; min-height:44px; padding:6px 8px; box-sizing:border-box; border:0; border-radius:var(--arrondi); background:transparent; font:inherit; color:var(--encre-1); text-align:left; cursor:pointer; }
+  .o-studio-fiche-bouton:hover { background:var(--zone); }
+  .o-studio-fiche-bouton:focus-visible { outline:none; box-shadow:var(--anneau); }
+  .o-studio-fiche-ligne.o-studio-ouverte > .o-studio-fiche-bouton { background:var(--zone); }
+  .o-studio-fiche-etat { position:relative; width:18px; height:18px; display:grid; place-items:center; }
+  .o-studio-fiche-etat > i { width:8px; height:8px; border-radius:50%; background:var(--filet-fort); }
+  .o-studio-fiche-etat > .o-studio-ic { position:absolute; width:16px; height:16px; stroke-width:2.25; display:none; }
+  .o-studio-fiche-ligne[data-etat="omise"] .o-studio-fiche-etat > i { visibility:hidden; }
+  .o-studio-fiche-ligne[data-etat="attente"] .o-studio-fiche-bouton { color:var(--encre-2); }
+  .o-studio-fiche-ligne[data-etat="cours"] .o-studio-fiche-etat > i { background:var(--accent); animation:o-studio-bat 1s ease-in-out infinite; }
+  .o-studio-fiche-ligne[data-etat="fait"] .o-studio-fiche-etat > i, .o-studio-fiche-ligne[data-etat="echec"] .o-studio-fiche-etat > i { display:none; }
+  .o-studio-fiche-ligne[data-etat="fait"] .o-studio-fiche-etat > .o-studio-ic:first-of-type { display:block; color:var(--succes); }
+  .o-studio-fiche-ligne[data-etat="echec"] .o-studio-fiche-etat > .o-studio-ic:last-of-type { display:block; color:var(--danger); }
+  .o-studio-fiche-ligne[data-etat="echec"] .o-studio-fiche-mots b { color:var(--danger); }
+  .o-studio-fiche-mots { display:flex; flex-direction:column; min-width:0; }
+  .o-studio-fiche-mots b { font-size:var(--t-corps); font-weight:var(--g-forte); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .o-studio-fiche-mots small { display:flex; gap:4px; align-items:center; font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .o-studio-fiche-mots small:empty { display:none; }
+  .o-studio-fiche-val { font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .o-studio-fiche-ligne[data-etat="cours"] .o-studio-fiche-val { color:var(--encre-1); font-weight:var(--g-forte); }
+  .o-studio-fiche-bouton > .o-studio-ic:last-child { width:16px; height:16px; color:var(--encre-3); transition:transform .15s; }
+  .o-studio-fiche-ligne.o-studio-ouverte > .o-studio-fiche-bouton > .o-studio-ic:last-child { transform:rotate(180deg); }
+  .o-studio-fiche-barre { display:block; height:3px; margin:-2px 8px 0 34px; border-radius:var(--pilule); background:var(--filet-carte); overflow:hidden; }
+  .o-studio-fiche-barre i { display:block; height:100%; background:var(--accent); }
+  .o-studio-fiche-erreur { margin:0; padding:0 8px 8px 34px; font-size:var(--t-petit); line-height:var(--l-texte); color:var(--danger); }
+  .o-studio-fiche-corps { display:flex; flex-direction:column; gap:12px; padding:4px 8px 14px 34px; }
+  .o-studio-aide { margin:-6px 0 0; font-size:var(--t-petit); line-height:var(--l-texte); color:var(--encre-2); }
+  .o-studio-fiche-dit { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  @keyframes o-studio-bat { 0%, 100% { opacity:1; } 50% { opacity:.35; } }
+  @media (prefers-reduced-motion: reduce) { .o-studio-fiche-ligne[data-etat="cours"] .o-studio-fiche-etat > i { animation:none; } }
   /* La couleur retirée, à droite du titre « Fond ». */
   .o-studio-bloc-tete span:has(.o-studio-fond-teinte) { display:flex; gap:4px; }
   .o-studio-fond-teinte { display:inline-block; width:14px; height:14px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.25); }
