@@ -42,7 +42,7 @@
 <link rel="modulepreload" href="lib/reserve-polices.js">
 <link rel="modulepreload" href="lib/studio-detourage.js">
 <link rel="modulepreload" href="lib/sujet.js">
-<link rel="modulepreload" href="lib/tailles-dtf.js">
+<link rel="modulepreload" href="lib/taille.js">
 <link rel="modulepreload" href="lib/texte.js">
 <link rel="modulepreload" href="lib/transformer.js">
 <link rel="modulepreload" href="lib/vecteur-lisse.js">
@@ -301,11 +301,11 @@
   .o-studio-scene { position:relative; min-width:0; min-height:0; overflow:hidden; border:1px solid var(--filet-carte); border-radius:var(--arrondi-carte); background:repeating-conic-gradient(#eef1f5 0% 25%, #fff 0% 50%) 0 0 / 22px 22px; touch-action:none; user-select:none; outline:none; }
   .o-studio-toile { position:absolute; inset:0; width:100%; height:100%; display:block; cursor:grab; }
   .o-studio-saisi .o-studio-toile { cursor:grabbing; }
-  /* LE FOND DU PLAN : damier, blanc, noir, ou la couleur du textile — un
+  /* LE FOND DU PLAN : damier, blanc, noir, ou une couleur de fond — un
      bord clair oublié saute aux yeux sur le noir. */
   .o-studio-scene[data-fond="blanc"] { background:#fff; }
   .o-studio-scene[data-fond="noir"] { background:#0b0d10; }
-  .o-studio-scene[data-fond="couleur"] { background:var(--fond-textile, #c62828); }
+  .o-studio-scene[data-fond="couleur"] { background:var(--fond-couleur, #c62828); }
 
   /* VECTEUR OU IMAGE, en haut à gauche. */
   .o-studio-modes { position:absolute; z-index:4; top:14px; left:14px; display:flex; gap:2px; padding:4px; border-radius:var(--arrondi); background:rgba(255,255,255,.92); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(15,23,42,.08); box-shadow:var(--ombre-flottant); transition:opacity .18s; }
@@ -439,7 +439,6 @@
   .o-studio-bloc-tete b { font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); }
   .o-studio-bloc-tete span { font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .o-studio-bloc + .o-studio-bloc { border-top:1px solid var(--filet-carte); }
-  .o-studio-spot { display:inline-block; padding:1px 6px; border-radius:var(--pilule); background:#fdf2f8; color:#be185d; font-size:var(--t-petit); font-weight:var(--g-forte); }
   /* La couleur retirée, à droite du titre « Fond ». */
   .o-studio-bloc-tete span:has(.o-studio-fond-teinte) { display:flex; gap:4px; }
   .o-studio-fond-teinte { display:inline-block; width:14px; height:14px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(15,23,42,.25); }
@@ -687,11 +686,7 @@
   .o-studio-taille-tete { display:flex; align-items:center; justify-content:space-between; gap:10px; }
   .o-studio-taille-tete label { font-size:var(--t-corps); color:var(--encre-1); white-space:nowrap; }
   .o-studio-taille-tete b { font-weight:var(--g-forte); }
-  .o-studio-choix { position:relative; min-width:0; display:flex; }
-  .o-studio-choix select { min-width:0; max-width:196px; height:32px; padding:0 28px 0 10px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:#fff; font:inherit; font-size:var(--t-petit); font-weight:var(--g-note); color:var(--encre-1); text-overflow:ellipsis; cursor:pointer; appearance:none; -webkit-appearance:none; }
-  .o-studio-choix select:hover { border-color:var(--filet-fort); }
-  .o-studio-choix select:focus-visible { outline:none; border-color:var(--filet-fort); box-shadow:var(--anneau); }
-  .o-studio-choix .o-studio-ic { position:absolute; right:8px; top:50%; width:14px; height:14px; margin-top:-7px; color:var(--encre-2); pointer-events:none; }
+  .o-studio-taille-auto { font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; }
   .o-studio-taille-champs { display:flex; align-items:center; gap:8px; }
   .o-studio-taille-champ { flex:1; min-width:0; display:flex; align-items:center; gap:6px; height:36px; padding:0 10px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:#fff; font-size:var(--t-petit); color:var(--encre-2); cursor:text; }
   .o-studio-taille-champ:hover { border-color:var(--filet-fort); }
