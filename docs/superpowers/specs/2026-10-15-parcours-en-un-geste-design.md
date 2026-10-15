@@ -214,6 +214,52 @@ Ce qui part avec le panneau du plan : `o-studio-prep` et son CSS, la croix
   cotes, la gomme, le zoom. La barre du haut non plus (la marque sera au
   chantier 3).
 
+## 5 bis. La marque : plus un seul « OLDA » dans l'app
+
+Charlie, 15 octobre 2026 : « Il faut qu'Atelier OLDA n'apparaisse
+absolument nulle part, supprime de partout sur cette app ce nom. » Le
+produit se vend à d'autres ateliers : le nom du premier n'a rien à y
+faire. Ce chantier le retire **partout où l'app le dit ou l'écrit** :
+
+- **Une seule constante, `MARQUE`** (`lib/marque.js`, importée par le
+  studio et les exports) porte le nom du produit : **« Logo maker »** en
+  attendant le nom choisi pour la vente (Charlie, 15 octobre 2026) — le
+  jour venu, une ligne change. Tout ce qui suit la lit.
+- **La page** : `<title>`, la marque de la barre (`o-studio-marque` :
+  le nom seul, plus de « OLDA » devant « Logo maker »), le `<h1>` implicite.
+- **Les exports** : le titre et le `/Producer` des PDF (`pdf-vectoriel.js`,
+  `pdf-image.js`), le `%%Creator` de l'EPS et le titre du SVG
+  (`export-logo.js`, `vectoriser.js`, `vecteur-lisse.js`) : « Logo
+  vectorisé — <MARQUE> », « <MARQUE> » en producteur.
+- **Le nuancier** : la bulle d'une teinte dit « Nuancier » au lieu de
+  « Nuancier OLDA » ; les 17 couleurs et leurs encres ne changent pas (le
+  chantier 3 en fera celles de l'atelier). Le tableau des tailles DTF
+  perd « d'OLDA » dans son titre (« Les tailles habituelles »).
+- **Les identifiants du poste** : les clés `olda.detourage.*` de
+  `localStorage`, le `NOM` du coffre IndexedDB (`olda-logo-maker`), la
+  réserve de polices (`olda-polices-google-1`), les noms des polices
+  d'aperçu (`olda-apercu-`), renommés sans « olda » (`logomaker.`,
+  `logo-maker`, `polices-google-1`, `apercu-`). Pas de migration : les
+  trois préférences reprennent leur valeur d'office une fois, les polices
+  de Google se retéléchargent une fois (17 Mo), les polices du poste se
+  remesurent une fois (`MESURE`). Un seul passage, dit dans la PR.
+- **Les modèles** : `vendor/olda-logo-x4.onnx` et `-fp16` renommés
+  `logo-x4.onnx` et `logo-x4-fp16.onnx` (`MODELE_LOGO`, `DEMI_LOGO`,
+  `vendor/LISEZMOI.md`, `outils/convertir-onnx.py`, `outils/banc-modeles.mjs`).
+  Le modèle reste « le modèle maison » dans les commentaires et la doc.
+- **Le dépôt** : `package.json` (`name`, `description`), `README.md` (le
+  nom, « l'Atelier OLDA », le comptoir), `favicon.svg` s'il porte le nom.
+  Les commentaires du code qui citent une décision datée gardent leur
+  histoire (ils ne sont pas l'app) ; `CLAUDE.md` idem.
+- **Vérifié par un test** : `node --test` compte zéro « olda » (sans
+  casse) dans `index.html`, `lib/*.js` hors commentaires, `package.json`,
+  `README.md`, `vendor/LISEZMOI.md`, les noms de fichiers de `vendor/` et
+  d'`exemples/`.
+
+Hors de portée ici, à décider avec la vente : l'adresse Railway
+(`logomaker-olda.up.railway.app`), l'organisation GitHub (`dockbearolda`)
+et la page du portail — un nom de domaine du produit (chantier 6).
+
 ## 6. Les mots
 
 - Un titre, un sous-titre : **des mots de vendeuse**. Jamais « nœuds »,
