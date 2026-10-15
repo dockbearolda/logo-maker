@@ -1,13 +1,13 @@
-# Logo maker · OLDA
+# Logo maker
 
-Le Logo maker de l'Atelier OLDA, seul : un logo ou une photo se dépose, le
+Le Logo maker, seul : un logo ou une photo se dépose, le
 fond part (un fichier flou est d'abord rendu net ; un imprimé photographié
 sur un tissu ombré part en entier, plis compris) — ou reste, d'un clic
 sur « Entier » : une pochette d'album, une affiche, gardées en
 rectangle et seulement améliorées —, et le logo ressort
 détouré, vectoriel ou en image nette, prêt pour la presse (PDF en CMJN
 avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN), à la taille DTF choisie
-(un préréglage d'OLDA ou des millimètres tapés, ses cotes sur le plan).
+(un préréglage d'atelier ou des millimètres tapés, ses cotes sur le plan).
 Comme dans Illustrator, un contour se pose autour du logo (en mm, une
 couleur du nuancier), et un élément ou une ligne de texte se retire d'un
 clic. Le logo se lit en calques — ses lignes de texte, ses formes —, chacun
@@ -22,9 +22,9 @@ reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
 autour »). Chaque geste se défait (Ctrl Z) ou se refait (Ctrl Maj Z),
 et l'historique du fichier ramène à n'importe lequel.
 
-En ligne : **<https://logomaker-olda.up.railway.app/>** (tuile « Logo
-maker » du portail <https://dockbearolda.github.io/>) — et toujours sur
-<https://dockbearolda.github.io/logo-maker/>, la même page.
+En ligne sur Railway et sur GitHub Pages (la même page, voir
+`package.json` et le portail) — un nom de domaine du produit viendra avec
+la vente.
 
 Tout calcule dans le navigateur, sur le poste : rien ne part sur un
 serveur (celui de Railway, `serveur.mjs`, ne fait que servir les pages).
@@ -57,8 +57,8 @@ redéploie tout seul, en une à deux minutes — GitHub Pages aussi.
 
 ## D'où il vient
 
-Il est sorti le 29 septembre 2026 du comptoir OLDA Print Studio (dépôt
-`OLDA-Print-Studio`, écran « Logo maker »), où le même studio continue de
+Il est sorti le 29 septembre 2026 du comptoir de l'atelier d'origine (le
+dépôt du comptoir, écran « Logo maker »), où le même studio continue de
 vivre. `node outils/logo-maker-statique.mjs <ce dossier>`, lancé depuis ce
 dépôt-là, ramène ici le studio du comptoir : il **remplace** `index.html`,
 `favicon.svg`, `lib/` et `vendor/` — `git diff` montre ce qui change avant
@@ -78,7 +78,7 @@ touché.
 | `lib/detourage.js`, `lib/sujet.js` | le fond uni à la couleur près — un tissu ou un papier ombré éclairé à plat d'abord —, les creux (même ombrés, la boucle d'un ruban) ; le sujet d'une photo ou d'une illustration collée sur sa carte (BiRefNet sur une carte graphique, sinon ISNet — ISNet pour un logo) |
 | `lib/elements.js` | les éléments du dessin : ses formes, ses lignes de texte — le jour d'une lettre se vide sans exception, le blanc peint d'une illustration (le plumage, un reflet) reste |
 | `lib/nettete.js` | « Améliorer la netteté » : le flou d'un fichier mesuré sur ses bords, puis retiré (Richardson–Lucy, sans rien inventer) avant l'IA — d'office quand le fichier est flou |
-| `lib/nettoyage.js` | « Améliorer l'image » (×4 : le modèle OLDA — le Compact de Real-ESRGAN réentraîné sur des logos — pour un logo à plat ou une illustration, « general » pour la matière — broderie, cuir, eau, photo, « anime » sur le processeur), son Ultra (le modèle passé quatre fois pour un logo, huit pour une matière, retourné et pivoté, les dessins moyennés) et ses garde-fous |
+| `lib/nettoyage.js` | « Améliorer l'image » (×4 : le modèle maison — le Compact de Real-ESRGAN réentraîné sur des logos — pour un logo à plat ou une illustration, « general » pour la matière — broderie, cuir, eau, photo, « anime » sur le processeur), son Ultra (le modèle passé quatre fois pour un logo, huit pour une matière, retourné et pivoté, les dessins moyennés) et ses garde-fous |
 | `lib/vecteur-lisse.js`, `lib/geometrie.js`, `lib/vectoriser.js` | le tracé : couches, ronds au compas, droites à la règle |
 | `lib/image-nette.js` | la version Image, découpée sur les couches du vecteur |
 | `lib/controle.js` | la mesure du banc (`outils/banc-controle.mjs`) : le tracé contre l'image détourée (fidélité, îles perdues ou ajoutées), l'épaisseur de l'encre, la couleur du nuancier la plus proche |
@@ -89,12 +89,12 @@ touché.
 | `lib/contour.js`, `lib/effacer.js` | les outils d'Illustrator : le contour autour du logo (le décalage, en mm), un élément ou une ligne retirés d'un clic, un élément recoloré, l'encre d'un lasso retirée |
 | `lib/calques.js`, `lib/combler.js` | les calques : les formes du dessin listées (avec les lignes de texte), un trou rebouché à la couleur (un logo) — une photo passe à MI-GAN (`vendor/migan-512.onnx`) |
 | `lib/transformer.js` | les calques déplacés : la transformation d'un élément (pivot, déplacement, angle, échelle, en largeurs d'image), ses pixels coupés, son trou rebouché, le sprite reposé (bicubique) ; les lettres d'une police transformées |
-| `lib/tailles-dtf.js` | la taille DTF : les largeurs du tableau d'OLDA, la taille imprimée d'un dessin, sa résolution |
+| `lib/tailles-dtf.js` | la taille DTF : les largeurs du tableau de l'atelier, la taille imprimée d'un dessin, sa résolution |
 | `lib/cmjn.js`, `lib/cmjn-fogra39.js` | le CMJN des PDF et de l'EPS : la conversion d'Illustrator en Europe (Coated FOGRA39, relatif colorimétrique, point noir compensé), en table calculée d'avance — `node outils/table-cmjn.mjs` la refait avec littleCMS |
-| `lib/nuancier.js` | le nuancier OLDA : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-olda-2026-v2.ase`) |
+| `lib/nuancier.js` | le nuancier de l'atelier : 17 couleurs, leurs encres officielles (sorties telles quelles en PDF et en EPS) et leur rendu à l'écran — `node outils/nuancier.mjs "Nuancier.ase"` le refait depuis le .ase d'Illustrator (d'office `outils/nuancier-olda-2026-v2.ase`) |
 | `vendor/` | les lecteurs (PDF, HEIC, TIFF), ONNX Runtime et ses cinq modèles, l'index des polices ; versions et licences dans `vendor/LISEZMOI.md` et `vendor/licences/` |
 | `outils/birefnet-webgpu.py` | BiRefNet préparé pour la carte graphique du navigateur, et coupé en deux |
 | `outils/realesr-fp16.py` | les deux Real-ESRGAN en demi-précision, pour une carte graphique qui la calcule (l'Ultra 1,4 fois plus vite) |
-| `outils/logos-synthetiques.py`, `outils/entrainer-olda.py`, `outils/convertir-onnx.py`, `outils/banc-modeles.mjs` | le modèle OLDA (`vendor/olda-logo-x4.onnx`) : des logos synthétiques, le Compact de Real-ESRGAN réentraîné dessus, son export ONNX, et le banc qui compare les modèles (un passage, l'Ultra) sur de vrais logos réduits ×4 et passés en JPEG |
+| `outils/logos-synthetiques.py`, `outils/entrainer-logo.py`, `outils/convertir-onnx.py`, `outils/banc-modeles.mjs` | le modèle maison (`vendor/logo-x4.onnx`) : des logos synthétiques, le Compact de Real-ESRGAN réentraîné dessus, son export ONNX, et le banc qui compare les modèles (un passage, l'Ultra) sur de vrais logos réduits ×4 et passés en JPEG |
 | `outils/banc-ultra.mjs` | le banc de l'Ultra, dans le navigateur : float32 contre float16, tuiles de 192 contre 384, sur des logos réduits ×4 et passés en JPEG |
 | `outils/banc-controle.mjs`, `outils/banc-elements.mjs`, `outils/banc-polices.mjs`, `outils/banc-lignes.mjs` | les bancs : le tracé mesuré contre le fichier, les creux « Partout » avant/après la règle des éléments, les polices reconnues sur des mots écrits dans des familles connues, les lignes de texte (droites et courbes) avant/après un changement |

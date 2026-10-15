@@ -1,7 +1,7 @@
 {
-  "name": "logo-maker-olda",
+  "name": "logo-maker",
   "private": true,
-  "description": "Le Logo maker d'OLDA, seul — en ligne sur Railway (serveur.mjs), et sur https://dockbearolda.github.io/logo-maker/",
+  "description": "Le Logo maker, seul — pages statiques servies par serveur.mjs (Railway, GitHub Pages)",
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": { "start": "node serveur.mjs", "test": "node --test" }
