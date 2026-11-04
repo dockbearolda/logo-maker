@@ -1,0 +1,7 @@
+[
+  "vendor/birefnet-lite-fp16.1.onnx",
+  "vendor/birefnet-lite-fp16.2.onnx",
+  "vendor/isnet-general-int8.onnx",
+  "vendor/migan-512.onnx",
+  "vendor/ort-wasm-simd-threaded.asyncify.wasm"
+]

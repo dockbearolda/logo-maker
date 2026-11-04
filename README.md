@@ -98,3 +98,11 @@ touché.
 | `outils/logos-synthetiques.py`, `outils/entrainer-olda.py`, `outils/convertir-onnx.py`, `outils/banc-modeles.mjs` | le modèle OLDA (`vendor/olda-logo-x4.onnx`) : des logos synthétiques, le Compact de Real-ESRGAN réentraîné dessus, son export ONNX, et le banc qui compare les modèles (un passage, l'Ultra) sur de vrais logos réduits ×4 et passés en JPEG |
 | `outils/banc-ultra.mjs` | le banc de l'Ultra, dans le navigateur : float32 contre float16, tuiles de 192 contre 384, sur des logos réduits ×4 et passés en JPEG |
 | `outils/banc-controle.mjs`, `outils/banc-elements.mjs`, `outils/banc-polices.mjs`, `outils/banc-lignes.mjs` | les bancs : le tracé mesuré contre le fichier, les creux « Partout » avant/après la règle des éléments, les polices reconnues sur des mots écrits dans des familles connues, les lignes de texte (droites et courbes) avant/après un changement |
+
+
+## Hébergement (Cloudflare, gratuit)
+
+https://logo-maker.dockbear.workers.dev — pages statiques (`dist-cf/`, préparé par `npm run cf:build`) ; les 5 fichiers de plus de 25 Mio
+(modèles ONNX et moteur WASM) sont dans R2 (`logo-maker-modeles`, mêmes chemins) et servis par `worker/index.js`, avec les mêmes en-têtes
+d'isolation que `serveur.mjs` (COOP / COEP `credentialless`). Déployer : `npm run cf:deploy` (envoyer d'abord un modèle changé :
+`wrangler r2 object put logo-maker-modeles/vendor/<fichier> --file vendor/<fichier> --remote`). `npm start` reste le serveur Node local.
