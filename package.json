@@ -3,6 +3,13 @@
   "private": true,
   "description": "Le Logo maker d'OLDA, seul — en ligne sur Railway (serveur.mjs), et sur https://dockbearolda.github.io/logo-maker/",
   "type": "module",
-  "engines": { "node": ">=22" },
-  "scripts": { "start": "node serveur.mjs", "test": "node --test" }
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node serveur.mjs",
+    "test": "node --test",
+    "cf:build": "node scripts/build-cf.mjs",
+    "cf:deploy": "node scripts/build-cf.mjs && wrangler deploy"
+  }
 }

@@ -1,0 +1,7 @@
+{
+  "name": "logo-maker",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./dist-cf", "binding": "ASSETS" },
+  "r2_buckets": [{ "binding": "MODELES", "bucket_name": "logo-maker-modeles" }]
+}
