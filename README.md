@@ -6,7 +6,7 @@ sur un tissu ombré part en entier, plis compris) — ou reste, d'un clic
 sur « Entier » : une pochette d'album, une affiche, gardées en
 rectangle et seulement améliorées —, et le logo ressort
 détouré, vectoriel ou en image nette, prêt pour la presse (PDF en CMJN
-avec blanc DTF, SVG, PNG 300 dpi, EPS en CMJN), à la taille DTF choisie
+sans couche de blanc — le RIP la fait —, SVG, PNG 300 dpi, EPS en CMJN), à la taille DTF choisie
 (un préréglage d'OLDA ou des millimètres tapés, ses cotes sur le plan).
 Comme dans Illustrator, un contour se pose autour du logo (en mm, une
 couleur du nuancier), et un élément ou une ligne de texte se retire d'un

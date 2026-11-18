@@ -659,3 +659,22 @@ amélioration faite ici n'y remonte pas toute seule, ni l'inverse :
 `outils/logo-maker-statique.mjs` du comptoir ramène ici sa version et
 remplace `index.html`, `favicon.svg`, `lib/`, `vendor/`. Avant de le relancer,
 regarder ce qui a changé ici (git) pour ne rien perdre.
+
+## Plus de couche de blanc DTF (17 novembre 2026)
+
+« Suppression définitive de la couche de blanc : c'est désormais mon RIP qui
+gère cette partie, le fichier ne doit plus comporter cette couche. » Aucun
+export (PDF vectoriel, PDF image, EPS) n'écrit plus de Spot_1 ni de
+surimpression ; l'interrupteur « Blanc DTF » est parti. Les mentions du
+Spot_1 plus haut sont historiques. Vers le BAT, un seul PDF repart (plus de
+PDF « RIP » à part).
+
+## Piloté par le BAT (17 novembre 2026)
+
+`?pilote=<adresse du BAT>` : le BAT charge Logo maker dans un cadre invisible
+et lui envoie le logo par messages (`ecouterPilote`, lib/studio-detourage.js ;
+`piloteDepuis`, lib/pont-bat.js). « Améliorer l'image » et « Améliorer la
+netteté » toujours ensemble ; `vecteur` = tout le fond (creux compris),
+`detoure` = le fond autour seulement. Le liseré d'une capture (un trait d'un
+pixel autour de l'image) n'est plus pris pour le fond (`lisere`,
+lib/detourage.js).
