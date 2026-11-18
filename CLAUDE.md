@@ -197,6 +197,13 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   lettre collée au dessin) et assez grande pour en juger — dans les trois
   versions. Le texte se lit sur l'image en pleine taille (`lib/texte.js`),
   une fois par image, jamais sur le tracé.
+- **Piloté par le BAT** (`ecouterPilote`, 18 novembre 2026, « c'est
+  vraiment trop long ») : l'Ultra n'y a que `ULTRA_PILOTE` (15 s) de budget,
+  pas `ULTRA_AUTO` ; `version: 'auto'` prend la version du graphiste
+  (vecteur pour un logo à plat, détouré sinon) ; chaque réponse emporte la
+  fiche du logo (`analysePilote` : texte lu sûr, police, arc, ombre,
+  couleurs, genre) qui fait le prompt ChatGPT du BAT. Une ligne mal lue n'y
+  entre jamais.
 - **Le sujet d'une vraie photo passe à BiRefNet**, jamais celui d'un logo
   (il remplit les jours d'un dessin au trait) : une photo, c'est moins de
   la moitié du pourtour à la couleur du fond (`PHOTO`, `lib/sujet.js`), et
