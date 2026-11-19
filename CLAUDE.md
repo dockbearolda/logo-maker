@@ -204,6 +204,23 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   fiche du logo (`analysePilote` : texte lu sûr, police, arc, ombre,
   couleurs, genre) qui fait le prompt ChatGPT du BAT. Une ligne mal lue n'y
   entre jamais.
+- **L'entre-deux cerné part** (18 novembre 2026, « Gipsy Lioness — Bad
+  Girl » : « tous les blancs doivent disparaître, au-dessus de Bad et de
+  Girl ») : un logo « autocollant », chaque élément cerné d'un même gros
+  trait ; le fond enfermé entre deux éléments qui se touchent part, dans
+  « Autour » comme dans « Partout », même d'un bord adouci (`cerneDu`,
+  `lib/detourage.js`). Le cerne se lit au dehors du logo : une couleur
+  qui tient 90 % du pourtour sur au moins 2 `s`, puis S'ARRÊTE (un aplat
+  plein, un badge rouge, n'est pas un cerne : ses trous restent dans
+  « Autour »). Le morceau doit en être bordé sur 60 % de cette épaisseur.
+  Sur les 42 logos de ~/Downloads, seul Bad Girl change (6 728 → 123
+  pixels blancs, les reflets des yeux) ; le 6e3 (île cernée à 80 %) ne
+  bouge pas.
+- **Piloté par le BAT, un logo à plat en dégradé sort en Image** (18
+  novembre 2026, « Clear Ice SXM », un flocon translucide sur noir : « les
+  dégradés doivent rester parfaits ») : `auto` ne force plus Vecteur, le
+  tracé tranche (`vueChoisie` à faux) — ses pixels dans le contour, le
+  fond vidé jusque dans les creux.
 - **Le sujet d'une vraie photo passe à BiRefNet**, jamais celui d'un logo
   (il remplit les jours d'un dessin au trait) : une photo, c'est moins de
   la moitié du pourtour à la couleur du fond (`PHOTO`, `lib/sujet.js`), et
