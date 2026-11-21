@@ -742,14 +742,18 @@ bat-studio, `src/js/vuereelle.js` et `src/css/logos.css` (classes `vr-*`).
 vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
 ça doit être de l'image ».
 - **Un logo en pixels ne se vectorise jamais d'office** (`versionDOffice`,
-  lib/studio-detourage.js) : JPEG, PNG, WebP… s'ouvrent en Image (une photo
-  en Détouré) ; SVG, PDF et AI gardent le choix du graphiste. Le pilote du
+  lib/studio-detourage.js) : JPEG, PNG, WebP… s'ouvrent en Détouré AVEC le
+  fond vidé partout, lettres comprises (`pixelsVides` ; « le résultat
+  parfait : la qualité de Brut, le fond vidé » — l'Image découpée au
+  contour n'était pas exploitable). Une photo reste en Détouré autour. Le
+  BAT (Analyser, `piloter` en 'auto') reçoit exactement ce résultat ; SVG, PDF et AI gardent le choix du graphiste. Le pilote du
   BAT (`E.pilote`) n'est pas touché. Une couleur du nuancier sur un logo en
   pixels reteint ses pixels (Image), elle ne le fait plus passer en Vecteur ;
   le PDF reste une image.
-- **Les variantes** en tête du panneau : Image, Vectoriel, Brut (Détouré),
-  en vignettes ; un clic garde la sienne (`VARIANTES`, `dessinerVariantes`).
-  Pas de Vectoriel pour une photo.
+- **Les variantes** en tête du panneau : Image (Détouré, fond vidé) et
+  Vectoriel, en vignettes ; un clic garde la sienne (`VARIANTES`,
+  `dessinerVariantes`). Le tracé se fait en arrière-plan pour la vignette
+  (`traceVoulu`, pas piloté). Pas de variantes pour une photo.
 - **L'épaisseur au clic** : une forme (ou une ligne de texte gardée dans
   son dessin) s'épaissit ou s'amincit au pixel, ±1 % du grand côté
   (`epaisseurs` des réglages, `epaissir` de lib/effacer.js, dans les trois
