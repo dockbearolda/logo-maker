@@ -353,6 +353,15 @@
 
   /* CE QUI S'EST PASSÉ */
   .o-studio-toast { position:absolute; z-index:5; left:50%; bottom:112px; transform:translate(-50%, 8px); padding:8px 14px; border-radius:var(--pilule); background:var(--encre-1); color:#111214; box-shadow:var(--ombre-flottant); font-size:var(--t-petit); font-weight:var(--g-forte); opacity:0; pointer-events:none; transition:opacity .18s, transform .18s; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  /* LA VIGNETTE DU LOGO REFAIT, à glisser dans la fenêtre ChatGPT. */
+  .o-chatgpt-vignette { position:fixed; z-index:50; right:16px; bottom:16px; display:flex; align-items:center; gap:12px; padding:10px; border-radius:var(--arrondi-carte); background:var(--surface); color:var(--encre-1); box-shadow:var(--ombre-flottant); border:1px solid var(--filet-fort); }
+  .o-chatgpt-vignette img { width:72px; height:72px; object-fit:contain; border-radius:var(--arrondi); cursor:grab; background:repeating-conic-gradient(#e9e9ec 0 25%, #fff 0 50%) 0 0/12px 12px; }
+  .o-chatgpt-vignette img:active { cursor:grabbing; }
+  .o-chatgpt-vignette p { margin:0; display:flex; flex-direction:column; gap:2px; font-size:var(--t-petit); }
+  .o-chatgpt-vignette p span { color:var(--encre-2); }
+  .o-chatgpt-vignette button { min-height:36px; padding:0 12px; border-radius:var(--pilule); border:1px solid var(--filet-fort); background:transparent; color:inherit; font:inherit; font-weight:var(--g-forte); cursor:pointer; }
+  .o-chatgpt-vignette .o-chatgpt-fermer { min-width:36px; padding:0; border:0; font-size:20px; opacity:.6; }
+  .o-chatgpt-vignette button:hover { opacity:1; background:var(--survol-fort); }
   .o-studio-toast[data-ton="alerte"] { background:var(--etat-retard-encre); }
   .o-studio-montre { opacity:1; transform:translate(-50%, 0); }
 
