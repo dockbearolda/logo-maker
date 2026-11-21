@@ -435,17 +435,8 @@
     --ob-fond: #0e0f11; --ob-encre: #f4f4f2; --ob-encre-2: #a2a2a0; --ob-encre-3: #75757a;
     --ob-filet: #26272b; --ob-filet-fort: #3a3b41; --ob-zone: #24252a; --ob-surface: #202125;
   }
-  .ob-barre :is(.retour-dash, .ob-outil, .ob-bouton) { box-sizing: border-box; }
+  .ob-barre :is(.ob-outil, .ob-bouton) { box-sizing: border-box; }
   .ob-barre [hidden] { display: none !important; }
-  .ob-barre .retour-dash {
-    flex: none; display: inline-flex; align-items: center; gap: 2px;
-    min-height: 44px; margin: 0; padding: 0 14px 0 8px;
-    border: 1px solid var(--ob-filet-fort); border-radius: 999px; background: var(--ob-zone);
-    color: var(--ob-encre); font: inherit; font-weight: 600; line-height: 1; text-decoration: none; white-space: nowrap;
-  }
-  .ob-barre .retour-dash svg { display: block; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .ob-barre .retour-dash span { display: inline; }
-  .ob-barre .retour-dash:hover { border-color: var(--ob-encre-3); background: var(--ob-zone); color: var(--ob-encre); text-decoration: none; }
   .ob-marque { flex: none; display: flex; align-items: baseline; gap: 6px; white-space: nowrap; }
   .ob-marque b { font-weight: 600; color: var(--ob-encre); }
   .ob-marque span { color: var(--ob-encre-2); }
@@ -476,7 +467,21 @@
   .ob-bouton:hover:not(:disabled) { border-color: var(--ob-filet-fort); background: var(--ob-zone); }
   .ob-bouton:active:not(:disabled) { transform: translateY(1px); }
   .ob-bouton:disabled { opacity: .55; cursor: default; }
-  .ob-barre :is(.retour-dash, .ob-outil, .ob-bouton):focus-visible { outline: none; box-shadow: var(--ob-anneau); }
+  .ob-barre :is(.ob-outil, .ob-bouton):focus-visible { outline: none; box-shadow: var(--ob-anneau); }
+/* « OLDA » mène au Dashboard (21/11/2026 : la pastille « ‹ Dashboard » est partie,
+   le fil d'Ariane et les onglets du Dashboard suffisent). Dans un cadre, il ne mène nulle part. */
+.ob-marque .ob-olda{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:none}
+.ob-marque a.ob-olda:hover b{text-decoration:underline;text-underline-offset:3px}
+.ob-marque .ob-olda:focus-visible{outline:none;box-shadow:0 0 0 2px #6f95ff;border-radius:6px}
+  /* LE BOUT DE LA BARRE (21/11/2026) : toujours tout à droite, toujours dans cet
+     ordre — la roue des réglages de l'appli, puis la double flèche « en grand »
+     (barre.js du Dashboard). */
+  .ob-bout{flex:none;margin-left:auto;display:flex;align-items:center;gap:2px}
+  .ob-bout .ob-outil{flex:none;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;border:0;border-radius:10px;background:transparent;color:var(--ob-encre);cursor:pointer;text-decoration:none}
+  .ob-bout .ob-outil svg{flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .ob-bout .ob-outil:hover,.ob-bout .ob-outil[aria-current="page"],.ob-bout .ob-outil[aria-pressed="true"]{background:var(--ob-zone)}
+  .ob-bout .ob-outil:focus-visible{outline:none;box-shadow:0 0 0 2px #6f95ff}
+  .ob-bout [hidden]{display:none!important}
   /* LE MENU « HISTORIQUE », sous son bouton : un geste par ligne, le plus
      récent en haut ; celui à l'écran cerclé, ceux à rétablir en gris. */
   .o-studio-menu.o-studio-historique { top:calc(100% + 6px); bottom:auto; right:8px; width:320px; max-height:min(440px, 70vh); overflow:auto; }
@@ -894,5 +899,6 @@
 </script>
 <!-- La bulle de discussion de l'équipe OLDA, flottante au-dessus de l'appli (source unique : le Dashboard). -->
 <script src="https://dockbearolda.github.io/bulle.js" defer></script>
+<script src="https://dockbearolda.github.io/barre.js" defer></script>
 </body>
 </html>
