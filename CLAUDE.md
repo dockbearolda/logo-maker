@@ -702,3 +702,36 @@ netteté » toujours ensemble ; `vecteur` = tout le fond (creux compris),
 `detoure` = le fond autour seulement. Le liseré d'une capture (un trait d'un
 pixel autour de l'image) n'est plus pris pour le fond (`lisere`,
 lib/detourage.js).
+
+## Comme « Analyser » dans le BAT (20 novembre 2026)
+
+« Le logo maker qui s'ouvre dans le BAT doit être la référence » ; « ça doit
+être exactement la même app, la même side bar à droite ». La référence :
+bat-studio, `src/js/vuereelle.js` et `src/css/logos.css` (classes `vr-*`).
+- **Plein écran sombre** (jetons de `index.html` passés en sombre, bloc
+  « Comme Analyser » en fin de style) : la barre en haut, le plan, le
+  panneau de 340 px à droite.
+- **La presse** (`dessinerPresse`, lib/studio-detourage.js) : 500 × 600 mm,
+  la laize de 430 mm en pointillé, la règle en mm, cadrée à l'écran ; le
+  zoom ne bouge que le logo (`E.vue`). « Tout voir » remplit la presse
+  (`ajuster`). La taille imprimée en pastille sous le logo, rouge au-delà
+  de la laize ou de la presse.
+- **Le panneau, rien d'autre** : RETOUCHER LE LOGO (Logo maker : la main
+  rendue au graphiste et « Améliorer l'image » d'office, `logoMaker` ;
+  ChatGPT : le prompt sur mesure du BAT, copié dans `lib/prompt-chatgpt.js`
+  — une retouche là-bas se reporte ici ; Fiverr), COULEUR en menu déroulant
+  (D'origine ou le nuancier ; une couleur sur Détouré passe en Vecteur),
+  FOND (Film, Textile, Blanc, Noir, Couleur — le fond de la presse). Les
+  anciens réglages (interrupteurs, version, détourage, tracé, contour,
+  calques) restent dans la page, cachés (`.o-studio-reglages`) : leurs
+  raccourcis marchent, le calcul n'a pas changé d'un octet. L'inspecteur
+  d'un élément cliqué remplace encore le panneau. En bas : le PDF (ou
+  « Renvoyer au BAT »), la disquette -04_MAKER, « Plus » (la taille DTF en
+  tête, puis les autres formats).
+- **Le chargement : la barre seule** (`dessinerPrep`), comme Logo maker
+  dans le BAT — surtitre, nom du fichier, grand pourcentage, barre (la
+  moyenne des étapes, sans jamais reculer) ; plus de liste d'étapes ni de
+  durées (remplace « Le calcul se lit étape par étape »). Un échec y reste
+  en rouge jusqu'à sa croix.
+- **Aucun code couleur à l'écran** : une teinte hors nuancier se dit par
+  sa famille (`H.nomTeinte`, « Rouge foncé »).
