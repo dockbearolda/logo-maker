@@ -2,6 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<!-- LE JOUR ET LA NUIT (21/11/2026) : de 19 h à 7 h, heure de l'appareil, la
+     page passe en `data-theme="dark"` — posé avant le premier rendu, revu
+     chaque minute et au retour sur l'onglet. Le même dans toutes les applis OLDA. -->
+<script>(function(){var r=document.documentElement;function p(){var h=new Date().getHours(),v=h>=19||h<7?'dark':'light';if(r.getAttribute('data-theme')!==v)r.setAttribute('data-theme',v)}p();setInterval(p,60000);document.addEventListener('visibilitychange',function(){if(!document.hidden)p()})})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Logo maker · OLDA</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -67,35 +71,35 @@
        tableaux, pastilles, colonnes, fenêtres) sont en bas, sous « o- ». */
 
     /* --------------------------------------------------------- SURFACES */
-    --fond: #0e0f11;
-    --carte: #17181b;
-    --surface: #202125;
-    --zone: #24252a;
-    --survol: #24252a;
-    --survol-fort: #2e2f34;
-    --filet-ligne: #26272b;
+    --fond: #e9edf2;
+    --carte: #f9fafb;
+    --surface: #fff;
+    --zone: #f1f4f7;
+    --survol: #e9edf2;
+    --survol-fort: #dde3ea;
+    --filet-ligne: #e2e8f0;
 
     /* ------------------------------------------------------------ TEXTE */
-    --encre-1: #f4f4f2;
-    --encre-2: #a2a2a0;
+    --encre-1: #0f172a;
+    --encre-2: #64748b;
     /* LE GRIS CLAIR NE SE LIT PAS (23 septembre 2026) : 2,6:1 sur blanc,
        loin des 4,5:1 d'un texte qu'on doit lire. Tout ce qui se lit — un
        titre de colonne, un tableau vide, une aide, un placeholder, une valeur
        de Réglages — est en --encre-2. --encre-3 ne sert plus qu'à ce qui est
        éteint ou décoratif : un bouton inactif, un chevron, un filet. */
-    --encre-3: #75757a;
-    --encre-indice: #a2a2a0;
+    --encre-3: #94a3b8;
+    --encre-indice: #64748b;
 
     /* ----------------------------------------------------------- TRAITS */
-    --filet-carte: #26272b;
-    --filet-fort: #3a3b41;
+    --filet-carte: #e2e8f0;
+    --filet-fort: #cbd5e1;
 
     /* ------------------------------------------------------------ ACCENT
        Le bleu ciel (#0284c7) de ses boutons pleins, de ses onglets et de ses
        filtres choisis ; un bleu plus soutenu sous la souris. */
-    --accent: #6f95ff;
-    --accent-survol: #8eabff;
-    --sur-accent: #0e0f11;
+    --accent: #0284c7;
+    --accent-survol: #0369a1;
+    --sur-accent: #fff;
 
     /* ============================================ LA HIÉRARCHIE DES ACTIONS
        Les niveaux restent, sous l'allure de la maquette : bouton plein bleu
@@ -106,10 +110,10 @@
     --sur-action: #fff;
     --ombre-action: 0 0 #0000;
     --ombre-action-majeure: 0 0 #0000;
-    --filet-bouton: #2a2b30;
+    --filet-bouton: #e2e8f0;
     --ombre-contour: 0 0 #0000;
-    --succes: #1fa971;
-    --succes-encre: #4ade80;
+    --succes: #0f9d68;
+    --succes-encre: #0b7a50;
     /* L'AMBRE DE LA MAISON — celle des pastilles « chez le client » et des
        points qui manquent à un devis. Elle attire l'œil sans crier : ce
        n'est pas une erreur, c'est quelque chose à finir. */
@@ -120,7 +124,7 @@
        ouverte, pas un point au bout d'une ligne. */
     --attention-fond: #fff7ed;
     --attention-filet: #fdba74;
-    --danger: #f26b5b;
+    --danger: #dc2626;
     --danger-filet: rgba(220,38,38,.35);
     --danger-voile: rgba(220,38,38,.08);
     --eteint: #f1f5f9;
@@ -175,7 +179,7 @@
        `.o-b-*` plus bas. Point, mot et fond clair, comme la maquette. */
     --etat-pret-encre: #0b7a50;
     --etat-pret-point: #0b7a50;
-    --etat-retard-encre: #f26b5b;
+    --etat-retard-encre: #b91c1c;
     --etat-retard-point: #b91c1c;
     --etat-retard-fond: #fdeaea;
 
@@ -184,11 +188,11 @@
        qui flotte — un menu, une fenêtre — en porte une. */
     --ombre-1: 0 0 #0000;
     --ombre-2: 0 0 #0000;
-    --ombre-flottant: 0 0 0 1px rgba(255,255,255,.09), 0 18px 44px rgba(0,0,0,.5);
+    --ombre-flottant: 0 12px 32px rgba(15,23,42,.14);
     --voile: rgba(15,23,42,.45);
 
     /* ------------------------------------------------------- LE FOCUS */
-    --anneau: 0 0 0 2px #6f95ff;
+    --anneau: 0 0 0 3px rgba(17,24,39,.18);
     --anneau-sur-plein: 0 0 0 2px var(--carte), 0 0 0 5px rgba(17,24,39,.35);
 
     /* --------------------------------------------- LES TAILLES DE TEXTE
@@ -288,6 +292,45 @@
     --p-filet-fort: #a8a7a1;
     --p-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --p-police: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /* LE JOUR ET LA NUIT (21/11/2026, Charlie : « logo maker doit être en mode
+       jour, les app peuvent passer en mode nuit à 19h en automatique ») : ces
+       jetons sont le jour ; `[data-theme="dark"]`, posé de 19 h à 7 h par le
+       script en tête de page, les passe à la nuit. */
+    color-scheme: light;
+    --teinte: 15,23,42;            /* voiles et liserés : encre sur fond clair */
+    --sur-encre: #fff;             /* ce qui se lit SUR l'encre pleine */
+    --verre-carte: rgba(255,255,255,.94);
+    --scene: radial-gradient(120% 90% at 40% 45%, #f6f8fa 0%, #e9edf2 70%);
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --fond: #0e0f11;
+    --carte: #17181b;
+    --zone: #24252a;
+    --survol: #24252a;
+    --survol-fort: #2e2f34;
+    --filet-ligne: #26272b;
+    --encre-1: #f4f4f2;
+    --encre-2: #a2a2a0;
+    --encre-3: #75757a;
+    --encre-indice: #a2a2a0;
+    --filet-carte: #26272b;
+    --filet-fort: #3a3b41;
+    --accent: #6f95ff;
+    --accent-survol: #8eabff;
+    --sur-accent: #0e0f11;
+    --filet-bouton: #2a2b30;
+    --succes: #1fa971;
+    --succes-encre: #4ade80;
+    --danger: #f26b5b;
+    --etat-retard-encre: #f26b5b;
+    --ombre-flottant: 0 0 0 1px rgba(255,255,255,.09), 0 18px 44px rgba(0,0,0,.5);
+    --anneau: 0 0 0 2px #6f95ff;
+    --surface: #202125;
+    --teinte: 255,255,255;
+    --sur-encre: #111214;
+    --verre-carte: rgba(23,24,27,.94);
+    --scene: radial-gradient(120% 90% at 40% 45%, #1c1d21 0%, #0e0f11 70%);
   }
   /* ======================================================== LE LOGO MAKER
      (lib/studio-detourage.js) Le logo au centre de son plan, son fond et
@@ -310,7 +353,7 @@
      glisser. */
   .o-studio-split { position:absolute; z-index:3; top:0; bottom:0; width:28px; margin-left:-14px; cursor:ew-resize; touch-action:none; }
   .o-studio-split::before { content:''; position:absolute; top:0; bottom:0; left:13px; width:2px; background:#fff; box-shadow:0 0 0 1px rgba(15,23,42,.14), 0 0 14px rgba(15,23,42,.22); }
-  .o-studio-split i { position:absolute; top:50%; left:14px; width:38px; height:38px; display:grid; place-items:center; transform:translate(-50%, -50%); border-radius:50%; background:#fff; color:#111214; box-shadow:var(--ombre-flottant); transition:transform .12s; }
+  .o-studio-split i { position:absolute; top:50%; left:14px; width:38px; height:38px; display:grid; place-items:center; transform:translate(-50%, -50%); border-radius:50%; background:#fff; color:var(--sur-encre); box-shadow:var(--ombre-flottant); transition:transform .12s; }
   .o-studio-split.o-studio-saisi i { transform:translate(-50%, -50%) scale(1.08); }
   .o-studio-split i .o-studio-ic { width:16px; height:16px; }
   .o-studio-split span { position:absolute; top:66px; padding:4px 10px; border-radius:var(--pilule); background:rgba(15,23,42,.78); color:#fff; font-size:var(--t-petit); font-weight:var(--g-forte); white-space:nowrap; pointer-events:none; }
@@ -318,18 +361,18 @@
   .o-studio-split [data-c="apres"] { left:26px; background:var(--accent); }
 
   /* LA BARRE DU PLAN, en bas au centre : les cotes, la gomme, « Comparer », le zoom. */
-  .o-studio-vuebar { position:absolute; z-index:4; left:50%; bottom:14px; transform:translateX(-50%); display:flex; align-items:center; gap:4px; padding:5px; border-radius:var(--arrondi-carte); background:rgba(24,25,28,.82); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.1); box-shadow:var(--ombre-flottant); transition:opacity .18s; }
+  .o-studio-vuebar { position:absolute; z-index:4; left:50%; bottom:14px; transform:translateX(-50%); display:flex; align-items:center; gap:4px; padding:5px; border-radius:var(--arrondi-carte); background:rgba(24,25,28,.82); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(var(--teinte),.1); box-shadow:var(--ombre-flottant); transition:opacity .18s; }
   .o-studio-vuebar.o-studio-cache { opacity:0; pointer-events:none; }
-  .o-studio-pastille { width:18px; height:18px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(255,255,255,.2); }
+  .o-studio-pastille { width:18px; height:18px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.2); }
   .o-studio-outil { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 10px; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-1); font:inherit; font-size:var(--t-petit); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; white-space:nowrap; cursor:pointer; touch-action:none; }
   .o-studio-outil .o-studio-ic { width:16px; height:16px; }
   .o-studio-outil.o-studio-carre { width:32px; padding:0; justify-content:center; }
   .o-studio-outil:hover { background:var(--zone); }
-  .o-studio-outil[aria-pressed="true"], .o-studio-outil[aria-pressed="true"]:hover { background:var(--encre-1); color:#111214; }
+  .o-studio-outil[aria-pressed="true"], .o-studio-outil[aria-pressed="true"]:hover { background:var(--encre-1); color:var(--sur-encre); }
   .o-studio-badge { position:absolute; z-index:4; top:66px; left:14px; padding:6px 12px; border-radius:var(--pilule); background:rgba(15,23,42,.82); color:#fff; font-size:var(--t-petit); font-weight:var(--g-forte); pointer-events:none; }
 
   /* L'ACCUEIL, avant le premier logo. */
-  .o-studio-accueil { position:absolute; inset:0; z-index:5; display:grid; place-items:center; padding:24px; background:radial-gradient(ellipse at 50% 40%, rgba(255,255,255,.6), rgba(255,255,255,.94) 70%); }
+  .o-studio-accueil { position:absolute; inset:0; z-index:5; display:grid; place-items:center; padding:24px; background:radial-gradient(ellipse at 50% 40%, rgba(var(--teinte),.6), rgba(var(--teinte),.94) 70%); }
   .o-studio-accueil-carte { width:min(420px, 100%); box-sizing:border-box; display:flex; flex-direction:column; align-items:center; gap:18px; padding:44px 32px 30px; text-align:center; background:var(--surface); border:1.5px dashed var(--filet-fort); border-radius:var(--arrondi-fenetre); box-shadow:var(--ombre-flottant); }
   .o-studio-accueil-rond { width:68px; height:68px; display:grid; place-items:center; border-radius:var(--arrondi-fenetre); background:var(--zone); color:var(--encre-1); }
   .o-studio-accueil-rond .o-studio-ic { width:32px; height:32px; stroke-width:1.5; }
@@ -352,7 +395,7 @@
   .o-studio-prep-dit { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 
   /* CE QUI S'EST PASSÉ */
-  .o-studio-toast { position:absolute; z-index:5; left:50%; bottom:112px; transform:translate(-50%, 8px); padding:8px 14px; border-radius:var(--pilule); background:var(--encre-1); color:#111214; box-shadow:var(--ombre-flottant); font-size:var(--t-petit); font-weight:var(--g-forte); opacity:0; pointer-events:none; transition:opacity .18s, transform .18s; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .o-studio-toast { position:absolute; z-index:5; left:50%; bottom:112px; transform:translate(-50%, 8px); padding:8px 14px; border-radius:var(--pilule); background:var(--encre-1); color:var(--sur-encre); box-shadow:var(--ombre-flottant); font-size:var(--t-petit); font-weight:var(--g-forte); opacity:0; pointer-events:none; transition:opacity .18s, transform .18s; white-space:nowrap; font-variant-numeric:tabular-nums; }
   /* LA VIGNETTE DU LOGO REFAIT, à glisser dans la fenêtre ChatGPT. */
   .o-chatgpt-vignette { position:fixed; z-index:50; right:16px; bottom:16px; display:flex; align-items:center; gap:12px; padding:10px; border-radius:var(--arrondi-carte); background:var(--surface); color:var(--encre-1); box-shadow:var(--ombre-flottant); border:1px solid var(--filet-fort); }
   .o-chatgpt-vignette img { width:72px; height:72px; object-fit:contain; border-radius:var(--arrondi); cursor:grab; background:repeating-conic-gradient(#e9e9ec 0 25%, #fff 0 50%) 0 0/12px 12px; }
@@ -372,7 +415,7 @@
      la même, au pixel, en tête de BAT Studio, du Logo maker et du planning :
      « ‹ Dashboard », OLDA + le nom de l'appli en gris, un filet, le titre de
      l'écran en gras ; à droite des outils (icône, + libellé) et un bouton
-     encadré. Clair par défaut, `.ob-sombre` pour le sombre. Cibles de 44 px.
+     encadré. Clair par défaut ; sombre sous `[data-theme="dark"]` (de 19 h à 7 h). Cibles de 44 px.
      Copiée telle quelle dans les trois applis : ne la retoucher qu'ici, puis
      partout (side-session-notes/…/barre-olda.css). */
   .ob-barre {
@@ -388,7 +431,7 @@
     font: 400 14px/1.25 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     letter-spacing: normal; -webkit-font-smoothing: antialiased;
   }
-  .ob-barre.ob-sombre {
+  [data-theme="dark"] .ob-barre, .ob-barre.ob-sombre {
     --ob-fond: #0e0f11; --ob-encre: #f4f4f2; --ob-encre-2: #a2a2a0; --ob-encre-3: #75757a;
     --ob-filet: #26272b; --ob-filet-fort: #3a3b41; --ob-zone: #24252a; --ob-surface: #202125;
   }
@@ -455,7 +498,7 @@
   .o-studio-bloc + .o-studio-bloc { border-top:1px solid var(--filet-carte); }
   /* La couleur retirée, à droite du titre « Fond ». */
   .o-studio-bloc-tete span:has(.o-studio-fond-teinte) { display:flex; gap:4px; }
-  .o-studio-fond-teinte { display:inline-block; width:14px; height:14px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(255,255,255,.25); }
+  .o-studio-fond-teinte { display:inline-block; width:14px; height:14px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.25); }
 
   /* UNE LIGNE ET SON INTERRUPTEUR : « Améliorer l'image », le blanc DTF. */
   .o-studio-ligne { display:flex; align-items:center; gap:10px; min-height:32px; }
@@ -539,7 +582,7 @@
   .o-studio-insp-tete { position:sticky; top:0; z-index:2; display:flex; align-items:center; gap:2px; padding:8px 8px 8px 6px; background:var(--surface); border-bottom:1px solid var(--filet-carte); }
   .o-studio-insp-tete .o-studio-texte-mot { flex:1; min-width:0; height:34px; margin:0 4px; font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); }
   .o-studio-insp-titre { flex:1; min-width:0; display:flex; align-items:center; gap:8px; height:34px; padding:0 6px; }
-  .o-studio-insp-titre i { width:18px; height:18px; flex:none; border-radius:var(--arrondi); box-shadow:inset 0 0 0 1px rgba(255,255,255,.15); }
+  .o-studio-insp-titre i { width:18px; height:18px; flex:none; border-radius:var(--arrondi); box-shadow:inset 0 0 0 1px rgba(var(--teinte),.15); }
   .o-studio-insp-titre b { min-width:0; font-size:var(--t-corps); font-weight:var(--g-forte); color:var(--encre-1); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .o-studio-insp-titre small { min-width:0; font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .o-studio-insp-nav { width:34px; height:34px; flex:none; display:grid; place-items:center; padding:0; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-2); cursor:pointer; transition:background .12s, color .12s; }
@@ -615,8 +658,8 @@
   .o-studio-oeil:focus-visible { outline:none; box-shadow:var(--anneau); }
   .o-studio-oeil .o-studio-ic { width:16px; height:16px; }
   .o-studio-oeil[aria-pressed="false"] { color:var(--encre-3); }
-  .o-studio-forme i { width:10px; height:10px; margin-left:-1px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(255,255,255,.25); }
-  .o-studio-ligne-texte i[style] { box-shadow:inset 0 0 0 1px rgba(255,255,255,.25); }
+  .o-studio-forme i { width:10px; height:10px; margin-left:-1px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.25); }
+  .o-studio-ligne-texte i[style] { box-shadow:inset 0 0 0 1px rgba(var(--teinte),.25); }
   [data-r="formes"] + .o-studio-reserve { margin-top:8px; }
   .o-studio-pop-couleur { display:flex; flex-direction:column; gap:4px; padding-top:8px; border-top:1px solid var(--filet-carte); }
   .o-studio-pop-couleur label { font-size:var(--t-petit); color:var(--encre-2); }
@@ -631,7 +674,7 @@
   [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein { color:var(--sur-action); }
   [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein .o-studio-ic { color:var(--sur-action); }
   .o-studio-teinte { position:relative; width:36px; height:36px; display:grid; place-items:center; padding:0; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--surface); cursor:pointer; transition:border-color .12s, box-shadow .12s; }
-  .o-studio-teinte i { width:26px; height:26px; border-radius:var(--arrondi); box-shadow:inset 0 0 0 1px rgba(255,255,255,.14); }
+  .o-studio-teinte i { width:26px; height:26px; border-radius:var(--arrondi); box-shadow:inset 0 0 0 1px rgba(var(--teinte),.14); }
   .o-studio-teinte em { position:absolute; right:-4px; bottom:-4px; width:13px; height:13px; border-radius:50%; border:2px solid var(--carte); box-shadow:0 0 0 1px rgba(15,23,42,.2); }
   .o-studio-teinte:hover:not(:disabled), .o-studio-teinte.o-studio-ouverte { border-color:var(--accent); box-shadow:0 0 0 3px rgba(2,132,199,.16); }
   .o-studio-teinte:disabled { cursor:default; opacity:.7; }
@@ -642,12 +685,12 @@
   .o-studio-pastilles button { display:grid; place-items:center; height:30px; padding:0; border:1px solid transparent; border-radius:var(--arrondi); background:transparent; cursor:pointer; }
   .o-studio-pastilles button:hover { background:var(--zone); }
   .o-studio-pastilles button[aria-checked="true"] { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
-  .o-studio-pastilles i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(255,255,255,.2); }
+  .o-studio-pastilles i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.2); }
   /* LA BULLE D'UNE TEINTE : le nuancier OLDA, une autre, l'origine, ou la
      retirer du logo. */
   .o-studio-pop { position:absolute; z-index:20; width:240px; box-sizing:border-box; display:flex; flex-direction:column; gap:10px; padding:12px; border-radius:var(--arrondi-carte); background:var(--surface); border:1px solid var(--filet-carte); box-shadow:var(--ombre-flottant); }
   .o-studio-pop-tete { display:flex; align-items:center; gap:8px; }
-  .o-studio-pop-tete i { width:22px; height:22px; border-radius:var(--arrondi); box-shadow:inset 0 0 0 1px rgba(255,255,255,.15); }
+  .o-studio-pop-tete i { width:22px; height:22px; border-radius:var(--arrondi); box-shadow:inset 0 0 0 1px rgba(var(--teinte),.15); }
   .o-studio-pop-tete b { flex:1; font-size:var(--t-corps); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; }
   .o-studio-pop-tete small { display:block; font-size:var(--t-petit); font-weight:var(--g-texte); color:var(--encre-2); }
   .o-studio-pop-x { width:28px; height:28px; display:grid; place-items:center; padding:0; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-2); cursor:pointer; }
@@ -656,7 +699,7 @@
   .o-studio-pop-grille button { height:26px; display:grid; place-items:center; padding:0; border:0; border-radius:var(--arrondi); background:transparent; cursor:pointer; }
   .o-studio-pop-grille button:hover { background:var(--zone); }
   .o-studio-pop-grille button[aria-current="true"] { box-shadow:inset 0 0 0 2px var(--accent); }
-  .o-studio-pop-grille i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(255,255,255,.2); }
+  .o-studio-pop-grille i { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.2); }
   .o-studio-pop-pied { display:flex; gap:6px; }
   .o-studio-pop-pied .o-studio-bouton { min-height:34px; padding:0 10px; font-size:var(--t-petit); }
   /* LA GÉOMÉTRIE D'UN ÉLÉMENT (les calques déplacés) : X, Y ; L, cadenas, H ; angle, retourner, replacer. */
@@ -684,7 +727,7 @@
   .o-studio-pop-retirer { color:var(--etat-retard-encre); }
   .o-studio-pop-large { width:100%; }
   /* L'INFOBULLE D'UNE PASTILLE : son nom, ses encres CMJN. */
-  .o-studio-infobulle { position:fixed; z-index:60; display:flex; flex-direction:column; gap:3px; padding:8px 11px; border-radius:var(--arrondi); background:var(--encre-1); color:#111214; font-size:var(--t-petit); white-space:nowrap; font-variant-numeric:tabular-nums; pointer-events:none; box-shadow:var(--ombre-flottant); }
+  .o-studio-infobulle { position:fixed; z-index:60; display:flex; flex-direction:column; gap:3px; padding:8px 11px; border-radius:var(--arrondi); background:#17181b; color:#f4f4f2; font-size:var(--t-petit); white-space:nowrap; font-variant-numeric:tabular-nums; pointer-events:none; box-shadow:var(--ombre-flottant); }
   .o-studio-infobulle > b { font-size:var(--t-corps); font-weight:var(--g-forte); }
   .o-studio-infobulle em { font-style:normal; color:rgba(255,255,255,.7); }
   .o-studio-infobulle-encres { display:flex; gap:10px; color:rgba(255,255,255,.6); }
@@ -770,61 +813,61 @@
      capitales, ses choix en puces. */
   .page { padding:0; }
   .o-studio { gap:0; grid-template-columns:minmax(0,1fr) 340px; }
-  .o-studio-scene { border:0; border-radius:0; background:radial-gradient(120% 90% at 40% 45%, #1c1d21 0%, #0e0f11 70%); }
+  .o-studio-scene { border:0; border-radius:0; background:var(--scene); }
   .o-studio-accueil { background:transparent; }
-  .o-studio-accueil-carte { border-color:rgba(255,255,255,.16); background:rgba(23,24,27,.94); }
+  .o-studio-accueil-carte { border-color:rgba(var(--teinte),.16); background:var(--verre-carte); }
   .o-studio-panneau { border:0; border-left:1px solid var(--filet-carte); border-radius:0; background:var(--carte); }
   .o-studio-defile { padding:0 4px; }
   .o-studio-bloc { gap:12px; padding:18px 20px; }
   .o-studio-bloc-tete b, .o-studio-insp-bloc .o-studio-bloc-tete b { font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:var(--g-note); color:var(--encre-3); }
   .o-studio-pied { padding:16px 20px 18px; border-radius:0; background:var(--carte); }
-  .o-studio-ligne-ic { background:rgba(255,255,255,.06); }
-  .o-studio-bouton { border-color:rgba(255,255,255,.12); background:rgba(255,255,255,.04); }
-  .o-studio-bouton:hover:not(:disabled) { border-color:rgba(255,255,255,.24); background:rgba(255,255,255,.09); }
+  .o-studio-ligne-ic { background:rgba(var(--teinte),.06); }
+  .o-studio-bouton { border-color:rgba(var(--teinte),.12); background:rgba(var(--teinte),.04); }
+  .o-studio-bouton:hover:not(:disabled) { border-color:rgba(var(--teinte),.24); background:rgba(var(--teinte),.09); }
   /* Le bouton qui compte : clair sur le sombre, comme la puce choisie. */
-  .o-studio-plein, .o-studio-plein:hover:not(:disabled) { background:#f4f4f2; border-color:#f4f4f2; color:#111214; }
+  .o-studio-plein, .o-studio-plein:hover:not(:disabled) { background:var(--encre-1); border-color:var(--encre-1); color:var(--sur-encre); }
   .o-studio-plein:hover:not(:disabled) { background:#fff; border-color:#fff; }
-  [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein, [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein .o-studio-ic { color:#111214; }
+  [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein, [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein .o-studio-ic { color:var(--sur-encre); }
   .o-studio-telecharger.o-studio-fait, .o-studio-telecharger.o-studio-fait:hover:not(:disabled) { color:#fff; }
   /* LES PUCES (les segments) : chacune son filet ; la choisie, claire. */
   .o-studio-segment { display:flex; flex-wrap:wrap; gap:6px; padding:0; border:0; background:transparent; }
-  .o-studio-segment > button, .o-studio-segment > label { flex:1 0 auto; display:inline-flex; align-items:center; justify-content:center; gap:7px; height:36px; padding:0 12px; box-sizing:border-box; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:transparent; color:var(--encre-1); font:inherit; font-size:13px; font-weight:var(--g-note); white-space:nowrap; cursor:pointer; box-shadow:none; transition:background .12s, border-color .12s, color .12s; }
-  .o-studio-segment > button:hover, .o-studio-segment > label:hover { color:var(--encre-1); border-color:rgba(255,255,255,.28); }
-  .o-studio-segment > button[aria-checked="true"], .o-studio-segment > label[aria-checked="true"], .o-studio-segment > button[aria-checked="true"]:hover, .o-studio-segment > label[aria-checked="true"]:hover { background:#f4f4f2; border-color:#f4f4f2; color:#111214; box-shadow:none; }
+  .o-studio-segment > button, .o-studio-segment > label { flex:1 0 auto; display:inline-flex; align-items:center; justify-content:center; gap:7px; height:36px; padding:0 12px; box-sizing:border-box; border:1px solid rgba(var(--teinte),.12); border-radius:8px; background:transparent; color:var(--encre-1); font:inherit; font-size:13px; font-weight:var(--g-note); white-space:nowrap; cursor:pointer; box-shadow:none; transition:background .12s, border-color .12s, color .12s; }
+  .o-studio-segment > button:hover, .o-studio-segment > label:hover { color:var(--encre-1); border-color:rgba(var(--teinte),.28); }
+  .o-studio-segment > button[aria-checked="true"], .o-studio-segment > label[aria-checked="true"], .o-studio-segment > button[aria-checked="true"]:hover, .o-studio-segment > label[aria-checked="true"]:hover { background:var(--encre-1); border-color:var(--encre-1); color:var(--sur-encre); box-shadow:none; }
   .o-studio-segment > [aria-checked="true"] .o-studio-ic, .o-studio-segment > button[aria-checked="true"] .o-studio-ic { color:#3063e9; }
   .o-studio-segment .o-studio-pastille { width:12px; height:12px; }
   .o-studio-segment > label { position:relative; }
   .o-studio-segment input[type=color] { position:absolute; inset:0; width:100%; height:100%; margin:0; padding:0; border:0; opacity:0; cursor:pointer; }
   /* LA COULEUR EN MENU DÉROULANT : la couleur choisie, un chevron ; ouvert,
      les teintes du logo et le nuancier. */
-  .o-studio-deroulant > summary { display:flex; align-items:center; gap:10px; min-height:44px; padding:0 14px; border:1px solid rgba(255,255,255,.12); border-radius:10px; background:rgba(255,255,255,.04); list-style:none; cursor:pointer; font-size:14px; font-weight:var(--g-note); color:var(--encre-1); }
+  .o-studio-deroulant > summary { display:flex; align-items:center; gap:10px; min-height:44px; padding:0 14px; border:1px solid rgba(var(--teinte),.12); border-radius:10px; background:rgba(var(--teinte),.04); list-style:none; cursor:pointer; font-size:14px; font-weight:var(--g-note); color:var(--encre-1); }
   .o-studio-deroulant > summary::-webkit-details-marker { display:none; }
-  .o-studio-deroulant > summary:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.22); }
+  .o-studio-deroulant > summary:hover { background:rgba(var(--teinte),.08); border-color:rgba(var(--teinte),.22); }
   .o-studio-deroulant > summary:focus-visible { outline:none; box-shadow:var(--anneau); }
   .o-studio-deroulant > summary > span { flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .o-studio-deroulant-pastille { flex:none; width:18px; height:18px; border-radius:50%; background:conic-gradient(#e4032c, #ffeb00, #3aaa35, #00adba, #004f9f, #d2c5e2, #e4032c); box-shadow:inset 0 0 0 1px rgba(255,255,255,.25); }
+  .o-studio-deroulant-pastille { flex:none; width:18px; height:18px; border-radius:50%; background:conic-gradient(#e4032c, #ffeb00, #3aaa35, #00adba, #004f9f, #d2c5e2, #e4032c); box-shadow:inset 0 0 0 1px rgba(var(--teinte),.25); }
   .o-studio-chevron { width:7px; height:7px; margin:0 2px 3px; border-right:1.5px solid var(--encre-2); border-bottom:1.5px solid var(--encre-2); rotate:45deg; }
   .o-studio-deroulant[open] .o-studio-chevron { rotate:225deg; margin-bottom:-3px; }
   .o-studio-deroulant-corps { display:flex; flex-direction:column; gap:12px; margin-top:12px; }
   /* LE CHARGEMENT : la barre seule, comme l'enregistrement du BAT — un
      surtitre, un grand pourcentage, une barre ; un échec y reste. */
-  .o-studio-prep { left:50%; top:50%; bottom:auto; width:min(380px, calc(100% - 32px)); transform:translate(-50%, -50%); padding:22px 24px 24px; border:0; border-radius:16px; background:rgba(23,24,27,.94); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); box-shadow:0 0 0 1px rgba(255,255,255,.1), 0 24px 60px rgba(0,0,0,.55); }
+  .o-studio-prep { left:50%; top:50%; bottom:auto; width:min(380px, calc(100% - 32px)); transform:translate(-50%, -50%); padding:22px 24px 24px; border:0; border-radius:16px; background:var(--verre-carte); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); box-shadow:0 0 0 1px rgba(var(--teinte),.1), 0 24px 60px rgba(0,0,0,.55); }
   .o-studio-charge-tete { display:flex; align-items:center; justify-content:space-between; gap:8px; }
   .o-studio-charge-sur { margin:0; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--encre-3); font-weight:var(--g-note); }
   .o-studio-charge-titre { margin:4px 0 0; font-size:var(--t-titre); font-weight:var(--g-forte); color:var(--encre-1); }
   .o-studio-charge-chiffre { display:flex; align-items:baseline; gap:2px; margin:14px 0 12px; color:var(--encre-1); font-variant-numeric:tabular-nums; }
   .o-studio-charge-chiffre b { font-size:64px; line-height:.9; font-weight:var(--g-forte); letter-spacing:-.045em; }
   .o-studio-charge-chiffre span { font-size:24px; color:var(--encre-3); }
-  .o-studio-charge-barre { height:6px; border-radius:var(--pilule); background:rgba(255,255,255,.08); overflow:hidden; }
-  .o-studio-charge-barre i { display:block; height:100%; border-radius:inherit; background:#f4f4f2; transition:width .3s ease-out; }
+  .o-studio-charge-barre { height:6px; border-radius:var(--pilule); background:rgba(var(--teinte),.08); overflow:hidden; }
+  .o-studio-charge-barre i { display:block; height:100%; border-radius:inherit; background:var(--encre-1); transition:width .3s ease-out; }
   .o-studio-prep[data-echec] .o-studio-charge-barre i { background:var(--danger); }
   .o-studio-charge-erreur { margin:14px 0 0; font-size:var(--t-petit); line-height:var(--l-texte); color:var(--danger); }
 
   /* RETOUCHER LE LOGO : Logo maker sur toute la largeur, ChatGPT, Fiverr —
      les tuiles du BAT. */
   .o-studio-outils { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .o-studio-outil-tuile { display:flex; align-items:center; gap:10px; min-height:48px; padding:10px 12px; box-sizing:border-box; text-align:left; text-decoration:none; border:1px solid rgba(255,255,255,.1); border-radius:12px; background:rgba(255,255,255,.04); color:var(--encre-1); font:inherit; cursor:pointer; transition:background .12s, border-color .12s, transform .12s; }
-  .o-studio-outil-tuile:hover { background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.22); }
+  .o-studio-outil-tuile { display:flex; align-items:center; gap:10px; min-height:48px; padding:10px 12px; box-sizing:border-box; text-align:left; text-decoration:none; border:1px solid rgba(var(--teinte),.1); border-radius:12px; background:rgba(var(--teinte),.04); color:var(--encre-1); font:inherit; cursor:pointer; transition:background .12s, border-color .12s, transform .12s; }
+  .o-studio-outil-tuile:hover { background:rgba(var(--teinte),.09); border-color:rgba(var(--teinte),.22); }
   .o-studio-outil-tuile:active { transform:scale(.98); }
   .o-studio-outil-tuile:focus-visible { outline:2px solid #6f95ff; outline-offset:1px; }
   .o-studio-outil-tuile[inert] { opacity:.4; }
@@ -843,7 +886,7 @@
 </style>
 </head>
 <body>
-<main class="page"><header class="o-studio-barre ob-barre ob-sombre" data-studio-barre></header><div data-studio></div></main>
+<main class="page"><header class="o-studio-barre ob-barre" data-studio-barre></header><div data-studio></div></main>
 <script type="module">
   import './lib/icones.js'
   import { monter } from './lib/studio-detourage.js'
