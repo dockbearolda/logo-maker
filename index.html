@@ -477,6 +477,15 @@
   .ob-bouton:active:not(:disabled) { transform: translateY(1px); }
   .ob-bouton:disabled { opacity: .55; cursor: default; }
   .ob-barre :is(.retour-dash, .ob-outil, .ob-bouton):focus-visible { outline: none; box-shadow: var(--ob-anneau); }
+  /* LE BOUT DE LA BARRE (21/11/2026) : toujours tout à droite, toujours dans cet
+     ordre — la roue des réglages de l'appli, puis la double flèche « en grand »
+     (barre.js du Dashboard). */
+  .ob-bout{flex:none;margin-left:auto;display:flex;align-items:center;gap:2px}
+  .ob-bout .ob-outil{flex:none;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;border:0;border-radius:10px;background:transparent;color:var(--ob-encre);cursor:pointer;text-decoration:none}
+  .ob-bout .ob-outil svg{flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .ob-bout .ob-outil:hover,.ob-bout .ob-outil[aria-current="page"],.ob-bout .ob-outil[aria-pressed="true"]{background:var(--ob-zone)}
+  .ob-bout .ob-outil:focus-visible{outline:none;box-shadow:0 0 0 2px #6f95ff}
+  .ob-bout [hidden]{display:none!important}
   /* LE MENU « HISTORIQUE », sous son bouton : un geste par ligne, le plus
      récent en haut ; celui à l'écran cerclé, ceux à rétablir en gris. */
   .o-studio-menu.o-studio-historique { top:calc(100% + 6px); bottom:auto; right:8px; width:320px; max-height:min(440px, 70vh); overflow:auto; }
@@ -894,5 +903,6 @@
 </script>
 <!-- La bulle de discussion de l'équipe OLDA, flottante au-dessus de l'appli (source unique : le Dashboard). -->
 <script src="https://dockbearolda.github.io/bulle.js" defer></script>
+<script src="https://dockbearolda.github.io/barre.js" defer></script>
 </body>
 </html>
