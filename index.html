@@ -887,18 +887,6 @@
   /* La taille DTF, en tête du menu « Plus ». */
   .o-studio-menu .o-studio-taille { padding:8px 10px 12px; margin-bottom:4px; border-bottom:1px solid var(--filet-carte); }
   .o-studio-menu { width:300px; }
-  /* Les variantes : trois vignettes, un clic garde la sienne. */
-  .o-studio-variantes { display:grid; grid-template-columns:repeat(auto-fit, minmax(0, 1fr)); gap:8px; }
-  .o-studio-variante { display:flex; flex-direction:column; align-items:stretch; gap:4px; min-height:44px; padding:6px; box-sizing:border-box; text-align:left; border:1px solid rgba(var(--teinte),.1); border-radius:12px; background:rgba(var(--teinte),.04); color:var(--encre-1); font:inherit; cursor:pointer; transition:background .12s, border-color .12s, transform .12s; }
-  .o-studio-variante[hidden] { display:none; }
-  .o-studio-variante:hover { background:rgba(var(--teinte),.09); border-color:rgba(var(--teinte),.22); }
-  .o-studio-variante:active { transform:scale(.98); }
-  .o-studio-variante:focus-visible { outline:2px solid #6f95ff; outline-offset:1px; }
-  .o-studio-variante[aria-checked="true"] { border-color:#6f95ff; background:rgba(111,149,255,.12); box-shadow:inset 0 0 0 1px #6f95ff; }
-  .o-studio-variante canvas { width:100%; aspect-ratio:4 / 3; border-radius:8px; display:block; }
-  .o-studio-variante b { font-size:13px; font-weight:var(--g-forte); line-height:1.2; padding:0 2px; }
-  .o-studio-variante small { font-size:11px; line-height:1.25; color:var(--encre-2); padding:0 2px; }
-
 </style>
 </head>
 <body>

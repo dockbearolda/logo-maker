@@ -750,13 +750,10 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   BAT (`E.pilote`) n'est pas touché. Une couleur du nuancier sur un logo en
   pixels reteint ses pixels (Image), elle ne le fait plus passer en Vecteur ;
   le PDF reste une image.
-- **Les variantes** en tête du panneau : Image (Détouré, fond vidé) et
-  Vectoriel, en vignettes ; un clic garde la sienne (`VARIANTES`,
-  `dessinerVariantes`). Le tracé se fait en arrière-plan pour la vignette
-  (`traceVoulu`, pas piloté). Pas de variantes pour une photo.
-- **L'épaisseur au clic** : une forme (ou une ligne de texte gardée dans
-  son dessin) s'épaissit ou s'amincit au pixel, ±1 % du grand côté
-  (`epaisseurs` des réglages, `epaissir` de lib/effacer.js, dans les trois
-  versions et les exports). Une ligne dont la police est choisie garde son
-  gras de police (curseur « Épaisseur »). La police se change toujours
-  dans l'inspecteur.
+- **L'image est fixe** (21 novembre 2026, « on oublie les calques, ultra
+  simple à utiliser, on finira avec ChatGPT ») : sur le plan, glisser
+  déplace la vue, la molette zoome, rien d'autre — plus de sélection, de
+  survol des textes, d'inspecteur, de gomme ni de raccourcis D/V/I/G ; plus
+  de variantes ni d'épaisseur. Aucune police n'est posée d'office (la
+  lecture reste, pour la fiche du prompt ChatGPT). Le code des calques reste
+  dans la page, débranché ; ne pas le rebrancher sans demande.
