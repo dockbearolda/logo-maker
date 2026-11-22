@@ -72,49 +72,49 @@
        tableaux, pastilles, colonnes, fenêtres) sont en bas, sous « o- ». */
 
     /* --------------------------------------------------------- SURFACES */
-    --fond: #e9edf2;
-    --carte: #f9fafb;
+    --fond: #f4f6f8;
+    --carte: #fff;
     --surface: #fff;
-    --zone: #f1f4f7;
-    --survol: #e9edf2;
-    --survol-fort: #dde3ea;
-    --filet-ligne: #e2e8f0;
+    --zone: #f1f4f6;
+    --survol: #eef1f4;
+    --survol-fort: #e3e9ee;
+    --filet-ligne: #e4e9ed;
 
     /* ------------------------------------------------------------ TEXTE */
-    --encre-1: #0f172a;
-    --encre-2: #64748b;
+    --encre-1: #202930;
+    --encre-2: #5b6b78;
     /* LE GRIS CLAIR NE SE LIT PAS (23 septembre 2026) : 2,6:1 sur blanc,
        loin des 4,5:1 d'un texte qu'on doit lire. Tout ce qui se lit — un
        titre de colonne, un tableau vide, une aide, un placeholder, une valeur
        de Réglages — est en --encre-2. --encre-3 ne sert plus qu'à ce qui est
        éteint ou décoratif : un bouton inactif, un chevron, un filet. */
-    --encre-3: #94a3b8;
-    --encre-indice: #64748b;
+    --encre-3: #a3b1bc;
+    --encre-indice: #5b6b78;
 
     /* ----------------------------------------------------------- TRAITS */
-    --filet-carte: #e2e8f0;
-    --filet-fort: #cbd5e1;
+    --filet-carte: #e4e9ed;
+    --filet-fort: #d6dde3;
 
     /* ------------------------------------------------------------ ACCENT
-       Le bleu ciel (#0284c7) de ses boutons pleins, de ses onglets et de ses
+       L'ardoise du Dashboard (#4a6274, 22/11/2026 ; bleu ciel avant) : boutons pleins, onglets et
        filtres choisis ; un bleu plus soutenu sous la souris. */
-    --accent: #0284c7;
-    --accent-survol: #0369a1;
+    --accent: #4a6274;
+    --accent-survol: #42596a;
     --sur-accent: #fff;
 
     /* ============================================ LA HIÉRARCHIE DES ACTIONS
        Les niveaux restent, sous l'allure de la maquette : bouton plein bleu
        ciel, bouton à filet, texte nu, rouge pour ce qui ne se répare pas. La
        maquette ne met aucune ombre à ses boutons. */
-    --action: #0284c7;
-    --action-survol: #0369a1;
+    --action: #4a6274;
+    --action-survol: #42596a;
     --sur-action: #fff;
     --ombre-action: 0 0 #0000;
     --ombre-action-majeure: 0 0 #0000;
-    --filet-bouton: #e2e8f0;
+    --filet-bouton: #d6dde3;
     --ombre-contour: 0 0 #0000;
-    --succes: #0f9d68;
-    --succes-encre: #0b7a50;
+    --succes: #1e8e3e;
+    --succes-encre: #137333;
     /* L'AMBRE DE LA MAISON — celle des pastilles « chez le client » et des
        points qui manquent à un devis. Elle attire l'œil sans crier : ce
        n'est pas une erreur, c'est quelque chose à finir. */
@@ -125,9 +125,9 @@
        ouverte, pas un point au bout d'une ligne. */
     --attention-fond: #fff7ed;
     --attention-filet: #fdba74;
-    --danger: #dc2626;
-    --danger-filet: rgba(220,38,38,.35);
-    --danger-voile: rgba(220,38,38,.08);
+    --danger: #d93025;
+    --danger-filet: rgba(217,48,37,.35);
+    --danger-voile: rgba(217,48,37,.08);
     --eteint: #f1f5f9;
     --eteint-encre: #64748b;
 
@@ -141,7 +141,7 @@
     --ticket-fond: var(--carte);
     --ticket-filet: #e2e8f0;
     --ticket-filet-fort: #cbd5e1;
-    --ticket-encre: #0f172a;
+    --ticket-encre: #202930;
     --ticket-pale: #334155;
     --ticket-sourdine: #64748b;
     --ticket-discret: #94a3b8;
@@ -149,7 +149,7 @@
     --ticket-succes: #0b7a50;
     /* Le bouton qui encaisse : bleu ciel plein, le même que l'action du
        reste de l'app. */
-    --ticket-action: #0284c7;
+    --ticket-action: #4a6274;
     --ticket-sur-action: #fff;
 
     /* ================================== LA FENÊTRE D'UNE COMMANDE
@@ -160,8 +160,8 @@
        surface, fait un bloc. C'est le seul endroit de l'app qui la porte.
        Une machine nommée (DTF, Trotec, Roland UV) porte l'étiquette chaude ;
        « Autres » reste gris — ce n'est pas une machine, c'est le reste. */
-    --panneau: #4a5c6e;
-    --panneau-survol: #3d4d5d;
+    --panneau: #4a6274;
+    --panneau-survol: #42596a;
     --sur-panneau: #fff;
     --panneau-sourdine: rgba(255,255,255,.68);
     --panneau-voile: rgba(255,255,255,.16);
@@ -189,12 +189,12 @@
        qui flotte — un menu, une fenêtre — en porte une. */
     --ombre-1: 0 0 #0000;
     --ombre-2: 0 0 #0000;
-    --ombre-flottant: 0 12px 32px rgba(15,23,42,.14);
-    --voile: rgba(15,23,42,.45);
+    --ombre-flottant: 0 24px 60px rgba(32,41,48,.18);
+    --voile: rgba(32,41,48,.36);
 
     /* ------------------------------------------------------- LE FOCUS */
-    --anneau: 0 0 0 3px rgba(17,24,39,.18);
-    --anneau-sur-plein: 0 0 0 2px var(--carte), 0 0 0 5px rgba(17,24,39,.35);
+    --anneau: 0 0 0 3px rgba(107,129,145,.45);
+    --anneau-sur-plein: 0 0 0 2px var(--carte), 0 0 0 5px rgba(107,129,145,.45);
 
     /* --------------------------------------------- LES TAILLES DE TEXTE
        TROIS TAILLES, PAS UNE DE PLUS (18 septembre 2026, demande du patron :
@@ -226,8 +226,8 @@
 
     /* ====================================================== LES HAUTEURS
        Celles des boutons de la maquette : 42 px le bouton, 34 px le petit. */
-    --commande-h: 42px;
-    --commande-majeure: 46px;
+    --commande-h: 44px;
+    --commande-majeure: 44px;
     --commande-appoint: 34px;
     --rond: 36px;
     /* LA BOÎTE DE LA PRISE DE COMMANDE (23 septembre 2026, Charlie : « tout
@@ -238,9 +238,9 @@
 
     --etiquette-h: 26px;
 
-    --arrondi: 10px;
-    --arrondi-carte: 14px;
-    --arrondi-fenetre: 16px;      /* le rayon d'une fenêtre (o-modal-card, o-papier) */
+    --arrondi: 12px;
+    --arrondi-carte: 18px;
+    --arrondi-fenetre: 24px;      /* le rayon d'une fenêtre (o-modal-card, o-papier) */
     --pilule: 999px;
 
     /* ------------------------------------------------- QUATRE PAS D'ÉCART
@@ -297,10 +297,10 @@
        jetons sont le jour ; `[data-theme="dark"]`, posé de 19 h à 7 h par le
        script en tête de page, les passe à la nuit. */
     color-scheme: light;
-    --teinte: 15,23,42;            /* voiles et liserés : encre sur fond clair */
+    --teinte: 32,41,48;            /* voiles et liserés : encre sur fond clair */
     --sur-encre: #fff;             /* ce qui se lit SUR l'encre pleine */
     --verre-carte: rgba(255,255,255,.94);
-    --scene: radial-gradient(120% 90% at 40% 45%, #f6f8fa 0%, #e9edf2 70%);
+    --scene: radial-gradient(120% 90% at 40% 45%, #f7f9fa 0%, #eaeef1 70%);
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
@@ -316,16 +316,16 @@
     --encre-indice: #a2a2a0;
     --filet-carte: #26272b;
     --filet-fort: #3a3b41;
-    --accent: #6f95ff;
-    --accent-survol: #8eabff;
-    --sur-accent: #0e0f11;
+    --accent: #5f7d92;
+    --accent-survol: #6d8ba0;
+    --sur-accent: #fff;
     --filet-bouton: #2a2b30;
     --succes: #1fa971;
     --succes-encre: #4ade80;
-    --danger: #f26b5b;
-    --etat-retard-encre: #f26b5b;
+    --danger: #f28b82;
+    --etat-retard-encre: #f28b82;
     --ombre-flottant: 0 0 0 1px rgba(255,255,255,.09), 0 18px 44px rgba(0,0,0,.5);
-    --anneau: 0 0 0 2px #6f95ff;
+    --anneau: 0 0 0 3px rgba(107,129,145,.6);
     --surface: #202125;
     --teinte: 255,255,255;
     --sur-encre: #111214;
@@ -375,7 +375,7 @@
   .o-studio-vuebar .o-studio-outil { height:44px; padding:0 12px; border-radius:10px; color:var(--encre-1); }
   .o-studio-vuebar .o-studio-outil.o-studio-carre { width:44px; padding:0; }
   .o-studio-vuebar .o-studio-outil:hover { background:rgba(var(--teinte),.06); }
-  .o-studio-vuebar .o-studio-outil[aria-pressed="true"] { background:rgba(111,149,255,.14); color:var(--accent); }
+  .o-studio-vuebar .o-studio-outil[aria-pressed="true"] { background:rgba(74,98,116,.12); color:var(--accent); }
   .o-studio-pastille { width:18px; height:18px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.2); }
   .o-studio-outil { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 10px; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-1); font:inherit; font-size:var(--t-petit); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; white-space:nowrap; cursor:pointer; touch-action:none; }
   .o-studio-outil .o-studio-ic { width:16px; height:16px; }
@@ -390,11 +390,11 @@
   .o-studio-accueil-rond { width:68px; height:68px; display:grid; place-items:center; border-radius:var(--arrondi-fenetre); background:var(--zone); color:var(--encre-1); }
   .o-studio-accueil-rond .o-studio-ic { width:32px; height:32px; stroke-width:1.5; }
   .o-studio-accueil .o-studio-bouton { min-height:44px; padding:0 20px; }
-  .o-studio-depot { position:absolute; inset:10px; z-index:6; display:none; place-items:center; border:2px dashed var(--accent); border-radius:var(--arrondi-carte); background:rgba(2,132,199,.08); pointer-events:none; }
+  .o-studio-depot { position:absolute; inset:10px; z-index:6; display:none; place-items:center; border:2px dashed var(--accent); border-radius:var(--arrondi-carte); background:rgba(74,98,116,.08); pointer-events:none; }
   .o-studio-depot span { display:flex; align-items:center; gap:10px; padding:12px 18px; border-radius:var(--arrondi); background:var(--accent); color:var(--sur-accent); font-weight:var(--g-forte); box-shadow:var(--ombre-flottant); }
   .o-studio-survol .o-studio-depot { display:grid; }
   /* L'IA CHERCHE : un balayage lumineux passe sur la photo pâlie. */
-  .o-studio-cherche::after { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(100deg, transparent 35%, rgba(2,132,199,.14) 50%, transparent 65%) no-repeat; background-size:250% 100%; animation:o-studio-balaye 1.8s linear infinite; }
+  .o-studio-cherche::after { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(100deg, transparent 35%, rgba(74,98,116,.14) 50%, transparent 65%) no-repeat; background-size:250% 100%; animation:o-studio-balaye 1.8s linear infinite; }
   @keyframes o-studio-balaye { from { background-position:150% 0; } to { background-position:-50% 0; } }
 
   /* LA PRÉPARATION (lib/studio-detourage.js, `dessinerPrep`) : la barre
@@ -427,9 +427,9 @@
      Copiée telle quelle dans les trois applis : ne la retoucher qu'ici, puis
      partout (side-session-notes/…/barre-olda.css). */
   .ob-barre {
-    --ob-fond: #fff; --ob-encre: #1f2328; --ob-encre-2: #6b7075; --ob-encre-3: #a3a7ab;
-    --ob-filet: #e4e6e9; --ob-filet-fort: #cdd0d4; --ob-zone: rgba(31, 35, 40, .06); --ob-surface: #fff;
-    --ob-anneau: 0 0 0 2px #6f95ff;
+    --ob-fond: #fff; --ob-encre: #202930; --ob-encre-2: #5b6b78; --ob-encre-3: #a3b1bc;
+    --ob-filet: #e4e9ed; --ob-filet-fort: #b6c2cc; --ob-zone: rgba(74, 98, 116, .08); --ob-surface: #fff;
+    --ob-anneau: 0 0 0 3px rgba(107, 129, 145, .45);
     position: relative; z-index: 40; flex: none; box-sizing: border-box;
     height: calc(60px + env(safe-area-inset-top));
     display: flex; align-items: center; gap: 14px;
@@ -440,8 +440,8 @@
     letter-spacing: normal; -webkit-font-smoothing: antialiased;
   }
   [data-theme="dark"] .ob-barre, .ob-barre.ob-sombre {
-    --ob-fond: #0e0f11; --ob-encre: #f4f4f2; --ob-encre-2: #a2a2a0; --ob-encre-3: #75757a;
-    --ob-filet: #26272b; --ob-filet-fort: #3a3b41; --ob-zone: #24252a; --ob-surface: #202125;
+    --ob-fond: #161b20; --ob-encre: #e8edf1; --ob-encre-2: #a3b1bc; --ob-encre-3: #6f7d88;
+    --ob-filet: #2a333b; --ob-filet-fort: #4d5b67; --ob-zone: rgba(255, 255, 255, .07); --ob-surface: #1a2026;
   }
   .ob-barre .ob-outil { box-sizing: border-box; }
   .ob-barre [hidden] { display: none !important; }
@@ -456,10 +456,10 @@
   .ob-outil {
     flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
     height: 44px; min-width: 44px; margin: 0; padding: 0 10px;
-    border: 0; border-radius: 10px; background: transparent; color: var(--ob-encre);
+    border: 0; border-radius: 12px; background: transparent; color: var(--ob-encre);
     font: inherit; font-weight: 500; white-space: nowrap; text-decoration: none; cursor: pointer;
   }
-  .ob-outil.ob-carre { width: 44px; padding: 0; }
+  .ob-outil.ob-carre { width: 44px; padding: 0; border-radius: 50%; }
   .ob-outil svg { flex: none; width: 18px; height: 18px; }
   .ob-outil:hover:not(:disabled), .ob-outil[aria-expanded="true"] { background: var(--ob-zone); }
   .ob-outil:disabled { color: var(--ob-encre-3); cursor: default; }
@@ -468,15 +468,15 @@
    le fil d'Ariane et les onglets du Dashboard suffisent). Dans un cadre, il ne mène nulle part. */
 .ob-marque .ob-olda{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:none}
 .ob-marque a.ob-olda:hover b{text-decoration:underline;text-underline-offset:3px}
-.ob-marque .ob-olda:focus-visible{outline:none;box-shadow:0 0 0 2px #6f95ff;border-radius:6px}
+.ob-marque .ob-olda:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(107,129,145,.45);border-radius:8px}
   /* LE BOUT DE LA BARRE (21/11/2026) : toujours tout à droite, toujours dans cet
      ordre — la roue des réglages de l'appli, puis la double flèche « en grand »
      (barre.js du Dashboard). */
   .ob-bout{flex:none;margin-left:auto;display:flex;align-items:center;gap:2px}
-  .ob-bout .ob-outil{flex:none;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;border:0;border-radius:10px;background:transparent;color:var(--ob-encre);cursor:pointer;text-decoration:none}
+  .ob-bout .ob-outil{flex:none;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;border:0;border-radius:50%;background:transparent;color:var(--ob-encre);cursor:pointer;text-decoration:none}
   .ob-bout .ob-outil svg{flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   .ob-bout .ob-outil:hover,.ob-bout .ob-outil[aria-current="page"],.ob-bout .ob-outil[aria-pressed="true"]{background:var(--ob-zone)}
-  .ob-bout .ob-outil:focus-visible{outline:none;box-shadow:0 0 0 2px #6f95ff}
+  .ob-bout .ob-outil:focus-visible{outline:none;box-shadow:var(--ob-anneau)}
   .ob-bout [hidden]{display:none!important}
   /* LE MENU « HISTORIQUE », sous son bouton : un geste par ligne, le plus
      récent en haut ; celui à l'écran cerclé, ceux à rétablir en gris. */
@@ -537,7 +537,7 @@
   .o-studio input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow:var(--anneau), 0 1px 4px rgba(15,23,42,.25); }
   .o-studio input[type=range]:focus-visible::-moz-range-thumb { box-shadow:var(--anneau); }
 
-  .o-studio-bouton { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 14px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--surface); color:var(--encre-1); font:inherit; font-size:var(--t-corps); font-weight:var(--g-forte); cursor:pointer; transition:background .12s, border-color .12s, transform .08s, box-shadow .12s; }
+  .o-studio-bouton { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 18px; border:1px solid var(--filet-carte); border-radius:var(--pilule); background:var(--surface); color:var(--encre-1); font:inherit; font-size:var(--t-corps); font-weight:var(--g-forte); cursor:pointer; transition:background .12s, border-color .12s, transform .08s, box-shadow .12s; }
   .o-studio-bouton:hover:not(:disabled) { border-color:var(--filet-fort); background:var(--zone); }
   .o-studio-bouton:active:not(:disabled) { transform:translateY(1px); }
   .o-studio-bouton:disabled { opacity:.55; cursor:default; }
@@ -679,7 +679,7 @@
   .o-studio-teinte { position:relative; width:36px; height:36px; display:grid; place-items:center; padding:0; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--surface); cursor:pointer; transition:border-color .12s, box-shadow .12s; }
   .o-studio-teinte i { width:26px; height:26px; border-radius:var(--arrondi); box-shadow:inset 0 0 0 1px rgba(var(--teinte),.14); }
   .o-studio-teinte em { position:absolute; right:-4px; bottom:-4px; width:13px; height:13px; border-radius:50%; border:2px solid var(--carte); box-shadow:0 0 0 1px rgba(15,23,42,.2); }
-  .o-studio-teinte:hover:not(:disabled), .o-studio-teinte.o-studio-ouverte { border-color:var(--accent); box-shadow:0 0 0 3px rgba(2,132,199,.16); }
+  .o-studio-teinte:hover:not(:disabled), .o-studio-teinte.o-studio-ouverte { border-color:var(--accent); box-shadow:0 0 0 3px rgba(107,129,145,.22); }
   .o-studio-teinte:disabled { cursor:default; opacity:.7; }
   .o-studio-retiree { border-style:dashed; }
   .o-studio-retiree i { opacity:.28; }
@@ -714,7 +714,7 @@
   .o-ouvrir-tete input { flex:1; min-width:0; height:100%; border:0; outline:0; background:transparent; font:inherit; font-size:16px; color:var(--encre-1); }
   .o-ouvrir-grille { display:grid; grid-template-columns:repeat(auto-fill, minmax(132px, 1fr)); gap:10px; overflow-y:auto; overscroll-behavior:contain; min-height:120px; }
   .o-ouvrir-carte { display:flex; flex-direction:column; gap:4px; padding:8px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--carte); color:var(--encre-1); text-align:left; font:inherit; cursor:pointer; min-width:0; }
-  .o-ouvrir-carte:hover, .o-ouvrir-carte:focus-visible { border-color:var(--accent); outline:none; box-shadow:0 0 0 3px rgba(2,132,199,.16); }
+  .o-ouvrir-carte:hover, .o-ouvrir-carte:focus-visible { border-color:var(--accent); outline:none; box-shadow:0 0 0 3px rgba(107,129,145,.22); }
   .o-ouvrir-vignette { height:96px; display:grid; place-items:center; border-radius:calc(var(--arrondi) - 2px); background:var(--damier-petit); overflow:hidden; }
   .o-ouvrir-vignette img { max-width:100%; max-height:100%; object-fit:contain; }
   .o-ouvrir-vignette em { font-style:normal; font-weight:600; font-size:var(--t-petit); color:var(--encre-2); background:var(--surface); padding:2px 6px; border-radius:6px; }
@@ -816,7 +816,7 @@
   .o-studio-disquette .o-studio-ic { width:18px; height:18px; }
   .o-studio-disquette.o-studio-fait, .o-studio-disquette.o-studio-fait:hover:not(:disabled) { background:var(--succes); border-color:var(--succes); color:#fff; }
   /* LE MENU « PLUS », ouvert au-dessus du pied : les autres formats. */
-  .o-studio-menu { position:absolute; z-index:20; right:16px; bottom:calc(100% - 6px); width:268px; box-sizing:border-box; display:flex; flex-direction:column; padding:6px; border-radius:var(--arrondi-carte); background:var(--surface); border:1px solid var(--filet-carte); box-shadow:var(--ombre-flottant); }
+  .o-studio-menu { position:absolute; z-index:20; right:16px; bottom:calc(100% - 6px); width:268px; box-sizing:border-box; display:flex; flex-direction:column; padding:8px; border-radius:18px; background:var(--surface); border:1px solid var(--filet-carte); box-shadow:var(--ombre-flottant); }
   .o-studio-menu-titre { padding:6px 10px 4px; font-size:var(--t-petit); font-weight:var(--g-forte); color:var(--encre-2); }
   .o-studio-article { display:flex; align-items:center; gap:8px; width:100%; min-height:34px; padding:0 10px; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-1); font:inherit; font-size:var(--t-corps); text-align:left; cursor:pointer; }
   .o-studio-article:hover:not(:disabled) { background:var(--zone); }
@@ -862,28 +862,30 @@
   .o-studio-panneau { border:0; border-left:1px solid var(--filet-carte); border-radius:0; background:var(--carte); }
   .o-studio-defile { padding:0 4px; }
   .o-studio-bloc { gap:10px; padding:14px 16px; }
-  .o-studio-bloc-tete b, .o-studio-insp-bloc .o-studio-bloc-tete b { font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:var(--g-note); color:var(--encre-3); }
+  .o-studio-bloc-tete b, .o-studio-insp-bloc .o-studio-bloc-tete b { font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:var(--encre-2); }
   .o-studio-pied { padding:12px 16px 14px; border-radius:0; background:var(--carte); }
   .o-studio-ligne-ic { background:rgba(var(--teinte),.06); }
   .o-studio-bouton { border-color:rgba(var(--teinte),.12); background:rgba(var(--teinte),.04); }
   .o-studio-bouton:hover:not(:disabled) { border-color:rgba(var(--teinte),.24); background:rgba(var(--teinte),.09); }
   /* Le bouton qui compte : clair sur le sombre, comme la puce choisie. */
-  .o-studio-plein, .o-studio-plein:hover:not(:disabled) { background:var(--encre-1); border-color:var(--encre-1); color:var(--sur-encre); }
-  .o-studio-plein:hover:not(:disabled) { background:#fff; border-color:#fff; }
-  [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein, [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein .o-studio-ic { color:var(--sur-encre); }
+  /* LA PILULE ARDOISE DU DASHBOARD (22/11/2026, la charte OLDA) : ce qui valide. */
+  .o-studio-plein { background:var(--action); border-color:var(--action); color:#fff; }
+  .o-studio-plein:hover:not(:disabled) { background:var(--action-survol); border-color:var(--action-survol); color:#fff; }
+  .o-studio-bouton:focus-visible { outline:none; box-shadow:var(--anneau); }
+  [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein, [data-r="pop-lasso"] .o-studio-bouton.o-studio-plein .o-studio-ic { color:#fff; }
   .o-studio-telecharger.o-studio-fait, .o-studio-telecharger.o-studio-fait:hover:not(:disabled) { color:#fff; }
   /* LES PUCES (les segments) : chacune son filet ; la choisie, claire. */
   .o-studio-segment { display:flex; flex-wrap:wrap; gap:6px; padding:0; border:0; background:transparent; }
-  .o-studio-segment > button, .o-studio-segment > label { flex:1 0 auto; display:inline-flex; align-items:center; justify-content:center; gap:7px; height:44px; padding:0 12px; box-sizing:border-box; border:1px solid rgba(var(--teinte),.12); border-radius:10px; background:transparent; color:var(--encre-1); font:inherit; font-size:13px; font-weight:var(--g-note); white-space:nowrap; cursor:pointer; box-shadow:none; transition:background .12s, border-color .12s, color .12s; }
+  .o-studio-segment > button, .o-studio-segment > label { flex:1 0 auto; display:inline-flex; align-items:center; justify-content:center; gap:7px; height:44px; padding:0 12px; box-sizing:border-box; border:1px solid rgba(var(--teinte),.14); border-radius:var(--pilule); background:transparent; color:var(--encre-1); font:inherit; font-size:13px; font-weight:var(--g-note); white-space:nowrap; cursor:pointer; box-shadow:none; transition:background .12s, border-color .12s, color .12s; }
   .o-studio-segment > button:hover, .o-studio-segment > label:hover { color:var(--encre-1); border-color:rgba(var(--teinte),.28); }
-  .o-studio-segment > button[aria-checked="true"], .o-studio-segment > label[aria-checked="true"], .o-studio-segment > button[aria-checked="true"]:hover, .o-studio-segment > label[aria-checked="true"]:hover { background:var(--encre-1); border-color:var(--encre-1); color:var(--sur-encre); box-shadow:none; }
-  .o-studio-segment > [aria-checked="true"] .o-studio-ic, .o-studio-segment > button[aria-checked="true"] .o-studio-ic { color:#3063e9; }
+  .o-studio-segment > button[aria-checked="true"], .o-studio-segment > label[aria-checked="true"], .o-studio-segment > button[aria-checked="true"]:hover, .o-studio-segment > label[aria-checked="true"]:hover { background:var(--accent); border-color:var(--accent); color:#fff; box-shadow:none; }
+  .o-studio-segment > [aria-checked="true"] .o-studio-ic, .o-studio-segment > button[aria-checked="true"] .o-studio-ic { color:inherit; }
   .o-studio-segment .o-studio-pastille { width:12px; height:12px; }
   .o-studio-segment > label { position:relative; }
   .o-studio-segment input[type=color] { position:absolute; inset:0; width:100%; height:100%; margin:0; padding:0; border:0; opacity:0; cursor:pointer; }
   /* LA COULEUR EN MENU DÉROULANT : la couleur choisie, un chevron ; ouvert,
      les teintes du logo et le nuancier. */
-  .o-studio-deroulant > summary { display:flex; align-items:center; gap:10px; min-height:44px; padding:0 14px; border:1px solid rgba(var(--teinte),.12); border-radius:10px; background:rgba(var(--teinte),.04); list-style:none; cursor:pointer; font-size:14px; font-weight:var(--g-note); color:var(--encre-1); }
+  .o-studio-deroulant > summary { display:flex; align-items:center; gap:10px; min-height:44px; padding:0 14px; border:1px solid rgba(var(--teinte),.14); border-radius:12px; background:rgba(var(--teinte),.04); list-style:none; cursor:pointer; font-size:14px; font-weight:var(--g-note); color:var(--encre-1); }
   .o-studio-deroulant > summary::-webkit-details-marker { display:none; }
   .o-studio-deroulant > summary:hover { background:rgba(var(--teinte),.08); border-color:rgba(var(--teinte),.22); }
   .o-studio-deroulant > summary:focus-visible { outline:none; box-shadow:var(--anneau); }
@@ -894,33 +896,33 @@
   /* Flottant (22/11/2026) : ouvrir Couleur ou Fond ne pousse plus le panneau,
      l'écran ne bouge pas. */
   .o-studio-deroulant { position:relative; }
-  .o-studio-deroulant-corps { position:absolute; z-index:30; top:calc(100% + 6px); left:0; right:0; max-height:calc(100vh - 220px); overflow-y:auto; overscroll-behavior:contain; display:flex; flex-direction:column; gap:12px; padding:12px; box-sizing:border-box; border:1px solid rgba(var(--teinte),.12); border-radius:12px; background:var(--surface); box-shadow:var(--ombre-flottant); }
+  .o-studio-deroulant-corps { position:absolute; z-index:30; top:calc(100% + 6px); left:0; right:0; max-height:calc(100vh - 220px); overflow-y:auto; overscroll-behavior:contain; display:flex; flex-direction:column; gap:12px; padding:12px; box-sizing:border-box; border:1px solid rgba(var(--teinte),.12); border-radius:18px; background:var(--surface); box-shadow:var(--ombre-flottant); }
   /* LE CHARGEMENT : la barre seule, comme l'enregistrement du BAT — un
      surtitre, un grand pourcentage, une barre ; un échec y reste. */
-  .o-studio-prep { left:50%; top:50%; bottom:auto; width:min(380px, calc(100% - 32px)); transform:translate(-50%, -50%); padding:22px 24px 24px; border:0; border-radius:16px; background:var(--verre-carte); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); box-shadow:0 0 0 1px rgba(var(--teinte),.1), 0 24px 60px rgba(0,0,0,.55); }
+  .o-studio-prep { left:50%; top:50%; bottom:auto; width:min(380px, calc(100% - 32px)); transform:translate(-50%, -50%); padding:22px 24px 24px; border:0; border-radius:24px; background:var(--verre-carte); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); box-shadow:0 0 0 1px rgba(var(--teinte),.1), 0 24px 60px rgba(0,0,0,.55); }
   .o-studio-charge-tete { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-  .o-studio-charge-sur { margin:0; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--encre-3); font-weight:var(--g-note); }
+  .o-studio-charge-sur { margin:0; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--encre-2); font-weight:700; }
   .o-studio-charge-titre { margin:4px 0 0; font-size:var(--t-titre); font-weight:var(--g-forte); color:var(--encre-1); }
   .o-studio-charge-chiffre { display:flex; align-items:baseline; gap:2px; margin:14px 0 12px; color:var(--encre-1); font-variant-numeric:tabular-nums; }
   .o-studio-charge-chiffre b { font-size:64px; line-height:.9; font-weight:var(--g-forte); letter-spacing:-.045em; }
   .o-studio-charge-chiffre span { font-size:24px; color:var(--encre-3); }
   .o-studio-charge-barre { height:6px; border-radius:var(--pilule); background:rgba(var(--teinte),.08); overflow:hidden; }
-  .o-studio-charge-barre i { display:block; height:100%; border-radius:inherit; background:var(--encre-1); transition:width .3s ease-out; }
+  .o-studio-charge-barre i { display:block; height:100%; border-radius:inherit; background:var(--action); transition:width .3s ease-out; }
   .o-studio-prep[data-echec] .o-studio-charge-barre i { background:var(--danger); }
   .o-studio-charge-erreur { margin:14px 0 0; font-size:var(--t-petit); line-height:var(--l-texte); color:var(--danger); }
 
   /* RETOUCHER LE LOGO : Logo maker sur toute la largeur, ChatGPT, Fiverr —
      les tuiles du BAT. */
   .o-studio-outils { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
-  .o-studio-outil-tuile { display:flex; align-items:center; gap:8px; height:44px; padding:0 12px; box-sizing:border-box; text-align:left; text-decoration:none; border:1px solid rgba(var(--teinte),.1); border-radius:10px; background:rgba(var(--teinte),.04); color:var(--encre-1); font:inherit; cursor:pointer; transition:background .12s, border-color .12s, transform .12s; }
+  .o-studio-outil-tuile { display:flex; align-items:center; gap:8px; height:44px; padding:0 12px; box-sizing:border-box; text-align:left; text-decoration:none; border:1px solid rgba(var(--teinte),.1); border-radius:12px; background:rgba(var(--teinte),.04); color:var(--encre-1); font:inherit; cursor:pointer; transition:background .12s, border-color .12s, transform .12s; }
   .o-studio-outil-tuile:hover { background:rgba(var(--teinte),.09); border-color:rgba(var(--teinte),.22); }
   .o-studio-outil-tuile:active { transform:scale(.98); }
-  .o-studio-outil-tuile:focus-visible { outline:2px solid #6f95ff; outline-offset:1px; }
+  .o-studio-outil-tuile:focus-visible { outline:none; box-shadow:var(--anneau); }
   .o-studio-outil-tuile[inert] { opacity:.4; }
   .o-studio-outil-tuile > svg, .o-studio-outil-f { flex:none; width:18px; height:18px; color:var(--encre-1); }
   .o-studio-outil-f { display:grid; place-items:center; border-radius:6px; background:#1dbf73; color:#fff; font-style:normal; font-weight:700; font-size:10px; letter-spacing:-.02em; }
   .o-studio-outil-tuile b { font-size:13px; font-weight:var(--g-forte); line-height:1.25; }
-  .o-studio-outil-lm { grid-column:1 / -1; background:rgba(111,149,255,.12); border-color:rgba(111,149,255,.3); }
+  .o-studio-outil-lm { grid-column:1 / -1; background:rgba(74,98,116,.12); border-color:rgba(74,98,116,.28); }
   .o-studio-reglages[hidden] { display:none !important; }
   /* Les puces du fond : chacune à sa largeur, comme le BAT. */
   .o-studio-puces > button, .o-studio-puces > label { flex:0 0 auto; }
