@@ -48,8 +48,10 @@ export const TYPES = {
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.ico': 'image/x-icon',
+  '.css': 'text/css; charset=utf-8',
+  '.woff2': 'font/woff2',
 }
-const COMPRESSES = new Set(['.html', '.js', '.mjs', '.json', '.svg', '.txt', '.md', '.wasm'])
+const COMPRESSES = new Set(['.html', '.css', '.js', '.mjs', '.json', '.svg', '.txt', '.md', '.wasm'])
 
 /* LE FICHIER D'UNE ADRESSE, dans `racine` : « / » et un dossier donnent
    son index.html. null : une adresse illisible, qui sort de la racine, ou

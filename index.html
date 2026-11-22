@@ -56,9 +56,9 @@
 <!-- Sortie du comptoir OLDA Print Studio par outils/logo-maker-statique.mjs :
      relancer ce script remplace index.html, lib/ et vendor/ par ceux du
      comptoir (git montre l'écart). -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" href="fonts/Inter-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Inter-SemiBold-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/inter.css">
 <style>
   :root {
     /* ------------------------------------------------------------ LA TEINTE
@@ -265,12 +265,11 @@
     --dur-1: 0s;                  /* un retour : fond, trait, focus */
     --sortie: cubic-bezier(.2,0,0,1);
 
-    /* DEUX POLICES : Instrument Sans pour tout ce qui se lit (la police des
-       tableaux de la maquette « Tableaux OLDA », étendue à toute l'app le
-       18 septembre 2026 — l'écran mêlait Instrument Sans dans les tableaux
-       et la police du système partout ailleurs, Inter n'étant jamais
-       chargée), la chasse fixe pour les numéros de papier. */
-    --police: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    /* UNE POLICE : Inter, comme BAT Studio et le Planning (22/11/2026,
+       normalisation des applis OLDA ; Instrument Sans avant). Servie par
+       l'appli (fonts/inter.css), le même rendu sur Mac et Chrome Windows ;
+       la chasse fixe reste pour les numéros de papier. */
+    --police: 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
 
     /* ============================================================ LE PAPIER
        L'AUTRE MÉDIUM. Un A4 ne se mesure pas à l'échelle de l'écran : il
@@ -290,8 +289,8 @@
     --p-filet: #e4e3df;
     --p-filet-pale: #d6d5d0;
     --p-filet-fort: #a8a7a1;
-    --p-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    --p-police: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --p-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Cascadia Mono', monospace;
+    --p-police: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Arial sur Windows : le même gabarit */
     /* LE JOUR ET LA NUIT (21/11/2026, Charlie : « logo maker doit être en mode
        jour, les app peuvent passer en mode nuit à 19h en automatique ») : ces
        jetons sont le jour ; `[data-theme="dark"]`, posé de 19 h à 7 h par le
@@ -437,7 +436,7 @@
     margin: 0; padding: env(safe-area-inset-top) calc(16px + env(safe-area-inset-right)) 0 calc(16px + env(safe-area-inset-left));
     background: var(--ob-fond); border: 0; border-bottom: 1px solid var(--ob-filet); border-radius: 0; box-shadow: none;
     color: var(--ob-encre);
-    font: 400 14px/1.25 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    font: 400 14px/1.25 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
     letter-spacing: normal; -webkit-font-smoothing: antialiased;
   }
   [data-theme="dark"] .ob-barre, .ob-barre.ob-sombre {
@@ -811,6 +810,9 @@
   /* LA PAGE : le studio seul, à la hauteur de la fenêtre ; sous 1 100 px,
      le panneau passe sous le plan et la page défile. */
   html, body { height:100%; }
+  button, input, select, textarea { font-family:inherit; }
+  /* Barres de défilement fines : sur Chrome Windows, les classiques (17 px) mangeaient le panneau. */
+  * { scrollbar-width:thin; scrollbar-color:rgba(var(--teinte),.25) transparent; }
   body { margin:0; background:var(--fond); font-family:var(--police); font-size:var(--t-corps); font-weight:var(--g-texte); line-height:var(--l-texte); color:var(--encre-1); -webkit-font-smoothing:antialiased; }
   b, strong { font-weight:var(--g-forte); }
   small { font-size:var(--t-petit); }
@@ -886,7 +888,7 @@
   .o-studio-outil-tuile:focus-visible { outline:2px solid #6f95ff; outline-offset:1px; }
   .o-studio-outil-tuile[inert] { opacity:.4; }
   .o-studio-outil-tuile > svg, .o-studio-outil-f { flex:none; width:22px; height:22px; color:var(--encre-1); }
-  .o-studio-outil-f { display:grid; place-items:center; border-radius:6px; background:#1dbf73; color:#fff; font-style:normal; font-weight:800; font-size:12px; letter-spacing:-.02em; }
+  .o-studio-outil-f { display:grid; place-items:center; border-radius:6px; background:#1dbf73; color:#fff; font-style:normal; font-weight:700; font-size:12px; letter-spacing:-.02em; }
   .o-studio-outil-tuile b { font-size:13px; font-weight:var(--g-forte); line-height:1.25; }
   .o-studio-outil-lm { grid-column:1 / -1; background:rgba(111,149,255,.12); border-color:rgba(111,149,255,.3); }
   .o-studio-reglages[hidden] { display:none !important; }
