@@ -27,7 +27,7 @@ maker » du portail <https://dockbearolda.github.io/>) — et toujours sur
 <https://dockbearolda.github.io/logo-maker/>, la même page.
 
 Tout calcule dans le navigateur, sur le poste : rien ne part sur un
-serveur (celui de Railway, `serveur.mjs`, ne fait que servir les pages).
+serveur (`serveur.mjs`, en local, ne fait que servir les pages).
 Seules les polices libres essayées sur le texte d'un logo viennent de
 Fontsource (le CDN jsDelivr), une à une. La police se cherche aussi
 parmi celles installées sur le poste (Chrome les prête sur un clic :
@@ -42,7 +42,7 @@ Aucun paquet à installer. Depuis ce dossier :
 npm start
 ```
 
-puis <http://localhost:8130/> — le serveur de Railway, tel quel. Dans
+puis <http://localhost:8130/> — le serveur local. Dans
 Claude Code, l'aperçu `logo-maker` (`.claude/launch.json`) fait la même
 chose. Les tests :
 
@@ -52,8 +52,15 @@ node --test
 
 ## Mettre en ligne
 
-Pousser sur `main` : Railway (projet `logo-maker`, service `logo-maker`)
-redéploie tout seul, en une à deux minutes — GitHub Pages aussi.
+Le site : <https://logo-maker.dockbear.workers.dev/> (Cloudflare Workers ;
+Railway n'est plus utilisé depuis le 22 novembre 2026). Après le merge sur
+`main` :
+
+```sh
+npm run cf:build && npx wrangler deploy
+```
+
+GitHub Pages se met à jour tout seul au push.
 
 ## D'où il vient
 
@@ -70,7 +77,7 @@ touché.
 | Où | Quoi |
 |---|---|
 | `index.html` | la page : jetons et style du comptoir, le studio en pleine page |
-| `serveur.mjs` | le serveur de Railway, sans paquet : les pages telles quelles, compressées, rien de caché, isolées (COOP/COEP : l'IA et la lecture calculent sur quatre cœurs) |
+| `serveur.mjs` | le serveur local, sans paquet : les pages telles quelles, compressées, rien de caché, isolées (COOP/COEP : l'IA et la lecture calculent sur quatre cœurs) |
 | `lib/studio-detourage.js` | l'écran : le plan, le panneau, les exports, les raccourcis |
 | `lib/historique.js` | l'historique des gestes : des photos des réglages (jamais des pixels) qu'Annuler, Rétablir et le menu « Historique » reposent ; leurs libellés (« Rouge retiré », « Seuil 24 → 32 ») |
 | `lib/graphiste.js` | les décisions d'office (IA, fond, version) |
