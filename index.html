@@ -739,27 +739,6 @@
   .o-studio-pied-boutons { display:flex; gap:6px; }
   /* LA TAILLE DTF : le préréglage d'OLDA, la largeur et la hauteur
      imprimées (grises : la taille du fichier), la résolution trop juste. */
-  .o-studio-taille { display:flex; flex-direction:column; gap:8px; }
-  .o-studio-taille-tete { display:flex; flex-direction:column; align-items:stretch; gap:10px; }
-  .o-studio-taille-tete label { font-size:var(--t-corps); color:var(--encre-1); white-space:nowrap; }
-  .o-studio-taille-tete b { font-weight:var(--g-forte); }
-  .o-studio-choix { position:relative; min-width:0; display:flex; flex:1; }
-  .o-studio-choix select { min-width:0; width:100%; height:44px; padding:0 28px 0 12px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--surface); font:inherit; font-size:var(--t-petit); font-weight:var(--g-note); color:var(--encre-1); text-overflow:ellipsis; cursor:pointer; appearance:none; -webkit-appearance:none; }
-  .o-studio-choix select:hover { border-color:var(--filet-fort); }
-  .o-studio-choix select:focus-visible { outline:none; border-color:var(--filet-fort); box-shadow:var(--anneau); }
-  .o-studio-choix .o-studio-ic { position:absolute; right:8px; top:50%; width:14px; height:14px; margin-top:-7px; color:var(--encre-2); pointer-events:none; }
-  .o-studio-taille-champs { display:flex; align-items:center; gap:8px; }
-  .o-studio-taille-champ { flex:1; min-width:0; display:flex; align-items:center; gap:6px; height:44px; padding:0 10px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--surface); font-size:var(--t-petit); color:var(--encre-2); cursor:text; }
-  .o-studio-taille-champ:hover { border-color:var(--filet-fort); }
-  .o-studio-taille-champ:focus-within { border-color:var(--filet-fort); box-shadow:var(--anneau); }
-  .o-studio-taille-champ > span { font-weight:var(--g-forte); }
-  .o-studio-taille-champ input { flex:1; min-width:0; width:100%; height:100%; margin:0; padding:0; border:0; background:transparent; font:inherit; font-size:var(--t-corps); font-weight:var(--g-forte); font-variant-numeric:tabular-nums; color:var(--encre-1); text-align:right; }
-  .o-studio-taille-champ input:focus { outline:none; }
-  .o-studio-taille-champ input.o-studio-auto { font-weight:var(--g-texte); color:var(--encre-2); }
-  .o-studio-taille-fois { font-size:var(--t-petit); color:var(--encre-3); }
-  .o-studio-taille-note { display:flex; align-items:center; gap:6px; font-size:var(--t-petit); color:var(--encre-2); }
-  .o-studio-taille-note[hidden] { display:none; }
-  .o-studio-taille-note::before { content:''; flex:none; width:6px; height:6px; border-radius:50%; background:#d97706; }
   .o-studio-telecharger { flex:1; min-width:0; min-height:44px; border-radius:var(--arrondi); white-space:nowrap; }
   /* Le mot ne passe jamais à la ligne : faute de place, il se coupe. */
   .o-studio-telecharger [data-r="enregistrer-mot"] { min-width:0; overflow:hidden; text-overflow:ellipsis; }
@@ -819,7 +798,7 @@
   .o-studio-panneau { border:0; border-left:1px solid var(--filet-carte); border-radius:0; background:var(--carte); }
   .o-studio-defile { padding:0 4px; }
   .o-studio-bloc { gap:10px; padding:14px 16px; }
-  .o-studio-bloc-tete b, .o-studio-insp-bloc .o-studio-bloc-tete b, .o-studio-taille-tete b { font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:var(--g-note); color:var(--encre-3); }
+  .o-studio-bloc-tete b, .o-studio-insp-bloc .o-studio-bloc-tete b { font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:var(--g-note); color:var(--encre-3); }
   .o-studio-pied { padding:12px 16px 14px; border-radius:0; background:var(--carte); }
   .o-studio-ligne-ic { background:rgba(var(--teinte),.06); }
   .o-studio-bouton { border-color:rgba(var(--teinte),.12); background:rgba(var(--teinte),.04); }
