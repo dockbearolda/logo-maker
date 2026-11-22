@@ -198,8 +198,11 @@ fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
   versions. Le texte se lit sur l'image en pleine taille (`lib/texte.js`),
   une fois par image, jamais sur le tracé.
 - **Piloté par le BAT** (`ecouterPilote`, 18 novembre 2026, « c'est
-  vraiment trop long ») : l'Ultra n'y a que `ULTRA_PILOTE` (15 s) de budget,
-  pas `ULTRA_AUTO` ; `version: 'auto'` prend la version du graphiste
+  vraiment trop long ») : l'Ultra n'y avait que 15 s de budget — revenu à
+  `ULTRA_AUTO` (60 s) le 22 novembre 2026 (« il y a encore quelques jours
+  Logo maker me mettait les logos en Ultra HD, je veux que ça revienne ») ;
+  au-delà, « Passer en Ultra HD · temps » est visible dans « Retoucher le
+  logo » (il était resté caché dans les anciens réglages) ; `version: 'auto'` prend la version du graphiste
   (vecteur pour un logo à plat, détouré sinon) ; chaque réponse emporte la
   fiche du logo (`analysePilote` : texte lu sûr, police, arc, ombre,
   couleurs, genre) qui fait le prompt ChatGPT du BAT. Une ligne mal lue n'y
@@ -750,6 +753,11 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   BAT (`E.pilote`) n'est pas touché. Une couleur du nuancier sur un logo en
   pixels reteint ses pixels (Image), elle ne le fait plus passer en Vecteur ;
   le PDF reste une image.
+- **Nouveau logo / Supprimer** (22 novembre 2026, « on doit pouvoir
+  supprimer le logo en cours et facilement en ajouter un nouveau ») : dans
+  la barre dès qu'un logo est ouvert. Nouveau ouvre le sélecteur (le
+  fichier remplace le logo) ; Supprimer (`supprimerLogo`) arrête l'IA et le
+  tracé et ramène le plan vide, « Choisir un fichier ».
 - **L'image est fixe** (21 novembre 2026, « on oublie les calques, ultra
   simple à utiliser, on finira avec ChatGPT ») : sur le plan, glisser
   déplace la vue, la molette zoome, rien d'autre — plus de sélection, de
