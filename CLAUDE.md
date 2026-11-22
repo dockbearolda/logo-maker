@@ -3,12 +3,17 @@ TABLETTE: non
 # Logo maker · OLDA
 
 Le Logo maker du comptoir OLDA Print Studio, sorti seul le 29 septembre 2026
-(voir README.md). Pages statiques, en ligne sur Railway depuis `main`
-(projet et service `logo-maker` → https://logomaker-olda.up.railway.app/,
-la tuile du portail https://dockbearolda.github.io/) et toujours sur GitHub
-Pages (https://dockbearolda.github.io/logo-maker/). Pas de build, pas de
-paquet : `serveur.mjs` ne fait que servir les fichiers. On modifie les
-fichiers, on vérifie dans l'aperçu `logo-maker`, `node --test`, on pousse.
+(voir README.md). Pages statiques, EN LIGNE SUR CLOUDFLARE WORKERS :
+https://logo-maker.dockbear.workers.dev/ (`wrangler.jsonc`, `worker/`, les
+gros modèles dans le R2 `logo-maker-modeles`). **Railway, c'est terminé pour
+toujours** (22 novembre 2026) : ne plus y déployer ni s'y référer. Toujours
+aussi sur GitHub Pages (https://dockbearolda.github.io/logo-maker/, sans
+COOP/COEP : un seul cœur). Pas de déploiement automatique sur Workers :
+après le merge sur `main`, `npm run cf:build && npx wrangler deploy`, puis
+vérifier que le site sert le nouveau code. En local, `serveur.mjs` ne fait
+que servir les fichiers. On modifie les fichiers, on vérifie dans l'aperçu
+`logo-maker`, `node --test 'lib/*.test.mjs' serveur.test.mjs` (pas
+`dist-cf/`, la copie de build), on pousse, on déploie.
 
 ## Ce qui est tranché (ne pas défaire)
 
