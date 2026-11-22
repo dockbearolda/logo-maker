@@ -776,6 +776,34 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   suit), après `recolorer` : rien n'est vectorisé, les trois versions,
   les exports et l'historique (« Couleur Bleu : Vert ») suivent. Sans
   changement, les mêmes octets. Pas pour une photo.
+- **Ouvrir un logo, le fermer** (22 novembre 2026, « fermer le logo en
+  cours et en rouvrir un autre ultra facilement ; une recherche ultra
+  intelligente avec les derniers logos de Téléchargements ») : la croix de
+  la barre ferme le logo (`supprimerLogo`) ; « Ouvrir un logo » (Ctrl O,
+  et « Derniers logos » à l'accueil) ouvre un volet : la recherche
+  (`chercher`, lib/recents.js — sans accents ni casse ; « aujourd'hui »,
+  « hier », « semaine », « png », « pdf », « vecteur » filtrent ; le nom
+  qui commence par le mot passe devant, puis le plus récent), les derniers
+  logos en vignettes, Entrée ouvre le premier. Les sources : le dossier
+  relié une fois (Téléchargements ; Chrome refuse ce dossier système sur
+  certains postes — on le dit, un sous-dossier ou « Parcourir » marche) et
+  les fichiers ouverts par « Parcourir » (ouvert dans Téléchargements) ou
+  glissés, leurs accès gardés dans le coffre.
+- **Le texte se recouvre et se réécrit** (22 novembre 2026, « quand l'app
+  n'arrive pas à repérer les polices, je dois pouvoir les recouvrir pour
+  les effacer et réécrire à cet endroit ») : l'outil Texte (T, la barre du
+  plan, ou « Recouvrir et réécrire un texte » dans le panneau) — un cadre
+  tiré sur le plan. Son bord dit ce qui recouvre l'ancien texte
+  (`lireCadre` : transparent, ou la couleur du bandeau), l'encre la
+  couleur du nouveau ; le texte et la police lus par l'OCR dessous sont
+  repris (`ligneSousCadre`), sinon Montserrat Gras. Le panneau : le texte,
+  la police (recherche dans tout le catalogue, chaque police dans son
+  dessin ; les graisses de la famille), la couleur, « Sous le texte »
+  (Vide, Couleur, Garder), Retirer ; un clic sur le cadre le rouvre.
+  Écrit dans les réglages (`textesMain`) ; le fil le pose
+  (lib/texte-main.js, `poserTextes`, après `reteindre` : les courbes de la
+  police par opentype.js, suréchantillonnées, au plus grand dans le cadre,
+  centré) — les trois versions, les exports, l'historique suivent.
 - **L'image est fixe** (21 novembre 2026, « on oublie les calques, ultra
   simple à utiliser, on finira avec ChatGPT ») : sur le plan, glisser
   déplace la vue, la molette zoome, rien d'autre — plus de sélection, de
