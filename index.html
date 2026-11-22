@@ -361,6 +361,15 @@
   .o-studio-split [data-c="apres"] { left:26px; background:var(--accent); }
 
   /* LA BARRE DU PLAN, en bas au centre : les cotes, la gomme, « Comparer », le zoom. */
+  .o-studio-recadre { position:absolute; inset:0; z-index:5; pointer-events:none; }
+  .o-studio-recadre-cadre { position:absolute; box-sizing:border-box; border:2px solid var(--accent); box-shadow:0 0 0 9999px rgba(0,0,0,.5); cursor:move; pointer-events:auto; touch-action:none; }
+  .o-studio-recadre-poignee { position:absolute; width:18px; height:18px; margin:-9px 0 0 -9px; border-radius:50%; background:#fff; border:2px solid var(--accent); box-sizing:border-box; }
+  .o-studio-recadre-poignee[data-p="nw"] { left:0; top:0; cursor:nwse-resize; } .o-studio-recadre-poignee[data-p="n"] { left:50%; top:0; cursor:ns-resize; }
+  .o-studio-recadre-poignee[data-p="ne"] { left:100%; top:0; cursor:nesw-resize; } .o-studio-recadre-poignee[data-p="e"] { left:100%; top:50%; cursor:ew-resize; }
+  .o-studio-recadre-poignee[data-p="se"] { left:100%; top:100%; cursor:nwse-resize; } .o-studio-recadre-poignee[data-p="s"] { left:50%; top:100%; cursor:ns-resize; }
+  .o-studio-recadre-poignee[data-p="sw"] { left:0; top:100%; cursor:nesw-resize; } .o-studio-recadre-poignee[data-p="w"] { left:0; top:50%; cursor:ew-resize; }
+  .o-studio-recadre-dit { position:absolute; left:50%; bottom:6px; transform:translateX(-50%); padding:2px 8px; border-radius:6px; background:rgba(0,0,0,.6); color:#fff; font-size:12px; white-space:nowrap; pointer-events:none; }
+  .o-studio-recadre-barre { position:absolute; left:50%; top:14px; transform:translateX(-50%); display:flex; gap:8px; pointer-events:auto; }
   .o-studio-vuebar { position:absolute; z-index:4; left:50%; bottom:14px; transform:translateX(-50%); display:flex; align-items:center; gap:4px; padding:5px; border-radius:var(--arrondi-carte); background:rgba(24,25,28,.82); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(var(--teinte),.1); box-shadow:var(--ombre-flottant); transition:opacity .18s; }
   .o-studio-vuebar.o-studio-cache { opacity:0; pointer-events:none; }
   .o-studio-pastille { width:18px; height:18px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.2); }
