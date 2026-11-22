@@ -763,6 +763,19 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   la barre dès qu'un logo est ouvert. Nouveau ouvre le sélecteur (le
   fichier remplace le logo) ; Supprimer (`supprimerLogo`) arrête l'IA et le
   tracé et ramène le plan vide, « Choisir un fichier ».
+- **Les couleurs du logo se changent une à une** (22 novembre 2026, « sur
+  un logo vectoriel, on doit pouvoir sélectionner les couleurs et les
+  modifier : passer le bleu en vert, le blanc en transparent ») : dans le
+  menu Couleur, sous « D'origine », les teintes lues sur le détourage de
+  l'aperçu (`paletteAuto`, une fois, avant tout changement ;
+  `lirePaletteLogo`) ; un clic en choisit une : une couleur du nuancier,
+  « Autre », « Transparent », ou d'origine. Écrit dans les réglages
+  (`couleurs` : { palette, vers }) ; le fil reteint les PIXELS du
+  détourage (`reteindre`, lib/reteindre.js : chaque pixel lu comme le
+  mélange de ses deux teintes proches — le bord reste doux, le grain
+  suit), après `recolorer` : rien n'est vectorisé, les trois versions,
+  les exports et l'historique (« Couleur Bleu : Vert ») suivent. Sans
+  changement, les mêmes octets. Pas pour une photo.
 - **L'image est fixe** (21 novembre 2026, « on oublie les calques, ultra
   simple à utiliser, on finira avec ChatGPT ») : sur le plan, glisser
   déplace la vue, la molette zoome, rien d'autre — plus de sélection, de
