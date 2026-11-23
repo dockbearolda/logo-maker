@@ -387,7 +387,11 @@
 
   /* L'ACCUEIL, avant le premier logo. */
   .o-studio-accueil { position:absolute; inset:0; z-index:5; display:grid; place-items:center; padding:24px; background:radial-gradient(ellipse at 50% 40%, rgba(var(--teinte),.6), rgba(var(--teinte),.94) 70%); }
-  .o-studio-accueil-carte { display:flex; flex-direction:column; align-items:center; gap:18px; }
+  .o-studio-accueil-carte { display:flex; flex-direction:column; align-items:center; gap:10px; padding:36px 48px; border:1.5px dashed rgba(var(--teinte),.28); border-radius:var(--arrondi-fenetre); background:var(--carte); box-shadow:var(--ombre-flottant); color:var(--encre-1); font:inherit; cursor:pointer; transition:background .12s, border-color .12s; }
+  .o-studio-accueil-carte:hover, .o-studio-survol .o-studio-accueil-carte { border-color:var(--accent); }
+  .o-studio-accueil-carte:focus-visible { outline:none; box-shadow:var(--anneau); }
+  .o-studio-accueil-carte b { font-size:17px; font-weight:var(--g-forte); }
+  .o-studio-accueil-carte small { color:var(--encre-2); }
   .o-studio-accueil-rond { width:68px; height:68px; display:grid; place-items:center; border-radius:var(--arrondi-fenetre); background:var(--zone); color:var(--encre-1); }
   .o-studio-accueil-rond .o-studio-ic { width:32px; height:32px; stroke-width:1.5; }
   .o-studio-accueil .o-studio-bouton { min-height:44px; padding:0 20px; }
@@ -703,23 +707,6 @@
   .o-studio-lc-arc, .o-studio-lc-damier { width:16px; height:16px; border-radius:50%; flex:none; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.2); }
   .o-studio-lc-arc { background:conic-gradient(#e11d48,#f59e0b,#84cc16,#06b6d4,#6366f1,#e11d48); }
   /* Ouvrir un logo (22 novembre 2026) : le volet sous la barre. */
-  .o-studio-ouvrir { position:fixed; z-index:60; top:64px; right:16px; width:min(720px, calc(100vw - 32px)); max-height:calc(100vh - 96px); display:flex; flex-direction:column; gap:12px; padding:14px; box-sizing:border-box; border:1px solid rgba(var(--teinte),.12); border-radius:14px; background:var(--surface); box-shadow:var(--ombre-flottant); }
-  .o-studio-ouvrir[hidden] { display:none; }
-  .o-ouvrir-tete { display:flex; align-items:center; gap:10px; padding:0 12px; height:48px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--carte); }
-  .o-ouvrir-tete .o-studio-ic { width:18px; height:18px; color:var(--encre-2); flex:none; }
-  .o-ouvrir-tete input { flex:1; min-width:0; height:100%; border:0; outline:0; background:transparent; font:inherit; font-size:16px; color:var(--encre-1); }
-  .o-ouvrir-grille { display:grid; grid-template-columns:repeat(auto-fill, minmax(132px, 1fr)); gap:10px; overflow-y:auto; overscroll-behavior:contain; min-height:120px; }
-  .o-ouvrir-carte { display:flex; flex-direction:column; gap:4px; padding:8px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--carte); color:var(--encre-1); text-align:left; font:inherit; cursor:pointer; min-width:0; }
-  .o-ouvrir-carte:hover, .o-ouvrir-carte:focus-visible { border-color:var(--accent); outline:none; box-shadow:0 0 0 3px rgba(107,129,145,.22); }
-  .o-ouvrir-vignette { height:96px; display:grid; place-items:center; border-radius:calc(var(--arrondi) - 2px); background:var(--damier-petit); overflow:hidden; }
-  .o-ouvrir-vignette img { max-width:100%; max-height:100%; object-fit:contain; }
-  .o-ouvrir-vignette em { font-style:normal; font-weight:600; font-size:var(--t-petit); color:var(--encre-2); background:var(--surface); padding:2px 6px; border-radius:6px; }
-  .o-ouvrir-carte b { font-size:var(--t-petit); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .o-ouvrir-carte small { font-size:11px; color:var(--encre-2); }
-  .o-ouvrir-vide { grid-column:1/-1; margin:24px 8px; text-align:center; color:var(--encre-2); font-size:var(--t-petit); }
-  .o-ouvrir-pied { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
-  .o-ouvrir-note { flex-basis:100%; margin:0; font-size:var(--t-petit); color:var(--etat-retard-encre, #b91c1c); }
-  .o-studio-accueil-carte { gap:10px; }
   /* L'outil Texte (22 novembre 2026). */
   .o-studio-trace-texte .o-studio-toile { cursor:crosshair; }
   .o-studio-tm-ajout { width:100%; }
@@ -780,6 +767,7 @@
   .o-tm-rang output { min-width:32px; text-align:right; font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; }
   .o-tm-couleurs { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; grid-column:2 / 4; }
   .o-tm-couleurs > .o-studio-pastilles { align-self:stretch; }
+  .o-tm-vide { margin:16px 8px; text-align:center; color:var(--encre-2); font-size:var(--t-petit); }
   .o-tm-lien { display:inline-flex; align-items:center; gap:6px; min-height:32px; padding:0; border:0; background:none; color:var(--encre-2); font:inherit; font-size:var(--t-petit); cursor:pointer; }
   .o-tm-lien:hover { color:var(--encre-1); }
   .o-tm-lien:focus-visible { outline:none; box-shadow:var(--anneau); border-radius:6px; }
