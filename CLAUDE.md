@@ -19,8 +19,8 @@ que servir les fichiers. On modifie les fichiers, on vérifie dans l'aperçu
 
 - **PC + Chrome seulement**, souris et clavier. Pas de mise en page mobile
   ni tablette à prévoir. Vérifier à la largeur du volet de Charlie (lire
-  `innerWidth`, souvent 1 024–1 270 px ; sous 1 100 le panneau passe sous le
-  plan) et au bureau (1 440 / 1 920).
+  `innerWidth`, souvent 1 024–1 270 px ; le panneau reste à droite et
+  défile seul, le plan ne bouge pas) et au bureau (1 440 / 1 920).
 - **« Détouré » d'abord et d'office** : le fond autour part, les pixels du
   fichier restent, rien ne se trace. Aucun nouveau réglage ne doit forcer la
   vectorisation ni vider les creux dans Détouré. Seule exception (30
@@ -811,3 +811,20 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   de variantes ni d'épaisseur. Aucune police n'est posée d'office (la
   lecture reste, pour la fiche du prompt ChatGPT). Le code des calques reste
   dans la page, débranché ; ne pas le rebrancher sans demande.
+- **Le texte réécrit, en tous sens** (22 novembre 2026, « plus facilement
+  navigable dans la side bar, ultra épuré ; les textes en horizontal,
+  vertical, etc. parfaitement adaptés ») : chaque texte a son `sens`
+  (horizontal ; vertical qui se lit de bas en haut `monte` ou de haut en
+  bas `descend` ; lettres `empile`es), une inclinaison (`angle`, degrés),
+  l'alignement de ses lignes (`aligner`) et son interlettrage (`espace`,
+  millièmes de corps) — lib/texte-main.js, `disposer` : le bloc mesuré à
+  plat, tourné, au plus grand dans son cadre. Un cadre tiré bien plus haut
+  que large (1,6) sans texte lu dessous s'ouvre vertical (`monte`). Le
+  panneau : la liste (chaque texte dans sa police, sa pastille) ; un texte
+  ouvert prend le bloc — « ‹ Textes », ‹ 2 / 3 ›, la corbeille, puis le
+  champ, la police repliée sur une ligne (un clic la déplie : recherche et
+  polices), graisse, sens, incliner, espace, couleur (le logo, noir,
+  blanc, « Autre » ; le nuancier se déplie), dessous. Échap revient à la
+  liste, Alt ← / → passe au voisin. Sur le plan, le cadre du texte ouvert
+  se glisse et s'étire (dans l'image : le plan est l'image). Une frappe
+  retardée vise le texte où on l'a tapée (`changerTm(…, k)`).

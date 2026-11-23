@@ -724,26 +724,71 @@
   .o-studio-trace-texte .o-studio-toile { cursor:crosshair; }
   .o-studio-tm-ajout { width:100%; }
   .o-tm-liste { display:flex; flex-direction:column; gap:4px; margin-top:8px; }
-  .o-tm-ligne { display:grid; grid-template-columns:16px 1fr auto; align-items:center; gap:8px; min-height:44px; padding:0 10px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--carte); color:var(--encre-1); font:inherit; text-align:left; cursor:pointer; }
-  .o-tm-ligne i { width:14px; height:14px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.2); }
-  .o-tm-ligne b { font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .o-tm-ligne small { color:var(--encre-2); font-size:11px; }
-  .o-tm-choisie { border-color:var(--accent) !important; box-shadow:0 0 0 1px var(--accent); }
-  .o-tm-edit { display:flex; flex-direction:column; gap:12px; margin-top:10px; }
-  .o-tm-champ { display:flex; flex-direction:column; gap:6px; }
-  .o-tm-champ > span { font-size:var(--t-petit); color:var(--encre-2); }
-  .o-tm-champ textarea, .o-tm-champ input[type=search] { box-sizing:border-box; width:100%; min-height:44px; padding:10px 12px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--carte); color:var(--encre-1); font:inherit; font-size:16px; resize:vertical; }
-  .o-tm-champ textarea:focus, .o-tm-champ input[type=search]:focus { outline:none; box-shadow:var(--anneau); }
-  .o-tm-polices { display:flex; flex-direction:column; gap:4px; max-height:280px; overflow-y:auto; overscroll-behavior:contain; }
+  .o-tm-ligne { display:grid; grid-template-columns:14px minmax(0,1fr) 18px; align-items:center; gap:10px; min-height:52px; padding:6px 10px; border:1px solid rgba(var(--teinte),.14); border-radius:10px; background:rgba(var(--teinte),.04); color:var(--encre-1); font:inherit; text-align:left; cursor:pointer; transition:border-color .12s, background .12s; }
+  .o-tm-ligne:hover { border-color:var(--accent); background:rgba(var(--teinte),.07); }
+  .o-tm-ligne:focus-visible, .o-tm-nav:focus-visible, .o-tm-choix:focus-visible, .o-tm-police:focus-visible { outline:none; box-shadow:var(--anneau); }
+  .o-tm-ligne > i { width:14px; height:14px; border-radius:50%; box-shadow:0 0 0 1px rgba(var(--teinte),.3); }
+  .o-tm-ligne > span { display:flex; flex-direction:column; min-width:0; }
+  .o-tm-ligne b { font-weight:normal; font-size:17px; line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .o-tm-ligne small { color:var(--encre-2); font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .o-tm-sens-mini { display:inline-flex; color:var(--encre-2); }
+  .o-tm-sens-mini .o-studio-ic { width:16px; height:16px; }
+  /* Un texte ouvert prend le bloc : le titre et l'ajout s'effacent. */
+  .o-tm-ouvert > .o-studio-bloc-tete, .o-tm-ouvert > .o-studio-tm-ajout { display:none; }
+  .o-tm-barre { display:flex; align-items:center; gap:4px; margin:-4px -6px 10px; }
+  .o-tm-pages { display:inline-flex; align-items:center; gap:2px; white-space:nowrap; margin-left:auto; font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; }
+  .o-tm-nav { display:inline-flex; align-items:center; justify-content:center; gap:4px; min-width:44px; height:44px; padding:0 8px; border:0; border-radius:var(--arrondi); background:transparent; color:var(--encre-1); font:inherit; font-size:var(--t-corps); font-weight:var(--g-forte); cursor:pointer; }
+  .o-tm-nav:hover { background:var(--zone); }
+  .o-tm-nav .o-studio-ic { width:18px; height:18px; }
+  .o-tm-barre > .o-tm-danger { margin-left:auto; color:var(--encre-2); }
+  .o-tm-pages + .o-tm-danger { margin-left:0; }
+  .o-tm-pages .o-tm-nav { min-width:36px; padding:0; }
+  .o-tm-danger:hover { color:#dc2626; }
+  .o-tm-saisie { box-sizing:border-box; width:100%; min-height:52px; margin-bottom:6px; padding:10px 12px; border:1px solid rgba(var(--teinte),.14); border-radius:10px; background:rgba(var(--teinte),.04); color:var(--encre-1); font:inherit; font-size:16px; line-height:1.35; resize:vertical; }
+  .o-tm-saisie:focus, .o-tm-deplie input[type=search]:focus { outline:none; box-shadow:var(--anneau); }
+  .o-tm-rang { display:grid; grid-template-columns:58px minmax(0,1fr) auto; align-items:center; gap:8px; min-height:48px; border-top:1px solid rgba(var(--teinte),.08); }
+  .o-tm-rang > span { font-size:var(--t-petit); color:var(--encre-2); }
+  .o-tm-rang > :nth-child(2):last-child { grid-column:2 / 4; }
+  .o-tm-haut { align-items:start; padding:10px 0; }
+  .o-tm-haut > span { padding-top:6px; }
+  .o-tm-choix { display:flex; align-items:center; justify-content:space-between; gap:8px; grid-column:2 / 4; min-height:40px; padding:0 12px; border:1px solid rgba(var(--teinte),.14); border-radius:10px; background:rgba(var(--teinte),.04); color:var(--encre-1); cursor:pointer; text-align:left; }
+  .o-tm-choix b { font-weight:normal; font-size:17px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+  .o-tm-choix[aria-expanded="true"] .o-studio-chevron { transform:rotate(180deg); }
+  .o-tm-deplie { display:flex; flex-direction:column; gap:6px; padding-bottom:10px; }
+  .o-tm-deplie input[type=search] { box-sizing:border-box; width:100%; min-height:40px; padding:8px 12px; border:1px solid var(--filet-carte); border-radius:var(--arrondi); background:var(--carte); color:var(--encre-1); font:inherit; font-size:16px; }
+  .o-tm-polices { display:flex; flex-direction:column; gap:2px; max-height:260px; overflow-y:auto; overscroll-behavior:contain; }
   .o-tm-police { display:flex; align-items:baseline; justify-content:space-between; gap:8px; min-height:44px; padding:4px 10px; border:1px solid transparent; border-radius:var(--arrondi); background:transparent; color:var(--encre-1); cursor:pointer; text-align:left; }
   .o-tm-police:hover { background:var(--zone); }
   .o-tm-police span { font-size:20px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
   .o-tm-police small { color:var(--encre-2); font-size:11px; flex:none; }
-  .o-tm-graisses { flex-wrap:wrap; }
-  .o-tm-autre { position:relative; align-self:flex-start; }
+  .o-tm-choisie { border-color:var(--accent) !important; box-shadow:0 0 0 1px var(--accent); }
+  /* Les choix du texte : une seule piste, ses cases serrées ; la choisie
+     pleine (l'accent). */
+  .o-tm-seg { display:flex; gap:2px; min-width:0; padding:2px; border:1px solid rgba(var(--teinte),.14); border-radius:10px; background:rgba(var(--teinte),.04); }
+  .o-tm-seg > button { flex:1 1 0; min-width:0; display:inline-flex; align-items:center; justify-content:center; height:36px; padding:0 6px; border:0; border-radius:8px; background:transparent; color:var(--encre-2); font:inherit; font-size:12px; font-weight:var(--g-note); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; transition:background .12s, color .12s; }
+  .o-tm-seg > button:hover { color:var(--encre-1); background:rgba(var(--teinte),.06); }
+  .o-tm-seg > button[aria-checked="true"] { background:var(--accent); color:#fff; }
+  .o-tm-seg > button:focus-visible { outline:none; box-shadow:var(--anneau); }
+  .o-tm-icones .o-studio-ic { width:17px; height:17px; }
+  .o-tm-angle { display:inline-flex; align-items:center; gap:2px; height:40px; padding:0 6px; border:1px solid rgba(var(--teinte),.14); border-radius:10px; background:rgba(var(--teinte),.04); color:var(--encre-2); }
+  .o-tm-angle .o-studio-ic { width:14px; height:14px; }
+  .o-tm-angle input { width:34px; border:0; background:transparent; color:var(--encre-1); font:inherit; font-size:16px; text-align:right; -moz-appearance:textfield; }
+  .o-tm-angle input::-webkit-inner-spin-button { display:none; }
+  .o-tm-angle input:focus { outline:none; }
+  .o-tm-angle:focus-within { box-shadow:var(--anneau); }
+  .o-tm-curseur { width:100%; accent-color:var(--accent); }
+  .o-tm-rang output { min-width:32px; text-align:right; font-size:var(--t-petit); color:var(--encre-2); font-variant-numeric:tabular-nums; }
+  .o-tm-couleurs { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; grid-column:2 / 4; }
+  .o-tm-couleurs > .o-studio-pastilles { align-self:stretch; }
+  .o-tm-lien { display:inline-flex; align-items:center; gap:6px; min-height:32px; padding:0; border:0; background:none; color:var(--encre-2); font:inherit; font-size:var(--t-petit); cursor:pointer; }
+  .o-tm-lien:hover { color:var(--encre-1); }
+  .o-tm-lien:focus-visible { outline:none; box-shadow:var(--anneau); border-radius:6px; }
+  .o-tm-lien[aria-expanded="true"] .o-studio-chevron { transform:rotate(180deg); }
+  .o-tm-autre { position:relative; display:inline-flex; width:28px; height:28px; border-radius:50%; cursor:pointer; background:conic-gradient(#e11d48,#f59e0b,#84cc16,#06b6d4,#6366f1,#e11d48); }
+  .o-tm-autre i { position:absolute; inset:5px; border-radius:50%; box-shadow:0 0 0 2px var(--carte); }
   .o-tm-autre input[type=color] { position:absolute; inset:0; opacity:0; cursor:pointer; }
-  .o-tm-pastille { display:inline-block; width:14px; height:14px; border-radius:50%; margin-right:6px; vertical-align:-2px; box-shadow:inset 0 0 0 1px rgba(var(--teinte),.25); }
-  .o-tm-retirer { align-self:flex-start; }
+  .o-tm-cadre { position:absolute; z-index:4; box-sizing:border-box; border:1.5px solid #0284c7; cursor:move; touch-action:none; }
+  .o-tm-cadre .o-studio-recadre-poignee { width:12px; height:12px; margin:-6px 0 0 -6px; border-color:#0284c7; }
   .o-studio { --damier-petit:repeating-conic-gradient(#cbd5e1 0 25%, #fff 0 50%) 50% / 8px 8px; }
   .o-studio-lc-damier { background:var(--damier-petit); }
   /* La grille d'une couleur du logo (22/11/2026) : OLDA, Or, Transparent, multicolore. */
@@ -826,19 +871,10 @@
   .o-studio-article-mot { font-weight:var(--g-forte); white-space:nowrap; }
   .o-studio-article small { margin-left:auto; font-size:var(--t-petit); color:var(--encre-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-  /* Écran étroit (une tablette en portrait) : le panneau passe sous le
-     plan, à sa hauteur entière — la page défile, la barre reste en haut,
-     pleine largeur. */
-  @media (max-width: 1100px) {
-    .o-studio-barre { position:sticky; top:0; }
-    .o-studio { grid-template-columns:minmax(0,1fr); min-height:0; flex:none; }
-    .o-studio-scene { min-height:62vh; }
-    .o-studio-defile, .o-studio-inspecteur { flex:none; overflow:visible; }
-    .o-studio-insp-tete { position:static; }
-  }
 
-  /* LA PAGE : le studio seul, à la hauteur de la fenêtre ; sous 1 100 px,
-     le panneau passe sous le plan et la page défile. */
+  /* LA PAGE : le studio seul, à la hauteur de la fenêtre ; le panneau
+     défile en lui-même, le plan ne bouge pas (22 novembre 2026 : sous
+     1 100 px, le panneau allongeait la page et le plan se recadrait). */
   html, body { height:100%; }
   button, input, select, textarea { font-family:inherit; }
   /* Barres de défilement fines : sur Chrome Windows, les classiques (17 px) mangeaient le panneau. */
@@ -848,7 +884,6 @@
   small { font-size:var(--t-petit); }
   h2, h3 { font-size:var(--t-titre); font-weight:var(--g-forte); }
   .page { box-sizing:border-box; height:100%; display:flex; flex-direction:column; padding:20px; }
-  @media (max-width: 1100px) { .page { height:auto; min-height:100%; } }
 
 
   /* COMME « ANALYSER » DANS LE BAT (20 novembre 2026, Charlie : « le logo
