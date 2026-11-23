@@ -776,19 +776,17 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   suit), après `recolorer` : rien n'est vectorisé, les trois versions,
   les exports et l'historique (« Couleur Bleu : Vert ») suivent. Sans
   changement, les mêmes octets. Pas pour une photo.
-- **Ouvrir un logo, le fermer** (22 novembre 2026, « fermer le logo en
-  cours et en rouvrir un autre ultra facilement ; une recherche ultra
-  intelligente avec les derniers logos de Téléchargements ») : la croix de
-  la barre ferme le logo (`supprimerLogo`) ; « Ouvrir un logo » (Ctrl O,
-  et « Derniers logos » à l'accueil) ouvre un volet : la recherche
-  (`chercher`, lib/recents.js — sans accents ni casse ; « aujourd'hui »,
-  « hier », « semaine », « png », « pdf », « vecteur » filtrent ; le nom
-  qui commence par le mot passe devant, puis le plus récent), les derniers
-  logos en vignettes, Entrée ouvre le premier. Les sources : le dossier
-  relié une fois (Téléchargements ; Chrome refuse ce dossier système sur
-  certains postes — on le dit, un sous-dossier ou « Parcourir » marche) et
-  les fichiers ouverts par « Parcourir » (ouvert dans Téléchargements) ou
-  glissés, leurs accès gardés dans le coffre.
+- **Ajouter un logo : un seul endroit, un seul clic** (22 novembre 2026,
+  « je ne veux pas plusieurs endroits pour ajouter un logo, c'est le
+  bordel » ; « on doit ajouter un logo très rapidement ») : le plan vide
+  n'a qu'une carte « Ajouter un logo » ; un logo ouvert, seul « Ouvrir un
+  logo » de la barre (à côté de la croix qui le ferme). Les deux, et
+  Ctrl O, ouvrent tout de suite le sélecteur de Chrome dans
+  Téléchargements (`ouvrirFichier`, lib/recents.js) ; glisser ou coller
+  (Ctrl V) marchent aussi. Plus de volet « Derniers logos » ni de dossier
+  relié (Chrome refusait Téléchargements, dossier système), plus de
+  « Rouvrir » dans les réglages Maker, plus d'ouverture par le bouton
+  Logo maker sans logo. Ne pas rajouter d'autre entrée.
 - **Le texte se recouvre et se réécrit** (22 novembre 2026, « quand l'app
   n'arrive pas à repérer les polices, je dois pouvoir les recouvrir pour
   les effacer et réécrire à cet endroit ») : l'outil Texte (T, la barre du
