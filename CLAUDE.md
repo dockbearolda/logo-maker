@@ -837,3 +837,10 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   liste, Alt ← / → passe au voisin. Sur le plan, le cadre du texte ouvert
   se glisse et s'étire (dans l'image : le plan est l'image). Une frappe
   retardée vise le texte où on l'a tapée (`changerTm(…, k)`).
+- **Le zoom ne zoome que le logo** (24 novembre 2026, « ça ne doit jamais
+  bouger la fenêtre ou zoomer la fenêtre, c'est le logo qui zoome ») : la
+  molette zoome le logo sous la souris PARTOUT sur le plan (la scène, sa
+  barre, le chargement, la pastille de taille ; un menu qui défile garde
+  sa molette sans Ctrl). Ctrl/Cmd + / − / 0 (et le pavé numérique)
+  zooment le logo ou le remettent en « Tout voir », jamais la page, même
+  dans un champ. Ctrl + molette (le pincement) hors du plan ne fait rien.
