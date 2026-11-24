@@ -782,6 +782,20 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   Image. Le même fichier donne le même PDF, octet pour octet. Côté BAT,
   Analyser et Améliorer renvoient toujours la même source (le fichier reçu),
   jamais le PDF déjà refait (bat-studio, `sourceMaker`).
+- **L'export sort la décision finale du tracé** (24 novembre 2026) : un
+  export demandé avant la fin du tracé partait tracé, demandé après il
+  partait Détouré (Clear Ice SXM, son modelé lu par le tracé final). Il
+  attend le tracé final (`vecteurFrais`) et sort Détouré si le tracé l'y a
+  rendu : le même PDF à 0,3 s comme à 20 s.
+- **Le bouton « Passer en Ultra HD » est toujours là** (24 novembre 2026,
+  « j'ai un logo vectorisé qui me convient, je veux pouvoir le passer en HD
+  rapidement ; un coup de Logo maker et il ne ressemble plus à rien ») :
+  sous « Retoucher le logo », dès qu'un logo est ouvert. Il ne change QUE
+  l'image (l'Ultra forcée, `nettoyerImage(true, { garder })`) : la version,
+  le fond et les creux de l'écran sont figés (`vueChoisie`, `fondChoisi`,
+  `creuxChoisi`), rien ne se redécide sur l'image HD — un PDF vectoriel
+  ressort vectoriel. En cours : « Ultra HD · 42 % » ; faite : « Ultra HD
+  faite », grisé. Le bouton « Logo maker », lui, redécide tout.
 - **Nouveau logo / Supprimer** (22 novembre 2026, « on doit pouvoir
   supprimer le logo en cours et facilement en ajouter un nouveau ») : dans
   la barre dès qu'un logo est ouvert. Nouveau ouvre le sélecteur (le
