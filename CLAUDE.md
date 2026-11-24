@@ -782,6 +782,22 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   Image. Le même fichier donne le même PDF, octet pour octet. Côté BAT,
   Analyser et Améliorer renvoient toujours la même source (le fichier reçu),
   jamais le PDF déjà refait (bat-studio, `sourceMaker`).
+- **Logo maker ne se lance plus tout seul : le logo s'ouvre TEL QUEL**
+  (24 novembre 2026, « Logo maker ne doit plus se lancer tout seul » ;
+  « j'ai un logo vecto que je veux mettre en HD, je n'ai pas besoin de
+  mettre Logo maker »). À l'ouverture (studio et Analyser) : fond
+  « Entier » (rien ne part), aucune IA, aucune netteté ; un SVG, PDF, AI en
+  Vecteur, un fichier en pixels en Détouré ; tenu comme un choix
+  (`vueChoisie`, `fondChoisi`, `creuxChoisi`) : ni le tracé, ni l'IA, ni
+  Annuler ne le redécident. Le graphiste lit le fichier (`decision`), mais
+  sa décision — version, fond, creux, IA, et le tracé d'office d'un logo à
+  plat ci-dessus — ne s'applique qu'au clic sur « Logo maker »
+  (`logoMaker`). « Passer en Ultra HD » n'agrandit que l'image. Piloté par
+  le BAT (« Améliorer », `E.pilote`), la décision s'applique d'office. Ce
+  qui précède sur « le graphiste choisit la version à l'ouverture » et
+  « un petit fichier se nettoie seul » vaut désormais pour le clic sur
+  « Logo maker ». Côté BAT, le survol d'un logo ne lance plus Logo maker en
+  arrière-plan.
 - **L'export sort la décision finale du tracé** (24 novembre 2026) : un
   export demandé avant la fin du tracé partait tracé, demandé après il
   partait Détouré (Clear Ice SXM, son modelé lu par le tracé final). Il
