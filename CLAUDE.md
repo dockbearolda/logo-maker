@@ -51,6 +51,17 @@ que servir les fichiers. On modifie les fichiers, on vérifie dans l'aperçu
   sans carte graphique, rien. Un modèle plus gros n'est pas forcément
   meilleur : « x4plus anime 6B » détourait les lettres d'un trait noir —
   mesurer sur des logos réduits ×4 et passés en JPEG avant d'en changer.
+- **Un logo à plat sort avec des bords nets** (23-24 novembre 2026, « les
+  lignes du logo refait sont floues et pixelisées : il faut de belles
+  lignes ») : après `borner`, `netAPlat` (lib/net-a-plat.js) relit chaque
+  pixel comme le mélange de deux teintes franches (`sansMelanges` écarte
+  les teintes qui ne sont que des mélanges), lisse leurs parts et
+  redessine le bord à sa place, anticrénelé sur un pixel. Les liserés que
+  l'IA laisse entre deux aplats (une bande plus fine que 0,8 pixel du
+  fichier reçu, `LISERE`) deviennent le fondu des deux voisines ; un vrai
+  contour (≥ 1 pixel reçu) et un trait fin sur un seul fond restent.
+  Seulement `genre === 'logo'` sans matière, ≤ 8 teintes, < 6 % de pixels
+  hors mélanges : une illustration, un dégradé, une photo n'y passent pas.
 - **« Améliorer la netteté » (ex-« Rendre net », 30 septembre 2026, « la
   feature de PicWish ») : le flou se retire avant l'IA, jamais en
   l'inventant.** Le flou se mesure sur les bords (`flouDe`,
