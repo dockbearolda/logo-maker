@@ -769,6 +769,19 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   BAT (`E.pilote`) n'est pas touché. Une couleur du nuancier sur un logo en
   pixels reteint ses pixels (Image), elle ne le fait plus passer en Vecteur ;
   le PDF reste une image.
+- **Sauf un LOGO À PLAT : il se trace d'office** (24 novembre 2026, « en
+  partant du même logo ça ne donne jamais le même résultat : un beau logo
+  bien vectorisé ; on refait la même chose, les contours sont flous et en
+  escalier — ça marchait avant, il faut que ça marche ») : le même logo
+  sortait tracé quand le BAT renvoyait son PDF déjà refait, en pixels quand
+  il renvoyait le PNG reçu. Un logo en pixels que le graphiste lit à plat
+  (`genre` 'logo', `logoAPlat`) s'ouvre en Vecteur, tracé sur l'image de
+  l'Ultra HD — dans le studio et dans le BAT (`piloter` 'auto'). Une
+  illustration (EVJF : `genre` 'image'), une matière, une photo restent en
+  Détouré vidé ; un tracé qui lit du modelé rend le logo à Détouré, jamais à
+  Image. Le même fichier donne le même PDF, octet pour octet. Côté BAT,
+  Analyser et Améliorer renvoient toujours la même source (le fichier reçu),
+  jamais le PDF déjà refait (bat-studio, `sourceMaker`).
 - **Nouveau logo / Supprimer** (22 novembre 2026, « on doit pouvoir
   supprimer le logo en cours et facilement en ajouter un nouveau ») : dans
   la barre dès qu'un logo est ouvert. Nouveau ouvre le sélecteur (le
