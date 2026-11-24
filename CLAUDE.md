@@ -840,6 +840,15 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   Un clic sur le plan hors de tout texte (à côté du logo, dans son vide)
   valide le texte ouvert et revient à la liste, comme Échap (24 novembre
   2026, « cliquer à gauche ou à droite du logo pour valider »).
+  Le texte écrit SE DÉPLACE SEUL (24 novembre 2026, « le fond blanc posé
+  sur l'ancien texte doit rester, on doit déplacer le nouveau texte ») :
+  glisser son cadre écrit le texte à sa `place` (lib/texte-main.js), le
+  cache reste sur `cadre` (contour gris pointillé sur le plan). Tant que
+  le texte n'a jamais bougé, les poignées étirent le cache avec lui ;
+  ensuite, le texte seul. Tous les caches se posent avant tous les textes.
+  Pendant le glissé, le centre du texte s'aimante au centre de l'image et
+  à celui du logo (son encre, `cadreLogo`), horizontal et vertical, une
+  ligne magenta le montre (Ctrl/Cmd : sans aimant).
 - **Le zoom ne zoome que le logo** (24 novembre 2026, « ça ne doit jamais
   bouger la fenêtre ou zoomer la fenêtre, c'est le logo qui zoome ») : la
   molette zoome le logo sous la souris PARTOUT sur le plan (la scène, sa
