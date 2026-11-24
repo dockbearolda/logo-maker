@@ -837,6 +837,9 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   liste, Alt ← / → passe au voisin. Sur le plan, le cadre du texte ouvert
   se glisse et s'étire (dans l'image : le plan est l'image). Une frappe
   retardée vise le texte où on l'a tapée (`changerTm(…, k)`).
+  Un clic sur le plan hors de tout texte (à côté du logo, dans son vide)
+  valide le texte ouvert et revient à la liste, comme Échap (24 novembre
+  2026, « cliquer à gauche ou à droite du logo pour valider »).
 - **Le zoom ne zoome que le logo** (24 novembre 2026, « ça ne doit jamais
   bouger la fenêtre ou zoomer la fenêtre, c'est le logo qui zoome ») : la
   molette zoome le logo sous la souris PARTOUT sur le plan (la scène, sa
