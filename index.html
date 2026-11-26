@@ -2,10 +2,6 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<!-- LE JOUR ET LA NUIT (21/11/2026) : de 19 h à 7 h, heure de l'appareil, la
-     page passe en `data-theme="dark"` — posé avant le premier rendu, revu
-     chaque minute et au retour sur l'onglet. Le même dans toutes les applis OLDA. -->
-<script>(function(){var r=document.documentElement;function p(){var h=new Date().getHours(),v=h>=19||h<7?'dark':'light';if(r.getAttribute('data-theme')!==v)r.setAttribute('data-theme',v)}p();setInterval(p,60000);document.addEventListener('visibilitychange',function(){if(!document.hidden)p()})})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Logo maker · OLDA</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -293,45 +289,12 @@
     --p-filet-fort: #a8a7a1;
     --p-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Cascadia Mono', monospace;
     --p-police: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Arial sur Windows : le même gabarit */
-    /* LE JOUR ET LA NUIT (21/11/2026, Charlie : « logo maker doit être en mode
-       jour, les app peuvent passer en mode nuit à 19h en automatique ») : ces
-       jetons sont le jour ; `[data-theme="dark"]`, posé de 19 h à 7 h par le
-       script en tête de page, les passe à la nuit. */
+    /* Toujours clair (25/11/2026, Charlie : « je ne veux pas de mode nuit nulle part »). */
     color-scheme: light;
     --teinte: 32,41,48;            /* voiles et liserés : encre sur fond clair */
     --sur-encre: #fff;             /* ce qui se lit SUR l'encre pleine */
     --verre-carte: rgba(255,255,255,.94);
     --scene: radial-gradient(120% 90% at 40% 45%, #f7f9fa 0%, #eaeef1 70%);
-  }
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --fond: #0e0f11;
-    --carte: #17181b;
-    --zone: #24252a;
-    --survol: #24252a;
-    --survol-fort: #2e2f34;
-    --filet-ligne: #26272b;
-    --encre-1: #f4f4f2;
-    --encre-2: #a2a2a0;
-    --encre-3: #75757a;
-    --encre-indice: #a2a2a0;
-    --filet-carte: #26272b;
-    --filet-fort: #3a3b41;
-    --accent: #5f7d92;
-    --accent-survol: #6d8ba0;
-    --sur-accent: #fff;
-    --filet-bouton: #2a2b30;
-    --succes: #1fa971;
-    --succes-encre: #4ade80;
-    --danger: #f28b82;
-    --etat-retard-encre: #f28b82;
-    --ombre-flottant: 0 0 0 1px rgba(255,255,255,.09), 0 18px 44px rgba(0,0,0,.5);
-    --anneau: 0 0 0 3px rgba(107,129,145,.6);
-    --surface: #202125;
-    --teinte: 255,255,255;
-    --sur-encre: #111214;
-    --verre-carte: rgba(23,24,27,.94);
-    --scene: radial-gradient(120% 90% at 40% 45%, #1c1d21 0%, #0e0f11 70%);
   }
   /* ======================================================== LE LOGO MAKER
      (lib/studio-detourage.js) Le logo au centre de son plan, son fond et
@@ -428,7 +391,7 @@
      la même, au pixel, en tête de BAT Studio, du Logo maker et du planning :
      « ‹ Dashboard », OLDA + le nom de l'appli en gris, un filet, le titre de
      l'écran en gras ; à droite des outils (icône, + libellé) et un bouton
-     encadré. Clair par défaut ; sombre sous `[data-theme="dark"]` (de 19 h à 7 h). Cibles de 44 px.
+     encadré. Toujours clair. Cibles de 44 px.
      Copiée telle quelle dans les trois applis : ne la retoucher qu'ici, puis
      partout (side-session-notes/…/barre-olda.css). */
   .ob-barre {
@@ -443,10 +406,6 @@
     color: var(--ob-encre);
     font: 400 14px/1.25 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
     letter-spacing: normal; -webkit-font-smoothing: antialiased;
-  }
-  [data-theme="dark"] .ob-barre, .ob-barre.ob-sombre {
-    --ob-fond: #161b20; --ob-encre: #e8edf1; --ob-encre-2: #a3b1bc; --ob-encre-3: #6f7d88;
-    --ob-filet: #2a333b; --ob-filet-fort: #4d5b67; --ob-zone: rgba(255, 255, 255, .07); --ob-surface: #1a2026;
   }
   .ob-barre .ob-outil { box-sizing: border-box; }
   .ob-barre [hidden] { display: none !important; }
