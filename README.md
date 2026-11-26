@@ -22,7 +22,7 @@ reprendre sa police, et chaque ligne s'épaissir à la main (« Gras
 autour »). Chaque geste se défait (Ctrl Z) ou se refait (Ctrl Maj Z),
 et l'historique du fichier ramène à n'importe lequel.
 
-En ligne : **<https://logomaker-olda.up.railway.app/>** (tuile « Logo
+En ligne : **<https://logo-maker.dockbear.workers.dev/>** (tuile « Logo
 maker » du portail <https://dockbearolda.github.io/>) — et toujours sur
 <https://dockbearolda.github.io/logo-maker/>, la même page.
 

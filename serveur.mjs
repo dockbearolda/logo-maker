@@ -1,9 +1,9 @@
 /* =============================================================== LE SERVEUR
-   30 septembre 2026 : « récupère tout mon app Logo maker et mets-la sur un
-   site Railway en ligne ». Le Logo maker reste des pages statiques — tout se
-   calcule dans le navigateur, rien n'arrive ici — : ce serveur ne fait que
-   les servir, sans paquet. `node serveur.mjs` (Railway : `npm start`, le
-   port dans PORT ; l'aperçu `logo-maker` aussi).
+   Serveur LOCAL (en ligne, c'est Cloudflare Workers : worker/, wrangler.jsonc).
+   Le Logo maker reste des pages statiques — tout se calcule dans le
+   navigateur, rien n'arrive ici — : ce serveur ne fait que les servir, sans
+   paquet. `node serveur.mjs` (`npm start`, le port dans PORT ; l'aperçu
+   `logo-maker` aussi).
    - Les bons types : un .wasm en application/wasm (le navigateur le compile
      en le recevant), un .mjs en JavaScript.
    - Compressé une fois, gardé en mémoire : le moteur ONNX (27 Mo) part en
@@ -11,9 +11,9 @@
      denses).
    - Revalidé à chaque visite (ETag) : une mise en ligne se voit tout de
      suite, et ce qui n'a pas changé ne repart pas (304). L'ETag est
-     l'empreinte du contenu, pas sa date : Railway date chaque fichier du
-     dernier commit, et un modèle de 55 Mo repartait à chaque mise en
-     ligne.
+     l'empreinte du contenu, pas sa date : un hébergeur qui date chaque
+     fichier du dernier commit renverrait un modèle de 55 Mo à chaque mise
+     en ligne.
    - Rien de caché ne sort : ni .git, ni .claude, rien qui commence par un
      point.
    - La page est isolée de toute autre origine (1er octobre 2026, « encore
