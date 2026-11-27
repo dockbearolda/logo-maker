@@ -12,8 +12,14 @@ COOP/COEP : un seul cœur). Pas de déploiement automatique sur Workers :
 après le merge sur `main`, `npm run cf:build && npx wrangler deploy`, puis
 vérifier que le site sert le nouveau code. En local, `serveur.mjs` ne fait
 que servir les fichiers. On modifie les fichiers, on vérifie dans l'aperçu
-`logo-maker`, `node --test 'lib/*.test.mjs' serveur.test.mjs` (pas
-`dist-cf/`, la copie de build), on pousse, on déploie.
+`logo-maker`, `npm test` (`node --test 'lib/*.test.mjs' serveur.test.mjs`,
+pas `dist-cf/`, la copie de build ; la CI GitHub le refait à chaque PR et
+sur `main`), on pousse, on déploie. Un changement du calcul (détourage,
+tracé, graphiste, bords nets) : `npm run banc` (outils/banc-octets.mjs) —
+chaque logo de ~/Downloads passé par le `lib/` de `main` et par celui de
+l'arbre de travail, comparés en SHA-1 étape par étape (~5 min pour 109
+logos) ; un écart dit ce que le changement touche, à juger à l'œil. Un
+changement qui ne devait rien toucher : zéro écart.
 
 ## Ce qui est tranché (ne pas défaire)
 

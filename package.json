@@ -8,8 +8,9 @@
   },
   "scripts": {
     "start": "node serveur.mjs",
-    "test": "node --test",
+    "test": "node --test 'lib/*.test.mjs' serveur.test.mjs",
     "cf:build": "node scripts/build-cf.mjs",
-    "cf:deploy": "node scripts/build-cf.mjs && npx wrangler deploy"
+    "cf:deploy": "node scripts/build-cf.mjs && npx wrangler deploy",
+    "banc": "node outils/banc-octets.mjs"
   }
 }
