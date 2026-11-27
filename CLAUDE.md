@@ -961,6 +961,32 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   (lib/texte-main.js, `poserTextes`, après `reteindre` : les courbes de la
   police par opentype.js, suréchantillonnées, au plus grand dans le cadre,
   centré) — les trois versions, les exports, l'historique suivent.
+- **La version se choisit dans le panneau** (27 novembre 2026, « il faut
+  remettre la possibilité d'Image dans Logo maker : c'est une image, on
+  doit pouvoir parfaitement la détourer, vecteur et image ») : le bloc
+  VERSION (Détouré, Vecteur, Image) est sorti des anciens réglages cachés,
+  sous « Retoucher le logo ». Un clic l'emporte (`vueChoisie`) ; « Logo
+  maker » la redécide. Côté BAT, la fenêtre « Améliorer » garde ses deux
+  choix (bat-studio, `VERSIONS` d'ameliorer.js) ; le calcul est le même.
+- **Une aquarelle n'est pas un logo à plat** (27 novembre 2026, Instant
+  Floral, « j'ai besoin que l'app sache gérer Instant Floral ») : le
+  graphiste la reconnaît (`estAquarelle`, lib/graphiste.js : des tons
+  hors de ses teintes au milieu de ses surfaces, loin des bords, lisses,
+  qui s'écartent doucement — 10 % du dessin au moins, `LAVIS`) et la lit
+  en `genre` 'image' : Logo maker la rend en Détouré vidé (l'Ultra HD, ses
+  pixels, aucun tracé, pas de bords nets), Vecteur et Image à un clic.
+  Mesuré sur ~/Downloads : seuls changent Instant Floral, sa version
+  « Logo floral », le flocon translucide de Clear Ice, des captures de
+  maquettes et la photo d'un document ; Aimé Leon Dore et New Balance
+  (des imprimés photographiés, au grain fort) restent des logos. Une
+  aquarelle se lit sur le fichier reçu (`redecider` : l'IA a pu adoucir
+  ses lavis). SON BLANC EST LE PAPIER (« il reste du blanc entre les deux
+  fleurs, il doit être enlevé ») : `aquarelle` passe aux réglages du
+  détourage, et une poche couleur du fond enfermée par un lavis qui y fond
+  doucement part, même sans bord net (`creux`, `doux` ; une vraie poche,
+  (4 `s`)² pixels au moins : le liseré presque blanc au ras d'une lettre
+  posée sur un lavis reste). Sur tout autre dessin, le reflet pâle d'un
+  dégradé reste comme avant.
 - **L'image est fixe** (21 novembre 2026, « on oublie les calques, ultra
   simple à utiliser, on finira avec ChatGPT ») : sur le plan, glisser
   déplace la vue, la molette zoome, rien d'autre — plus de sélection, de
