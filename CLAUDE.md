@@ -812,6 +812,12 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   `creuxChoisi`), rien ne se redécide sur l'image HD — un PDF vectoriel
   ressort vectoriel. En cours : « Ultra HD · 42 % » ; faite : « Ultra HD
   faite », grisé. Le bouton « Logo maker », lui, redécide tout.
+  Un logo FLOU en sort NET (27 novembre 2026, « passer un logo flou en
+  HD, net, sans mettre de Logo maker avant ») : le flou que le graphiste
+  mesure (`decision.net`) se retire avant l'Ultra, comme avec Logo maker ;
+  un fichier net n'y passe pas. Les deux s'enchaînent dans les deux sens :
+  Logo maker après l'Ultra HD relit l'image HD sans relancer l'IA ; cliqué
+  pendant l'Ultra HD, il relit l'image HD à son arrivée.
 - **Nouveau logo / Supprimer** (22 novembre 2026, « on doit pouvoir
   supprimer le logo en cours et facilement en ajouter un nouveau ») : dans
   la barre dès qu'un logo est ouvert. Nouveau ouvre le sélecteur (le
