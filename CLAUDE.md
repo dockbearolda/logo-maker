@@ -847,6 +847,13 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   un fichier net n'y passe pas. Les deux s'enchaînent dans les deux sens :
   Logo maker après l'Ultra HD relit l'image HD sans relancer l'IA ; cliqué
   pendant l'Ultra HD, il relit l'image HD à son arrivée.
+  SON TEMPS AVANT LE CLIC (27 novembre 2026, « qu'on sache si ça vaut le
+  coup d'attendre ») : à l'ouverture, le fil de l'IA jauge l'Ultra sur la
+  première tuile sans rien montrer (`jaugerUltra`, lib/detourage-travail.js :
+  toutes ses orientations, plus ce que prend `garder`, mesuré à la
+  dernière Ultra) ; le bouton dit « Passer en Ultra HD · ~12 s » ~1,5 s
+  après l'ouverture. Annoncé 8/36/5/20 s, vrai 10/34/6/16 s (AVI, Bad
+  Girl, Bacchus, Proof Studio). Sans carte graphique, pas de temps.
 - **À l'ouverture, rien ne se montre** (27 novembre 2026, « à l'ouverture
   ça me met automatiquement un coup de Logo maker, je veux qu'il ne se
   passe rien ») : la carte « Logo maker · % » courait pendant la lecture
