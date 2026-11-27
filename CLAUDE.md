@@ -987,6 +987,19 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   (4 `s`)² pixels au moins : le liseré presque blanc au ras d'une lettre
   posée sur un lavis reste). Sur tout autre dessin, le reflet pâle d'un
   dégradé reste comme avant.
+  SA VERSION IMAGE GARDE SES PIXELS (« un liseré blanc autour de la
+  vectorisation, ça doit vraiment être net et pas flou ») : tracé EN TONS
+  (un dégradé, une aquarelle : `multi.nuances`), les couches ne sont que des
+  bandes de tons — `imageParCouches` (lib/image-nette.js, `enTons`) y
+  prenait leurs frontières pour des rampes de bord et repeignait le cerne
+  rouge foncé d'une feuille du rose de l'intérieur, en rayures : un liseré
+  pâle tout autour. Désormais chaque pixel opaque du fichier fait foi et
+  ils se lisent ensemble : l'image du fichier, découpée au bord du vecteur.
+  Un tracé d'aplats garde sa règle (la rampe se refait, le halo d'un JPEG
+  prend la couleur). Mesuré : les logos à plat ne bougent pas d'un pixel ;
+  l'emblème de la Gendarmerie, Bad Girl, EVJF (des illustrations) perdent
+  leurs barbouillages (fleur de lys rayée, yeux du lion, cheveux en
+  aplats) — l'image redevient celle du fichier.
 - **L'image est fixe** (21 novembre 2026, « on oublie les calques, ultra
   simple à utiliser, on finira avec ChatGPT ») : sur le plan, glisser
   déplace la vue, la molette zoome, rien d'autre — plus de sélection, de
