@@ -62,6 +62,32 @@ que servir les fichiers. On modifie les fichiers, on vérifie dans l'aperçu
   contour (≥ 1 pixel reçu) et un trait fin sur un seul fond restent.
   Seulement `genre === 'logo'` sans matière, ≤ 8 teintes, < 6 % de pixels
   hors mélanges : une illustration, un dégradé, une photo n'y passent pas.
+  **Des contours parfaitement lisses** (27 novembre 2026, « les contours
+  ne sont pas parfaits, on fait du haut de gamme », le logo AVI) :
+  - LE BORD DU VIDE (un logo détouré) : l'opacité sortait de l'IA en dents
+    de scie, la couleur (vue posée sur du blanc) avec un liseré clair, et
+    rien ne les reprenait. L'opacité se redessine comme une teinte, les
+    pixels du bord prennent les parts de l'encre voisine (`remplir`) ;
+    un voile, une ombre douce gardent la leur (`voileOuVide`).
+  - L'anticrénelage est la part de la surface du pixel de chaque côté
+    (`couverture`, seize points) — la pente décalait chaque bord d'un
+    quart de pixel ; le cœur d'un trait plus fin qu'un pixel reste plein.
+  - UN FICHIER AGRANDI AU PLUS PROCHE (chaque pixel en bloc : AVI, 547 px,
+    l'agrandissement ×2 d'un plus petit) a des marches que l'IA recopie.
+    Son pas se mesure (`pasDuFichier` : AVI 1,47, ×2 exact 2,04, les 80
+    autres fichiers de ~/Downloads ≤ 1,14) ; à partir de `PAS_MIN` (1,25),
+    les parts se moyennent LE LONG du bord (`leLong` : la ligne de courant
+    du tenseur de structure, `LONG` 3 et `LARGE` 2 vrais pixels), arrêtée
+    dans un coin (cohérence basse, virage de 10°, plus de bord à 1,5 vrai
+    pixel, les deux moitiés en désaccord — `ASYMETRIE`). Jamais sur un
+    fichier net : la moyenne y arrondissait les empattements (−3 à −6 dB).
+  Jugé au banc (scratchpad : logos nets réduits ×4, le Ultra OLDA en Node
+  par onnxruntime-node, PSNR des bords contre l'original) : AVI détouré
+  24,1 → 36,4 dB, Proof Studio 27,4 → 37,1, AVI sur blanc 28,1 → 30,4,
+  en JPEG 27,9 → 30,2, AVI ×2 au plus proche 14,6 → 17,3 ; Brazier
+  inchangé. Essayé et écarté : reprendre les bords du fichier reçu agrandi
+  en bicubique (−3 à −6 dB : l'IA place mieux le bord) ; la moyenne le
+  long du bord sur tout fichier.
 - **« Améliorer la netteté » (ex-« Rendre net », 30 septembre 2026, « la
   feature de PicWish ») : le flou se retire avant l'IA, jamais en
   l'inventant.** Le flou se mesure sur les bords (`flouDe`,
