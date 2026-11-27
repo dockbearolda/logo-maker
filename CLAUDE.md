@@ -94,6 +94,38 @@ changement qui ne devait rien toucher : zéro écart.
   inchangé. Essayé et écarté : reprendre les bords du fichier reçu agrandi
   en bicubique (−3 à −6 dB : l'IA place mieux le bord) ; la moyenne le
   long du bord sur tout fichier.
+  **Une vraie encre grise n'est pas un mélange** (27 novembre 2026, trouvé
+  par le banc de bout en bout) : un contour gris sur fond crème, un texte
+  gris sur un aplat vert disparaissaient — le gris est sur le segment du
+  noir (l'étoile, ailleurs) et du crème, `sansMelanges` le retirait et
+  chaque pixel de bord se lisait « crème + noir » (un liseré noir autour
+  des lettres grises). Désormais une teinte n'est un mélange que si ses
+  pixels touchent ses deux parents (la moitié d'entre eux à 1,5 pixel du
+  fichier, `MELANGE_RAYON`, `MELANGE_PART`), et chaque pixel ne se lit
+  qu'entre les teintes dont un CŒUR d'aplat est autour de lui
+  (`presentes` : une seule présente, les paires qui la contiennent ; à
+  égalité, le segment le plus court). Un trait plus fin que 1,5 pixel du
+  fichier entre deux aplats reste indiscernable d'un mélange (comme
+  avant). Au banc (29 logos × 3 abîmes, avec l'IA) : forme 0,939 → 0,957,
+  ΔE 1,22 → 1,07, l'écu gris 0,85 → 0,99, Instant Floral (ses roses
+  pâles) ΔE 11 → 4,5 ; aucun logo ne recule.
+- **Le banc de bout en bout** (27 novembre 2026, « transformer un logo de
+  merde en un logo parfaitement exploitable ») : `outils/corpus-bout.py`
+  dessine des logos à plat dont on connaît la vérité (emblème, mot,
+  badge, symbole ; l'encre vraie, les couleurs vraies, l'AMBIGU — un grand
+  intérieur couleur du fond, que l'app peut garder exprès comme la marge
+  d'un autocollant, hors du jugement) et les abîme comme les clients
+  (`petit` ×4 JPEG 60, `flou`, `whatsapp` double JPEG) ; `--vrais <png…>`
+  ajoute de vrais logos propres. `npm run banc:bout -- <corpus> --ia
+  --avant=main` les passe par la chaîne de l'app — l'Ultra OLDA en Node
+  (onnxruntime-node installé à part dans ~/.cache/logo-maker-banc, sa
+  sortie brute gardée là), `garder`, le détourage, le tracé — et compare
+  au rendu de la vérité : forme, bords à 2 px, ΔE, teintes, îles, nœuds.
+  Sans `--ia`, la part en JavaScript seule (les petits textes y cassent :
+  c'est l'IA qui les sauve). Juger un changement du calcul avec lui, en
+  plus du banc des mêmes octets. Mesuré le jour même : les couleurs sont
+  déjà franches (ΔE 0,67, teintes justes à 0,13 près sur le synthétique) ;
+  rapprocher les teintes du nuancier n'y gagne rien de mesurable.
 - **« Améliorer la netteté » (ex-« Rendre net », 30 septembre 2026, « la
   feature de PicWish ») : le flou se retire avant l'IA, jamais en
   l'inventant.** Le flou se mesure sur les bords (`flouDe`,
