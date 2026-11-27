@@ -818,6 +818,14 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   un fichier net n'y passe pas. Les deux s'enchaînent dans les deux sens :
   Logo maker après l'Ultra HD relit l'image HD sans relancer l'IA ; cliqué
   pendant l'Ultra HD, il relit l'image HD à son arrivée.
+- **À l'ouverture, rien ne se montre** (27 novembre 2026, « à l'ouverture
+  ça me met automatiquement un coup de Logo maker, je veux qu'il ne se
+  passe rien ») : la carte « Logo maker · % » courait pendant la lecture
+  du texte (pour le prompt ChatGPT) et passait pour Logo maker. À
+  l'ouverture (`prevue`, `p.fichier`), seuls le fichier lu et le tracé
+  d'un SVG, PDF, AI font une barre, sous le surtitre « Ouverture » ; le
+  reste se lit sans rien montrer. L'Ultra HD seule se dit « Ultra HD »,
+  Logo maker « Logo maker ». Piloté par le BAT : inchangé.
 - **Nouveau logo / Supprimer** (22 novembre 2026, « on doit pouvoir
   supprimer le logo en cours et facilement en ajouter un nouveau ») : dans
   la barre dès qu'un logo est ouvert. Nouveau ouvre le sélecteur (le
