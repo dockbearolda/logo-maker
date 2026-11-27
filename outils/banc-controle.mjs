@@ -5,7 +5,7 @@
    vert, l'encre d'accord ; rouge, attendue mais pas tracée ; bleu, tracée
    mais pas attendue). Pour juger un changement du tracé sur de vrais logos
    (CLAUDE.md) : avant, après, et regarder la carte.
-     node outils/banc-controle.mjs <logo.png> [lissage]
+     node outils/banc-controle.mjs <logo.png> [lissage]   (APLAT=1 : un logo à plat)
    Sans l'IA (le fichier reçu se trace tel quel) : les nombres ne sont pas
    ceux du panneau, qui trace l'image redessinée ×4 — la comparaison
    avant/après, elle, tient. */
@@ -63,7 +63,7 @@ console.log('image', img.largeur, 'x', img.hauteur)
 const t0 = performance.now()
 const r = detourer(img.data, img.largeur, img.hauteur, { tolerance: 28, interieur: true }, 1)
 const origine = Math.max(img.largeur, img.hauteur)
-const options = { fonds: r.fonds || [], source: img.data, alpha: true, lissage, coteTravail: 0, trouer: false, geometrie: true, miettes: true, origine, sans: [], nuances: true, fusion: 1, texte: null, remplacements: [], mono: false, memo: {} }
+const options = { fonds: r.fonds || [], source: img.data, alpha: true, lissage, coteTravail: 0, trouer: false, geometrie: true, miettes: true, origine, sans: [], nuances: true, fusion: 1, texte: null, remplacements: [], mono: false, memo: {}, aPlat: process.env.APLAT === '1' }
 const multi = vectoriserLisse(r.data, img.largeur, img.hauteur, options)
 console.log('tracé en', Math.round(performance.now() - t0), 'ms ; formes', multi.formes, 'nœuds', multi.noeuds, 'dégradé', multi.degrade, 'couleurs', multi.couleurs.length, 'couches', multi.couches.length)
 const t1 = performance.now()

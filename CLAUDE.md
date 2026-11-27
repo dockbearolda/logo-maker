@@ -494,10 +494,16 @@ que servir les fichiers. On modifie les fichiers, on vérifie dans l'aperçu
     avec ses formes hautes, seulement quand l'image n'a donné aucune
     ligne : une photo qui a ses lignes ne change pas (banc des lignes,
     70 fichiers, aucun ne change).
-  - Laissé à décider : la géométrie parfaite perdue quand une boucle
-    finit par une droite (`lib/geometrie.js`, `ji[0]`) — corrigée, elle
-    redresse les logos (AUTOMAX) mais coupe droit la pointe des plumes du
-    phénix (unnamed.png). Pas passée.
+  - La géométrie parfaite perdue quand une boucle finit par une droite
+    (`lib/geometrie.js`, `ji[0]`) : tranché le 27 novembre 2026 (« on
+    corrige seulement sur les logos à plat ») — `finDroite`, seulement
+    `genre === 'logo'` sans matière (`aPlat`), et seulement sur une
+    boucle de droites (60 % du tour, aucune courbe au-delà de 30 %, pas
+    de droite d'inflexion entre deux arrondis contraires). Le graphiste
+    classe le phénix en « logo » : sans ces deux gardes, ses plumes se
+    facettaient et le « s » de Bacchus cassait. Au banc (APLAT=1) :
+    AUTOMAX −9 % de nœuds, ses filets droits ; Bacchus identique ; le
+    phénix ne change que son « A ».
 
 - **Les calques** (12 octobre 2026, « un système de calques : prendre
   l'écriture et la modifier, supprimer un objet qui me plaît pas ») : un
