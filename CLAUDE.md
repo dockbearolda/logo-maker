@@ -786,8 +786,11 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   (24 novembre 2026, « Logo maker ne doit plus se lancer tout seul » ;
   « j'ai un logo vecto que je veux mettre en HD, je n'ai pas besoin de
   mettre Logo maker »). À l'ouverture (studio et Analyser) : fond
-  « Entier » (rien ne part), aucune IA, aucune netteté ; un SVG, PDF, AI en
-  Vecteur, un fichier en pixels en Détouré ; tenu comme un choix
+  « Entier » (rien ne part), aucune IA, aucune netteté, AUCUN TRACÉ : tout
+  fichier en Détouré, un SVG, PDF, AI compris (27 novembre 2026, « j'ouvre
+  mon logo pour seulement le passer en HD et ça me le vectorise
+  automatiquement » : le Vecteur du studio est un tracé refait, jamais les
+  courbes du fichier) ; tenu comme un choix
   (`vueChoisie`, `fondChoisi`, `creuxChoisi`) : ni le tracé, ni l'IA, ni
   Annuler ne le redécident. Le graphiste lit le fichier (`decision`), mais
   sa décision — version, fond, creux, IA, et le tracé d'office d'un logo à
@@ -822,8 +825,8 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   ça me met automatiquement un coup de Logo maker, je veux qu'il ne se
   passe rien ») : la carte « Logo maker · % » courait pendant la lecture
   du texte (pour le prompt ChatGPT) et passait pour Logo maker. À
-  l'ouverture (`prevue`, `p.fichier`), seuls le fichier lu et le tracé
-  d'un SVG, PDF, AI font une barre, sous le surtitre « Ouverture » ; le
+  l'ouverture (`prevue`, `p.fichier`), seul le fichier lu fait une
+  barre, sous le surtitre « Ouverture » ; le
   reste se lit sans rien montrer. L'Ultra HD seule se dit « Ultra HD »,
   Logo maker « Logo maker ». Piloté par le BAT : inchangé.
 - **Nouveau logo / Supprimer** (22 novembre 2026, « on doit pouvoir
