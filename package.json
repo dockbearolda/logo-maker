@@ -10,6 +10,6 @@
     "start": "node serveur.mjs",
     "test": "node --test",
     "cf:build": "node scripts/build-cf.mjs",
-    "cf:deploy": "node scripts/build-cf.mjs && wrangler deploy"
+    "cf:deploy": "node scripts/build-cf.mjs && npx wrangler deploy"
   }
 }
