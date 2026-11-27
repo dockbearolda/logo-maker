@@ -109,6 +109,17 @@ changement qui ne devait rien toucher : zéro écart.
   avant). Au banc (29 logos × 3 abîmes, avec l'IA) : forme 0,939 → 0,957,
   ΔE 1,22 → 1,07, l'écu gris 0,85 → 0,99, Instant Floral (ses roses
   pâles) ΔE 11 → 4,5 ; aucun logo ne recule.
+  **Un trait fin et pâle ne se casse plus** (27 novembre 2026) : « SAINT-
+  MARTIN » en petites lettres bleues, flouté, sortait en miettes — ses
+  fûts n'avaient que 45 à 55 % d'encre, coupés à la moitié. Le bord d'un
+  TRAIT (sa part retombe sous la moitié de sa crête à 1,5 pixel du fichier)
+  se pose à 80 % de sa crête (`pales`, `PALE_SEUIL`), entre un quart
+  d'encre (`PALE_MIN`, le bruit du JPEG en dessous) et 62,5 % ; un voile,
+  un lavis, une lueur, larges, gardent la moitié. Au banc : ce texte forme
+  0,76 → 0,81, bord 0,89 → 0,97 ; Clear Ice flou bord 0,78 → 0,90.
+  Instant Floral (une aquarelle) n'est PAS une cible du tracé (« c'est un
+  logo très compliqué pour tout le monde ») : ses chiffres ne tranchent
+  rien ; il se traite en Image ou en Détouré.
 - **Le banc de bout en bout** (27 novembre 2026, « transformer un logo de
   merde en un logo parfaitement exploitable ») : `outils/corpus-bout.py`
   dessine des logos à plat dont on connaît la vérité (emblème, mot,
