@@ -840,7 +840,9 @@
      `dessinerPresse`) —, le panneau à droite, ses titres en petites
      capitales, ses choix en puces. */
   .page { padding:0; }
-  .o-studio { gap:0; grid-template-columns:minmax(0,1fr) 280px; }
+  /* Toujours à la hauteur de la fenêtre, même basse (le cadre du dashboard,
+     28/11/2026) : c'est le panneau qui défile, jamais la page. */
+  .o-studio { gap:0; grid-template-columns:minmax(0,1fr) 280px; min-height:0; }
   .o-studio-scene { border:0; border-radius:0; background:var(--scene); }
   .o-studio-accueil { background:transparent; }
   .o-studio-panneau { border:0; border-left:1px solid var(--filet-carte); border-radius:0; background:var(--carte); }
@@ -878,9 +880,14 @@
   .o-studio-chevron { width:7px; height:7px; margin:0 2px 3px; border-right:1.5px solid var(--encre-2); border-bottom:1.5px solid var(--encre-2); rotate:45deg; }
   .o-studio-deroulant[open] .o-studio-chevron { rotate:225deg; margin-bottom:-3px; }
   /* Flottant (22/11/2026) : ouvrir Couleur ou Fond ne pousse plus le panneau,
-     l'écran ne bouge pas. */
+     l'écran ne bouge pas. Sans défilement à lui (28/11/2026, « pas accès au
+     transparent ») : il défile avec le panneau, la molette posée dessus
+     fait défiler le panneau, et le panneau l'amène en entier à l'écran
+     (`montrerDeroulant`, lib/studio-detourage.js). */
   .o-studio-deroulant { position:relative; }
-  .o-studio-deroulant-corps { position:absolute; z-index:30; top:calc(100% + 6px); left:0; right:0; max-height:calc(100vh - 220px); overflow-y:auto; overscroll-behavior:contain; display:flex; flex-direction:column; gap:12px; padding:12px; box-sizing:border-box; border:1px solid rgba(var(--teinte),.12); border-radius:18px; background:var(--surface); box-shadow:var(--ombre-flottant); }
+  /* 12 px de panneau à défiler sous le menu : il ne touche pas le pied. */
+  .o-studio-deroulant-corps::after { content:''; position:absolute; top:100%; left:0; width:1px; height:12px; pointer-events:none; }
+  .o-studio-deroulant-corps { position:absolute; z-index:30; top:calc(100% + 6px); left:0; right:0; display:flex; flex-direction:column; gap:12px; padding:12px; box-sizing:border-box; border:1px solid rgba(var(--teinte),.12); border-radius:18px; background:var(--surface); box-shadow:var(--ombre-flottant); }
   /* LE CHARGEMENT : la barre seule, comme l'enregistrement du BAT — un
      surtitre, un grand pourcentage, une barre ; un échec y reste. */
   .o-studio-prep { left:50%; top:50%; bottom:auto; width:min(380px, calc(100% - 32px)); transform:translate(-50%, -50%); padding:22px 24px 24px; border:0; border-radius:24px; background:var(--verre-carte); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); box-shadow:0 0 0 1px rgba(var(--teinte),.1), 0 24px 60px rgba(0,0,0,.55); }

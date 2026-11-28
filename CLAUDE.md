@@ -1036,6 +1036,16 @@ vectorisation d'une image raster » ; « EVJF vectorisé, c'est inexploitable,
   Pendant le glissé, le centre du texte s'aimante au centre de l'image et
   à celui du logo (son encre, `cadreLogo`), horizontal et vertical, une
   ligne magenta le montre (Ctrl/Cmd : sans aimant).
+- **Le panneau défile toujours, un menu ouvert se voit en entier** (28
+  novembre 2026, « pas accès au fond transparent, la side bar ne scrolle
+  pas ; ça ne doit plus arriver ») : les déroulants Couleur et Fond
+  flottent sans défilement à eux (le `overscroll-behavior: contain` de
+  leur corps avalait la molette : ni le menu ni le panneau ne bougeaient,
+  la pastille Transparent restait sous « Télécharger »). À l'ouverture et
+  quand il grandit (le nuancier déplié), le panneau seul défile pour le
+  montrer (`montrerDeroulant`) ; le studio n'a plus de hauteur minimale
+  (le cadre bas du dashboard : la page ne défile jamais, le panneau si).
+  Ne pas redonner de défilement propre à un menu du panneau.
 - **Le zoom ne zoome que le logo** (24 novembre 2026, « ça ne doit jamais
   bouger la fenêtre ou zoomer la fenêtre, c'est le logo qui zoome ») : la
   molette zoome le logo sous la souris PARTOUT sur le plan (la scène, sa
